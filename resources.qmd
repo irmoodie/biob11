@@ -1,0 +1,46 @@
+---
+title: "Resources"
+---
+
+# Books
+
+During this course, we will make reference to the following books. None of these books are intended to be read "cover to cover". Instead, we will reference the relevant chapters at each part of the course. All the books have a high degree of topic overlap, but explain the key concepts slightly differently.
+
+Please do not feel pressured to buy a copy of Ennos & Johnsson (2018) if you do not want to (note the library has some copies). It is a good book, but the other free books I have listed below cover all the same topics.
+
+## Physical books
+
+- [Statistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)](https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=5164304)
+
+## Online books
+
+- [R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)](https://r4ds.hadley.nz/) (R reference book)
+- [Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)](https://moderndive.com/v2/) (Ch. 1-4, 7-9)
+- [Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)](https://openintro-ims.netlify.app/) (Ch. 2, 11-22)
+- [Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)](https://bradduthie.github.io/stats/)
+  - Also available as an [audiobook](https://bradduthie.github.io/audiobook.html)
+
+# Software
+
+During the course we will use R and RStudio as tools to handle data, make plots and do statistics.
+
+- [The R Project for Statistical Computing](https://www.r-project.org/)
+- [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
+
+If you want to use another software package for these purposes, you are very welcome to, but you do so at your own undertaking.
+
+## R packages
+
+We will make use of a set of R packages that are part of the extended `tidyverse` set of packages. Below are the websites for the main ones we will use, which contain guides and reference materials
+
+### General
+
+- [`tidyverse`](https://www.tidyverse.org/)
+  - [`ggplot2`](https://ggplot2.tidyverse.org/) (Plotting data)
+  - [`dplyr`](https://dplyr.tidyverse.org/) (Manipulating data)
+  - [`tidyr`](https://tidyr.tidyverse.org/) (Tidying data)
+  - [`readr`](https://readr.tidyverse.org/) (Importing/exporting data)
+
+### Statistics
+
+- [`infer`](https://infer.tidymodels.org/)
