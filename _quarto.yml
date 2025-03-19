@@ -2,19 +2,42 @@ project:
   type: website
 
 website:
-  title: "biob11_2025"
-  navbar:
-    left:
+  title: "BIOB11"
+  description: "Homepage for BIOB11 - Experimental Design and Analysis for Biologists at Lund University, VT25"
+
+  open-graph: true
+
+  page-footer: 
+    right:  "Built by [Iain R. Moodie](https://irmoodie.com) with [Quarto](https://quarto.org/)."
+    left: "Unless otherwise stated, all materials are under a [CC-BY-SA-4.0 License](https://creativecommons.org/licenses/by-sa/4.0/deed.en)"
+    background: "#8e61aa"
+
+  sidebar: 
+    background: "#8e61aa"
+    logo: "images/logo.png"
+    pinned: true
+    collapse: true
+    align: center
+    style: docked
+    search: true
+    collapse-level: 1
+    contents:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: https://canvas.education.lu.se/courses/33414
+        text: LU Canvas
+      - slides.qmd
+      - exercises.qmd
+      - resources.qmd
+
+
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
+    theme: [cosmo, brand, styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
     toc: true
 
 

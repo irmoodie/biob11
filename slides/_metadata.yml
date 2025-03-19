@@ -1,0 +1,19 @@
+author:
+  - name: Iain R. Moodie
+    affiliations: 
+      - BIOB11 - Experimental design and analysis for biologists
+      - Department of Biology, Lund University
+format: 
+  live-revealjs:
+    fig-height: 5
+    fig-width: 5
+    fig-align: center
+revealjs-plugins:
+  - attribution
+webr:
+  cell-options:
+    autorun: false
+theme: slides.scss
+bibliography: ../references.bib
+citations-hover: true
+search: false

@@ -1,0 +1,14 @@
+author:
+  - name: Iain R. Moodie
+format: 
+  live-html:
+    toc: true
+    theme: [cosmo, brand, ./styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
+webr:
+  cell-options:
+    autorun: false
+bibliography: ../references.bib
+citations-hover: true
