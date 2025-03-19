@@ -29,6 +29,10 @@ You can then build the site, which is built in `/_site` folder:
 quarto render
 ```
 
+# Attributions
+
+- [`slides/slides.scss`](slides/slides.scss) is forked from the revealjs theme: [`grantmcdermott/quarto-revealjs-clean`](https://github.com/grantmcdermott/quarto-revealjs-clean)
+
 # To contribute
 
 Create a pull request or issue.
