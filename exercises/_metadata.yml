@@ -3,7 +3,7 @@ author:
 format: 
   live-html:
     toc: true
-    theme: [cosmo, brand, ./styles.scss]
+    theme: [cosmo, brand, ../styles.scss]
     mainfont: "Atkinson Hyperlegible"
     code-copy: true
     code-overflow: wrap
