@@ -1,0 +1,221 @@
+---
+title: "Course introduction"
+subtitle: "Lecture 0"
+date: 2025-03-24
+webr:
+  packages:
+    - tidyverse
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+# Welcome to the course!
+
+## Experimental design and analysis for biologists
+### Course rational
+
+- Biology is full of interesting research questions
+- Nearly all research in biology relies on collecting and analysing data of some kind
+- Experimental design and statistical literacy is therefore important for:
+  - ***doing*** your own research
+  - ***understanding*** and ***evaluating*** research of other scientists
+
+## Experimental design and analysis for biologists
+### Course aims
+
+- Understand and identify good experimental design that is appropriate to answer a specific research question
+- Develop a conceptual understanding of statistics
+  - Mathmatical details are not the main focus
+  - Instead, developing good statistical judgement is
+- Learn how to apply fundemental statistical tools to answer research questions.
+  - Using **R**, a free software environment for statistical computing
+- Combine everything we have learned to design and carry out a research project
+
+## Experimental design and analysis for biologists
+### After completion of the course you should be able to:
+
+- Explain basic concepts in experimental design, data collection, and data analysis
+- Design appropriate biological experiments based on a research question
+- Handle and manipulate biological data
+- Statistically analyse and interpret biological data
+- Present statistical results graphically and in writing
+
+## Experimental design and analysis for biologists
+### How we are going to achieve those aims:
+
+- Learn by doing
+  - 
+
+## Experimental design and analysis for biologists
+### What we expect from you
+
+- 
+
+## Experimental design and analysis for biologists
+### Changes from previous years
+
+- We will use **R**, not **SPSS** to perform statistical analyses
+  - Both are very powerful statistical software packages
+  - A license to use **SPSS** costs > 1060 kr / month
+  - **R** is free, and very widely used in biology, both in academia and industry
+  - **R** is a programming language
+
+# Who are we?
+
+## Iain Moodie
+### Lectures, exercises and project work
+
+:::: columns
+::: {.column width="60%"}
+-   Doctoral student in the _Biodiversity & Evolution_ division
+-   Research integrates evolutionary biology into ecotoxicology
+-   Course leader
+:::
+
+::: {.column width="40%"}
+![](images/00/iain.jpg){fig-alt="Headshot of Iain Moodie" fig-align="center" width="325"}
+:::
+
+::::
+
+## Kaj Hulthén
+### Lecture: scientific integrity and ethics
+
+:::: columns
+::: {.column width="60%"}
+-   Researcher in the *Functional Ecology* division
+-   Researches migration in aquatic ecosystems
+:::
+
+::: {.column width="40%"}
+![](images/00/kaj.webp){fig-alt="Headshot of Kaj Hulthén" fig-align="center" width="375"}
+:::
+
+::::
+
+## L. Ximena Alva Caballero
+### Project work
+
+:::: columns
+::: {.column width="60%"}
+-   Doctoral student in the _Evolutionary Ecology & Infection Biology_ division
+-   Researches evolutionary causes of variation in immune function
+-   Will be available during your projects to answer questions
+:::
+
+::: {.column width="40%"}
+![](images/00/ximena.webp){fig-alt="Headshot of Lucia Ximena Alva Caballero" fig-align="center"}
+:::
+
+::::
+
+# Who are you? {background-color="#015b58"}
+Please share with at least two others:
+
+-   Your name
+-   Where you're from
+-   Dog or cat person (you must choose one!)
+-   What you hope to get out of this course
+
+::: {.content-visible when-format="revealjs"}
+{{< countdown minutes=5 font-size="5rem" >}}
+:::
+
+# Course structure
+
+## Course structure
+### Schedule
+
+<iframe width="1000" height="570" src="https://cloud.timeedit.net/lu/web/n1/riqvqQ9nY2XZ6ZQyY7417QQ06oZuw5wZ6ZQ6305Q5Yo7Q2.html"></iframe>
+
+## Course structure
+### Topics
+
+- Samples, populations & descriptive statistics
+- Introduction to **R**
+- Data handling and plotting in **R**
+- The scientific method
+- Research ethics
+- Hypothesis testing and statistical inference
+- Reporting statistical results
+
+
+## Course structure
+### Lectures & exercise sessions
+
+- For each topic:
+  - 2 hours of lectures (with a break)
+  - 1/2 - 1 day of exercises
+
+- Outside of class time:
+  - Optional reading
+  - Scheduled self-study time
+
+- Project
+  - 1 full week to conduct a group research project
+  - Research question is totally up to you
+  - Need to design an experiment, carry it out, collect data, analyse data, and make a presentation
+
+## Course structure
+### Where to find information
+
+- [Canvas](https://canvas.education.lu.se/courses/33414)
+  - Announcements
+  - Schedule
+  - Links to materials
+  - Discussion
+
+- Course website (Iain's materials)
+  - Will always be linked from Canvas
+
+## Course structure
+### How to contact me
+
+- Ask during the exercise sessions!
+- Outside of exercise sessions, question about course materials: 
+  - [Canvas discussions](https://canvas.education.lu.se/courses/33414/discussion_topics)
+- Questions you don't want to share with others:
+  - Send a mail via Canvas
+  - If that isn't appropriate, email: [iain.moodie@biol.lu.se](mailto:iain.moodie@biol.lu.se)
+  - I will do my best to reply within 24 hours
+  - If it is a question about materials, I might ask you to post it in the discussion section so it can be answered there
+
+## Course structure
+### Software
+
+- All materials will use **R** and the ***{tidyverse}*** packages
+  - This is not a programming course
+  - We will only address programming topics when absolutely necessary
+  - You do not need to mememorise **R** code
+
+## Course structure
+### Literature
+
+- Course book:
+  - [Statistical and Data Handling Skills in Biology](https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=5164304) (Bio-statistics, with **R** and **SPSS**)
+
+
+- Free online books
+  - [R for Data Science](https://r4ds.hadley.nz/) (Using **R** in general)
+  - [Statistical Inference via Data Science](https://moderndive.com/v2/) (Statistics with **R**)
+  - [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) (Statistics with **R**)
+  - [Fundamental statistical concepts and techniques in the biological and environmental sciences](https://bradduthie.github.io/stats/) (Bio-statistics, *not* with **R**)
+
+
+## Homework
+### To do before 26th March
+
+- If you are using your own device (Windows, MacOS or Linux):
+  - Follow the instructions to install **R** and **RStudio**
+- If you are using your own device (ChromeOS, iPadOS, Android, etc)
+  - **R** cannot run natively on your device
+  - You can access **R** via the browser
+  - If your device is "fast", use [**webR IDE**](https://webr.r-wasm.org/latest/)
+  - If your device is "slow", use [**Posit Cloud**](https://posit.cloud/)
+- If you are going to borrow a laptop from the department:
+  - Check that it has **RStudio** installed
+
+## Homework
+### To do before 26th March
+
+- You do not need **R** installed for the first exercise session.
