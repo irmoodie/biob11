@@ -1,0 +1,13 @@
+---
+title: "Exercises"
+listing:
+  contents: exercises
+  type: table
+  fields: [subtitle, date, title]
+  sort: "date"
+  field-display-names:
+    date: "Date"
+    subtitle: "Exercise"
+    title: "Topic"
+  date-format: iso
+---

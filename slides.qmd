@@ -1,0 +1,13 @@
+---
+title: "Slides"
+listing:
+  contents: slides
+  type: table
+  fields: [subtitle, date, title]
+  sort: "date"
+  field-display-names:
+    date: "Date"
+    subtitle: "Lecture"
+    title: "Topic"
+  date-format: iso
+---
