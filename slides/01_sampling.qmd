@@ -1,0 +1,739 @@
+---
+title: "Populations, samples, variable types and descriptive statistics"
+date: 2025-03-24
+subtitle: "Lecture 1"
+webr:
+  packages:
+    - tidyverse
+    - palmerpenguins
+---
+
+<!-- begin: webr fodder -->
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+options("readr.edition" = 1)
+
+theme_set(theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1))
+```
+
+<!-- end: webr fodder -->
+
+# Populations and samples {background-color="#8e61aa"}
+
+_The foundations of statistics_
+
+## Populations and samples
+### Why we collect data
+
+:::: columns
+::: {.column width="60%"}
+- Recording some kind of observation or measurement
+- Example:
+  - Measuring the heights of different trees in a forest
+  - Measuring the carbon in the forest soil at different locations
+- We want to say something about the forest in general
+:::
+
+::: {.column width="40%"}
+![](images/01/olena-bohovyk-3BlVILvh9hM-unsplash.jpg){fig-alt="A drone shot of a forest" fig-align="center" width="300"}
+:::
+
+::::
+
+::: {.attribution}
+Photo by [Olena Bohovyk](https://unsplash.com/@olenkasergienko)
+:::
+
+## Populations and samples
+### Why we collect data
+
+:::: columns
+::: {.column width="60%"}
+- Cannot measure every tree or soil at every location
+- Instead, we collect a [**sample**]{style="color: #8e61aa;"} of data
+- Use the sample to draw conclusions about the [**population**]{style="color: #8e61aa;"}
+- Statistics allows us to approximate properties of entire populations from a limited number of samples^[If conducted correctly, and still even then, with caution]
+
+:::
+
+::: {.column width="40%"}
+![](images/01/olena-bohovyk-3BlVILvh9hM-unsplash.jpg){fig-alt="A drone shot of a forest" fig-align="center" width="300"}
+:::
+
+::::
+
+::: {.attribution}
+Photo by [Olena Bohovyk](https://unsplash.com/@olenkasergienko)
+:::
+
+## Populations and samples
+### Definitions
+
+::: {.callout-important}
+## Population
+The totality of individual observations about which inferences are to be made, existing anywhere in the world or at least within a definitely specified sampling area limited in space and time [@sokal1995].
+:::
+
+::: {.callout-important}
+## Sample
+A collection of individual observations selected by a specified procedure [@sokal1995].
+:::
+
+*Note: You don't need to be able to recite this exactly!*
+
+## Populations and samples
+### Examples
+
+:::: columns
+::: {.column width="50%"}
+**Populations**
+
+- All the spruce (gran) trees in Skåne
+- All the blue tits (blåmes) in Sweden
+- All the genes in the common fruit fly (*Drosophila melanogaster*)
+- All the herring (sill) in the Baltic sea
+
+:::
+
+::: {.column width="50%"}
+**Samples**
+
+- 50 spruce trees in a forest in Skåne
+- 100 caught blue tits from nest boxes in Sweden
+- 20 genes from the *Drosophila melanogaster* genome
+- 1000 herring caught by a fishing boat off the coast of Karlskrona
+
+
+:::
+
+::::
+
+## Populations and samples
+### Understanding the relationship between them is important
+
+![](images/01/population_vs_sample.png){fig-align="center"}
+
+::: {.attribution}
+Figure from Ch. 4 of @duthie2025
+:::
+
+## Populations and samples
+### Suggested reading
+
+- Ch. 4: Populations and samples [@duthie2025]
+  - [Book chapter](https://bradduthie.github.io/stats/Chapter_4.html)
+  - [Audiobook chapter (4 mins)](https://open.spotify.com/episode/3TURBHMtoSE3FLpul1OgsL?si=w-pC0L0OR1yj1s-qvP5Vsg)
+
+
+# Data {background-color="#8e61aa"}
+
+## Data
+### Palmer penguins
+
+![](images/01/lter_penguins.png)
+
+## Data {.smaller .scrollable}
+### Palmer penguins
+
+```{r}
+library(palmerpenguins)
+penguins |> knitr::kable()
+```
+
+## Data
+### Tidy data
+
+![](images/01/tidydata.png)
+
+- Each variable gets its own column
+- Each observation gets its own row
+- Each value gets its own cell
+- Each new unit of observation gets its own data file
+
+## Data
+### Tidy data
+
+- All the statistics and plotting we do in this course will assume your data is "tidy"
+- For reference: @wickham2023
+
+
+# Variable types {background-color="#8e61aa"}
+
+## Variable types
+### What is a variable?
+
+::: {.callout-important}
+## Variable
+- A variable is any property that is measured in an observation [@sokal1995].
+- Something that **varies** among things that we can measure [@dytham2011].
+:::
+
+## Variable types
+### What can we do with variables?
+
+- Summarise how our measurements vary using summary statistics
+- Visualise our measurements with figures
+- Predict one variable using a second variable
+  - The variable we want to predict: [**response variable**]{style="color: #8e61aa;"} or [**dependant variable**]{style="color: #8e61aa;"} or [**Y variable**]{style="color: #8e61aa;"}
+  - The variable we use to predict our response variable: [**explanatory variable**]{style="color: #8e61aa;"} or [**independant variable**]{style="color: #8e61aa;"} or [**X variable**]{style="color: #8e61aa;"}
+
+## Variable types
+### Categorical variables
+
+- [**Categorical variables**]{style="color: #8e61aa;"} have a fixed number of discrete values
+- The measurement we take will assign our data to a specific value
+- E.g., species (*Ischnura elegans*, *Lestes sponsa*, *Coenagrion hastulatum*)
+- Can be either [**nominal**]{style="color: #8e61aa;"} or [**ordinal**]{style="color: #8e61aa;"}:
+  - [**Nominal**]{style="color: #8e61aa;"} variables *do not* have inherent order *(e.g., species)*
+  - [**Ordinal**]{style="color: #8e61aa;"} variables *do* have an inherent order *(e.g., "low", "medium" or "high" elevation)*
+
+## Variable types
+### Quantitative variables
+
+- [**Quantitative variables**]{style="color: #8e61aa;"} are represented by numbers that reflect a magnitude
+- Unlike categorical variables, the numbers we collect mean something tangible
+- Can be either [**discrete**]{style="color: #8e61aa;"} or [**continuous**]{style="color: #8e61aa;"}:
+  - [**Discrete**]{style="color: #8e61aa;"} variables can only take certain values *(e.g., a count of species must a natural number (1, 2, 3, etc), not 1.55)*
+  - [**Continuous**]{style="color: #8e61aa;"} variales can take any real number (a number that can be represented by a decimal) within some range. *(e.g., height in mm, temperature in °C)*
+
+## Variable types
+### Why does this matter?
+
+- Different variable types need to be handled differently:
+  - When visualising data
+  - When performing statistics
+
+::: {.callout-important}
+You will need to be able to interpret which variable type a variable is to complete exercises and assignments during this course
+:::
+
+## Variable types
+### Quiz
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/al3cbromt227kier39u9vvb667ttw43j/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+
+# Descriptive statistics {background-color="#8e61aa"}
+
+## Descriptive statistics
+### Histogram
+
+```{r}
+#| label: load-packages
+#| message: false
+library(palmerpenguins)
+library(tidyverse)
+
+penguins2 <- penguins |> filter(!is.na(body_mass_g))
+
+theme_set(theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1))
+
+bm_hist <-
+  ggplot(
+    data = penguins,
+    mapping = aes(x = body_mass_g)
+  ) +
+    geom_histogram(bins = 18, colour = "white", fill = "grey60") +
+    labs(x = "Body mass (g)")
+
+```
+
+:::: columns
+::: {.column width="50%"}
+- A histogram is a graphical representation of the distribution of a dataset
+- It divides the data into bins (intervals) and displays the frequency of data points in each bin
+- The height of each bar represents the number of observations within each bin
+:::
+
+::: {.column width="50%"}
+```{r}
+#| warning: false
+bm_hist
+```
+
+:::
+
+::::
+
+## Descriptive statistics
+### Measures of central tendancy: **the (arithmetic) mean**
+
+:::: columns
+::: {.column width="60%"}
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+
+```{webr}
+data <- c(6, 8, 6, 2, 9, 9, 7, 9)
+```
+
+:::
+
+::: {.column width="40%"}
+```{r}
+#| warning: false
+bm_hist +
+  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
+  scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6")) +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+:::
+
+::::
+
+## Descriptive statistics
+### Measures of central tendancy: **the median**
+
+:::: columns
+::: {.column width="60%"}
+
+$$
+\tilde{x} = 
+\begin{cases} 
+x_{(n+1)/2} & \text{if } n \text{ is odd} \\
+\frac{1}{2}(x_{n/2} + x_{(n/2)+1}) & \text{if } n \text{ is even}
+\end{cases}
+$$
+
+```{webr}
+data <- c(6, 8, 6, 2, 9, 9, 7, 9)
+```
+
+:::
+
+::: {.column width="40%"}
+```{r}
+#| warning: false
+bm_hist +
+  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
+  geom_vline(aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"), linetype = "dotted", size = 2) +
+  scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6", "Median" = "#e63946")) +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+:::
+
+::::
+
+## Descriptive statistics
+### Measures of central tendancy: **the mode**
+
+:::: columns
+::: {.column width="60%"}
+
+*Mode = value that appears most often in the data set*
+
+```{webr}
+data <- c(6, 8, 6, 2, 9, 9, 7, 9)
+```
+
+:::
+
+::: {.column width="40%"}
+```{r}
+#| warning: false
+bm_hist +
+  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
+  geom_vline(aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"), linetype = "dotted", size = 2) +
+  geom_vline(aes(xintercept = as.numeric(names(sort(table(body_mass_g), decreasing = TRUE)[1])), color = "Mode"), linetype = "solid", size = 2) +
+  scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6", "Median" = "#e63946", "Mode" = "#2a9d8f")) +
+  theme(legend.position = c(0.8, 0.8))
+
+```
+
+:::
+
+::::
+
+## Descriptive statistics
+### Measures of spread
+
+```{r}
+#| fig-align: center
+#| fig-height: 8
+#| fig-width: 12
+# Create two datasets with the same mean but different variances
+set.seed(123)
+tibble(
+  x = c(rnorm(1000, mean = 50, sd = 5), rnorm(1000, mean = 50, sd = 15)),
+  var = c(rep("A", times = 1000), rep("B", times = 1000))
+) |>
+  ggplot(aes(x)) +
+  facet_wrap(~var, ncol = 2) +
+  geom_histogram(bins = 18, colour = "white", fill = "grey60") +
+  geom_vline(aes(xintercept = mean(x), color = "Mean"), linetype = "dashed", size = 1) +
+  scale_color_manual(name = "", values = c("Mean" = "#a53ce6")) +
+  theme(legend.position = "top")
+
+```
+
+## Descriptive statistics
+### Measures of spread: **the range**
+
+:::: columns
+::: {.column width="60%"}
+
+$$
+\text{Range} = \text{Max}(x) - \text{Min}(x)
+$$
+
+- Highly sensitive to outliers
+
+```{webr}
+data <- c(6, 8, 6, 2, 9, 9, 7, 9)
+```
+
+:::
+
+::: {.column width="40%"}
+```{r}
+#| warning: false
+bm_hist +
+  geom_vline(aes(xintercept = min(body_mass_g, na.rm = TRUE), color = "Min"), linetype = "solid", size = 2) +
+  geom_vline(aes(xintercept = max(body_mass_g, na.rm = TRUE), color = "Max"), linetype = "solid", size = 2) +
+  scale_color_manual(name = "Statistics", values = c("Min" = "#2a9d8f", "Max" = "#f4a261")) +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+:::
+
+::::
+
+## Descriptive statistics
+### Measures of spread: **the inter-quartile range (IQR)**
+
+:::: columns
+::: {.column width="60%"}
+
+$$
+\text{IQR} = Q_3 - Q_1
+$$
+
+- Less sensitive to outliers than range
+
+```{webr}
+data <- c(6, 8, 6, 2, 9, 9, 7, 9)
+```
+
+:::
+
+::: {.column width="40%"}
+```{r}
+#| warning: false
+bm_hist +
+  geom_vline(aes(xintercept = min(body_mass_g, na.rm = TRUE), color = "Min"), linetype = "solid", size = 2) +
+  geom_vline(aes(xintercept = max(body_mass_g, na.rm = TRUE), color = "Max"), linetype = "solid", size = 2) +
+  geom_vline(aes(xintercept = quantile(body_mass_g, 0.25, na.rm = TRUE), color = "Q1"), linetype = "dotted", size = 2) +
+  geom_vline(aes(xintercept = quantile(body_mass_g, 0.75, na.rm = TRUE), color = "Q3"), linetype = "dotted", size = 2) +
+  geom_vline(aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"), linetype = "dashed", size = 2) +
+  scale_color_manual(name = "Statistics", values = c("Min" = "#2a9d8f", "Max" = "#f4a261", "Q1" = "#e63946", "Q3" = "#e63946", "Median" = "#e63946")) +
+  theme(legend.position = c(0.8, 0.75))
+```
+
+:::
+
+::::
+
+## Descriptive statistics
+### Measures of spread: **the variance**
+
+- The sample variance of a dataset is a measure of the **expected squared distance of data from the mean**
+- To calculate:
+  - sample size, $N$
+  - mean of the sample, $\bar{x}$
+
+$$
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+## Descriptive statistics
+### Measures of spread: **the variance**
+
+- Sample variance ($s^2$)
+
+$$
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+- Sum of squares ($SS$)
+
+$$
+SS = \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+## Descriptive statistics
+### Measures of spread: **the variance**
+
+```{webr}
+data <- c(5.5, 4.7, 8.3, 2.1, 9.6, 3.4, 7.7)
+```
+
+$$
+SS = \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+$$
+SS = (5.5 - 5.9)^2 + (4.7 - 5.9)^2 + (8.3 - 5.9)^2 +\\(2.1 - 5.9)^2 + (9.6 - 5.9)^2 + (3.4 - 5.9)^2 + (7.7 - 5.9)^2
+$$
+
+$$
+SS = (-0.4)^2 + (-1.2)^2 + (2.4)^2 +\\(-3.8)^2 + (3.7)^2 + (-2.5)^2 + (1.8)^2
+$$
+
+$$
+SS = 0.16 + 1.44 + 5.76 + 14.44 + 13.69 + 6.25 + 3.24
+$$
+
+## Descriptive statistics
+### Measures of spread: **the variance**
+
+$$
+SS = \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+$$
+SS = 44.98
+$$
+
+$$
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+$$
+s^2 = \frac{1}{7-1} \times 44.98
+$$
+
+$$
+s^2 = 7.497
+$$
+
+## Descriptive statistics
+### Measures of spread: **the variance**
+
+```{webr}
+data <- c(5.5, 4.7, 8.3, 2.1, 9.6, 3.4, 7.7)
+
+var(data)
+```
+
+## Descriptive statistics
+### Measures of spread: **the variance**
+
+$$
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+- Why $N-1$, not $N$?
+- We have a reduction in the [**degrees of freedom**]{style="color: #8e61aa;"}
+  - Number of independent pieces of information used to calculate a statistic
+  - See [Ch. 12.3](https://bradduthie.github.io/stats/Chapter_12.html#the-variance) of @duthie2025
+
+## Descriptive statistics
+### Measures of spread: **the variance**
+
+- Hard for us to visualise in our heads
+- Very useful mathmatical properties
+
+$$
+\text{Var}(A+B) = \text{Var}(A) + \text{Var}(B)
+$$
+
+- E.g.,
+
+$$
+\text{Var}(Phenotype) = \text{Var}(Genotype) + \text{Var}(Environment)
+$$
+
+## Descriptive statistics
+### Measures of spread: **the standard deviation**
+
+:::: columns
+::: {.column width="60%"}
+
+$$
+s = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2}
+$$
+
+- Units are no longer squared!
+
+```{webr}
+data <- c(5.5, 4.7, 8.3, 2.1, 9.6, 3.4, 7.7)
+```
+
+:::
+
+::: {.column width="40%"}
+```{r}
+#| warning: false
+bm_hist +
+  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
+  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE) + sd(body_mass_g, na.rm = TRUE), color = "SD"), linetype = "dotted", size = 2) +
+  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE) - sd(body_mass_g, na.rm = TRUE), color = "SD"), linetype = "dotted", size = 2) +
+  geom_segment(aes(x = mean(body_mass_g, na.rm = TRUE), y = 40, xend = mean(body_mass_g, na.rm = TRUE) + sd(body_mass_g, na.rm = TRUE), yend = 40), 
+               arrow = arrow(length = unit(0.3, "cm"), ends = "both"), color = "#e63946") +
+  scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6", "SD" = "#e63946")) +
+  theme(legend.position = c(0.8, 0.8))
+
+
+```
+
+:::
+
+::::
+
+##
+
+{{< video https://www.youtube.com/embed/zeJD6dqJ5lo
+    title="Mean, Variance and Standard Deviation?"
+    start="701"
+    width="1050"
+    aspect-ratio="16x9"
+    align="center"
+>}}
+
+## Descriptive statistics
+### Measures of error/confidence: **the coefficient of variation (CV)**
+
+$$
+CV = \frac{s}{\bar{x}}
+$$
+
+- The standard deviation ($s$) divided by the mean ($\bar{x}$)
+- Becomes unitless / dimensionless
+- Useful for comparing spread across datasets with very different means
+  - E.g. variability in lengths of tails in mice and dogs
+- Often presented as a percentage
+
+## Descriptive statistics
+### Measures of error/confidence: **the standard error (SE)**
+
+- Bit different to previous measures
+- The standard error is the standard deviation of sample mean ($\bar{x}$) values around the true mean ($\mu$)
+- It tells us how far we expect the mean of our sample to deviate from the true mean
+
+```{webr}
+body_mass <- penguins |> filter(!is.na(body_mass_g)) |> pull(body_mass_g)
+
+sample_1 <- sample(body_mass, size = 20)
+sample_2 <- sample(body_mass, size = 20)
+
+cat("True mean =", mean(body_mass))
+cat("Sample 1 mean =", mean(sample_1))
+cat("Sample 2 mean =", mean(sample_2))
+```
+
+## Descriptive statistics
+### Measures of error/confidence: **the standard error (SE)**
+
+$$
+SE = \frac{s}{\sqrt{N}}
+$$
+
+- Standard deviation divided by square root of sample size
+- Quantifies our uncertainty in the sample mean
+- We will return to this soon!
+
+## Descriptive statistics
+### Measures of error/confidence: **the standard error (SE)**
+
+```{webr}
+#| warning: false
+set.seed(123)
+data <- rnorm(1000, mean = 100, sd = 5)
+
+sample_size <- 100
+n_sim_samples <- 1000
+
+sim_samples <- sapply(1:n_sim_samples, function(x){sample(data, sample_size)})
+sim_means <- apply(sim_samples, 2, mean)
+sim_se <- sd(sim_means)
+
+ggplot(tibble(x = data), aes(x = x)) +
+geom_histogram(fill = "grey65", colour = "white") +
+#geom_vline(data = tibble(x = sim_means), aes(xintercept = x, color = "Sample"), alpha = 0.1) +
+#geom_vline(aes(xintercept = mean(x), color = "True")) +
+scale_color_manual(name = "Mean type", values = c("True" = "black", "Sample" = "#e63946"))
+
+calc_se <- sd(sim_samples[,1])/sqrt(sample_size)
+
+cat("Standard error as standard deviation of samples =", sim_se)
+cat("Standard error calculated with formula =", calc_se)
+```
+
+## Descriptive statistics
+### Skew and kurtosis: **skew**
+
+- The asymmetry of the distribution 
+
+```{r}
+#| fig-align: center
+#| fig-width: 12
+# Create two datasets with different skews
+set.seed(1234)
+right_skewed <- rbeta(10000, 2, 6) * 100
+left_skewed <- rbeta(10000, 6, 2) * 100
+no_skew <- rnorm(10000, 50, 3) 
+
+# Combine into a single dataframe
+skewed_data <- tibble(
+  value = c(left_skewed, no_skew, right_skewed),
+  skew = rep(c("Left / negative skew", "No skew (normal)", "Right / positive skew"), each = 10000)
+)
+
+means <- tibble(
+  value = c(mean(left_skewed), mean(no_skew), mean(right_skewed)),
+  skew = c("Left / negative skew", "No skew (normal)", "Right / positive skew")
+)
+
+medians <- tibble(
+  value = c(median(left_skewed), median(no_skew), median(right_skewed)),
+  skew = c("Left / negative skew", "No skew (normal)", "Right / positive skew")
+)
+
+# Plot using ggplot with facets
+ggplot(skewed_data, aes(x = value)) +
+  geom_histogram(bins = 30, fill = "grey60", color = "white") +
+  geom_vline(data = means, aes(xintercept = value, color = "Mean")) +
+  geom_vline(data = medians, aes(xintercept = value, color = "Median")) +
+  scale_color_manual(name = "Statistic", values = c("Mean" = "purple", "Median" = "red")) +
+  facet_wrap(~ skew, scales = "free") +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), legend.position = "top")
+
+```
+
+## Descriptive statistics
+### Skew and kurtosis: **kurtosis**
+
+- [**Leptokurtic**]{style="color: #8e61aa;"}: more values *in* the centre and tails of the distribution
+- [**Platykurtic**]{style="color: #8e61aa;"}: more values *between* the centre and the tails
+
+```{r}
+#| fig-align: center
+#| fig-width: 12
+
+set.seed(1234)
+leptokurtic <- c(rnorm(9500, 50, 3), rnorm(500, 50, 10))
+platykurtic <- sort(rnorm(10000, 40, 100))[100:9900]
+
+# Combine into a single dataframe
+kurtosis_data <- tibble(
+  value = c(leptokurtic, platykurtic),
+  kurtosis = c(rep("Leptokurtic", times = 10000), rep("Platykurtic", times= 9801))
+)
+
+# Plot using ggplot with facets
+ggplot(kurtosis_data, aes(x = value)) +
+  geom_histogram(bins = 30, fill = "grey60", color = "white") +
+  facet_wrap(~ kurtosis, scales = "free") +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), legend.position = "top")
+
+
+```
+
+## Referenced texts
