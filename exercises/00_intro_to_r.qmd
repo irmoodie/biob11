@@ -2,8 +2,6 @@
 title: "Introduction to R"
 subtitle: "Exercise 0"
 date: 2025-03-25
-author:
-  - name: Iain R. Moodie
 format: live-html
 ---
 
