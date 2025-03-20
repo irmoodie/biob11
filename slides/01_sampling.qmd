@@ -8,8 +8,6 @@ webr:
     - palmerpenguins
 ---
 
-<!-- begin: webr fodder -->
-
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{webr}
@@ -20,8 +18,6 @@ options("readr.edition" = 1)
 
 theme_set(theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1))
 ```
-
-<!-- end: webr fodder -->
 
 # Populations and samples {background-color="#8e61aa"}
 
