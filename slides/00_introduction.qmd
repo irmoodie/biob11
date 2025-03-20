@@ -114,7 +114,7 @@ Please share with at least two others:
 
 -   Your name
 -   Where you're from
--   Dog or cat person (you must choose one!)
+-   Are you a dog or cat person (you must choose one!)
 -   What you hope to get out of this course
 
 ::: {.content-visible when-format="revealjs"}
