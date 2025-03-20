@@ -15,7 +15,7 @@ The site makes heavy use of [R for WebAssembly](https://github.com/r-wasm) to en
 
 The repo is setup as a [Quarto Project](https://quarto.org/docs/projects/quarto-projects.html), using the [website template](https://quarto.org/docs/websites/).
 
-To build the site, install the required quarto extensions in the root directory (see links above for source code):
+To build the site, install the required quarto extensions in the root directory (they are now included in the repo):
 
 ```{bash}
 quarto add gadenbuie/countdown/quarto
