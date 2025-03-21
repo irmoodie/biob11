@@ -1,0 +1,16 @@
+[
+  {
+    "listing": "/slides.html",
+    "items": [
+      "/slides/00_introduction.html",
+      "/slides/01_sampling.html"
+    ]
+  },
+  {
+    "listing": "/exercises.html",
+    "items": [
+      "/exercises/01_descriptive_statistics.html",
+      "/exercises/00_intro_to_r.html"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "listingMap": {
+    "slides.qmd": [
+      "slides"
+    ],
+    "exercises.qmd": [
+      "exercises"
+    ]
+  }
+}

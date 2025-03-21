@@ -1,0 +1,26 @@
+{
+  "slides.qmd": {
+    "slides.html": "d4a442f7"
+  },
+  "index.qmd": {
+    "index.html": "da54b2a6"
+  },
+  "slides/00_introduction.qmd": {
+    "00_introduction.html": "e84fbc2f"
+  },
+  "slides/01_sampling.qmd": {
+    "01_sampling.html": "68deec8f"
+  },
+  "exercises.qmd": {
+    "exercises.html": "3c3e4d04"
+  },
+  "exercises/01_descriptive_statistics.qmd": {
+    "01_descriptive_statistics.html": "48d2edf4"
+  },
+  "exercises/00_intro_to_r.qmd": {
+    "00_intro_to_r.html": "401c3491"
+  },
+  "resources.qmd": {
+    "resources.html": "fb236679"
+  }
+}
