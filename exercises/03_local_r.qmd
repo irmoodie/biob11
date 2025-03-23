@@ -2,7 +2,6 @@
 title: "How to install R on your local computer"
 subtitle: "Exercise 3"
 date: 2025-03-26
-format: html
 execute:
   echo: true
   eval: false
@@ -280,5 +279,3 @@ You should be met by a scene that looks like this:
 ![A screenshot of a new RStudio installation on macOS.](images/03/rstudio_3.png)
 
 You are now ready for Exercise 4.
-
-

@@ -3,7 +3,6 @@ title: "Handling data using RStudio"
 draft: true
 subtitle: "Exercise 4"
 date: 2025-03-26
-format: live-html
 execute:
   echo: true
   eval: false
