@@ -8,6 +8,7 @@ format:
     fig-height: 5
     fig-width: 5
     fig-align: center
+    history: false
 revealjs-plugins:
   - attribution
 webr:
