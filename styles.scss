@@ -1,6 +1,11 @@
 /*-- scss:defaults --*/
 
+$jet: #131516;
+$accent: #8e61aa;
+$accent2: #59629b;
+
 @import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
 
 $font-family: "Atkinson Hyperlegible", sans-serif;
-$link-color: #8e61aa;
+$link-color: $accent;
+$callout-color-note: $accent;
