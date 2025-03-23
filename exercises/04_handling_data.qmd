@@ -1,0 +1,218 @@
+---
+title: "Handling data using RStudio"
+draft: true
+subtitle: "Exercise 4"
+date: 2025-03-26
+format: live-html
+execute:
+  echo: true
+  eval: false
+---
+
+# Welcome to *RStudio*
+
+**Launch RStudio.** It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.
+
+You should be met by a scene that looks like this:
+
+![A screenshot of a new RStudio installation on macOS.](images/03/rstudio_3.png)
+
+Rstudio is designed around a four panel layout. Currently you can see three of them. To reveal the fourth, go to *File* -> *New file* -> *R markdown..*. This will open an RMarkdown document, which is a form of coding "notebook", where you can mix text, images and code in the same document. We will use these sorts of documents extensively in this course. Give your document a title like "BIOB11 Exercise 3". You can put your name for author, and leave the rest as default for now. Click OK. Now your window should look something like this:
+
+![A screenshot of RStudio on macOS with an RMarkdown file open, and the panels labelled.](images/03/rstudio_4.png)
+
+1. **Source**: This is where we edit code related documents. Anything you want to be able to save should be written here.
+2. **Console**: the console is where R lives. This is where any command you write in the source pane and run will be sent to be executed.
+3. **Environments**: this panel shows you objects loaded into R. For example, if you were to assign a value to an object (e.g.`x <- 1`), then it would appear here.
+4. **Output**: this panel has many functions, but is commonly used to navigate files, show plots, show a rendered RMarkdown file or to read the R help documentation.
+
+## RMarkdown
+
+RMarkdown is a file format for making dynamic documents with R. It combines plain text with embedded R code chunks that are run when the document is rendered, allowing you to include results *and* your R code directly in the document. This makes it a powerful tool for creating reproducible analyses, which are extremely important in science.
+
+The RMarkdown document you opened has some example text and code. An RMarkdown document consists of three main parts:
+
+1. **YAML Header**: This section, enclosed by `---` at the beginning and end, contains metadata about the document, such as the title, author, date, and output format.
+
+2. **Text**: You can write plain text using Markdown syntax to format it. Markdown is a lightweight markup language with plain text formatting syntax, which is easy to read and write.
+
+3. **Code Chunks**: These are sections of R code enclosed by triple backticks and `{r}`. You can click the green arrow to run all the code in a code chunk, or run each line of code using the *Run* button, or by using `Ctrl+Enter` (Windows) or Cmd+Enter (macOS)When the document is rendered, the code is executed, and the results are included in the output. 
+
+Notice at the top left of the *Source* panel, there are two buttons: *Source* and *Visual*. These allow you to switch betwee two views of the RMarkdown document. The *Source* view is what you are looking at, and it is the raw text document. You can also use the *Visual* view, which allows you to work in a WYSIWYG (what you see is what you get) view, similar to Microsoft Office or other text editors. This "renders" your markdown code for you while you write. It also gives you a series of menus to help you format text, which means you do not need to learn [how to write markdown code](https://rmarkdown.rstudio.com/authoring_basics.html) (although it is extremely simple, and you likely know some already).
+
+Which ever view you prefer (and you can switch as often as you like), the code part stays the same. It is primarily there for editing the text around your code.
+
+## Working directory
+
+**I strongly recommend you create a folder where you save all the work you do as part of this course.** I also recommend you make this folder in a part of your computer that is **not** being synced with a cloud service (iCloud, OneDrive, Google Drive, Dropbox, etc). These services can cause issues with RStudio. You can always back up your work at the end of a session.
+
+Within your new course folder, I also want you to **make a new folder for each exercise we do**. This will make it very easy for you to stay organsied and submit work you do to me for feedback. It also makes your code reproducible by simply sending someone the contents of the folder in question. For example, this is exercise 3, so my main folder might be called `biob11`, and within that folder I might make a folder called `exercise_3`.
+
+We now want to set our *working directory* to this `biob11/exercise_3` folder. A working directory is the directory (folder) in a file system where a user is currently working. It is the default location where all your R code will be executed and where files are read from or written to unless specified otherwise. To set the working directory using RStudio, go to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise. You should do this at the start of each exercise.
+
+Notice that now in your *Output* pane, in the *files* tab, you can see the contents of your folder (which is probably nothing currently). Let's change that.
+
+## Saving your document
+
+Let's save this example RMarkdown document that RStudio has made for us. You do that exactly how you might expect. Go to *File* -> *Save*, or use the floppy disc icon. Ensure you save it in your working directory with a descriptive name (e.g. `exercise_3.Rmd`). The file should have appeared in your *Output* pane, with the extension `.Rmd`.
+
+Let's move onto working with some data!
+
+# Working with data in R
+
+Today we will work with a dataset called `tephritis_phenotype.csv`. The dataset comes from a study conducted at Lund University by @nilsson2022.
+
+![Figure 1 from @nilsson2024: Sampling design, host plants, and traits investigated. a Parallel sampling of allopatric and sympatric populations of the two host races of T. conura flies east and west of the Baltic. CH denotes the C. heterophyllum host race and CO denotes the C. oleraceum host race. b Size measurements of T. conura. c The ancestral host plant, C. heterophyllum. d The derived host plant, C. oleraceum](images/03/nilsson2024.png)
+
+The dataset describes morphological measurements of the dipteran *Tephritis conura*. This species has specialised to utilise two different host plants (`host_plant`), *Cirsium heterophyllum* and *C. oleraceum*, and thereby formed stable host races. Individuals of both host races, both collected in sympatry (where both *Cirsium heterophyllum* and *C. oleraceum* host plants co-occur) and allopatry (where only one *Cirsium* species occurs) (`patry`) from eight different populations in northern Europe (`region`) from both sides of the Baltic sea (`baltic`). Individuals were measured after having been hatched in a common lab environment. One female and one male (`sex`) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.
+
+Measured traits included wing length (`wing_length_mm`), wing width (`wing_width_mm`), melanised percentage cover (`melanized_percent`), body length (`body_length_mm`) and ovipositor length (`ovipositor_length_mm`). Body length and wing measurements were collected by measuring images digitally. Wing melanisation was measured using an automated script, which quantified how many pixels of the wing was melanised.
+
+<!-- TODO  -->
+You can download the dataset here:
+
+Once downloaded, you should move it to your *working directory* folder for this exercise before continuing.
+
+## Setting up the RMarkdown document
+
+We will work with the RMarkdown file we generated at the start (that I called `exercise_3.Rmd`). 
+
+First, we should delete all the code and text that RStudio automatically generated, except the YAML header (the text at the start between the `---`). You can do that as you would expect in any other text editor. Now we have our blank RMarkdown file, let's get started.
+
+## Installing R packages
+
+In this exercise, we will use the `tidyverse` suite of packages. To install them all at once (recommended), you need to use the `install.packages()` function. Since we only need to do this once per computer, we should run this function directly in the *Console* panel.
+
+**Type or copy the install function into the *console*, and press enter to run:**
+```{r}
+install.packages("tidyverse")
+```
+
+![](images/03/rstudio_install.png)
+
+From now on, we won't write things directly in the *Console*, so you can minimise to give yourself more space on the RMarkdown document in the *Source* panel.
+
+## Creating code cells
+
+Code cells are where we write code in an RMarkdown document. This allows use to write normal text outside these sections.
+
+**In your *Source* panel, in the RMarkdown document, add a R code cell.**
+
+::: {.callout-note collapse="true" icon="false"}
+### Visual view
+To do that in the *Visual view* (where the text is rendered), go to *Insert* -> *Executable Cell* -> *R*.
+
+![](images/03/rstudio_visual_codecell.png)
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+### Source view
+
+To do that in the *Source view* (where we see just plain text), we use three back-ticks (```` ``` ````) to mark the start and end of a code cell. Additionally at the start, we declare the language used by enclosing it in two curly brackets `{r}`.
+
+```` markdown
+```{{r}}
+
+```
+````
+:::
+
+In both views, you can also use the shortcut *Shift-Alt-I* or *Shift-Command-I*.
+
+## Loading R packages
+
+After installing an R package, we need to load it into our current R environment. We use the `library()` function to do that. Since we need this code to run every time we come back to this RMarkdown document, we should write it in the document. R code should always be executed "top to bottom", so this bit of code should come right at the start.
+
+**Inside that code cell you just made, use the `library()` function to load the `tidyverse` packages:**
+
+```{r}
+library(tidyverse)
+```
+
+If that worked, you will get a message that reads something similar to:
+
+```{r}
+#| echo: false
+#| eval: true
+library(tidyverse)
+```
+
+This message tells us which packages were loaded by the `tidyverse` package, and which functions from base R (the functions that come with R by default) have been overwritten by the `tidyverse` packages.
+
+## Adding headings and text
+
+Anywhere outside a code cell you can write normal text. In this course, you might find it helpful to write yourself notes alongside your code, so that you can come back to your notes during other exercises, the exam (open book), the group project, or later in your studies.
+
+Along side normal text, you can structure an RMarkdown document using headings.
+
+::: {.callout-note collapse="true" icon="false"}
+### Visual view
+Change the type of text you are typing in the menu at the top:
+
+![](images/03/rstudio_visual_heading.png)
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+### Source view
+
+Use `#`s to indicate the level of the heading:
+
+```` markdown
+# Heading level 1
+## Heading level 2
+### Heading level 3
+````
+:::
+
+**I leave it up to you to decide how and when to use headings and text.**
+
+## Importing data into R
+
+We will now load the `tephritis_phenotype.csv` data file that you downloaded earlier. A `.csv` file is a file that stores information in a table-like format with **c**omma **s**eparated **v**alues. A typical `.csv` file will look something like this:
+
+```
+species,height,n_flowers
+persica,1.2,12
+persica,1.5,18
+banksiae,2.4,3
+banksiae,1.7,8
+```
+
+`.csv` files are especially suited to storing data that can be used across a wide variety of programmes, as everything is stored as plain text (unlike an `.xlsx` file from Microsoft Excel, for example).
+
+**Make another code cell.** 
+
+**load the `tephritis_phenotype.csv` data file using the `read_csv()` function and assign it to an object named `tephritis_data`.**
+
+```{r}
+tephritis_data <- read_csv("tephritis_phenotype.csv") #<1>
+```
+1. Be sure to use quote marks around the file name.
+
+If that worked, you should get the following message with some information about the data:
+
+```{r}
+#| echo: false
+#| eval: true
+tephritis_data <- read_csv("data/03/tephritis_phenotype.csv")
+```
+
+This has loaded a copy of the data from `tephritis_phenotype.csv` into R. Notice that the object `tephritis_data` has also appeared in the *Environment* panel.
+
+![](images/03/rstudio_load_data.png)
+
+**Click on the object `tephritis_data` with your mouse.** This will open the dataset using the RStudio function `View()` (which if you look in your console, you will see it has just run). This allows you to view the dataset as a table, like you would in a spreadsheet software like Microsoft Excel. Note however, there is no way to edit the data in this view. This is by design. Any editing of the data needs to be done in the RMarkdown document with code. That way, you can keep a record of any edits you make, without touching the original data file.
+
+## Exploring data
+
+Let's use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2.
+
+```{r}
+print(tephritis_data) #<1>
+```
+1. We can also just simply write `tephritis_data` without the print statement, and we would get the same output.
+
+```{r}
+glimpse(tephritis_data)
+```
+
