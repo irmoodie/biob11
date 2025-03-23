@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!*.Rmd"
 
 website:
   title: "BIOB11"
@@ -30,8 +33,6 @@ website:
       - exercises.qmd
       - resources.qmd
 
-
-
 format:
   html:
     theme: [cosmo, brand, styles.scss]
@@ -39,6 +40,9 @@ format:
     code-copy: true
     code-overflow: wrap
     toc: true
+    link-external-newwindow: true
+    link-external-icon: true
+    link-external-filter: ^(?:http:|https:)\/\/\irmoodie\.com\/custom
 
 execute:
   freeze: auto
