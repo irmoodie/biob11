@@ -26,7 +26,7 @@ webr:
 - Understand and identify good experimental design that is appropriate to answer a specific research question
 - Develop a conceptual understanding of statistics
   - Mathmatical details are not the main focus
-  - Instead, developing good statistical judgement is
+  - Developing good statistical judgement is
 - Learn how to apply fundemental statistical tools to answer research questions.
   - Using **R**, a free software environment for statistical computing
 - Combine everything we have learned to design and carry out a research project
@@ -43,13 +43,22 @@ webr:
 ## Experimental design and analysis for biologists
 ### How we are going to achieve those aims:
 
-- Learn by doing
-  - 
+- Lectures that cover key concepts
+  - Focus on understanding why
+- Exercises that are just data analysis
+  - Reinforce key concepts
+  - Learn how to apply them
+  - Using real biological data
 
 ## Experimental design and analysis for biologists
-### What we expect from you
+### How we are going to achieve those aims:
 
-- 
+- Writing exercise
+  - Apply what you have learned to answer a research question using a dataset
+- Exam
+  - Open book
+- Group project
+  - Design your own research questions, collect data, analyse, present
 
 ## Experimental design and analysis for biologists
 ### Changes from previous years
@@ -59,6 +68,14 @@ webr:
   - A license to use **SPSS** costs > 1060 kr / month
   - **R** is free, and very widely used in biology, both in academia and industry
   - **R** is a programming language
+- Introduction of simulation based inference
+
+## Experimental design and analysis for biologists
+### What we expect from you
+
+- Attend as much as you can (note some parts are obligatory)
+- Tell us when something isn't clear
+- Work together and help each other
 
 # Who are we?
 
@@ -135,10 +152,9 @@ Please share with at least two others:
 - Introduction to **R**
 - Data handling and plotting in **R**
 - The scientific method
-- Research ethics
 - Hypothesis testing and statistical inference
-- Reporting statistical results
-
+- Research ethics
+- Presenting research findings
 
 ## Course structure
 ### Lectures & exercise sessions
@@ -171,12 +187,11 @@ Please share with at least two others:
 ## Course structure
 ### How to contact me
 
-- Ask during the exercise sessions!
+- Ask during the exercise sessions or at the end of lectures.
 - Outside of exercise sessions, question about course materials: 
   - [Canvas discussions](https://canvas.education.lu.se/courses/33414/discussion_topics)
 - Questions you don't want to share with others:
-  - Send a mail via Canvas
-  - If that isn't appropriate, email: [iain.moodie@biol.lu.se](mailto:iain.moodie@biol.lu.se)
+  - Email: [iain.moodie@biol.lu.se](mailto:iain.moodie@biol.lu.se)
   - I will do my best to reply within 24 hours
   - If it is a question about materials, I might ask you to post it in the discussion section so it can be answered there
 
@@ -185,7 +200,6 @@ Please share with at least two others:
 
 - All materials will use **R** and the ***{tidyverse}*** packages
   - This is not a programming course
-  - We will only address programming topics when absolutely necessary
   - You do not need to mememorise **R** code
 
 ## Course structure
@@ -209,13 +223,6 @@ Please share with at least two others:
   - Follow the instructions to install **R** and **RStudio**
 - If you are using your own device (ChromeOS, iPadOS, Android, etc)
   - **R** cannot run natively on your device
-  - You can access **R** via the browser
-  - If your device is "fast", use [**webR IDE**](https://webr.r-wasm.org/latest/)
-  - If your device is "slow", use [**Posit Cloud**](https://posit.cloud/)
-- If you are going to borrow a laptop from the department:
-  - Check that it has **RStudio** installed
-
-## Homework
-### To do before 26th March
-
-- You do not need **R** installed for the first exercise session.
+  - Please consider borrowing a laptop from the IT department
+  - Other options considerably more annoying
+- You do not need **R** installed for the first exercise session tomorrow.
