@@ -41,8 +41,6 @@ format:
     code-overflow: wrap
     toc: true
     link-external-newwindow: true
-    link-external-icon: true
-    link-external-filter: ^(?:http:|https:)\/\/\irmoodie\.com\/custom
-
+    link-external-filter: ^(?:http:|https:)\\/\\/irmoodie\\.com\\/custom
 execute:
   freeze: auto
