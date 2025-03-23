@@ -10,37 +10,45 @@ Please do not feel pressured to buy a copy of Ennos & Johnsson (2018) if you do 
 
 ## Physical books
 
-- [Statistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)](https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=5164304)
+### Statistics
+
+- [Statistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)](https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=5164304){target="_blank"}
 
 ## Online books
 
-- [R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)](https://r4ds.hadley.nz/) (R reference book)
-- [Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)](https://moderndive.com/v2/) (Ch. 1-4, 7-9)
-- [Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)](https://openintro-ims.netlify.app/) (Ch. 2, 11-22)
-- [Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)](https://bradduthie.github.io/stats/)
-  - Also available as an [audiobook](https://bradduthie.github.io/audiobook.html)
+### R
+- [R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)](https://r4ds.hadley.nz/){target="_blank"} (R reference book)
+- [R Markdown: The Definitive Guide, Xie, Allaire & Grolemund (2023)](https://bookdown.org/yihui/rmarkdown/){target="_blank"} (RMarkdown reference book)
+
+### Statistics (with R)
+- [Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)](https://moderndive.com/v2/){target="_blank"} (Ch. 1-4, 7-9)
+- [Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)](https://openintro-ims.netlify.app/){target="_blank"} (Ch. 2, 11-22)
+
+### Statistics
+- [Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)](https://bradduthie.github.io/stats/){target="_blank"}
+  - Also available as an [audiobook](https://bradduthie.github.io/audiobook.html){target="_blank"}
 
 # Software
 
 During the course we will use R and RStudio as tools to handle data, make plots and do statistics.
 
-- [The R Project for Statistical Computing](https://www.r-project.org/)
-- [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
+- [The R Project for Statistical Computing](https://www.r-project.org/){target="_blank"}
+- [RStudio Desktop](https://posit.co/download/rstudio-desktop/){target="_blank"}
 
 If you want to use another software package for these purposes, you are very welcome to, but you do so at your own undertaking.
 
 ## R packages
 
-We will make use of a set of R packages that are part of the extended `tidyverse` set of packages. Below are the websites for the main ones we will use, which contain guides and reference materials
+We will make use of a set of R packages that are part of the extended `tidyverse` set of packages. Below are the websites for the main ones we will use, which contain guides, cheatsheets and reference materials.
 
 ### General
 
-- [`tidyverse`](https://www.tidyverse.org/)
-  - [`ggplot2`](https://ggplot2.tidyverse.org/) (Plotting data)
-  - [`dplyr`](https://dplyr.tidyverse.org/) (Manipulating data)
-  - [`tidyr`](https://tidyr.tidyverse.org/) (Tidying data)
-  - [`readr`](https://readr.tidyverse.org/) (Importing/exporting data)
+- [`tidyverse`](https://www.tidyverse.org/){target="_blank"}
+  - [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} (Plotting data)
+  - [`dplyr`](https://dplyr.tidyverse.org/){target="_blank"} (Manipulating data)
+  - [`tidyr`](https://tidyr.tidyverse.org/){target="_blank"} (Tidying data)
+  - [`readr`](https://readr.tidyverse.org/){target="_blank"} (Importing/exporting data)
 
 ### Statistics
 
-- [`infer`](https://infer.tidymodels.org/)
+- [`infer`](https://infer.tidymodels.org/){target="_blank"}
