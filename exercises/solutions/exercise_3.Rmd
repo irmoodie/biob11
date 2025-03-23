@@ -1,0 +1,19 @@
+---
+title: "BIOB11 Exercise 3"
+author: "Iain Moodie"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Packages
+
+```{r}
+library(tidyverse)
+```
+
+# Load data
+
+```{r}
+tephritis_data <- read_csv("../data/03/tephritis_phenotype.csv")
+
+```
