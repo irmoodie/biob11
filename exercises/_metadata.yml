@@ -11,4 +11,5 @@ webr:
   cell-options:
     autorun: false
 bibliography: ../references.bib
+csl: ../the-american-naturalist.csl
 citations-hover: true
