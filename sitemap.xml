@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://irmoodie.github.io/biob11/resources.html</loc>
-    <lastmod>2025-03-21T10:35:54.647Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/01_descriptive_statistics.html</loc>
-    <lastmod>2025-03-21T10:35:54.646Z</lastmod>
-  </url>
-  <url>
     <loc>https://irmoodie.github.io/biob11/slides/01_sampling.html</loc>
     <lastmod>2025-03-21T10:35:54.647Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/slides.html</loc>
+    <lastmod>2025-03-23T12:42:04.956Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/index.html</loc>
     <lastmod>2025-03-21T10:35:54.646Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides.html</loc>
-    <lastmod>2025-03-21T10:35:54.647Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/exercises/03_local_r.html</loc>
+    <lastmod>2025-03-23T21:00:02.559Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/00_introduction.html</loc>
-    <lastmod>2025-03-21T10:35:54.647Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/exercises/01_intro_to_r.html</loc>
+    <lastmod>2025-03-22T10:28:36.453Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/exercises.html</loc>
     <lastmod>2025-03-21T10:35:54.645Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/00_intro_to_r.html</loc>
-    <lastmod>2025-03-21T10:35:54.645Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/exercises/02_descriptive_statistics.html</loc>
+    <lastmod>2025-03-22T10:28:34.987Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/resources.html</loc>
+    <lastmod>2025-03-23T12:32:56.758Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/slides/00_introduction.html</loc>
+    <lastmod>2025-03-23T20:22:50.154Z</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Iain R. Moodie">
+<meta name="dcterms.date" content="2025-03-26">
+
+<title>How to install R on your local computer – BIOB11</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b6ff8f2906d2742a0423121e1dbea2be.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<meta property="og:title" content="How to install R on your local computer – BIOB11">
+<meta property="og:description" content="Exercise 3">
+<meta property="og:image" content="images/03/rstudio_3.png">
+<meta property="og:site_name" content="BIOB11">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">How to install R on your local computer</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://canvas.education.lu.se/courses/33414" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LU Canvas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#installing-r-and-rstudio" id="toc-installing-r-and-rstudio" class="nav-link active" data-scroll-target="#installing-r-and-rstudio">Installing <em>R</em> and <em>RStudio</em></a>
+  <ul class="collapse">
+  <li><a href="#why-do-i-need-both" id="toc-why-do-i-need-both" class="nav-link" data-scroll-target="#why-do-i-need-both">Why do I need both?</a></li>
+  <li><a href="#how-to-install-r-locally" id="toc-how-to-install-r-locally" class="nav-link" data-scroll-target="#how-to-install-r-locally">How to install <em>R</em> locally</a></li>
+  <li><a href="#how-to-install-rstudio-locally" id="toc-how-to-install-rstudio-locally" class="nav-link" data-scroll-target="#how-to-install-rstudio-locally">How to install <em>RStudio</em> locally</a></li>
+  <li><a href="#how-to-use-r-on-your-own-computer" id="toc-how-to-use-r-on-your-own-computer" class="nav-link" data-scroll-target="#how-to-use-r-on-your-own-computer">How to use <em>R</em> on your own computer</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How to install R on your local computer</h1>
+<p class="subtitle lead">Exercise 3</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Iain R. Moodie </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 26, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this exercise, we will walk through the steps of installing R and RStudio on your own device. This will give you more freedom when compared with using R via the browser, which has notable limitations.</p>
+<section id="installing-r-and-rstudio" class="level1">
+<h1>Installing <em>R</em> and <em>RStudio</em></h1>
+<section id="why-do-i-need-both" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-i-need-both">Why do I need both?</h2>
+<p>R is a programming language and software environment specifically designed for statistical computing and graphics.</p>
+<p>RStudio, on the other hand, is an integrated development environment (IDE) <em>for</em> R. It provides a user-friendly interface that makes it easier to write, debug, and visualize R code. RStudio includes features such as syntax highlighting, code completion, and tools for plotting, history, and workspace management. While R can be used on its own, RStudio enhances the user experience and productivity by providing a more organized and efficient workflow.</p>
+<p>To use a car as a metaphor, R is the engine, and RStudio is the steering wheel, pedals, gear shifter, etc. It gives us a much easier way to interface and work with R.</p>
+<p><strong>So you need to install both.</strong> RStudio does nothing without R (like a car without an engine).</p>
+</section>
+<section id="how-to-install-r-locally" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-install-r-locally">How to install <em>R</em> locally</h2>
+<p>To install R on your local device, you need to know what operating system your computer uses. If you are unsure, ask the teacher. Follow the steps in the appropriate section. If you already have R installed, I suggest you check it is up to date. To do that, open R and type <code>R.version</code>. If your <code>major</code> version is 4, then that should be OK for this course.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Windows
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="manual-download" class="level3">
+<h3 class="anchored" data-anchor-id="manual-download">Manual download</h3>
+<ol type="1">
+<li>Go to the <a href="https://cran.r-project.org/">CRAN R Project website</a>.</li>
+<li>Click on the “Download R for Windows” link.</li>
+<li>Click on the “base” link to download the base system.</li>
+<li>Click on the “Download R-x.x.x for Windows” link (where x.x.x is the latest version).</li>
+<li>Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.</li>
+</ol>
+</section>
+<section id="winget" class="level3">
+<h3 class="anchored" data-anchor-id="winget">Winget</h3>
+<p>If you use the package manager winget, you can run the following command to install R:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install <span class="at">-e</span> <span class="at">--id</span> RProject.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chocolatey" class="level3">
+<h3 class="anchored" data-anchor-id="chocolatey">Chocolatey</h3>
+<p>If you use the package manager chocolatey, you can run the following command to install R:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install r.project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+macOS
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="manual-download-1" class="level3">
+<h3 class="anchored" data-anchor-id="manual-download-1">Manual download</h3>
+<ol type="1">
+<li>Go to the <a href="https://cran.r-project.org/">CRAN R Project website</a>.</li>
+<li>Click on the “Download R for macOS” link.</li>
+<li>Click on the <code>.pkg</code> file link to download the installer for the latest version of R.
+<ol type="i">
+<li>If you have a newer <strong>Mac with an Apple silicon CPU (M1, M2, M3, M4, etc)</strong>, you must download the version specifically for Apple silicon CPU Macs that has <code>arm64</code> in the package name (e.g.&nbsp;<code>R-4.4.3-arm64.pkg</code>).</li>
+<li>If you have an older <strong>Mac with an Intel CPU (i3, i5, i7, etc)</strong>, you must download the version specifically for Intel CPU Macs that has <code>x86_64</code> in the package name (e.g.&nbsp;<code>R-4.4.3-x86_64.pkg</code>).</li>
+</ol></li>
+<li>Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.</li>
+</ol>
+</section>
+<section id="homebrew" class="level3">
+<h3 class="anchored" data-anchor-id="homebrew">Homebrew</h3>
+<p>If you use homebrew, you can install R and dependencies via:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Linux
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="debian" class="level3">
+<h3 class="anchored" data-anchor-id="debian">Debian</h3>
+<p>Run the following commands in your terminal:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install r-base r-base-dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For issues, check the dedicated <a href="https://cran.r-project.org/bin/linux/debian/">Debian CRAN R Project website</a>.</p>
+</section>
+<section id="fedoraredhat" class="level3">
+<h3 class="anchored" data-anchor-id="fedoraredhat">Fedora/Redhat</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For issues, check the dedicated <a href="https://cran.r-project.org/bin/linux/fedora/">Fedora CRAN R Project website</a>.</p>
+</section>
+<section id="ubuntu" class="level3">
+<h3 class="anchored" data-anchor-id="ubuntu">Ubuntu</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update indices</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="at">-qq</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install two helper packages we need</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">--no-install-recommends</span> software-properties-common dirmngr</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># add the signing key (by Michael Rutter) for these repos</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add the repo from CRAN -- lsb_release adjusts to 'noble' or 'jammy' or ... as needed</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/"</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># install R itself</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">--no-install-recommends</span> r-base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For issues, check the dedicated <a href="https://cran.r-project.org/bin/linux/ubuntu/">Ubuntu CRAN R Project website</a>.</p>
+</section>
+<section id="other-linux-distros" class="level3">
+<h3 class="anchored" data-anchor-id="other-linux-distros">Other linux distros</h3>
+<p>If you are using a Linux distro other than the ones above, I trust you probably know enough to figure out how to install R yourself. Just be cautious as to the version of R you are installing. For this course, it needs to be &gt;= 4.0. If you have any issues, let the teacher know.</p>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ChromeOS
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is a lot more complicated, sorry.</p>
+<p>You have three options:</p>
+<ol type="1">
+<li>Borrow a windows laptop from the IT department. This would be my first recommendation. But if you want to be able to use your own computer, see the next two options.</li>
+<li>Try and install R locally, using a linux container. This can work, but only reliably for Chromebooks that use an Intel/AMD CPU (not an ARM CPU). Ask the teacher if you are unsure.</li>
+<li>You use R online instead. This has a few drawbacks depending on the method you use:
+<ol type="i">
+<li>You use <a href="https://webr.r-wasm.org/latest/"><strong>webR IDE</strong></a>. This should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost.</li>
+<li>You use <a href="https://posit.cloud/"><strong>Posit Cloud</strong></a>. The free tier should be enough for everything we do here. The downside is you need an internet connection to use it.</li>
+<li>Using <a href="https://colab.research.google.com/"><strong>Google Colab</strong></a>. The free tier should again be enough for everything in this class, however the interface is going to be very different.</li>
+</ol></li>
+</ol>
+<section id="installing-r-locally-via-a-linux-container" class="level3">
+<h3 class="anchored" data-anchor-id="installing-r-locally-via-a-linux-container">Installing R locally (via a linux container)</h3>
+<p>I suggest you follow this <a href="https://levente.littvay.hu/chromebook/">guide</a> carefully (it will take some time). Ask the teacher if you are stuck.</p>
+</section>
+<section id="using-webr-ide" class="level3">
+<h3 class="anchored" data-anchor-id="using-webr-ide">Using webR IDE</h3>
+<p>This is a “proof-of-concept” tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it <a href="https://webr.r-wasm.org/latest/"><strong>here</strong></a>. However, I would really suggest just using a borrowed laptop over this option.</p>
+</section>
+<section id="using-posit-cloud" class="level3">
+<h3 class="anchored" data-anchor-id="using-posit-cloud">Using Posit Cloud</h3>
+<p>Posit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it <a href="https://posit.cloud/">here</a>.</p>
+</section>
+<section id="google-colab" class="level3">
+<h3 class="anchored" data-anchor-id="google-colab">Google Colab</h3>
+<p>Colab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to “queue” for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), <a href="https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/">here is a guide to setup R with Colab</a>, and <a href="https://colab.research.google.com/">here is a link to Colab itself</a>. However, I would really suggest just using a borrowed laptop over this option.</p>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+iPadOS
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is no way to run R natively on your device. I strongly suggest you borrow a laptop from the IT department. If you really want to try using your own device, you can access R online. Here are a few options:</p>
+<section id="using-webr-ide-1" class="level3">
+<h3 class="anchored" data-anchor-id="using-webr-ide-1">Using webR IDE</h3>
+<p>This should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost. It is a “proof-of-concept” tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it <a href="https://webr.r-wasm.org/latest/"><strong>here</strong></a>. However, I would really suggest just using a borrowed laptop over this option.</p>
+</section>
+<section id="using-posit-cloud-1" class="level3">
+<h3 class="anchored" data-anchor-id="using-posit-cloud-1">Using Posit Cloud</h3>
+<p>Posit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it <a href="https://posit.cloud/">here</a>.</p>
+</section>
+<section id="google-colab-1" class="level3">
+<h3 class="anchored" data-anchor-id="google-colab-1">Google Colab</h3>
+<p>Colab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to “queue” for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), <a href="https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/">here is a guide to setup R with Colab</a>, and <a href="https://colab.research.google.com/">here is a link to Colab itself</a>. However, I would really suggest just using a borrowed laptop over this option.</p>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Android
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In theory you can install R on your device, however you will need to either install a linux container and/or compile everything yourself (complicated and slow). For this reason, I strongly suggest you borrow a laptop from the IT department. If you really want to try using your own device, I will not provide instructions on how to install it locally (it is just too much work), but you can access R online. Here are a few options:</p>
+<section id="using-webr-ide-2" class="level3">
+<h3 class="anchored" data-anchor-id="using-webr-ide-2">Using webR IDE</h3>
+<p>This should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost. It is a “proof-of-concept” tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it <a href="https://webr.r-wasm.org/latest/"><strong>here</strong></a>. However, I would really suggest just using a borrowed laptop over this option.</p>
+</section>
+<section id="using-posit-cloud-2" class="level3">
+<h3 class="anchored" data-anchor-id="using-posit-cloud-2">Using Posit Cloud</h3>
+<p>Posit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it <a href="https://posit.cloud/">here</a>.</p>
+</section>
+<section id="google-colab-2" class="level3">
+<h3 class="anchored" data-anchor-id="google-colab-2">Google Colab</h3>
+<p>Colab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to “queue” for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), <a href="https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/">here is a guide to setup R with Colab</a>, and <a href="https://colab.research.google.com/">here is a link to Colab itself</a>. However, I would really suggest just using a borrowed laptop over this option.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-install-rstudio-locally" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-install-rstudio-locally">How to install <em>RStudio</em> locally</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Windows
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="manual-download-2" class="level3">
+<h3 class="anchored" data-anchor-id="manual-download-2">Manual download</h3>
+<ol type="1">
+<li>Go to the <a href="https://posit.co/download/rstudio-desktop/">RStudio desktop website</a>.</li>
+<li>Scroll down and click on the “Download RStudio Desktop for Windows” link (we have already installed R so can skip step 1 in their guide).</li>
+<li>Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.</li>
+</ol>
+</section>
+<section id="winget-1" class="level3">
+<h3 class="anchored" data-anchor-id="winget-1">Winget</h3>
+<p>If you use the package manager winget, you can run the following command to install RStudio:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install <span class="at">--id</span><span class="op">=</span>Posit.RStudio <span class="at">-e</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chocolatey-1" class="level3">
+<h3 class="anchored" data-anchor-id="chocolatey-1">Chocolatey</h3>
+<p>If you use the package manager chocolatey, you can run the following command to install R:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install r.studio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+macOS
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="manual-download-3" class="level3">
+<h3 class="anchored" data-anchor-id="manual-download-3">Manual download</h3>
+<ol type="1">
+<li>Go to the <a href="https://posit.co/download/rstudio-desktop/">RStudio desktop website</a>.</li>
+<li>Scroll down and click on the “Download RStudio Desktop for macOS 13+” link (we have already installed R so can skip step 1 in their guide). If you are using a version of macOS that is &lt;13, follow the link on the page to “download a previous version”.</li>
+<li>Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.</li>
+</ol>
+</section>
+<section id="homebrew-1" class="level3">
+<h3 class="anchored" data-anchor-id="homebrew-1">Homebrew</h3>
+<p>If you use homebrew, you can install R and dependencies via:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rstudio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Linux
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="manual-download-4" class="level3">
+<h3 class="anchored" data-anchor-id="manual-download-4">Manual download</h3>
+<ol type="1">
+<li>Go to the <a href="https://posit.co/download/rstudio-desktop/">RStudio desktop website</a>.</li>
+<li>If your distro is automatically detected, click on the “Download RStudio Desktop for XXX” link (we have already installed R so can skip step 1 in their guide). If your distro is not automatically detected, scroll down to the bottom to find a suitable installer.</li>
+<li>Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.</li>
+</ol>
+</section>
+<section id="via-various-package-managers" class="level3">
+<h3 class="anchored" data-anchor-id="via-various-package-managers">Via various package managers</h3>
+<p>The version of RStudio available via some sources is very out-of-date. For this reason, I suggest either being cautious and checking it is actually up-to-date, or just downloading it from the above link.</p>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ChromeOS
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>If you have installed R locally using the guide in the previous section, it will also guide you how to install RStudio.</li>
+<li>If you are using a web version of R, there is no need to do anything else.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+iPadOS
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is no way to install RStudio on your device.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Android
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is no (simple) way to install RStudio on your device.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-use-r-on-your-own-computer" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-r-on-your-own-computer">How to use <em>R</em> on your own computer</h2>
+<p>Quite simply, in this course you should never open <em>R</em>, you should always open <em>RStudio</em>. Check that everything has worked by launching <em>RStudio</em>. It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.</p>
+<p>You should be met by a scene that looks like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/03/rstudio_3.png" class="img-fluid figure-img"></p>
+<figcaption>A screenshot of a new RStudio installation on macOS.</figcaption>
+</figure>
+</div>
+<p>You are now ready for Exercise 4.</p>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../exercises";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Unless otherwise stated, all materials are under a <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC-BY-SA-4.0 License</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built by <a href="https://irmoodie.com">Iain R. Moodie</a> with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

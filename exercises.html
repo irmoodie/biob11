@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-54d94fef394ed90c30a9ce6ced93b0b3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b6ff8f2906d2742a0423121e1dbea2be.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -267,7 +267,7 @@ Exercise
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1742857200000" data-listing-file-modified-sort="1742553354646" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4211" data-listing-title-sort="Descriptive statistics in R" data-listing-filename-sort="01_descriptive_statistics.qmd">
+<tr data-index="0" data-listing-date-sort="1742857200000" data-listing-file-modified-sort="1742639316453" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2919" data-listing-title-sort="Introduction to R" data-listing-filename-sort="01_intro_to_r.qmd">
 <td>
 <span class="listing-subtitle">Exercise 1</span>
 </td>
@@ -275,18 +275,29 @@ Exercise
 <span class="listing-date">2025-03-25</span>
 </td>
 <td>
-<a href="./exercises/01_descriptive_statistics.html" class="title listing-title">Descriptive statistics in R</a>
+<a href="./exercises/01_intro_to_r.html" class="title listing-title">Introduction to R</a>
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1742857200000" data-listing-file-modified-sort="1742553354645" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2919" data-listing-title-sort="Introduction to R" data-listing-filename-sort="00_intro_to_r.qmd">
+<tr data-index="1" data-listing-date-sort="1742857200000" data-listing-file-modified-sort="1742639314987" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4211" data-listing-title-sort="Descriptive statistics in R" data-listing-filename-sort="02_descriptive_statistics.qmd">
 <td>
-<span class="listing-subtitle">Exercise 0</span>
+<span class="listing-subtitle">Exercise 2</span>
 </td>
 <td>
 <span class="listing-date">2025-03-25</span>
 </td>
 <td>
-<a href="./exercises/00_intro_to_r.html" class="title listing-title">Introduction to R</a>
+<a href="./exercises/02_descriptive_statistics.html" class="title listing-title">Descriptive statistics in R</a>
+</td>
+</tr>
+<tr data-index="2" data-listing-date-sort="1742943600000" data-listing-file-modified-sort="1742763602559" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2314" data-listing-title-sort="How to install R on your local computer" data-listing-filename-sort="03_local_r.qmd">
+<td>
+<span class="listing-subtitle">Exercise 3</span>
+</td>
+<td>
+<span class="listing-date">2025-03-26</span>
+</td>
+<td>
+<a href="./exercises/03_local_r.html" class="title listing-title">How to install R on your local computer</a>
 </td>
 </tr>
 </tbody>
@@ -385,7 +396,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/irmoodie\.github\.io\/biob11\/");
+      var filterRegex = new RegExp("^(?:http:|https:)\/\/\irmoodie\.com\/custom");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -399,6 +410,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

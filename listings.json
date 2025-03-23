@@ -9,8 +9,9 @@
   {
     "listing": "/exercises.html",
     "items": [
-      "/exercises/01_descriptive_statistics.html",
-      "/exercises/00_intro_to_r.html"
+      "/exercises/01_intro_to_r.html",
+      "/exercises/02_descriptive_statistics.html",
+      "/exercises/03_local_r.html"
     ]
   }
 ]
