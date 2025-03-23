@@ -1,6 +1,6 @@
 ---
 title: "Descriptive statistics in R"
-subtitle: "Exercise 1"
+subtitle: "Exercise 2"
 date: 2025-03-25
 format: live-html
 webr:

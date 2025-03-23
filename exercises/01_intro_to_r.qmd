@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R"
-subtitle: "Exercise 0"
+subtitle: "Exercise 1"
 date: 2025-03-25
 format: live-html
 ---
