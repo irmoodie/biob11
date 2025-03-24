@@ -35,7 +35,7 @@ You can use the following operators to write equations in R:
 
 Use these to solve the questions below:
 
-Fill in the blank so that the result of the sum is **10**. You need to delete the `______` and replace it with a number.
+**Fill in the blank so that the result of the sum is 10.** You need to delete the `______` and replace it with a number.
 
 ```{webr}
 #| exercise: ex_1_1
@@ -54,7 +54,7 @@ if (identical(.result, 10)) {
 
 ---
 
-Fill in the blank so that the result of the sum is **12**.
+**Fill in the blank so that the result of the sum is 12.**
 
 ```{webr}
 #| exercise: ex_1_2
@@ -73,7 +73,7 @@ if (identical(.result, 12)) {
 
 ---
 
-Fill in the blank so that the result of the sum is **81**.
+**Fill in the blank so that the result of the sum is 81.**
 
 ```{webr}
 #| exercise: ex_1_3
@@ -96,13 +96,54 @@ While it is not required to be an experienced computer programmer to use R, ther
 
 ### Objects
 
-In R, data can be stored in objects. An object can be thought of as a container that holds data. You can create an object by assigning a value to a name using the assignment operator `<-`. In the example below, I assign the value `5` to the object `x`, and the value `10` to the object `y`. We can then perform maths or other operations using these objects. Run the code to see the output. Try changing the values of `x` and `y`. Add another object called `z`, and use it in a sum.
+In R, data can be stored in objects. An object can be thought of as a container that holds data. You can create an object by assigning a value to a name using the assignment operator `<-`. In the example below, I assign the value `5` to the object `x`, and the value `10` to the object `y`. We can then perform maths or other operations using these objects. **Calculate the sum of `x` and `y` using `+` on the line below.**
 
 ```{webr}
+#| exercise: ex_objects_1
 x <- 5
 y <- 10
-
+```
+::: { .solution exercise="ex_objects_1" }
+```r
+x <- 5
+y <- 10
 x + y
+```
+:::
+```{webr}
+#| exercise: ex_objects_1
+#| check: true
+if (identical(.result, 15)) {
+  list(correct = TRUE, message = "Nice work!")
+} else {
+  list(correct = FALSE, message = "That's incorrect, sorry.")
+}
+```
+
+**Add a third object called `z` and assign it the value `12`. Write a math equation that will output the value `24`, using `x`, `y`, and `z` only.**
+
+```{webr}
+#| exercise: ex_objects_2
+x <- 5
+y <- 10
+```
+::: { .solution exercise="ex_objects_2" }
+```r
+x <- 5
+y <- 10
+z <- 12
+
+y / x * z
+```
+:::
+```{webr}
+#| exercise: ex_objects_2
+#| check: true
+if (identical(.result, 24)) {
+  list(correct = TRUE, message = "Nice work!")
+} else {
+  list(correct = FALSE, message = "That's incorrect, sorry.")
+}
 ```
 
 Objects can hold any sort of data in R. It could be a single value like in the above example, multiple values, text, a whole dataset, or a plot.
@@ -200,13 +241,17 @@ b <- 13
 a > b
 ```
 
-Use the operators above to fill in the blanks below such that the code will evaluate to `TRUE`:
+**Use the operators above to fill in the blanks below such that the code will evaluate to `TRUE`:**
 
 ```{webr}
 #| exercise: ex_boolean_1
 100 ______ 100
 ```
-
+::: { .solution exercise="ex_boolean_1" }
+```r
+100 == 100
+```
+:::
 ```{webr}
 #| exercise: ex_boolean_1
 #| check: true
@@ -223,7 +268,13 @@ p <- ______
 
 8 + p == 56
 ```
+::: { .solution exercise="ex_boolean_2" }
+```r
+p <- 48
 
+8 + p == 56
+```
+:::
 ```{webr}
 #| exercise: ex_boolean_2
 #| check: true
@@ -241,7 +292,15 @@ r <- 88
 
 q + ______ > r
 ```
+::: { .solution exercise="ex_boolean_3" }
+```r
+q <- 24
+r <- 88
 
+q + 65 > r #<1>
+```
+1. Any number > 64 will work.
+:::
 ```{webr}
 #| exercise: ex_boolean_3
 #| check: true
@@ -277,16 +336,24 @@ But if we change the `&` to an OR operator `|`, it evaluates to `TRUE` because a
 (1 + 3 == 4) | (5 == 4)
 ```
 
-Use the operators above to fill in the blanks below such that the code will evaluate to `TRUE`:
+**Use the operators above to fill in the blanks below such that the code will evaluate to `TRUE`:**
 
 ```{webr}
 #| exercise: ex_boolean_4
 fruit_a <- "apple"
 fruit_b <- "banana"
 
-(fruit_a == fruit_b) ______ (1.5 > 1.2)
+(fruit_a != fruit_b) ______ (1.5 > 1.2)
 ```
+::: { .solution exercise="ex_boolean_4" }
+```r
+fruit_a <- "apple"
+fruit_b <- "banana"
 
+(fruit_a != fruit_b) & (1.5 > 1.2) #<1>
+```
+1. OR `|` would also work here.
+:::
 ```{webr}
 #| exercise: ex_boolean_4
 #| check: true
@@ -304,7 +371,14 @@ fruit_b <- "banana"
 
 (fruit_a == fruit_a) ______ (35 + 12 > 47)
 ```
+::: { .solution exercise="ex_boolean_5" }
+```r
+fruit_a <- "apple"
+fruit_b <- "banana"
 
+(fruit_a == fruit_a) | (35 + 12 > 47)
+```
+:::
 ```{webr}
 #| exercise: ex_boolean_5
 #| check: true
@@ -339,7 +413,7 @@ We will work with functions a lot in this course, so don't worry if it still see
 
 One of the final concepts I will introduce is the pipe operator `|>`. Note that you will often see it written as `%>%` when searching online. This is for historical reasons (R by default did not have a pipe operator until recently, so people had made their own). `|>` comes with R by default now, while `%>%` requires you to load a package called `magrittr` first (we will cover packages soon).
 
-Pipes allow you to write code in a way that often makes more sense to people, especially non-programmers. To explain, here's an example. Note that this is not real code, so you cannot run it:
+Pipes allow you to write code in a way that often makes more sense to people, especially non-programmers. To explain, here's an example. Note that this is not real code, so you cannot run it.
 
 Say I wanted to run 3 different functions on a dataframe called `my_data`. The functions are `function_1()`, `function_2()`, and `function_3()`. Imagine `function_1()` first transforms my data into the right scale, `function_2()` then performs a statistical test, and `function_3()` then makes a plot (again, these are not real functions, just for the example).
 
@@ -389,7 +463,7 @@ my_data_final <-
 
 All the above examples have the same `my_data_final` output, but are just written in different ways. The computer reads them all identically, so the main benefit is how readable your code is.
 
-In this course, we will use pipes extensively, along with a set of packages that are designed for this kind of workflow. Below, rewrite the examples to use pipes. You can check the solutions tab to see if you are on the right track:
+In this course, we will use pipes extensively, along with a set of packages that are designed for this kind of workflow. **Below, rewrite the examples to use pipes. You can check the solutions tab to see if you are on the right track:**
 
 ```{webr}
 #| exercise: ex_pipes_1

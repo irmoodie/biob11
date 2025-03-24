@@ -7,6 +7,7 @@ webr:
   packages:
     - tidyverse
     - palmerpenguins
+    - infer
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -16,8 +17,6 @@ In this exercise, we will use descriptive statistics to describe datasets. We wi
 The `palmerpenguins` dataset contains data about some penguins. From the data website:
 
 > Data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network.
-
-I won't say more about the dataset, as we are going to explore it as part of this exercise.
 
 The data has already been loaded into the R environment, but if you wanted to follow along on your own computer, you can load it by first installing the `palmerpenguins` package, and then loading the dataset.
 
@@ -61,7 +60,7 @@ penguins
 
 Once you click the "Run code" button, R will print the contents of `penguins`. Some objects have special behaviours when they are printed. This is one of those cases. Let me explain:
 
-- The first line of the output is telling us what sort of data is in the object. In this case, its a `tibble`. Tibbles are dataframes that are printed in a special way (they do some other things, but they're not relevant here). They come from the `tibble` R package, which is installed with the `tidyverse` package.
+- The first line of the output is telling us what sort of data is in the object. In this case, its a `tibble`. Tibbles are dataframes that act more like how we expect tables to act. They come from the `tibble` R package, which is installed with the `tidyverse` package.
 - That same line tells us the number of rows (`344`) and number of columns (`8`).
 - Usually the next line (which you will notice is blank) will tell us the variable types. There is currently a bug that prevents this in the web version of R. On your own computer, you will see it.
 - Then the first 10 rows of the dataframe have been printed, along with the column (variable) names at the top.
@@ -123,7 +122,7 @@ Now we can see all the data types and the number of unique values. Recall the R 
 
 # Visualising the data
 
-I don't know about you, but I would struggle to get a good feeling for over 300 rows of data by simply looking at it printed out. To help us understand the dataset better, we are going to make some simple plots.
+I struggle to get a good feeling over 300 rows of data by simply looking at it printed out. To help us understand the dataset better, we are going to make some simple plots.
 
 R has a built in method to make plots, but we will avoid it in this course. Instead we will use `ggplot2`, a plotting package that is installed with `tidyverse`. `ggplot2` provides a clear and simple way to customise your plots. It is based in a data visualisation theory known as *the grammer of graphics* (gg) [@wilkinsonGrammarGraphics2013].
 
@@ -170,6 +169,17 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm))
 Again, still not quite there. We need to actually show the data! We need to add some `geom`etry. To do that we, use the `+` operator. While this is usually reserved for maths, `ggplot2` hijacks it to add layers to a plot. We can add a point geometry like this (you might need to use the hoziontal scroll wheel to see the end of the first line):
 
 ```{webr}
+ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
+  geom_point()
+```
+
+Looking good! Notice you got a warning. The warning is important to pay attention to, as it is telling you that two rows (penguins) have not been plotted, as they contain missing values. These are the `NA` values we talked about earlier. Two penguins must have had an `NA` for at least one of our plotting variables, `body_mass_g` or `bill_length_mm` (as we need both to place the point).
+
+Let's add one more `aes`thetic to our data. Our dataset contained data for three different penguin species. Let's map `species` to the colour of our points. 
+
+**You need to modify the code above by adding a 3rd argument within the `aes()` function. In R, we seperate arguments within functions with a `,` as you can see between `x = body_mass_g` and `y = bill_length_mm`. Add another `,` then write `colour = species`. Then re-run the code.**
+
+```{webr}
 #| exercise: ex_point
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
   geom_point()
@@ -182,15 +192,16 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm, colou
 1. Add `colour` as a third `aes`thetic, mapped to `species`
 :::
 
-Looking good! Notice you got a warning. The warning is important to pay attention to, as it is telling you that two rows (penguins) have not been plotted, as they contain missing values. These are the `NA` values we talked about earlier. Two penguins must have had an `NA` for at least one of our plotting variables, `body_mass_g` or `bill_length_mm` (as we need both to place the point).
-
-Let's add one more `aes`thetic to our data. Our dataset contained data for three different penguin species. Let's map `species` to the colour of our points. 
-
-**You need to modify the code above by adding a 3rd argument within the `aes()` function. In R, we seperate arguments within functions with a `,` as you can see between `x = body_mass_g` and `y = bill_length_mm`. Add another `,` then write `colour = species`. Then re-run the code.**
-
 You notice we now have a legend that tells us which colour is which species. `ggplot2` has also chosen a default colour scheme for us.
 
-**Even though we have not covered correlations yet, do you think bigger penguins have longer bills? Does this relationship hold in all species? Why not explore other variables, by switching out the variables in the code above.**
+Answer the following questions:
+
+1. **If someone told you that heavier penguins tend to have longer bills, and showed you this graph as proof, would you believe them? Why? Do you think this applies to all penguin species in the dataset?**
+
+2. **Modify the code above to instead show `bill_depth_mm` on the x axis. Which penguin species do you think match each bill description?**
+    i) Short and wide bills
+    ii) Long and wide bills
+    iii) Long and narrow bills
 
 ---
 
@@ -223,7 +234,9 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g)) +
 
 Notice we get the warning again, that data (`NA` values) have been removed.
 
-**Modify the above code to show the other continuous variables. Do they all look like bell-shaped (normal) distributions? Are any very different from a normal distribution (e.g., has more than one distinct peaks)? Can you think why this might be?**
+**Copy and modify the above code to show the other continuous variables.**
+
+1. **Do they all look like bell-shaped (normal) distributions? Are any very different from a normal distribution (e.g., has more than one distinct peaks)? Can you think why this might be?**
 
 ---
 
@@ -259,19 +272,20 @@ ggplot(data = penguins, mapping = aes(x = island, fill = species)) + #<2>
 2. Add `fill` as an `aes`thetic, and map it to `species`.
 :::
 
-**As you did before, modify the code to make a bar chart for `island`, `sex`, and `year`.**
+1. **As you did before, copy and modify the code to make a bar chart for `island`, `sex`, and `year`.**
+2. **Using what you learned to make the first scatter plot, can you add another `aes`thetic to make a plot that shows what proportion of the penguins on each `island` are which `species`? Are all `species` present on all `island`s?**
 
-**Using what you learned to make the first plot, can you add another `aes`thetic to make a plot that shows what proportion of the penguins on each `island` are which `species`? Are all `species` present on all `island`s?**
-
-Hint: Instead of using `colour`, you might want to try `fill`. To understand why, try each one!
+*Hint: Instead of using `colour`, you might want to try `fill`. To understand why, try each one!*
 
 ---
 
 Finally for plotting today, we will make some **box plots**. Box plots allow us to visualize the distribution of a *continuous variable* and to compare distributions across different levels of a *categorical variable*. A box plot displays the *median*, *quartiles*, and potential *outliers* of the data.
 
-To create a box plot in `ggplot2`, we use `geom_boxplot()`. Again, this is a very helpful `geom_`, as it does all of the required calculations (median, quartiles, etc) for us. Using what you have learned, try to create this boxplot yourself first (you can copy code from above and modify it). Create a box plot to compare the distribution of `body_mass_g` across different `species`. Think what variables should be assigned to which `aes`thetics. Use the sketch below as a guide.
+![](images/01/boxplot_explanation.png)
 
-![](images/01/boxplot_sketch.svg){width=30%}
+To create a box plot in `ggplot2`, we use `geom_boxplot()`. Again, this is a very helpful `geom_`, as it does all of the required calculations (median, quartiles, etc) for us. 
+
+**Using what you have learned, try to create this boxplot yourself first (you can copy code from above and modify it). Create a box plot to compare `body_mass_g` across different `species`. Think what variables should be assigned to which `aes`thetics.**
 
 
 ```{webr}
@@ -286,11 +300,13 @@ ggplot(data = penguins, mapping = aes(x = species, y = body_mass_g)) + # <1>
 2. Use the boxplot `geom` function.
 :::
 
+---
+
 # Descriptive statistics
 
 We will now calculate some of the descriptive statistics we covered in the lecture.
 
-There are a few function in R that will quickly give un an overview of our dataset. One of them is `summary()`, which when used on a dataframe, will provide some statistics about each variable in the dataframe:
+There are a few function in R that will quickly give an overview of the dataset. One of them is `summary()`, which when used on a dataframe, will provide some statistics about each variable in the dataframe:
 
 ```{webr}
 summary(penguins)
@@ -299,6 +315,24 @@ summary(penguins)
 Recall what quartiles (`Qu.`) are from the lecture. From this output, we can extract a number of descriptive statistics, including measures of central tendancy such as the `mean`, `median`, as well as measures of spread such as `min`imum, `max`imum and the 1st and 3rd quartiles, from which we could calculate the inter quartile range ($\text{IQR} = Q_3 - Q_1$).
 
 Notice though that the outputs do not really make sense for `year`, since R is treating it as a *quantitative* variable, when we decided it should be a *categorical* variable.
+
+We can fix that by changing the data type of the column to `factor`:
+
+```{webr}
+penguins <-
+  penguins |>
+  mutate(year = as.factor(year))
+```
+
+The `mutate()` function allows us to modify variables, or make new ones in the dataset. Here I overwrite the `year` variable (which was `numeric`) with a new version of `year` that is converted to a `factor`. 
+
+Once you've run the code above, try running summary again:
+
+```{webr}
+summary(penguins)
+```
+
+The `year` variable is now a more appropriate format, and gives us more useful information.
 
 ## Calculating individual descriptive statistics
 
@@ -325,7 +359,10 @@ penguins |>
   mean(na.rm = TRUE)
 ```
 
-To break down what's going on here. On the first line, we write the name of the dataframe that contains the variable we want to use. This is then piped `|>` into the next line, where we use `pull()` to "pull out" the variable we want. We then again use a pipe `|>` to send that to the `mean()` function. Since `bill_length_mm` contains some `NA` values, we need to put `na.rm = TRUE` (NA remove) inside `mean()`.
+To break down what's going on here. 
+1. On the first line, we write the name of the dataframe that contains the variable we want to use. 
+2. This is then piped `|>` into the next line, where we use `pull()` to "pull out" the variable we want. 
+3. We then again use a pipe `|>` to send that to the `mean()` function. Since `bill_length_mm` contains some `NA` values, we need to put `na.rm = TRUE` (NA remove) inside `mean()`.
 
 Use what we have learned above to complete the following exercises by filling in the blanks:
 
@@ -506,42 +543,174 @@ penguins |>
 
 **We can add more than one grouping variable, by simply listing it within `group_by()`. For example, try grouping your output by both `species` and `sex`. Note that this produces an potentially unwanted group, how could you get rid of it?**
 
-# Putting it all together
+# Introduction to the scientific method
 
-Using everything we have covered here today, complete the following:
+We will now walkthrough how we might go about answering a research question using a basic version of the scientific method (which we will cover in full in a lecture on Thursday).
 
-## Sexual dimorphism in three penguin species
+## The question
 
 > Sexual dimorphism is the condition where sexes of the same species exhibit different morphological characteristics, including characteristics not directly involved in reproduction. Differences may include size, weight, color, markings, or behavioral traits.
 
-From this definition of sexual dimorphism above, try to address the following question:
+From this definition of sexual dimorphism above, we will try and address the following question:
 
-*Are Adelie, Chinstrap and/or Gentoo penguins sexual dimorphic species?*
+*Is [chosen penguin species] sexually dimorphic?*
 
-You should decide how you are going to address this and provide descriptive statistics and plots that back up your conclusions. 
+You should choose one penguin species to work with (`Adelie`, `Chinstrap` or `Gentoo`).
 
-*Please note: I know this is a crazy thing to ask so early in the course, but even just trying will be a helpful exercise! I am including three R codeblocks below which you can use. Note that anything after a # is ignored by R, which is how I have written the comments. Copy code from previous parts of this exercise or from other sources and edit it. Write your own if you are feeling up to it! Work with other students in a group if you wish. When you have an answer, let the teacher know so we can discuss it.*
+## The hypothesis
+
+Before beginning any scientific study, we need a hypothesis, for two reasons. The first is practical: if you do not have a hypothesis in mind, you’ll likely not collect data in an effective manner and you will waste your time. The second is more fundamental: all statistical tests are based on testing a hypothesis. So, to meaningfully conduct a statistically test, you need a hypothesis.
+
+**The hypothesis is an explanation for your data.** Two types exist:
+
+- A **null hypothesis**, where we assume that the factor we are studying (in this case `sex`) has no effect on our data.
+- An **alternative hypothesis** is the opposite of the null hypothesis. It states that the factor we are studying (`sex`) does affect our data.
+
+Using the above examples, can you phrase both the null and alternative hypotheses?
+
+::: {.callout-note collapse="true" icon="false"}
+#### Suggested hypotheses
+
+- Null hypothesis: Penguins do not differ in size between sexes.
+- Alternative hypothesis: Penguins are different in size between sexes.
+:::
+
+## The experiment
+
+Usually this is the stage where you would design an experiment to test your hypothesis. You need to think what is the *population* you want to make inferences about, and what would be an appropriate *sample* to do so.
+
+For this exercise, assume that the `penguins` data is a representative sample (collected randomly) of your chosen species. What is the population we can then make inferences about?
+
+::: {.callout-note collapse="true" icon="false"}
+#### Suggested population
+The species you have chosen. If you are worried that the sample is not truly representative (it only comes from three islands after all), you might be cautious and restrict your inferences to only penguins of your species from these islands.
+:::
+
+## Collect and describe the data
+
+Before we go any further, we should create a subset of our data that is just your chosen penguin species, as that is the population we want to make inferences about here. We can use `filter()` to make a "filter" for our data. Only rows that satisfy our conditional statement will be allowed through the filter. Replace `______` with the name of your chosen species. We are also only interested in rows where we have information about the penguin's `sex`. We will also remove the rows with `NA` for sex using some logic from exercise 1. **Run the code below, and going forward, we should use the `my_species` dataframe.**
 
 ```{webr}
-# data exploration
+my_species <- 
+  penguins |> 
+  filter(species == "______") |>
+  filter(!is.na(sex))
 ```
+
+**You also should decide what variable(s) you will use to assess sexual dimorphism. Now, by copying and modifying code from previous sections, calculate the mean and standard deviation of that variable for each sex.**
 
 ```{webr}
-# descriptive statistics
+
 ```
+
+::: {.callout-note collapse="true" icon="false"}
+#### Suggested code if you are stuck
+```{r}
+#| eval: false
+#| echo: true
+descriptive_data <-
+  my_species |> 
+  group_by(sex) |>
+  summarise(
+    mean_body_mass_g = mean(______, na.rm = TRUE), #<1>
+    sd_body_mass_g = sd(______, na.rm = TRUE), #<1>
+    )
+
+mean_data #<2>
+```
+1. Replace `_____` with your chosen variable
+2. To print the results
+:::
+
+**Make a plot that shows you chosen variable for each sex. Again, copy and modify code from above.**
 
 ```{webr}
-# plotting
+
 ```
 
+::: {.callout-note collapse="true" icon="false"}
+#### Suggested code if you are stuck
+```{r}
+#| eval: false
+#| echo: true
+my_species |>
+  ggplot(aes(x = sex, y = ______)) + #<1>
+  geom_boxplot()
+```
+1. Replace `_____` with your chosen variable
+:::
 
+## Analysing the data
 
+We now want to test if these means (from a *sample*) likely differ between sexes in our *population*.
 
+One way we can do that is to start by imagining the world in which our *null hypothesis* is true. In that world, there is no difference between the sexes in your chosen variable. In that world, a penguin being labelled as `male` or `female` should have no effect on your chosen variable. In otherwords, if our *null hypothesis* is true, then randomly assiging `sex` to each penguin should not alter the difference in means between the sexes. 
 
+This idea is the foundation of a type of statistical inference called `permutation` or `randomisation` testing.
 
+Let's try implement it here. To do that, we will use the R package `infer` (which I have already loaded). 
 
+![The `infer` design](images/01/infer.png)
 
+### Calculating the difference
 
+First, we need to `specify()` which variables are relevant to our hypothesis. This extracts the data we need to test our hypothesis. We then `calculate()` the `"diff in means"`, specifying that we want to get the difference as `male-female`. A positive value therefore indicated male biased sexual dimorphism. **Fill in the variable you have chosen and run the code:**
 
+```{webr}
+diff_means <-
+  my_species |>
+  specify(response = ______, explanatory = sex) |>
+  calculate(stat = "diff in means", order = c("male", "female"))
 
+diff_means
+```
 
+### Generating data assuming our null hypothesis
+
+Next, we need to state our *null hypothesis*. In this case, our null hypothesis is that the explanatory variable `sex` has no effect on the response variable. Therefore, we `hypothesize()` (if the null is true) `"independence"` between the explanatory and response variables. 
+
+```{r}
+#| eval: false
+#| echo: true
+my_species |>
+  specify(response = ______, explanatory = sex) |>
+  hypothesize(null = "independence")
+```
+
+Now, we need to randomly shuffle the `sex` variable, which if our null hypothesis is true, should have little affect on the difference in means. We also need to do this a lot of times (1000+). First we `generate()` 1000 datasets where the `sex` variable has been randomly shuffled (`"permute"`). Then in each of those datasets, we `calculate()` the difference in means between the sexes, as we did for our deal difference in means above. **Fill in the variable you have chosen and run the code:**
+
+```{webr}
+null_diff_means <-
+  my_species |>
+  specify(response = ______, explanatory = sex) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("male", "female"))
+```
+
+Now, let's visualise our null distribution `null_diff_means`.
+
+```{webr}
+visualize(null_diff_means)
+```
+
+This shows the distribution of values of sexual dimorphism we could observe if the null hypothesis was true.
+
+### How extreme was our real data?
+
+We can use the position of the real calculated difference between the sexes in the null distribution to infer how likely our null hypothesis was true. If the null hypothesis is true, then our real difference will probably lie somewhere near the middle of our null distribution, as after all, sex had no effect on the chosen variable.
+
+However, if `sex` did have an effect on the chosen variable (that is, our alternative hypothesis was correct), then we would expect the original `sex` assignments to be a very special arrangement. As such, our real difference should lie close to the tails of the null distribution (or maybe far beyond it).
+
+Let's plot it now to see. We can use the function `shade_p_value()` to do this (we will come back to what a p-value is later). We specify the `direction = "two-sided"` because our hypothesis did not make an assumption as to if the sexual dimorphism will be male or female biased.
+
+```{webr}
+visualize(null_diff_means) +
+  shade_p_value(obs_stat = diff_means, direction = "two-sided")
+```
+
+**Where did your real difference in means end up? Use the above text to decide if you think your null hypothesis, or your alternative hypothesis, is most likely true.**
+
+**Finally, phrase your findings in biological terms. What do your findings suggest?**
+
+When you are done, show the teacher your findings.
