@@ -217,12 +217,8 @@ Please share with at least two others:
 
 
 ## Homework
-### To do before 26th March
+### If you have time before 26th March
 
-- If you are using your own device (Windows, MacOS or Linux):
-  - Follow the instructions to install **R** and **RStudio**
-- If you are using your own device (ChromeOS, iPadOS, Android, etc)
-  - **R** cannot run natively on your device
-  - Please consider borrowing a laptop from the IT department
-  - Other options considerably more annoying
-- You do not need **R** installed for the first exercise session tomorrow.
+- Follow exercise 3 to install R and RStudio.
+
+# Questions? {background-color="#015b58"}
