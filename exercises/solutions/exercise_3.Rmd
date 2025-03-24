@@ -7,6 +7,8 @@ output: html_document
 
 # Packages
 
+I will use `tidyverse` for data handling and plotting.
+
 ```{r}
 library(tidyverse)
 ```
@@ -15,5 +17,4 @@ library(tidyverse)
 
 ```{r}
 tephritis_data <- read_csv("../data/03/tephritis_phenotype.csv")
-
 ```
