@@ -63,12 +63,13 @@ Today we will work with a dataset called `tephritis_phenotype.csv`. The dataset 
 
 ![Figure 1 from @nilsson2024: Sampling design, host plants, and traits investigated. a Parallel sampling of allopatric and sympatric populations of the two host races of T. conura flies east and west of the Baltic. CH denotes the C. heterophyllum host race and CO denotes the C. oleraceum host race. b Size measurements of T. conura. c The ancestral host plant, C. heterophyllum. d The derived host plant, C. oleraceum](images/03/nilsson2024.png)
 
-The dataset describes morphological measurements of the dipteran *Tephritis conura*. This species has specialised to utilise two different host plants (`host_plant`), *Cirsium heterophyllum* and *C. oleraceum*, and thereby formed stable host races. Individuals of both host races, both collected in sympatry (where both *Cirsium heterophyllum* and *C. oleraceum* host plants co-occur) and allopatry (where only one *Cirsium* species occurs) (`patry`) from eight different populations in northern Europe (`region`) from both sides of the Baltic sea (`baltic`). Individuals were measured after having been hatched in a common lab environment. One female and one male (`sex`) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.
+The dataset describes morphological measurements of the dipteran *Tephritis conura*. This species has specialised to utilise two different host plants (`host_plant`), *Cirsium heterophyllum* and *C. oleraceum*, and thereby formed stable host races. Individuals of both host races were collected in both sympatry (where both *Cirsium heterophyllum* and *C. oleraceum* host plants co-occur) and allopatry (where only one *Cirsium* species occurs) (`patry`) from eight different populations in northern Europe (`region`) from both sides of the Baltic sea (`baltic`). Individuals were measured after having been hatched in a common lab environment. One female and one male (`sex`) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.
 
 Measured traits included wing length (`wing_length_mm`), wing width (`wing_width_mm`), melanised percentage cover (`melanized_percent`), body length (`body_length_mm`) and ovipositor length (`ovipositor_length_mm`). Body length and wing measurements were collected by measuring images digitally. Wing melanisation was measured using an automated script, which quantified how many pixels of the wing was melanised.
 
-<!-- TODO  -->
-You can download the dataset here:
+You can download the dataset [here](https://github.com/irmoodie/teaching_datasets/blob/main/tephritis_phenotype/tephritis_phenotype.csv).
+
+![](images/03/download_github.png){width=50%}
 
 Once downloaded, you should move it to your *working directory* folder for this exercise before continuing.
 
@@ -204,14 +205,19 @@ This has loaded a copy of the data from `tephritis_phenotype.csv` into R. Notice
 
 ## Exploring data
 
-Let's use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2.
+Let's use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2. **Make a new code cell, and write the following:**
 
 ```{r}
 print(tephritis_data) #<1>
 ```
 1. We can also just simply write `tephritis_data` without the print statement, and we would get the same output.
 
+We can also use `glimpse()` for an alternative view:
 ```{r}
 glimpse(tephritis_data)
 ```
+
+### Exploratory plots
+
+
 
