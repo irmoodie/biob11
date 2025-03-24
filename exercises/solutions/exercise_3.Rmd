@@ -18,3 +18,14 @@ library(tidyverse)
 ```{r}
 tephritis_data <- read_csv("../data/03/tephritis_phenotype.csv")
 ```
+
+# Explore data
+
+```{r}
+tephritis_data
+
+glimpse(tephritis_data)
+```
+
+# Plot data
+
