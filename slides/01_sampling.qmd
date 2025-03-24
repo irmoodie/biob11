@@ -594,7 +594,7 @@ bm_hist +
 >}}
 
 ## Descriptive statistics
-### Measures of error/confidence: **the coefficient of variation (CV)**
+### Measures of spread: **the coefficient of variation (CV)**
 
 $$
 CV = \frac{s}{\bar{x}}
