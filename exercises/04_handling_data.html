@@ -1,2 +1,1292 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Iain R. Moodie">
+<meta name="dcterms.date" content="2025-03-26">
+
+<title>Handling data using RStudio – BIOB11</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b6ff8f2906d2742a0423121e1dbea2be.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Handling data using RStudio – BIOB11">
+<meta property="og:description" content="Exercise 4">
+<meta property="og:image" content="https://irmoodie.github.io/biob11/exercises/images/04/rstudio_3.png">
+<meta property="og:site_name" content="BIOB11">
+<meta property="og:image:height" content="2478">
+<meta property="og:image:width" content="4320">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Handling data using RStudio</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://canvas.education.lu.se/courses/33414" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LU Canvas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#welcome-to-rstudio" id="toc-welcome-to-rstudio" class="nav-link active" data-scroll-target="#welcome-to-rstudio">Welcome to <em>RStudio</em></a>
+  <ul class="collapse">
+  <li><a href="#rmarkdown" id="toc-rmarkdown" class="nav-link" data-scroll-target="#rmarkdown">RMarkdown</a></li>
+  <li><a href="#important-settings" id="toc-important-settings" class="nav-link" data-scroll-target="#important-settings">Important settings</a></li>
+  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory">Working directory</a></li>
+  <li><a href="#saving-your-document" id="toc-saving-your-document" class="nav-link" data-scroll-target="#saving-your-document">Saving your document</a></li>
+  </ul></li>
+  <li><a href="#data-handling-plotting-and-analysis-in-r" id="toc-data-handling-plotting-and-analysis-in-r" class="nav-link" data-scroll-target="#data-handling-plotting-and-analysis-in-r">Data handling, plotting and analysis in R</a>
+  <ul class="collapse">
+  <li><a href="#setting-up-the-rmarkdown-document" id="toc-setting-up-the-rmarkdown-document" class="nav-link" data-scroll-target="#setting-up-the-rmarkdown-document">Setting up the RMarkdown document</a></li>
+  <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages">Installing R packages</a></li>
+  <li><a href="#creating-code-cells" id="toc-creating-code-cells" class="nav-link" data-scroll-target="#creating-code-cells">Creating code cells</a></li>
+  <li><a href="#loading-r-packages" id="toc-loading-r-packages" class="nav-link" data-scroll-target="#loading-r-packages">Loading R packages</a></li>
+  <li><a href="#adding-headings-and-text" id="toc-adding-headings-and-text" class="nav-link" data-scroll-target="#adding-headings-and-text">Adding headings and text</a></li>
+  <li><a href="#importing-data-into-r" id="toc-importing-data-into-r" class="nav-link" data-scroll-target="#importing-data-into-r">Importing data into R</a></li>
+  <li><a href="#exploring-data" id="toc-exploring-data" class="nav-link" data-scroll-target="#exploring-data">Exploring data</a></li>
+  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link" data-scroll-target="#cleaning-data">Cleaning data</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive statistics</a></li>
+  <li><a href="#exploratory-plots" id="toc-exploratory-plots" class="nav-link" data-scroll-target="#exploratory-plots">Exploratory plots</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data analysis</a>
+  <ul class="collapse">
+  <li><a href="#hypotheses" id="toc-hypotheses" class="nav-link" data-scroll-target="#hypotheses">Hypotheses</a></li>
+  <li><a href="#collecting-data" id="toc-collecting-data" class="nav-link" data-scroll-target="#collecting-data">Collecting data</a></li>
+  <li><a href="#plotting-data" id="toc-plotting-data" class="nav-link" data-scroll-target="#plotting-data">Plotting data</a></li>
+  <li><a href="#calculating-the-test-statistic" id="toc-calculating-the-test-statistic" class="nav-link" data-scroll-target="#calculating-the-test-statistic">Calculating the test statistic</a></li>
+  <li><a href="#simulating-data-under-the-null-hypothesis" id="toc-simulating-data-under-the-null-hypothesis" class="nav-link" data-scroll-target="#simulating-data-under-the-null-hypothesis">Simulating data under the null hypothesis</a></li>
+  <li><a href="#comparing-our-observed-statistic-to-the-null-distribution" id="toc-comparing-our-observed-statistic-to-the-null-distribution" class="nav-link" data-scroll-target="#comparing-our-observed-statistic-to-the-null-distribution">Comparing our observed statistic to the null distribution</a></li>
+  </ul></li>
+  <li><a href="#save-your-rmarkdown-file" id="toc-save-your-rmarkdown-file" class="nav-link" data-scroll-target="#save-your-rmarkdown-file">Save your RMarkdown file!</a></li>
+  </ul></li>
+  <li><a href="#final-exercise" id="toc-final-exercise" class="nav-link" data-scroll-target="#final-exercise">Final exercise</a></li>
+  <li><a href="#take-away-points" id="toc-take-away-points" class="nav-link" data-scroll-target="#take-away-points">Take-away points</a></li>
+  <li><a href="#suggested-extra-reading" id="toc-suggested-extra-reading" class="nav-link" data-scroll-target="#suggested-extra-reading">Suggested extra reading:</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Handling data using RStudio</h1>
+<p class="subtitle lead">Exercise 4</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Iain R. Moodie </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 26, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="welcome-to-rstudio" class="level1">
+<h1>Welcome to <em>RStudio</em></h1>
+<p><strong>Launch RStudio.</strong> It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.</p>
+<p>You should be met by a scene that looks like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/04/rstudio_3.png" class="img-fluid figure-img"></p>
+<figcaption>A screenshot of a new RStudio installation on macOS.</figcaption>
+</figure>
+</div>
+<p>Rstudio is designed around a four panel layout. Currently you can see three of them. To reveal the fourth, go to <em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>. This will open an RMarkdown document, which is a form of coding “notebook”, where you can mix text, images and code in the same document. We will use these sorts of documents extensively in this course. Give your document a title like “BIOB11 Exercise 4”. You can put your name for author, and leave the rest as default for now. Click OK. Now your window should look something like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/04/rstudio_4.png" class="img-fluid figure-img"></p>
+<figcaption>A screenshot of RStudio on macOS with an RMarkdown file open, and the panels labelled.</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li><strong>Source</strong>: This is where we edit code related documents. Anything you want to be able to save should be written here.</li>
+<li><strong>Console</strong>: the console is where R lives. This is where any command you write in the source pane and run will be sent to be executed.</li>
+<li><strong>Environments</strong>: this panel shows you objects loaded into R. For example, if you were to assign a value to an object (e.g.<code>x &lt;- 1</code>), then it would appear here.</li>
+<li><strong>Output</strong>: this panel has many functions, but is commonly used to navigate files, show plots, show a rendered RMarkdown file or to read the R help documentation.</li>
+</ol>
+<section id="rmarkdown" class="level2">
+<h2 class="anchored" data-anchor-id="rmarkdown">RMarkdown</h2>
+<p>RMarkdown is a file format for making dynamic documents with R. It combines plain text with embedded R code chunks that are run when the document is rendered, allowing you to include results <em>and</em> your R code directly in the document. This makes it a powerful tool for creating reproducible analyses, which are extremely important in science.</p>
+<p>The RMarkdown document you opened has some example text and code. An RMarkdown document consists of three main parts:</p>
+<ol type="1">
+<li><p><strong>YAML Header</strong>: This section, enclosed by <code>---</code> at the beginning and end, contains metadata about the document, such as the title, author, date, and output format.</p></li>
+<li><p><strong>Text</strong>: You can write plain text using Markdown syntax to format it. Markdown is a lightweight markup language with plain text formatting syntax, which is easy to read and write.</p></li>
+<li><p><strong>Code Chunks</strong>: These are sections of R code enclosed by triple backticks and <code>{r}</code>. You can click the green arrow to run all the code in a code chunk, or run each line of code using the <em>Run</em> button, or by using <code>Ctrl+Enter</code> (Windows) or Cmd+Enter (macOS)When the document is rendered, the code is executed, and the results are included in the output.</p></li>
+</ol>
+<p>Notice at the top left of the <em>Source</em> panel, there are two buttons: <em>Source</em> and <em>Visual</em>. These allow you to switch betwee two views of the RMarkdown document. The <em>Source</em> view is what you are looking at, and it is the raw text document. You can also use the <em>Visual</em> view, which allows you to work in a WYSIWYG (what you see is what you get) view, similar to Microsoft Office or other text editors. This “renders” your markdown code for you while you write. It also gives you a series of menus to help you format text, which means you do not need to learn <a href="https://rmarkdown.rstudio.com/authoring_basics.html">how to write markdown code</a> (although it is extremely simple, and you likely know some already).</p>
+<p>Which ever view you prefer (and you can switch as often as you like), the code part stays the same. It is primarily there for editing the text around your code.</p>
+</section>
+<section id="important-settings" class="level2">
+<h2 class="anchored" data-anchor-id="important-settings">Important settings</h2>
+<p>Before we go any further, we need to change some default settings in RStudio.</p>
+<p><strong>Go to <em>Tools</em> -&gt; <em>Global Settings</em>, then:</strong></p>
+<ol type="1">
+<li>Go to the <em>General</em> tab.
+<ol type="i">
+<li><strong>Un-tick</strong> “<em>Restore .RData into workspace at startup</em>”</li>
+<li>Set “<em>Save workspace to RData on exit:</em>” to <em>Never</em>.</li>
+</ol></li>
+<li>Go to the <em>Code</em> tab
+<ol type="i">
+<li><strong>Tick</strong> “<em>Use native pipe operator, l&gt; (requires R 4.1+)</em>”</li>
+</ol></li>
+<li>Go to the <em>RMarkdown</em> tab
+<ol type="i">
+<li><strong>Un-tick</strong> “<em>Show output inline for all R Markdown documents</em>”</li>
+</ol></li>
+</ol>
+<p>While we are here, if you wanted to change the font size or theme, you can do that in the <em>Appearance</em> tab.</p>
+<p>RStudio also has screenreader support. You can enable that in the <em>Accessibility</em> tab.</p>
+</section>
+<section id="working-directory" class="level2">
+<h2 class="anchored" data-anchor-id="working-directory">Working directory</h2>
+<p><strong>I strongly recommend you create a folder where you save all the work you do as part of this course.</strong> I also recommend you make this folder in a part of your computer that is <strong>not</strong> being synced with a cloud service (iCloud, OneDrive, Google Drive, Dropbox, etc). These services can cause issues with RStudio. You can always back up your work at the end of a session.</p>
+<p>Within your new course folder, I also want you to <strong>make a new folder for each exercise we do</strong>. This will make it very easy for you to stay organsied and submit work you do to me for feedback. It also makes your code reproducible by simply sending someone the contents of the folder in question. For example, this is exercise 4, so my main folder might be called <code>biob11</code>, and within that folder I might make a folder called <code>exercise_4</code>.</p>
+<p>We now want to set our <em>working directory</em> to this <code>biob11/exercise_4</code> folder. A working directory is the directory (folder) in a file system where a user is currently working. It is the default location where all your R code will be executed and where files are read from or written to unless specified otherwise. To set the working directory using RStudio, go to <em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em>, then navigate to the folder you just made for this exercise. You should do this at the start of each exercise.</p>
+<p>Notice that now in your <em>Output</em> pane, in the <em>files</em> tab, you can see the contents of your folder (which is probably nothing currently). Let’s change that.</p>
+</section>
+<section id="saving-your-document" class="level2">
+<h2 class="anchored" data-anchor-id="saving-your-document">Saving your document</h2>
+<p>Let’s save this example RMarkdown document that RStudio has made for us. You do that exactly how you might expect. Go to <em>File</em> -&gt; <em>Save</em>, or use the floppy disc icon. Ensure you save it in your working directory with a descriptive name (e.g.&nbsp;<code>exercise_4.Rmd</code>). The file should have appeared in your <em>Output</em> pane, with the extension <code>.Rmd</code>.</p>
+<p>Let’s move onto working with some data!</p>
+</section>
+</section>
+<section id="data-handling-plotting-and-analysis-in-r" class="level1">
+<h1>Data handling, plotting and analysis in R</h1>
+<p>Today we will work with a dataset called <code>tephritis_phenotype.csv</code>. The dataset comes from a study conducted at Lund University by <span class="citation" data-cites="nilsson2022">Nilsson et al. (<a href="#ref-nilsson2022" role="doc-biblioref">2022</a>)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/04/nilsson2024.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 from <span class="citation" data-cites="nilsson2024">Nilsson et al. (<a href="#ref-nilsson2024" role="doc-biblioref">2024</a>)</span>: Sampling design, host plants, and traits investigated. a Parallel sampling of allopatric and sympatric populations of the two host races of T. conura flies east and west of the Baltic. CH denotes the C. heterophyllum host race and CO denotes the C. oleraceum host race. b Size measurements of T. conura. c The ancestral host plant, C. heterophyllum. d The derived host plant, C. oleraceum</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>The dataset describes morphological measurements of the dipteran <em>Tephritis conura</em>. This species has specialised to utilise two different host plants (<code>host_plant</code>), <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em>, and thereby formed stable host races. Individuals of both host races were collected in both sympatry (where both <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em> host plants co-occur) and allopatry (where only one <em>Cirsium</em> species occurs) (<code>patry</code>) from eight different populations in northern Europe (<code>region</code>) from both sides of the Baltic sea (<code>baltic</code>). Individuals were measured after having been hatched in a common lab environment. One female and one male (<code>sex</code>) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Measured traits included wing length (<code>wing_length_mm</code>), wing width (<code>wing_width_mm</code>), melanised percentage cover (<code>melanized_percent</code>), body length (<code>body_length_mm</code>) and ovipositor length (<code>ovipositor_length_mm</code>). Body length and wing measurements were collected by measuring images digitally. Wing melanisation was measured using an automated script, which quantified how many pixels of the wing was melanised.</p>
+</blockquote>
+<p>You can download the dataset <a href="https://github.com/irmoodie/teaching_datasets/blob/main/tephritis_phenotype/tephritis_phenotype.csv">here</a>.</p>
+<p><img src="images/04/download_github.png" class="img-fluid" style="width:50.0%"></p>
+<p>Once downloaded, you should move it to your <em>working directory</em> folder for this exercise before continuing.</p>
+<section id="setting-up-the-rmarkdown-document" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-the-rmarkdown-document">Setting up the RMarkdown document</h2>
+<p>We will work with the RMarkdown file we generated at the start (that I called <code>exercise_4.Rmd</code>).</p>
+<p>First, we should delete all the code and text that RStudio automatically generated, except the YAML header (the text at the start between the <code>---</code>). You can do that as you would expect in any other text editor. Now we have our blank RMarkdown file, let’s get started.</p>
+</section>
+<section id="installing-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="installing-r-packages">Installing R packages</h2>
+<p>In this exercise, we will use the <code>tidyverse</code> package, and the <code>infer</code> package. To install them you need to use the <code>install.packages()</code> function. Since we only need to do this once per computer, we should run this function directly in the <em>Console</em> panel.</p>
+<p><strong>Type or copy the install function into the <em>console</em>, and press enter to run:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"infer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/04/rstudio_install.png" class="img-fluid"></p>
+<p>From now on, we won’t write things directly in the <em>Console</em>, and instead write code in the RMarkdown document in the <em>Source</em> panel, which we then “Run” and send the <em>Console</em>.</p>
+</section>
+<section id="creating-code-cells" class="level2">
+<h2 class="anchored" data-anchor-id="creating-code-cells">Creating code cells</h2>
+<p>Code cells are where we write code in an RMarkdown document. This allows use to write normal text outside these sections.</p>
+<p><strong>In your <em>Source</em> panel, in the RMarkdown document, add a R code cell.</strong></p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Visual view
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To do that in the <em>Visual view</em> (where the text is rendered), go to <em>Insert</em> -&gt; <em>Executable Cell</em> -&gt; <em>R</em>.</p>
+<p><img src="images/04/rstudio_visual_codecell.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Source view
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To do that in the <em>Source view</em> (where we see just plain text), we use three back-ticks (<code>```</code>) to mark the start and end of a code cell. Additionally at the start, we declare the language used by enclosing it in two curly brackets <code>{r}</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>In both views, you can also use the shortcut <em>Shift-Alt-I</em> or <em>Shift-Command-I</em>.</p>
+</section>
+<section id="loading-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="loading-r-packages">Loading R packages</h2>
+<p>After installing an R package, we need to load it into our current R environment. We use the <code>library()</code> function to do that. Since we need this code to run every time we come back to this RMarkdown document, we should write it in the document. R code should always be executed “top to bottom”, so this bit of code should come right at the start.</p>
+<p><strong>Inside that code cell you just made, use the <code>library()</code> function to load the <code>tidyverse</code> and <code>infer</code> packages:</strong></p>
+<p>(To run code in the <em>Source</em> panel, you can click on the line you want to run, and then press the “Run” button. Or you can also use the keyboard shortcut <code>Ctrl+Enter</code> or <code>Cmd+Return</code>.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If that worked, you will get a message that reads something similar to:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>This message tells us which packages were loaded by the <code>tidyverse</code> package, and which functions from base R (the functions that come with R by default) have been overwritten by the <code>tidyverse</code> packages. Not all packages produce a message when they are loaded (for example, <code>infer</code> did not).</p>
+</section>
+<section id="adding-headings-and-text" class="level2">
+<h2 class="anchored" data-anchor-id="adding-headings-and-text">Adding headings and text</h2>
+<p>Anywhere outside a code cell you can write normal text. In this course, you might find it helpful to write yourself notes alongside your code, so that you can come back to your notes during other exercises, the exam (open book), the group project, or later in your studies.</p>
+<p>Along side normal text, you can structure an RMarkdown document using headings.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Visual view
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Change the type of text you are typing in the menu at the top:</p>
+<p><img src="images/04/rstudio_visual_heading.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Source view
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use <code>#</code>s to indicate the level of the heading:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Heading level 1</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heading level 2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Heading level 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><strong>I leave it up to you to decide how and when to use headings and text.</strong></p>
+</section>
+<section id="importing-data-into-r" class="level2">
+<h2 class="anchored" data-anchor-id="importing-data-into-r">Importing data into R</h2>
+<p>We will now load the <code>tephritis_phenotype.csv</code> data file that you downloaded earlier. A <code>.csv</code> file is a file that stores information in a table-like format with <strong>C</strong>omma <strong>S</strong>eparated <strong>V</strong>alues. A typical <code>.csv</code> file will look something like this:</p>
+<pre><code>species,height,n_flowers
+persica,1.2,12
+persica,1.5,18
+banksiae,2.4,3
+banksiae,1.7,8</code></pre>
+<p><code>.csv</code> files are especially suited to storing data that can be used across a wide variety of programmes, as everything is stored as plain text (unlike an <code>.xlsx</code> file from Microsoft Excel, for example).</p>
+<p><strong>Make another code cell.</strong></p>
+<p><strong>Load the <code>tephritis_phenotype.csv</code> data file using the <code>read_csv()</code> function and assign it to an object named <code>tephritis_data</code>.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>tephritis_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tephritis_phenotype.csv"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Be sure to use quote marks around the file name.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>If that worked, you should get the following message with some information about the data:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 583 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (5): region, host_plant, patry, sex, baltic
+dbl (5): body_length_mm, ovipositor_length_mm, wing_length_mm, wing_width_mm...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>This has loaded a copy of the data from <code>tephritis_phenotype.csv</code> into R. Notice that the object <code>tephritis_data</code> has also appeared in the <em>Environment</em> panel.</p>
+<p><img src="images/04/rstudio_load_data.png" class="img-fluid"></p>
+<p><strong>Click on the object <code>tephritis_data</code> with your mouse.</strong> This will open the dataset using the RStudio function <code>View()</code> (which if you look in your console, you will see it has just run). This allows you to view the dataset as a table, like you would in a spreadsheet software like Microsoft Excel. Note however, there is no way to edit the data in this view. This is by design. Any editing of the data needs to be done in the RMarkdown document with code. That way, you can keep a record of any edits you make, without touching the original data file.</p>
+</section>
+<section id="exploring-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-data">Exploring data</h2>
+<p>Let’s use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2. <strong>Make a new code cell, and write the following:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tephritis_data)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">We can also just simply write <code>tephritis_data</code> without the print statement, and we would get the same output.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>We can also use <code>glimpse()</code> for an alternative view:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tephritis_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also use the <code>summary()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tephritis_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>In your RMarkdown document, using text below the code cell, answer the following questions:</strong></p>
+<ol type="1">
+<li>What is the unit of observation in this data set? In other words, what does each row represent?</li>
+<li>What populations (statistical use of the word) could we make inferences about using this data?</li>
+<li>What type of variable is:
+<ul>
+<li><code>region</code></li>
+<li><code>host_plant</code></li>
+<li><code>patry</code></li>
+<li><code>sex</code></li>
+<li><code>body_length_mm</code></li>
+<li><code>ovipositor_length_mm</code></li>
+<li><code>wing_length_mm</code></li>
+<li><code>wing_width_mm</code></li>
+<li><code>melanized_percent</code></li>
+<li><code>baltic</code><br>
+</li>
+</ul></li>
+<li>Are there any <code>NA</code> values in the dataset? In which variable(s) and why might this be?</li>
+</ol>
+</section>
+<section id="cleaning-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-data">Cleaning data</h2>
+<p>Datasets can often be messy. People make mistakes entering data all the time. You should check this dataset for potential errors. For a reference, these flies are very small, less than 1 cm in size.</p>
+<p><strong>Make a new code cell for cleaning your data.</strong></p>
+<ul>
+<li>Use the output of <code>summary()</code> to help you check for potential errors.</li>
+<li>You can also, as you did before, click on the object <code>tephritis_data</code> in your <em>Environment</em> panel, and click on each variable header to sort it in different ways.</li>
+<li>For any suspicious variables where you think there might be mistakes, a good first approach is to plot your data. <strong>Use code adapted from previous exercises to make histograms to check your data for potential mistakes.</strong></li>
+</ul>
+<p>For example, in the histograms and box plots below both with an outlier point. Hopefully you can see the difference between an outlier (“Probably not a mistake”) and a real mistake (“Probably a mistake”). Remember, outliers are part of real data, and we should not remove them just because they are outliers. But they do have to be plausible to be kept.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_handling_data_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Which variables do you think might have incorrectly entered data?</strong></p>
+<p>We will use a <code>filter()</code> function to inspect rows that contain improbably values. <code>filter()</code> let’s us write conditional statements (from Exercise 1) that only allow rows that meet those conditions to “filter” through. For example, we could use filter to see all rows where <code>wing_length_mm</code> is greater than our guess at what the maximum should be. <strong>Looking at the histogram of <code>wing_length_mm</code>, and with the knowledge that these flies are &lt; 1 cm in size, adapt the following code to just show you the suspicious rows:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>tephritis_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(wing_length_mm <span class="sc">&gt;</span> _____)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="1" data-code-annotation="1">This will only let though rows that have a <code>wing_length_mm</code> greater than <code>&gt;</code> _____</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>What do you think? Do these values seem real, or are they probably mistakes? <strong>Use the code above to check your other suspicious variables.</strong> If you think these values are mistakes, then we need to get rid of them.</p>
+<p>An easy way to do that is to use <code>filter()</code> again, but this time, to only allow rows that do have plausible values to “filter” through. That is, we can reverse the greater than <code>&gt;</code> to a less than <code>&lt;</code>. If we wanted to set a lower limit, we could that by using the <code>&amp;</code> operator (from Exercise 1). We can also chain together <code>filter()</code> functions using pipes <code>|&gt;</code> to clean up our dataset in one go. Adapt the code below to clean up the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>  tephritis_data <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wing_length_mm <span class="sc">&lt;</span> _____) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(______ ______ ______)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">I assigned the cleaned data to a new object, called <code>clean_data</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="2">You can add more <code>filter()</code> functions as you wish.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p><strong>Use the <code>summary()</code> function again, and make some plots to show that your data cleaning has had the desired effect.</strong></p>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive statistics</h2>
+<p><strong>Make a new code cell. Inside it, write or adapt code from previous exercises to answer the following questions:</strong></p>
+<ol type="1">
+<li>What is the overall mean and standard deviation of:
+<ol type="i">
+<li><code>body_length_mm</code></li>
+<li><code>ovipositor_length_mm</code></li>
+<li><code>wing_length_mm</code></li>
+<li><code>wing_width_mm</code></li>
+</ol></li>
+<li>What are the <code>sex</code> specific means and standard deviations of:
+<ol type="i">
+<li><code>body_length_mm</code></li>
+<li><code>wing_length_mm</code></li>
+<li><code>wing_width_mm</code></li>
+</ol></li>
+<li>What are the <code>sex</code> and <code>host_plant</code> specific means and standard deviations of:
+<ol type="i">
+<li><code>body_length_mm</code></li>
+<li><code>ovipositor_length_mm</code></li>
+<li><code>wing_length_mm</code></li>
+<li><code>wing_width_mm</code></li>
+</ol></li>
+</ol>
+<p><em>Hint: You will probably want to use the functions <code>group_by()</code> and <code>summarise()</code>.</em></p>
+</section>
+<section id="exploratory-plots" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-plots">Exploratory plots</h2>
+<p><strong>In a new code cell, use what you have learned in previous exercises to make some figures that explore the following relationships:</strong></p>
+<ol type="1">
+<li><code>body_length_mm</code> and <code>sex</code></li>
+<li><code>ovipositor_length_mm</code> and <code>host_plant</code></li>
+<li><code>wing_length_mm</code> and <code>wing_width_mm</code> and <code>sex</code></li>
+<li>The number of flies measured from each <code>region</code> and <code>host_plant</code></li>
+</ol>
+<p>You should use the following <code>geom_</code>s at least once, but one plot can use multiple <code>geom_</code>s.</p>
+<p><code>geom_point()</code> <code>geom_jitter()</code> <code>geom_boxplot()</code> <code>geom_violin()</code> <code>geom_bar()</code></p>
+<p>To find out what they do, try using them, or search the helpfiles in the <em>Outputs</em> panel. You can also, for any function, search for the helpfile by writing <code>?function_name</code>. E.g., if you wanted to know what <code>geom_jitter()</code> does, you could run the command <code>?geom_jitter</code>, and the helpfile will open.</p>
+<p>You can also consult the <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf"><code>ggplot2</code> “cheatsheet”</a> for help.</p>
+<p>While making your plots, keep the following “best practises” in mind:</p>
+<p>A good plot should:</p>
+<ul>
+<li>Show the data</li>
+<li>Make patterns in the data easy to see</li>
+<li>Represent magnitudes honestly</li>
+<li>Draw graphical elements clearly</li>
+</ul>
+<p><code>ggplot2</code> allows for extensive customisation of your plots. For example, you might want to change the labels of the axis, or give your plot a title. You can do that using the <code>labs()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example_data, <span class="fu">aes</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_points</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Name of my x variable"</span>, <span class="at">y =</span> <span class="st">"Name of my Y variable"</span>, <span class="at">title =</span> <span class="st">"My awesome plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also change the <code>theme</code> of your plot. <code>ggplot2</code> has many built in themes. A full list can be found <a href="https://ggplot2-book.org/themes#sec-themes">here</a>. For my fake example, I could change the theme to <code>theme_classic()</code> like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example_data, <span class="fu">aes</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_points</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Try it out on your plots. What theme do you prefer best?</p>
+<p>In general, <code>ggplot2</code> is a very widely used plotting package, so finding examples of what you want to do will not be hard. Use search engines, AI tools, the <a href="https://ggplot2-book.org"><code>ggplot2</code> book</a>, etc. If you see it on your plot, you can probably change it.</p>
+</section>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data analysis</h2>
+<p>We will finish this exercise with an analysis similar to Exercise 2. Again, we will cover the theory behind these analyses more in depth during the lectures.</p>
+<p><strong>Make a new section in your R markdown file, with a new code cell(s). Make notes outside the code cells which you can refer back to at a later date.</strong></p>
+<p>Recall that the researchers measured flies that live in two different host plants. Although they are the same species, the use of these two different host plants functionally splits the species into two “host races”, that do not reproduce with each other.</p>
+<p>Suppose the researchers have evidence to suggest that, before the species was split by colonizing these two host plants, the ancestral fly had a mean ovipositor length of 1.79 mm. The researchers want to know if either of the two host races have evolved a different ovipositor length, perhaps to better adapt to their new host plants.</p>
+<p>For now, let’s focus on the <code>heterophyllum</code> host race.</p>
+<p>We want to answer the question:</p>
+<p><em>Is the mean <code>ovipositor_length_mm</code> in the <code>heterophyllum</code> host race different from 1.79 mm?</em></p>
+<section id="hypotheses" class="level3">
+<h3 class="anchored" data-anchor-id="hypotheses">Hypotheses</h3>
+<p>From this research question:</p>
+<ul>
+<li><strong>What population are we making inferences about?</strong></li>
+<li><strong>What is the null hypothesis?</strong></li>
+<li><strong>What is the alternative hypothesis?</strong></li>
+</ul>
+</section>
+<section id="collecting-data" class="level3">
+<h3 class="anchored" data-anchor-id="collecting-data">Collecting data</h3>
+<p>As we are just interested in the flies that hatched from the <code>heterophyllum</code> <code>host_plant</code>, we should first make a subset of our data that is just the data we are going to use. <strong>Use <code>filter()</code> to create a dataset that only has:</strong></p>
+<ul>
+<li>flies that hatched from the <code>heterophyllum</code> <code>host_plant</code></li>
+<li><code>female</code> <code>sex</code> flies (as males do not have ovipositors)</li>
+</ul>
+<p>The conditional statement <code>==</code> will be useful here.</p>
+<p><strong>Name this dataset something meaninful, like <code>heterophyllum_data</code>, or maybe something shorter if you prefer, like <code>h_data</code>.</strong></p>
+</section>
+<section id="plotting-data" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-data">Plotting data</h3>
+<p><strong>Using this new dataframe, make a plot that illustrates your hypothesis.</strong></p>
+</section>
+<section id="calculating-the-test-statistic" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-the-test-statistic">Calculating the test statistic</h3>
+<p>First, we need to know what our <em>test statistic</em>, in this case the <em>mean</em> <code>ovipositor_length_mm</code> length we observe in our sample is. This is called our <em>observed (test) statistic</em>. To calculate this, we can use <code>specify()</code> and <code>calculate()</code>. First, we should pipe <code>|&gt;</code> our filtered dataset into the <code>specify()</code> function. Inside <code>specify()</code>, we need to declare which variable we are interested in. In this case, we only have a <code>response</code> variable, as we are just working with the mean of one group. We then pipe <code>|&gt;</code> that into <code>calculate()</code>, where we declare the name of our chosen test statistic. We save it as <code>observed_mean_h</code>, as we want to use it later to compare against a null distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>observed_mean_h <span class="ot">&lt;-</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  ____________ <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ______) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"______"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>observed_mean_h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="simulating-data-under-the-null-hypothesis" class="level3">
+<h3 class="anchored" data-anchor-id="simulating-data-under-the-null-hypothesis">Simulating data under the null hypothesis</h3>
+<p>Next we need a null distribution to compare with. First, we need to imagine that the null hypothesis is true. In this case, that mean <code>ovipositor_length_mm == 1.79</code>. To do that, we create a new dataset from our sample, where the mean <code>ovipositor_length_mm == 1.79</code>. We do that by using the difference between the mean in our <em>sample</em> <code>1.76</code> and mean we want to test against (<code>1.79</code>) to shift our data such that it is compatible with the null hypothesis. We then draw “bootstrap” replicates (sampling with replacement) from this new data and calculate our test statistic (mean) each time. Like in the example in exercise 2, we need to do this a lot of times to generate an appropriate null distribution (in this case, <code>10000</code> times).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>null_dist_h <span class="ot">&lt;-</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  ______ <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ______) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> ______) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> ______, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"______"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="comparing-our-observed-statistic-to-the-null-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-our-observed-statistic-to-the-null-distribution">Comparing our observed statistic to the null distribution</h3>
+<p>We can now use <code>visualize()</code> to show our null distribution, and the function <code>shade_p_value()</code> to show our observed statistic, and the proportion of the null distribution that is more extreme than our observed statistic. The <code>direction</code> you choose relates to your original alternative hypothesis.</p>
+<ul>
+<li>If your alternative hypothesis was that there would be a difference from 1.79 mm, but you didn’t specifiy if the evolved ovipositor would be longer or shorter (i.e., you didn’t predict a <em>direction</em>), then you should write <code>"two-sided"</code>.</li>
+<li>If your alternative hypothesis was that the evolved ovipositor would be longer, then your hypothesis was one-sided, and you should write <code>"greater"</code>.</li>
+<li>If your alternative hypothesis was that the evolved ovipositor would be shorter, then your hypothesis was one-sided, and you should write <code>"lesser"</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>null_dist_h <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_mean_h, <span class="at">direction =</span> <span class="st">"______"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also calculate from this what our “p-value” is. In this case, our p-value corresponds to the proportion of the null distribution that as extreme, or more extreme than our observed statistic. You can think of it being the probability we would observe data (i.e., collect our sample) if the null hypothesis was true. The closer it is to 0, the more confident we are that the null-hypothesis is not correct.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>null_dist_h <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_mean_h, <span class="at">direction =</span> <span class="st">"______"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Write a few sentence to describe the outcome of your test. In addition to the describing the test, also phrase your findings in terms that a friend who isn’t taking this class could understand (i.e., what do your findings suggest, related back to the original question).</strong></p>
+</section>
+</section>
+<section id="save-your-rmarkdown-file" class="level2">
+<h2 class="anchored" data-anchor-id="save-your-rmarkdown-file">Save your RMarkdown file!</h2>
+<p>Make sure you save your RMarkdown file regularly. If you want to turn it into a webpage similar to this one, you can click the “Knit” button, and it will appear in your <em>Output</em> panel.</p>
+</section>
+</section>
+<section id="final-exercise" class="level1">
+<h1>Final exercise</h1>
+<p>You will now answer one (or more) of the following questions, by following the steps outlined above and in previous exercises. You should create a dataset that contains only the rows you are interested in, state your hypotheses, make plot(s), and use either a <code>bootstrap</code> (as above) or <code>permute</code> procedure to test your hypotheses. Write a small text at the end to describe your findings.</p>
+<p>To decide which one you will work on, you are going to roll a virtual six sided die! Use this code to do it yourself:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"You will work on question:"</span>, <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>Do males have more dark patches on their wings than females?</li>
+<li>Do females have different length ovipositors in the two host races?</li>
+<li>Is the mean proportion of the female wing that is melanized greater than two-thirds?</li>
+<li>Do male flies from the east of the Baltic sea differ in size to flies from the west of the Baltic sea?</li>
+<li>Are female flies who live in sympatric populations bigger than female flies who live in allopatric populations?</li>
+<li>Is the median wing width greater than 2.1 mm in male flies?</li>
+</ol>
+</section>
+<section id="take-away-points" class="level1">
+<h1>Take-away points</h1>
+<p>At the end of this, you should have an idea how you would:</p>
+<ul>
+<li>Import a dataset into R using <code>read_csv()</code>.</li>
+<li>Check and clean the dataset of basic errors using <code>filter()</code>.</li>
+<li>Produce summary statistics of the dataset using <code>group_by()</code> and <code>summarise()</code>.</li>
+<li>Produce illustrative plots of the dataset using <code>ggplot()</code></li>
+<li>Compare a mean against a point value, or two means against each other.</li>
+</ul>
+</section>
+<section id="suggested-extra-reading" class="level1">
+<h1>Suggested extra reading:</h1>
+<ul>
+<li>Ch. 2, 3 and 4 from <span class="citation" data-cites="moderndive2025">Chester et al. (<a href="#ref-moderndive2025" role="doc-biblioref">2025</a>)</span> cover importing, cleaning and plotting data with <code>tidyverse</code>.</li>
+<li>Ch. 7, 8 and 9 from <span class="citation" data-cites="moderndive2025">Chester et al. (<a href="#ref-moderndive2025" role="doc-biblioref">2025</a>)</span> cover hypothesis testing using randomisation in detail.</li>
+<li>Ch. 15 and 16 of <span class="citation" data-cites="duthie2025">Duthie (<a href="#ref-duthie2025" role="doc-biblioref">2025</a>)</span> cover probability and the central limit theorum, which we will cover soon.</li>
+<li>Part 7 of 7 of this <a href="https://biomedical-sciences.ed.ac.uk/experimental-design-and-data-analysis/what-to-do-with-experiments/chapter-3-using-r-basic-concepts-hypothesis-test">video course</a> covers what a p-value is very clearly.</li>
+</ul>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-moderndive2025" class="csl-entry" role="listitem">
+Chester, I., A. K. Kim, and A. Valdivia. 2025. <a href="https://moderndive.com/v2/">Statistical <span>Inference</span> via <span>Data Science</span>: <span>A ModernDive</span> into <span>R</span> and the <span>Tidyverse</span></a> (2nd ed.).
+</div>
+<div id="ref-duthie2025" class="csl-entry" role="listitem">
+Duthie, A. B. 2025. <a href="https://bradduthie.github.io/stats/">Fundamental statistical concepts and techniques in the biological and environmental sciences: <span>With</span> jamovi</a>.
+</div>
+<div id="ref-nilsson2024" class="csl-entry" role="listitem">
+Nilsson, K. J., M. Tsuboi, Ø. H. Opedal, and A. Runemark. 2024. <a href="https://doi.org/10.1007/s11692-024-09634-7">Colonization of a <span>Novel Host Plant Reduces Phenotypic Variation</span></a>. Evolutionary Biology 51:269–282.
+</div>
+<div id="ref-nilsson2022" class="csl-entry" role="listitem">
+Nilsson, K., J. Ortega, M. Friberg, and A. Runemark. 2022. <a href="https://doi.org/10.5061/DRYAD.S4MW6M98J">Morphological measurements of two host specialists of the dipteran <span>Tephritis</span> conura, both in sympatry and allopatry</a>. Dryad.
+</div>
+</div></section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../exercises";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/irmoodie\.github\.io\/biob11\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Unless otherwise stated, all materials are under a <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC-BY-SA-4.0 License</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built by <a href="https://irmoodie.com">Iain R. Moodie</a> with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
