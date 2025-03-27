@@ -1,18 +1,19 @@
 [
   {
-    "listing": "/slides.html",
-    "items": [
-      "/slides/00_introduction.html",
-      "/slides/01_sampling.html"
-    ]
-  },
-  {
     "listing": "/exercises.html",
     "items": [
       "/exercises/01_intro_to_r.html",
       "/exercises/02_descriptive_statistics.html",
       "/exercises/03_local_r.html",
       "/exercises/04_handling_data.html"
+    ]
+  },
+  {
+    "listing": "/slides.html",
+    "items": [
+      "/slides/00_introduction.html",
+      "/slides/01_sampling.html",
+      "/slides/02_scientific_method.html"
     ]
   }
 ]
