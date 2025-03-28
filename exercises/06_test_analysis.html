@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Iain R. Moodie">
+<meta name="dcterms.date" content="2025-03-28">
 
-<title>Exercises – BIOB11</title>
+<title>Test your skills – BIOB11</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b6ff8f2906d2742a0423121e1dbea2be.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b6ff8f2906d2742a0423121e1dbea2be.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -67,67 +69,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-subtitle','listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Exercises – BIOB11">
+<meta property="og:title" content="Test your skills – BIOB11">
+<meta property="og:description" content="Exercise 6">
 <meta property="og:site_name" content="BIOB11">
 </head>
 
@@ -140,7 +87,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Test your skills</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,8 +101,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -167,7 +114,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -179,19 +126,19 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -200,22 +147,45 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#get-rstudio-setup" id="toc-get-rstudio-setup" class="nav-link active" data-scroll-target="#get-rstudio-setup">Get RStudio setup</a></li>
+  <li><a href="#sugar-maples" id="toc-sugar-maples" class="nav-link" data-scroll-target="#sugar-maples">Sugar maples</a>
+  <ul class="collapse">
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Test your skills</h1>
+<p class="subtitle lead">Exercise 6</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Iain R. Moodie </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 28, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -225,120 +195,91 @@ window.Quarto = {
 </header>
 
 
+<section id="get-rstudio-setup" class="level1">
+<h1>Get RStudio setup</h1>
+<p>Each time we start a new exercise, you should:</p>
+<ol type="1">
+<li>Make a new folder in your course folder for the exercise (e.g.&nbsp;<code>biob11/exercise_6</code>)</li>
+<li>Open RStudio
+<ul>
+<li>If you haven’t closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.</li>
+</ul></li>
+<li>Set your working directory by going to <em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em>, then navigate to the folder you just made for this exercise.</li>
+<li>Create a new Rmarkdown document (<em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>). Give it a clear title.</li>
+</ol>
+<p>We are now ready to start.</p>
+</section>
+<section id="sugar-maples" class="level1">
+<h1>Sugar maples</h1>
+<p>In this exercise, you will work with a dataset that investiaged the growth of sugar maple (<em>Acer saccharum</em>) seedlings in response to calcium addition. Sugar maple is best known for being the primary source of maple syrup, so it is an economically important species.</p>
+<p><img src="https://lter.github.io/lterdatasampler/reference/figures/hbr_maples_img_3.jpg" class="img-fluid" style="display: block; margin-left: auto; margin-right: auto;;width:30.0%"></p>
+<p>Growth of sugar maples can be stunted due to soil acidification from prolonged acid rain, which leaches calcium - a nutrient important for plant growth - from soils and stresses maple seedlings.</p>
+<p>To investigate the impact of soil calcium supplementation on sugar maple seedling growth, the researchers recorded “general sugar maple germinant health by height, leaf area, biomass, and chlorophyll content” for seedlings in untreated and previously calcium-treated watersheds. Seedlings were sampled every ten steps in transects. By comparing seedling growth in calcium-treated (<code>W1</code>) versus untreated (<code>Reference</code>) watersheds, calcium impacts on sugar maple seedling growth can be explored.</p>
+<p>The datafile <code>"maples.csv"</code> has the following columns:</p>
+<ul>
+<li><code>year</code>: a number denoting the year that the sample was taken</li>
+<li><code>watershed</code>: a factor denoting the watershed where the sample was collected; <code>W1</code> = calcium-treated, <code>Reference</code> = reference</li>
+<li><code>elevation</code>: a factor describing the Elevation of transect; Low = low elevation, Mid = mid elevation</li>
+<li><code>transect</code>: a factor denoting the transect number within the watershed</li>
+<li><code>sample</code>: a factor denoting the sample number within transect. There are twenty samples in each transect</li>
+<li><code>stem_length</code>: a number denoting the height of the seedling in millimeters</li>
+<li><code>leaf1area</code>: a number denoting the area of the first sampled leaf in square centimeters</li>
+<li><code>leaf2area</code>: a number denoting the area of the second sampled leaf in square centimeters</li>
+<li><code>leaf_dry_mass</code>: a number denoting the dry mass of both sampled leaves in grams</li>
+<li><code>stem_dry_mass</code>: a number denoting the dry mass of the stem in grams</li>
+<li><code>corrected_leaf_area</code>:a number denoting the area of both leaves in addition to the area removed for chlorophyll measurements in square centimeters</li>
+</ul>
+<p>The dataset can be downloaded <a href="https://github.com/irmoodie/teaching_datasets/blob/main/maples/maples.csv">here</a>.</p>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>You should write a small report that answers the following question:</p>
+<p><strong>Does the addition of calcium impact sugar maple seedling growth?</strong></p>
+<p>Your report should include:</p>
+<ul>
+<li>Descriptive statistics of the variables you think are important, with associated 95% confidence intervals when appropriate.</li>
+<li>Illustrative figures that you use to present your findings.</li>
+<li>At least two clearly stated hypotheses, with the null and alternative, which you then test either using a bootstrap or randomisation approach.</li>
+<li>State your conclusions, refering to plots and the outcomes of your hypothesis tests.</li>
+</ul>
+<p>Before you make your report, you will need to:</p>
+<ul>
+<li>Import the dataset and check it for errors.
+<ul>
+<li>Remove any errors you find.</li>
+</ul></li>
+</ul>
+<p>If you would like feedback on your report, you can submit it via Canvas as an .Rmd file <a href="https://canvas.education.lu.se/courses/33414/assignments/242889">here</a>.</p>
 
 
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
 
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-title-sort" data-direction="asc">
-          Topic
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
 </div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Exercise
-</th>
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1742857200000" data-listing-file-modified-sort="1742826391223" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3087" data-listing-title-sort="Introduction to R" data-listing-filename-sort="01_intro_to_r.qmd">
-<td>
-<span class="listing-subtitle">Exercise 1</span>
-</td>
-<td>
-<span class="listing-date">2025-03-25</span>
-</td>
-<td>
-<a href="./exercises/01_intro_to_r.html" class="title listing-title">Introduction to R</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1742857200000" data-listing-file-modified-sort="1742835654514" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="27" data-listing-word-count-sort="5400" data-listing-title-sort="Descriptive statistics in R" data-listing-filename-sort="02_descriptive_statistics.qmd">
-<td>
-<span class="listing-subtitle">Exercise 2</span>
-</td>
-<td>
-<span class="listing-date">2025-03-25</span>
-</td>
-<td>
-<a href="./exercises/02_descriptive_statistics.html" class="title listing-title">Descriptive statistics in R</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1742943600000" data-listing-file-modified-sort="1742763602559" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2314" data-listing-title-sort="How to install R on your local computer" data-listing-filename-sort="03_local_r.qmd">
-<td>
-<span class="listing-subtitle">Exercise 3</span>
-</td>
-<td>
-<span class="listing-date">2025-03-26</span>
-</td>
-<td>
-<a href="./exercises/03_local_r.html" class="title listing-title">How to install R on your local computer</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1742943600000" data-listing-file-modified-sort="1742946746553" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="23" data-listing-word-count-sort="4566" data-listing-title-sort="Handling data using RStudio" data-listing-filename-sort="04_handling_data.qmd">
-<td>
-<span class="listing-subtitle">Exercise 4</span>
-</td>
-<td>
-<span class="listing-date">2025-03-26</span>
-</td>
-<td>
-<a href="./exercises/04_handling_data.html" class="title listing-title">Handling data using RStudio</a>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1743116400000" data-listing-file-modified-sort="1743147808919" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3680" data-listing-title-sort="Estimation, uncertainty and error" data-listing-filename-sort="05_uncertainty.qmd">
-<td>
-<span class="listing-subtitle">Exercise 5</span>
-</td>
-<td>
-<span class="listing-date">2025-03-28</span>
-</td>
-<td>
-<a href="./exercises/05_uncertainty.html" class="title listing-title">Estimation, uncertainty and error</a>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1743116400000" data-listing-file-modified-sort="1743163628753" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="545" data-listing-title-sort="Test your skills" data-listing-filename-sort="06_test_analysis.qmd">
-<td>
-<span class="listing-subtitle">Exercise 6</span>
-</td>
-<td>
-<span class="listing-date">2025-03-28</span>
-</td>
-<td>
-<a href="./exercises/06_test_analysis.html" class="title listing-title">Test your skills</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<div class="spinner-grow spinner-grow-sm">
+
 </div>
-</div></main> <!-- /main -->
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../exercises";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -429,7 +370,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp(/^(?:http:|https:)\\/\\/irmoodie\\.com\\/custom/);
+      var filterRegex = new RegExp("https:\/\/irmoodie\.github\.io\/biob11\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -443,11 +384,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
