@@ -15,7 +15,8 @@
     "items": [
       "/slides/00_introduction.html",
       "/slides/01_sampling.html",
-      "/slides/02_scientific_method.html"
+      "/slides/02_scientific_method.html",
+      "/slides/03_confidence_intervals.html"
     ]
   }
 ]

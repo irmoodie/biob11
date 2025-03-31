@@ -397,7 +397,7 @@
     "href": "index.html",
     "title": "BIOB11 - Experimental Design and Analysis for Biologists",
     "section": "",
-    "text": "Welcome to the course website for BIOB11. Here you will find all materials used in the course.\nAll course communication should take place on LU Canvas. This site is only for hosting interactive materials that are not easy to distribute as files via Canvas.\nThis website uses the webR WebAssembly engines to dynamically execute R code in your web browser, so I can provide you with interactive exercises.1",
+    "text": "Welcome to the course website for BIOB11. Here you will find all materials used in the course.\nAll course communication should take place on LU Canvas. This site is only for hosting interactive materials that are not easy to distribute as files via Canvas.\nThis website uses the webR WebAssembly engines to dynamically execute R code in your web browser so I can provide you with interactive exercises.1",
     "crumbs": [
       "Home"
     ]
@@ -417,7 +417,7 @@
     "href": "slides.html",
     "title": "Slides",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nLecture\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nLecture 0\n\n\n2025-03-24\n\n\nCourse introduction\n\n\n\n\nLecture 1\n\n\n2025-03-24\n\n\nPopulations, samples, variable types and descriptive statistics\n\n\n\n\nLecture 2\n\n\n2025-03-27\n\n\nThe scientific method\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nLecture\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nLecture 0\n\n\n2025-03-24\n\n\nCourse introduction\n\n\n\n\nLecture 1\n\n\n2025-03-24\n\n\nPopulations, samples, variable types and descriptive statistics\n\n\n\n\nLecture 2\n\n\n2025-03-27\n\n\nThe scientific method\n\n\n\n\nLecture 3\n\n\n2025-03-31\n\n\nUncertainty, sampling error and confidence intervals\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Slides"
     ]

@@ -8,14 +8,12 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/countdown-0.5.0/countdown.js"></script>
-<link href="../site_libs/quarto-contrib/countdown-0.5.0/countdown.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Iain R. Moodie">
-  <meta name="dcterms.date" content="2025-03-27">
-  <title>BIOB11 – The scientific method</title>
+  <meta name="dcterms.date" content="2025-03-31">
+  <title>BIOB11 – Null distributions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -129,8 +127,8 @@
   </style>
   <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
   <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
-<meta property="og:title" content="The scientific method – BIOB11">
-<meta property="og:description" content="Lecture 2">
+<meta property="og:title" content="Null distributions – BIOB11">
+<meta property="og:description" content="Lecture 4">
 <meta property="og:site_name" content="BIOB11">
 </head>
 <body class="quarto-light">
@@ -138,8 +136,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">The scientific method</h1>
-  <p class="subtitle">Lecture 2</p>
+  <h1 class="title">Null distributions</h1>
+  <p class="subtitle">Lecture 4</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -155,408 +153,81 @@ Iain R. Moodie
     </div>
 </div>
 
-  <p class="date">2025-03-27</p>
+  <p class="date">2025-03-31</p>
 </section>
-<section id="why-do-we-do-science" class="title-slide slide level1 center" data-background-color="#8e61aa">
-<h1>Why do we do science?</h1>
-<ul>
-<li class="fragment">Why do you do science?</li>
-<li class="fragment">Why should we do science?</li>
-<li class="fragment">Discuss!</li>
-</ul>
-<div id="timer_323bf083fa3edac336550fd2a063de0016b1c34e" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
-  <div class="countdown-controls">
-    <button class="countdown-bump-down">−</button>
-    <button class="countdown-bump-up">+</button>
- </div>
- <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
- </div>
-</section>
-
-<section>
-<section id="history-of-the-scientific-method" class="title-slide slide level1 center">
-<h1>History of the scientific method</h1>
-
-</section>
-<section id="history-of-the-scientific-method-1" class="slide level2">
-<h2>History of the scientific method</h2>
-<h3 id="aristotle-384322-bce">Aristotle (384–322 BCE)</h3>
-<div class="columns">
-<div class="column">
-<ul>
-<li class="fragment">Deductive reasoning, starting from general principles to derive specific conclusions.</li>
-<li class="fragment">Also claimed women have fewer teeth than men.</li>
-</ul>
-</div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/574px-Aristotle_Altemps_Inv8575.jpg" class="quarto-figure quarto-figure-center" width="400"></p>
-</figure>
-</div>
-</div></div>
-</section>
-<section id="history-of-the-scientific-method-2" class="slide level2">
-<h2>History of the scientific method</h2>
-<h3 id="ibn-al-haytham-965---1040">Ibn al-Haytham (965 - 1040)</h3>
-<div class="columns">
-<div class="column">
-<ul>
-<li class="fragment">Empirical experimentation and systematic methodology.</li>
-<li class="fragment">Emphasizing repeatability and criticism of anecdotal evidence.</li>
-</ul>
-</div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Hazan.png" class="quarto-figure quarto-figure-center" width="400"></p>
-</figure>
-</div>
-</div></div>
-</section>
-<section id="history-of-the-scientific-method-3" class="slide level2">
-<h2>History of the scientific method</h2>
-<h3 id="francis-bacon-15611626">Francis Bacon (1561–1626)</h3>
-<div class="columns">
-<div class="column">
-<ul>
-<li class="fragment">Inductive reasoning and empiricism.</li>
-<li class="fragment">Advocated for gathering data through experiments to form generalized theories.</li>
-<li class="fragment">Critiqued Aristotelian dogma and proposed a methodical, collaborative approach to science.</li>
-</ul>
-</div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Somer_Francis_Bacon.jpg/391px-Somer_Francis_Bacon.jpg" class="quarto-figure quarto-figure-center" width="400"></p>
-</figure>
-</div>
-</div></div>
-</section>
-<section id="history-of-the-scientific-method-4" class="slide level2">
-<h2>History of the scientific method</h2>
-<h3 id="rené-descartes-15961650">René Descartes (1596–1650)</h3>
-<div class="columns">
-<div class="column">
-<ul>
-<li class="fragment">Deductive rationalism and skepticism.</li>
-<li class="fragment">Advocated for doubt as a tool for inquiry, breaking problems into parts (method of doubt).</li>
-</ul>
-</div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/500px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg" class="quarto-figure quarto-figure-center" width="400"></p>
-</figure>
-</div>
-</div></div>
-</section>
-<section id="history-of-the-scientific-method-5" class="slide level2">
-<h2>History of the scientific method</h2>
-<h3 id="karl-popper-19021994">Karl Popper (1902–1994)</h3>
-<div class="columns">
-<div class="column">
-<ul>
-<li class="fragment">Argued that scientific theories must be testable and falsifiable shifting focus from verification to critical testing. This emphasized the provisional nature of scientific knowledge.</li>
-<li class="fragment">Positive evidence does not prove a hypothesis. Only negative evidence can disprove one.</li>
-<li class="fragment">A good scientist is one who tries as hard as they can to falsify their hypothesis.</li>
-</ul>
-</div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/4/43/Karl_Popper.jpg" class="quarto-figure quarto-figure-center" width="400"></p>
-</figure>
-</div>
-</div></div>
-</section>
-<section id="history-of-the-scientific-method-6" class="slide level2">
-<h2>History of the scientific method</h2>
-<h3 id="hypothesis-testing-laplace-pearson-fisher">Hypothesis testing (Laplace, Pearson, Fisher)</h3>
-<div class="columns">
-<div class="column">
-<ul>
-<li class="fragment">A method of statistical inference used to decide whether the data provide sufficient evidence to reject a particular hypothesis</li>
-<li class="fragment">Used to answer the question: could our results be just due to chance?</li>
-</ul>
-</div><div class="column">
-<p><img data-src="https://www.ucl.ac.uk/biosciences/sites/biosciences/files/styles/medium_image/public/untitled_design_2_0.png?itok=VrXvxxQa"></p>
-</div></div>
-</section></section>
-<section>
-<section id="the-process-of-inquiry" class="title-slide slide level1 center">
-<h1>The process of inquiry</h1>
-
-</section>
-<section id="the-process-of-inquiry-1" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="the-scientific-method">The scientific method</h3>
-<div>
+<section id="hypothesis-tests" class="slide level2">
+<h2>Hypothesis tests</h2>
+<h3 id="all-hypothesis-tests-follow-this-general-formula">All hypothesis tests follow this general formula</h3>
 <ol type="1">
-<li class="fragment">Make observations</li>
-<li class="fragment">Formulate a hypothesis</li>
-<li class="fragment">Design experiment (discuss)</li>
-<li class="fragment">Conduct the experiment (obtain data)</li>
-<li class="fragment">Analyze the data</li>
-<li class="fragment">Formulate conclusion</li>
-<li class="fragment">Synthesize results with other studies, and determine next steps</li>
-</ol>
-</div>
-</section>
-<section id="the-process-of-inquiry-2" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="make-observations">1. Make observations</h3>
-<iframe data-external="1" src="https://www.youtube.com/embed/OPI-9oi19gQ?start=0" width="1050" height="591" title="Lyrebird" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-</section>
-<section id="the-process-of-inquiry-3" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="make-observations-1">1. Make observations</h3>
+<li>Calcualte the <strong>observed test statistic</strong> of our population
 <ul>
-<li class="fragment">Observe phenomena in the natural world</li>
-<li class="fragment">Identify patterns or anomalies that spark curiosity</li>
-<li class="fragment">Can current ideas explain those phenomena?
-<ul>
-<li class="fragment">Are there competing explanations?</li>
+<li>Decided by our initial hypothesis</li>
 </ul></li>
-<li class="fragment">Observations alone are important!</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-4" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="formulate-a-hypothesis">2. Formulate a hypothesis</h3>
+<li>Create a null distribution of the test statistic (in a world where the null hypothesis is true)
 <ul>
-<li class="fragment">Identify an observation</li>
-<li class="fragment">Formulate a hypothesis that could be tested.</li>
-</ul>
-<div id="timer_323bf083fa3edac336550fd2a063de0016b1c34e" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
-  <div class="countdown-controls">
-    <button class="countdown-bump-down">−</button>
-    <button class="countdown-bump-up">+</button>
- </div>
- <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
- </div>
-</section>
-<section id="the-process-of-inquiry-5" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="formulate-a-hypothesis-1">2. Formulate a hypothesis</h3>
-<p>From discussion in lecture:</p>
-<ul>
-<li class="fragment">Does jump height affect the chance of getting a mate?</li>
-<li class="fragment">Last man standing - does joining later increase chances of getting a mate?</li>
-<li class="fragment">Does the length of grass where they live affect their jump height, and does this change if the length of grass is changed?</li>
-<li class="fragment">Does tail feather length increase the chance of mating?</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-6" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="formulate-a-hypothesis-2">2. Formulate a hypothesis</h3>
-<ul>
-<li class="fragment">Develop a testable and falsifiable statement</li>
-<li class="fragment">Popper: should rely on as few auxiliary hypotheses as possible.</li>
-<li class="fragment">Which of these hypotheses meet that criteria?
-<ul>
-<li class="fragment">“Biodiversity is important”</li>
-<li class="fragment">“Apply a pesticide to wheat fields 30 days after sowing seeds is more effective than applying it 10 days after sowing seeds”</li>
-<li class="fragment">“A mutation in gene X will cause increased mortality in the common fruit fly”</li>
-<li class="fragment">“Gene Y is responsible for human intelligence.”</li>
+<li>What values of our test statistic could we observe?</li>
+<li>If we kept taking new samples from our population and calculating our test statistic</li>
 </ul></li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-7" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="formulate-a-hypothesis-3">2. Formulate a hypothesis</h3>
-<ul>
-<li class="fragment">Perhaps the most difficult step in science!</li>
-<li class="fragment">A good hypothesis will help you design your experiment correctly</li>
-<li class="fragment">Always refer back to your hypothesis</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-8" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="formulate-a-hypothesis-4">2. Formulate a hypothesis</h3>
-<p>Null hypothesis:</p>
-<ul>
-<li class="fragment">Posits that the explanatory variable we test does NOT affect our data</li>
-<li class="fragment">We test the null hypothesis: sufficient evidence to reject it?</li>
-</ul>
-<p>Alternative hypothesis:</p>
-<ul>
-<li class="fragment">Opposite of the Null hypothesis (the explanatory variable affects our data)</li>
-<li class="fragment">We normally think in terms of an alternative hypothesis</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-9" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="design-experiment">3. Design experiment</h3>
-<ul>
-<li class="fragment">What is the population we are interested in?</li>
-<li class="fragment">How should we collect a sample that is relevant to that population?</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-10" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="design-experiment-1">3. Design experiment</h3>
-<div class="columns">
-<div class="column">
-<p>Does the average flowering date of Snödroppssläktet differ between populations in Northern and Southern Sweden?</p>
-<ul>
-<li class="fragment">Null hypothesis: the average flowering date <strong>does not differ</strong> between populations in Northern and Southern Sweden</li>
-<li class="fragment">Alternative hypothesis: the average flowering date <strong>does differ</strong> between populations in Northern and Southern Sweden</li>
-</ul>
-</div><div class="column">
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Galanthus_nivalis.jpg/480px-Galanthus_nivalis.jpg"></p>
-</div></div>
-</section>
-<section id="the-process-of-inquiry-11" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="design-experiment-2">3. Design experiment</h3>
-<div class="columns">
-<div class="column">
-<p>Does the average flowering date of Snödroppssläktet differ between populations in Northern and Southern Sweden?</p>
-<ul>
-<li class="fragment">Snow drops in in Skåne and in Värmland</li>
-<li class="fragment">Snow drops in Sweden</li>
-<li class="fragment">Snow drops in the world?</li>
-</ul>
-</div><div class="column">
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Galanthus_nivalis.jpg/480px-Galanthus_nivalis.jpg"></p>
-</div></div>
-</section>
-<section id="the-process-of-inquiry-12" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="design-experiment-3">3. Design experiment</h3>
-<ul>
-<li class="fragment">Population: what we want to know something about</li>
-<li class="fragment">Sample: what we are able to study</li>
-<li class="fragment">Use the sample to learn something about the population</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-13" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="conduct-the-experiment-obtain-data">4. Conduct the experiment (obtain data)</h3>
-<ul>
-<li class="fragment">Perform the experiment as planned</li>
-<li class="fragment">Collect data systematically and accurately</li>
-<li class="fragment">Randomisation to reduce bias</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-14" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="analyze-the-data">5. Analyze the data</h3>
-<ul>
-<li class="fragment">What are the chances we would collect the data we did if the null hypothesis was true?
-<ul>
-<li class="fragment">If the chance is sufficiently low, then we <strong>reject the null hypothesis</strong></li>
-<li class="fragment">If the chance is high, then we <strong>fail to reject the null hypothesis</strong></li>
-</ul></li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-15" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="analyze-the-data-1">5. Analyze the data</h3>
-<ol type="1">
-<li class="fragment">Calcualte the <strong>observed test statistic</strong> of our population
-<ul>
-<li class="fragment">Decided by our initial hypothesis</li>
-<li class="fragment">Average (mean, median), spread (variance, sd, CV), difference in (mean, median, var, sd)</li>
-</ul></li>
-<li class="fragment">Create a null distribution of the test statistic (in a world where the null hypothesis is true)
-<ul>
-<li class="fragment">What values of our test statistic could we observe?</li>
-<li class="fragment">If we kept taking new samples from our population and calculating our test statistic</li>
-</ul></li>
-<li class="fragment">Compare our <strong>observed test statistic</strong> with the null distribution</li>
+<li>Compare our <strong>observed test statistic</strong> with the null distribution</li>
 </ol>
 </section>
-<section id="the-process-of-inquiry-16" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="analyze-the-data-2">5. Analyze the data</h3>
-<ul>
-<li class="fragment">What are the chances we would collect the data we did if the null hypothesis was true?</li>
-<li class="fragment">What are the chances we would have observed our test statistic or a more extreme one, if the null hypothesis was correct?</li>
-<li class="fragment">This probability is called a <strong>p-value</strong>
-<ul>
-<li class="fragment">If the chance (p-value) is sufficiently low, then we <strong>reject the null hypothesis</strong></li>
-<li class="fragment">If the chance (p-value) is high, then we <strong>fail to reject the null hypothesis</strong></li>
-</ul></li>
-<li class="fragment">What is high and low?</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-17" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="analyze-the-data-3">5. Analyze the data</h3>
-<p>We want to find a balance between two types of errors we could make:</p>
-<ul>
-<li class="fragment"><span class="math inline">\(\alpha\)</span>: <strong>type I error</strong> (false positive)
-<ul>
-<li class="fragment">Null hypothesis is TRUE, but we reject it</li>
-</ul></li>
-<li class="fragment"><span class="math inline">\(\beta\)</span>: <strong>type II error</strong> (false negative)
-<ul>
-<li class="fragment">Null hypothesis is FALSE, but we fail to reject it</li>
-</ul></li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-18" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="analyze-the-data-4">5. Analyze the data</h3>
-
-<img data-src="images/02/Screenshot 2025-03-27 at 09.12.23.png" class="r-stretch"></section>
-<section id="the-process-of-inquiry-19" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="analyze-the-data-5">5. Analyze the data</h3>
-<ul>
-<li class="fragment">To decrease our chance of making a <strong>type I error</strong> (false positive):
-<ul>
-<li class="fragment">Decrease our <span class="math inline">\(\alpha\)</span></li>
-<li class="fragment">p = 0.05, p = 0.01, p = 0.001?</li>
-</ul></li>
-<li class="fragment">However, this increases our chance of making a <strong>type II error</strong> (false negative):</li>
-<li class="fragment">To decrease our chance of making a <strong>type II error</strong>:
-<ul>
-<li class="fragment">Increase our sample size</li>
-<li class="fragment">Increase <span class="math inline">\(\alpha\)</span></li>
-</ul></li>
-<li class="fragment">Can also view p-values as a continuum</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-20" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="formulate-conclusion">6. Formulate conclusion</h3>
-<ul>
-<li class="fragment">Describe your findings:
-<ul>
-<li class="fragment">Describe outcomes of your statistics</li>
-<li class="fragment">In additional, translate those statistical outcomes back to the original hypothesis</li>
-<li class="fragment">Most of us are interested in biology, not p-values!</li>
-</ul></li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-21" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="synthesize-results-with-other-studies-and-determine-next-steps">7. Synthesize results with other studies, and determine next steps</h3>
-<ul>
-<li class="fragment">Compare findings with existing literature</li>
-<li class="fragment">Propose future research directions or applications</li>
-<li class="fragment">Other scientists replicate or build on your work?</li>
-</ul>
-</section>
-<section id="the-process-of-inquiry-22" class="slide level2">
-<h2>The process of inquiry</h2>
-<h3 id="the-scientific-method-1">The scientific method</h3>
-<div>
+<section id="the-null-distribution" class="slide level2">
+<h2>The null distribution</h2>
+<h3 id="how-do-we-generate-one">How do we generate one?</h3>
 <ol type="1">
-<li>Make observations</li>
-<li>Formulate a hypothesis</li>
-<li>Design experiment (discuss)</li>
-<li>Conduct the experiment (obtain data)</li>
-<li>Analyze the data</li>
-<li>Formulate conclusion</li>
-<li>Synthesize results with other studies, and determine next steps</li>
+<li>Clearly state your null hypothesis</li>
+<li>Simulate samples that could be collected if your null hypothesis was true</li>
+<li>Calculate your chosen statistic from the simulated samples to make a null distribution.</li>
 </ol>
-</div>
 </section>
-<section id="end-of-lecture-whiteboard-discussions" class="slide level2">
-<h2>End of lecture whiteboard discussions</h2>
+<section id="the-null-distribution-1" class="slide level2">
+<h2>The null distribution</h2>
+<h3 id="what-is-the-null-hypothesis">1. What is the null hypothesis</h3>
+<p>What is our null hypothesis?</p>
+<ul>
+<li><code>"point"</code> (only response)
+<ul>
+<li>“The mean height is not different from 1.8 m”</li>
+<li>“The standard deviation of weight is not different from 1.1 kg”</li>
+</ul></li>
+<li><code>"independence"</code> (response and explanatory)
+<ul>
+<li>“The difference in mean mass does not depend on sex”</li>
+<li>“There is no correlation between beak length and body mass”</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-null-distribution-2" class="slide level2">
+<h2>The null distribution</h2>
+<h3 id="generate-data-under-the-null-hypothesis-null-independence">2. Generate data under the null hypothesis (<code>null = "independence"</code>)</h3>
+
+<img data-src="04_hypothesis_testing_files/figure-revealjs/unnamed-chunk-2-1.png" width="480" class="r-stretch"></section>
+<section id="the-null-distribution-3" class="slide level2">
+<h2>The null distribution</h2>
+<h3 id="generate-data-under-the-null-hypothesis-null-independence-1">2. Generate data under the null hypothesis (<code>null = "independence"</code>)</h3>
+<ul>
+<li>Null hypothesis:
+<ul>
+<li>“Mean body mass does not differ between control and treatment”</li>
+<li>“The mean difference in body mass between control and treatment = 0”</li>
+<li>“Mean body mass does not depend on experimental group”</li>
+</ul></li>
+<li>If the null hypothesis is TRUE, then the experimental group of an individual should have no affect on their mass
+<ul>
+<li>Mass and experimental group are independant of each other</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-null-distribution-4" class="slide level2">
+<h2>The null distribution</h2>
+<h3 id="generate-data-under-the-null-hypothesis-null-independence-2">2. Generate data under the null hypothesis (<code>null = "independence"</code>)</h3>
+<ul>
+<li>Permutating/shuffling/randomising the experimental group of individuals in the data</li>
+</ul>
 
 
 
-<img data-src="images/02/whiteboard.jpeg" class="r-stretch"><script type="ojs-module-contents">
+<img data-src="04_hypothesis_testing_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
@@ -570,7 +241,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -798,6 +469,44 @@ W10=
     window._ojs.selfContained = false;
     window._ojs.runtime.interpretFromScriptTags();
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
