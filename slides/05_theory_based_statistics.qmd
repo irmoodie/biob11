@@ -1,0 +1,248 @@
+---
+title: "Theory based statistics (when sample sizes are small)"
+draft: false
+date: 2025-04-01
+subtitle: "Lecture 6"
+webr:
+  packages:
+    - tidyverse
+    - infer
+    - palmerpenguins
+---
+
+##
+
+![[There is only one test - Allen Downey](https://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html)](images/05/onetest.png)
+
+
+## Re-sampling vs theory based statistics
+### Differences
+
+- **Re-sampling**:
+  - Relies on computational methods such as bootstrapping or permutation tests
+  - Does not require strict assumptions about the population distribution
+  - **Uses the observed data to generate a sampling distribution**
+  - Often computationally intensive
+
+## Re-sampling vs theory based statistics
+### Differences
+
+- **Theory-based statistics**:
+  - Relies on mathematical models and assumptions (e.g., normality, independence)
+  - **Uses theoretical distributions to approximate the sampling distribution**
+  - Requires smaller computational effort compared to re-sampling
+  - Assumptions must be met for valid results*
+
+## Re-sampling vs theory based statistics {.scrollable}
+### What we have done and the theory based alternatives
+
+- Is a mean different from a point value?
+  - 1 sample t-test (1 sample sign test)
+- Are the means of two independant groups different from each other?
+  - 2 sample t-test (Mann-Whitney U test)
+- Are the means of two paired groups different from each other?
+  - paired sample t-test (Wilcoxon matched pairs test)
+- Are the means of three or more groups different from each other?
+  - one-way ANOVA (Kruskal-Wallis test)
+- Is there a relationship between two categorical variables?
+  - Chi-square test 
+- Does a proportion differ from a point value?
+  - 1 prop sample test
+
+##
+
+![](images/05/100.jpg){fig-align="center"}
+
+##
+
+![[There is only one test - Allen Downey](https://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html)](images/05/onetest.png)
+
+## Re-sampling vs theory based statistics
+### Is a mean number of hours worked by a PhD student greater than 40?
+
+```{r}
+# Generate some example data
+set.seed(123)  # For reproducibility
+
+library(tidyverse, quietly = true)
+library(infer, quietly = true)
+theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+# Create two groups with random data
+group1 <- sample(round(c(rnorm(50, mean = 42, sd = 7),rep(40, 12)),1))  # Group 1 with mean 5 and standard deviation 1
+group2 <- round(rnorm(10, mean = 6, sd = 1),2)  # Group 2 with mean 6 and standard deviation 1
+
+data <- tibble(hours_worked = group1)
+
+# data <- 
+#   tibble(
+#   group = c(rep("Group 1", 10), rep("Group 2", 10)),
+#   value = c(group1,group2)
+# )
+```
+
+```{r}
+#| echo: true
+data
+```
+
+## Re-sampling vs theory based statistics
+### Is a mean number of hours worked by a PhD student greater than 40?
+
+```{r}
+ggplot(data, aes(x = hours_worked)) +
+  geom_histogram()
+```
+
+## Re-sampling vs theory based statistics
+### Is a mean number of hours worked by a PhD student greater than 40?
+
+- Null hypothesis
+  - The mean number of hours worked is **not different** from 40
+- Alternative hypothesis
+  - The mean number of hours worked is **greater** than 40
+
+## Re-sampling vs theory based statistics
+### Resampling approach
+
+```{r}
+#| echo: true
+observed_mean <- 
+  data |>
+  specify(response = hours_worked) |>
+  calculate(stat = "mean")
+
+observed_mean
+```
+
+## Re-sampling vs theory based statistics
+### Resampling approach
+
+```{r}
+#| echo: true
+null_dist_resample <- 
+  data |>
+  specify(response = hours_worked) |>
+  hypothesize(null = "point", mu = 40) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "mean")
+```
+
+## Re-sampling vs theory based statistics
+### Resampling approach
+
+```{r}
+#| echo: true
+null_dist_resample |>
+  visualize() +
+  shade_p_value(observed_mean, direction = "greater")
+```
+
+## Re-sampling vs theory based statistics
+### Resampling approach
+
+```{r}
+#| echo: true
+p_value_resampling <- 
+  null_dist_resample |>
+  get_p_value(obs_stat = observed_mean, direction = "greater")
+
+p_value_resampling
+```
+
+## Re-sampling vs theory based statistics
+### Resampling approach
+
+If the true mean number of hours worked per week was really 40, our approximation of the probability that we would see a test statistic as or more extreme than 41.8 is approximately 0.0082.
+
+## Re-sampling vs theory based statistics
+### Theory approach (1 sample t-test)
+
+$$
+t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} 
+$$
+
+```{r}
+#| echo: true
+observed_t <- 
+  data |>
+  specify(response = hours_worked) |>
+  hypothesize(null = "point", mu = 40) |>
+  calculate(stat = "t")
+
+observed_t
+```
+
+## Re-sampling vs theory based statistics
+### Theory approach (1 sample t-test)
+
+```{r}
+#| echo: true
+null_theory <-
+  data |>
+  specify(response = hours_worked) |>
+  hypothesize(null = "point", mu = 40) |>
+  assume(distribution = "t")
+```
+
+## Re-sampling vs theory based statistics
+
+### Theory approach (1 sample t-test)
+```{r}
+#| echo: true
+visualize(null_theory) +
+  shade_p_value(observed_t, direction = "greater")
+```
+
+## Re-sampling vs theory based statistics
+### Theory approach (1 sample t-test)
+
+```{r}
+#| echo: true
+p_value_theory <- get_p_value(null_theory, observed_t, direction = "greater")
+p_value_theory
+p_value_resampling
+```
+
+## Re-sampling vs theory based statistics
+### Comparison
+
+```{r}
+#| fig-width: 10
+x <- visualize(null_theory) + shade_p_value(observed_t, direction = "greater")
+y <- visualize(null_dist_resample) + shade_p_value(observed_mean, direction = "greater")
+
+library(patchwork)
+
+x + y
+```
+
+## Re-sampling vs theory based statistics
+### Which to use?
+
+- **Theory**
+  - Makes assumptions about the distribution of your sample (often normal dist., equal variances)
+  - A way of adding extra information in (especially when sample sizes are small)
+  - Extremely quick to calculate
+
+## Re-sampling vs theory based statistics
+### Which to use?
+
+- **Resampling**
+  - Makes less assumptions about the distribution of your sample (not always a good thing!)
+  - Only information about the true distribution of the data can come from the sample
+  - Requires larger sample sizes to be accurate
+  - Takes longer to calculate
+
+## Re-sampling vs theory based statistics
+### What unites them?
+
+- Your sample is representative of the population you want to make inferences about
+- Collecting more data is always going to lead to more accurate inferences
+- Neither are magic
+  - Garbage in, garbage out
+  - Vunerable to "p-hacking" and other unethical uses
+
+## Re-sampling vs theory based statistics
+### What unites them?
+
+![](images/05/onetest.png)

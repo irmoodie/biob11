@@ -10,22 +10,39 @@ output: html_document
 I will use `tidyverse` for data handling and plotting.
 
 ```{r}
+library(infer)
 library(tidyverse)
 ```
 
 # Load data
 
 ```{r}
-tephritis_data <- read_csv("../data/03/tephritis_phenotype.csv")
+tephritis_data <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/tephritis_phenotype/tephritis_phenotype.csv")
 ```
-
-# Explore data
 
 ```{r}
 tephritis_data
 
-glimpse(tephritis_data)
+clean_data <- #<1>
+  tephritis_data |> 
+  filter(wing_length_mm < 10) |>
+  filter(body_length_mm < 10) #<2>
 ```
 
 # Plot data
+
+```{r}
+clean_data |>
+  ggplot(aes(x = body_length_mm, y = sex)) +
+  geom_violin()
+
+clean_data |>
+  ggplot(aes(x = wing_length_mm, y = wing_width_mm, colour = sex)) +
+  geom_point()
+
+clean_data |>
+  ggplot(aes(x = region, fill = host_plant)) +
+  geom_bar()
+```
+
 

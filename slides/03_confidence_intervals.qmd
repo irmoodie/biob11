@@ -1,0 +1,481 @@
+---
+title: "Uncertainty, sampling error and confidence intervals"
+date: 2025-03-31
+subtitle: "Lecture 3"
+webr:
+  packages:
+    - tidyverse
+    - infer
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+options("readr.edition" = 1)
+
+theme_set(theme_bw(base_size = 20) + theme(aspect.ratio = 1))
+
+sample_trees <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/forest_data/forest_data_1.csv")
+
+```
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(infer)
+library(patchwork)
+
+theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+
+tree_population <- 
+  read_csv("/Users/iain/Documents/Projects/teaching_datasets/forest_data/forest_data.csv") |>
+  mutate(
+    x = runif(20000, 0, 1),
+    y = runif(20000, 0, 1),
+    tree_id = row_number()
+  )
+
+set.seed(123)
+tree_samples <-
+  tree_population |>
+  rep_slice_sample(100, reps = 36)
+
+forest_plot <- list()
+
+forest_plot[["base"]] <-
+  ggplot(tree_population, aes(x = x, y = y)) +
+  theme_void() +
+  theme(aspect.ratio = 1) +
+  annotate("rect", xmin = 0, xmax = 1, ymin = 0, ymax = 1, 
+           color = "black", fill = NA, linewidth = 0.5)
+
+forest_plot[["pop"]] <-
+  forest_plot[["base"]] + 
+  geom_point(size = 0.1, alpha = 0.5)
+
+forest_plot[["pop_sample"]] <-
+  forest_plot[["pop"]] +
+  geom_point(data = tree_samples |> filter(replicate == 1), fill = "red", colour = "white", size = 2, shape = 23)
+
+forest_plot[["all_samples"]] <- 
+  forest_plot[["base"]] +
+  geom_point(data = tree_samples |> mutate(focal = if_else(replicate == 1, "a", "b")), aes(fill = focal), colour = "white", size = 2, shape = 23) +
+  scale_fill_manual(values = c("a" = "red", "b" = "gray50")) +
+  facet_wrap(~replicate) +
+  theme(strip.text = element_blank(), legend.position = "none")
+
+##################################
+
+sample_trees <- read_csv("/Users/iain/Documents/Projects/teaching_datasets/forest_data/forest_data_1.csv")
+
+sample_plots <- list()
+
+sample_plots[["sample_dist"]] <-
+  sample_trees |>
+  ggplot(aes(x = tree_height_m)) +
+  geom_histogram(bins = 12, colour = "white", fill = "grey70") +
+  labs(
+    title = "Sample distribution",
+    x = "Tree height (m)",
+    y = "Count"
+    )
+
+sample_plots[["sample_dist_obs"]] <-
+  sample_plots[["sample_dist"]] +
+  geom_vline(aes(xintercept = mean(tree_height_m)), colour = "red", linewidth = 1) +
+  geom_vline(aes(xintercept = mean(tree_height_m)+sd(tree_height_m)), colour = "blue", linewidth = 1) +
+  geom_vline(aes(xintercept = mean(tree_height_m)-sd(tree_height_m)), colour = "blue", linewidth = 1) +
+  annotate("label", x = mean(sample_trees$tree_height_m), y = Inf, label = paste0("Mean = ", round(mean(sample_trees$tree_height_m), 2)), vjust = 1, colour = "red", size = 5) +
+  annotate("label", x = mean(sample_trees$tree_height_m) + sd(sample_trees$tree_height_m), y = Inf, 
+           label = paste0("SD = ", round(sd(sample_trees$tree_height_m), 2)), vjust = 4, colour = "blue", size = 5) +
+  annotate("segment", x = mean(sample_trees$tree_height_m), 
+           xend = mean(sample_trees$tree_height_m) + sd(sample_trees$tree_height_m), 
+           y = 0, yend = 0, colour = "blue", 
+           arrow = arrow(length = unit(0.2, "cm"), type = "closed", ends = "both"))
+```
+
+# Tree heights in a forest 
+
+## Tree heights in a forest 
+### Simulated population
+
+::: {.columns}
+::: {.column}
+- Population $N$ = 20000
+- Sample $n$ = 100
+  - Trees sampled at random using a random number generator to provide coordinates
+  - Closest tree to that coordinate was measured
+:::
+::: {.column}
+
+```{r}
+#| echo: false
+forest_plot[["pop"]]
+```
+:::
+:::
+
+## Tree heights in a forest 
+### Simulated population and sample(s)
+```{r}
+#| echo: false
+#| fig-align: center
+forest_plot[["pop_sample"]]
+```
+
+## Tree heights in a forest 
+### Simulated population and sample(s)
+```{r}
+#| echo: false
+#| fig-align: center
+forest_plot[["all_samples"]]
+```
+
+# Worked example
+
+## Tree heights in a forest 
+### Sample distribution
+
+```{r}
+#| echo: false
+#| fig-width: 10
+forest_plot[["pop_sample"]] + sample_plots[["sample_dist"]]
+```
+
+## Tree heights in a forest 
+### Observed statistics
+::: {.columns}
+::: {.column width=55%}
+
+```{webr}
+observed_mean <-
+  sample_trees |>
+  specify(response = tree_height_m) |>
+  calculate(stat = "mean")
+
+observed_sd <-
+  sample_trees |>
+  specify(response = tree_height_m) |>
+  calculate(stat = "sd")
+```
+:::
+::: {.column width=45%}
+```{r}
+#| echo: false
+sample_plots[["sample_dist_obs"]]
+```
+:::
+:::
+
+## Tree heights in a forest 
+### Uncertainty in our observed statistics
+
+- If we took another random sample of 100 trees, it is unlikely that we would get exactly the same observed statistics
+- We want to quantify this (**sampling error**)
+- Problem: we (usually) only ever collect one sample
+- Solution: generate more samples using information from our current sample
+
+## Tree heights in a forest 
+### Generating a bootstrap sample
+
+- To generate more "samples", we use a re-sampling technique called the "bootstrap"
+  - For original sample of size $n$, sample $n$ values **with replacement** many times
+  - There are $n^n$ new samples we can generate from one sample
+- Important: 
+  - the original sample must be representative of the population
+  - the original sample should be reasonably large (>>14, >30)
+
+## Tree heights in a forest 
+### Generating a bootstrap sample
+
+```{webr}
+#| warning: false
+sample_trees |> # the original sample
+  specify(response = tree_height_m) |>
+  generate(reps = 1, type = "bootstrap") |> # generates 1 bootstrap sample
+  ggplot(aes(x = tree_height_m)) +
+  geom_histogram(bins = 16) + # plot the bootstrap sample as a histogram
+  lims(x = c(0, 8)) # set limits so all plots on same scale
+```
+
+## Tree heights in a forest 
+### Generating a bootstrap sample
+
+```{r}
+#| fig-width: 10
+bootstrap_sample <-
+  sample_trees |>
+  specify(response = tree_height_m) |>
+  generate(reps = 10000, type = "bootstrap")
+
+sample_plots[["100_bootstrap"]] <-
+  bootstrap_sample |>
+  filter(replicate <= 100) |>
+  ggplot(aes(x = tree_height_m)) +
+  geom_histogram(bins = 12) +
+  facet_wrap(~replicate) +
+  theme_void() +
+  theme(strip.text = element_blank(), legend.position = "none") +
+  labs(title = "Bootstrap generated samples")
+
+sample_plots[["sample_dist"]] + sample_plots[["100_bootstrap"]]
+
+```
+
+## Tree heights in a forest 
+### Calculate statistics from bootstrap sample
+
+```{r}
+#| fig-width: 10
+bootstrap_plots <- list()
+bootstrap_plots[["mean_dist"]] <-
+  bootstrap_sample |>
+  calculate(stat = "mean") |>
+  visualize() +
+  labs(x = "Mean")
+
+bootstrap_plots[["sd_dist"]] <-
+  bootstrap_sample |>
+  calculate(stat = "sd") |>
+  visualize() +
+  labs(x = "Standard Deviation")
+
+bootstrap_plots[["mean_dist"]] + bootstrap_plots[["sd_dist"]]
+
+```
+
+## Tree heights in a forest 
+### Calculate statistics from bootstrap sample
+
+```{r}
+#| fig-width: 10
+bootstrap_plots[["mean_dist_obs"]] <-
+  bootstrap_plots[["mean_dist"]] + 
+  geom_vline(aes(xintercept = mean(sample_trees$tree_height_m)), colour = "red", linewidth = 1)
+
+bootstrap_plots[["sd_dist_obs"]] <-
+  bootstrap_plots[["sd_dist"]] + 
+  geom_vline(aes(xintercept = sd(sample_trees$tree_height_m)), colour = "blue", linewidth = 1)
+
+bootstrap_plots[["mean_dist_obs"]] + bootstrap_plots[["sd_dist_obs"]]
+
+```
+
+## Tree heights in a forest 
+### Use bootstrap sampling distribution to quanitify sampling error
+
+- Calculate the **standard error** (SE)
+  - Standard deviation of the sampling distribution
+- Calculate a **confidence interval** (CI)
+  - *If we repeated our experiment many times and calculated a X% CI each time, the X% CI’s would include the “true” value X% of the time.*
+  - **SE method:** Assume the sampling distribution is a normal distribution (bell-curve), and use a formula to find the values which contain the middle X% of the distribution (valid for means and some other statistics)
+  - **Percentile method:** The middle X% of the sampling distribution (valid for all statistics and shapes of sampling distributions*)
+
+## Tree heights in a forest 
+### Calculate 95% CI from bootstrap sampling distribution
+
+```{r}
+#| fig-width: 10
+bootstrap_plots[["mean_dist_obs_ci"]] <-
+  bootstrap_plots[["mean_dist_obs"]] +
+  shade_ci(get_ci(bootstrap_sample |> calculate(stat = "mean")))
+
+bootstrap_plots[["sd_dist_obs_ci"]] <-
+  bootstrap_plots[["sd_dist_obs"]] +
+  shade_ci(get_ci(bootstrap_sample |> calculate(stat = "sd")))
+
+bootstrap_plots[["mean_dist_obs_ci"]] + bootstrap_plots[["sd_dist_obs_ci"]]
+
+```
+
+## Tree heights in a forest 
+### Calculate 95% CI from bootstrap sampling distribution
+
+```{r}
+#| eval: false
+#| echo: true
+bootstrap_sample <-
+  sample_trees |>
+  specify(response = tree_height_m) |>
+  generate(reps = 10000, type = "bootstrap")
+```
+
+```{r}
+#| echo: true
+bootstrap_sample |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(type = "percentile")
+
+bootstrap_sample |>
+  calculate(stat = "sd") |>
+  get_confidence_interval(type = "percentile")
+```
+
+## Tree heights in a forest 
+### Unusual scenario: we have multiple samples
+```{r}
+#| echo: false
+#| fig-align: center
+forest_plot[["all_samples"]]
+```
+
+## Tree heights in a forest 
+### Unusual scenario: we know the populations true parameters
+
+```{r}
+#| echo: false
+#| fig-align: center
+forest_plot[["pop"]]
+```
+
+## Tree heights in a forest 
+### How well did our approach work?
+
+- From single sample (usual scenario):
+  - Calculate observed statistics
+  - Generate bootstrap samples to create a sampling distribution
+  - Calculate 95% CI from bootstrap sampling distribution
+- From multiple samples:
+  - Calculate observed statistics
+  - Make a sampling distribution from observed statistics in each sample
+  - Use that sampling distribution to calculate 95% CI
+- Compare with population actual parameters
+
+## Tree heights in a forest 
+### How well did our approach work?
+
+```{r}
+#| fig-width: 10
+tree_estimates <- read_csv("data/03/tree_estimates.csv")
+
+student_plots <- list()
+
+student_plots[["observed_means"]] <-
+ggplot(tree_estimates, aes(x = observed_mean, y = fct_reorder(name, observed_mean))) +
+  geom_point() +
+  labs(y = "Name", x = "Observed mean") +
+  coord_cartesian(xlim = c(2.4,3.5))
+
+student_plots[["observed_sd"]] <-
+ggplot(tree_estimates, aes(x = observed_sd, y = fct_reorder(name, observed_sd))) +
+  geom_point() +
+  labs(y = "Name", x = "Observed sd") +
+  coord_cartesian(xlim = c(0.6,1.6))
+
+student_plots[["observed_means"]] + student_plots[["observed_sd"]]
+```
+
+## Tree heights in a forest 
+### How well did our approach work?
+
+```{r}
+#| fig-width: 10
+student_plots[["observed_means_ownCI"]] <-
+  student_plots[["observed_means"]] +
+  geom_errorbarh(aes(xmin = l_95_ci_mean, xmax = u_95_ci_mean))
+
+
+student_plots[["observed_sd_ownCI"]] <-
+  student_plots[["observed_sd"]] +
+  geom_errorbarh(aes(xmin = l_95_ci_sd, xmax = u_95_ci_sd))
+
+student_plots[["observed_means_ownCI"]] + student_plots[["observed_sd_ownCI"]]
+```
+
+## Tree heights in a forest 
+### How well did our approach work?
+
+CI: *If we repeated our experiment many times and calculated a 95% CI each time, the 95% CI’s would include the “true” value 95% of the time.*
+
+## Tree heights in a forest 
+### How well did our approach work?
+
+```{r}
+#| fig-width: 10
+
+student_plots[["true_mean"]] <-
+student_plots[["observed_means_ownCI"]] + 
+  geom_vline(xintercept = mean(tree_population$tree_height_m), colour = "red")
+
+student_plots[["true_sd"]] <-
+student_plots[["observed_sd_ownCI"]] + 
+  geom_vline(xintercept = sd(tree_population$tree_height_m), colour = "blue")
+
+student_plots[["true_mean"]] + student_plots[["true_sd"]]
+```
+
+## Confidence intervals
+### General workflow:
+
+Get observed statistics:
+
+- `specify()` response (and explanatory) variable(s)
+- `calculate()` observed statistic
+
+Get CI:
+
+- `specify()` response (and explanatory) variable(s)
+- `generate()` bootstrap samples
+- `calculate()` observed statistic in each sample
+- `get_confidence_interval()`
+
+## Confidence intervals
+### Examples: mean
+```{r}
+#| echo: true
+iris_data <-
+  iris |>
+  filter(Species == "setosa")
+
+iris_data |>
+  specify(response = Petal.Width) |>
+  calculate(stat = "mean")
+
+iris_data |>
+  specify(response = Petal.Width) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(type = "percentile")
+```
+
+## Confidence intervals
+### Examples: difference in means
+```{r}
+#| echo: true
+iris_data <-
+  iris |>
+  filter(Species == "setosa" | Species == "versicolor")
+
+iris_data |>
+  specify(response = Petal.Width, explanatory = Species) |>
+  calculate(stat = "diff in means", order = c("setosa", "versicolor"))
+
+iris_data |>
+  specify(response = Petal.Width, explanatory = Species) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "diff in means", order = c("setosa", "versicolor")) |>
+  get_confidence_interval(type = "percentile")
+```
+
+## Confidence intervals
+### Examples: correlation
+```{r}
+#| echo: true
+iris_data <-
+  iris |>
+  filter(Species == "setosa")
+
+iris_data |>
+  specify(response = Petal.Width, explanatory = Petal.Length) |>
+  calculate(stat = "correlation")
+
+iris_data |>
+  specify(response = Petal.Width, explanatory = Petal.Length) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "correlation") |>
+  get_confidence_interval(type = "percentile")
+```
+
