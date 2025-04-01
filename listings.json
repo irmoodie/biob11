@@ -16,7 +16,9 @@
       "/slides/00_introduction.html",
       "/slides/01_sampling.html",
       "/slides/02_scientific_method.html",
-      "/slides/03_confidence_intervals.html"
+      "/slides/03_confidence_intervals.html",
+      "/slides/04_anova.html",
+      "/slides/05_theory_based_statistics.html"
     ]
   }
 ]
