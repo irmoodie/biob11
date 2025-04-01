@@ -1,0 +1,69 @@
+---
+title: "Test your skills"
+subtitle: "Exercise 6"
+date: 2025-03-28
+execute:
+  echo: true
+  eval: false
+---
+
+# Get RStudio setup
+
+Each time we start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_6`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+
+We are now ready to start.
+
+# Sugar maples
+
+In this exercise, you will work with a dataset that investiaged the growth of sugar maple (*Acer saccharum*) seedlings in response to calcium addition. Sugar maple is best known for being the primary source of maple syrup, so it is an economically important species.
+
+![](https://lter.github.io/lterdatasampler/reference/figures/hbr_maples_img_3.jpg){width=30% style="display: block; margin-left: auto; margin-right: auto;"}
+
+Growth of sugar maples can be stunted due to soil acidification from prolonged acid rain, which leaches calcium - a nutrient important for plant growth - from soils and stresses maple seedlings.
+
+To investigate the impact of soil calcium supplementation on sugar maple seedling growth, the researchers recorded “general sugar maple germinant health by height, leaf area, biomass, and chlorophyll content” for seedlings in untreated and previously calcium-treated watersheds.  Seedlings were sampled every ten steps in transects. By comparing seedling growth in calcium-treated (`W1`) versus untreated (`Reference`) watersheds, calcium impacts on sugar maple seedling growth can be explored.
+
+The datafile `"maples.csv"` has the following columns:
+
+- `year`: a number denoting the year that the sample was taken
+- `watershed`: a factor denoting the watershed where the sample was collected; `W1` = calcium-treated, `Reference` = reference
+- `elevation`: a factor describing the Elevation of transect; Low = low elevation, Mid = mid elevation
+- `transect`: a factor denoting the transect number within the watershed
+- `sample`: a factor denoting the sample number within transect. There are twenty samples in each transect
+- `stem_length`: a number denoting the height of the seedling in millimeters
+- `leaf1area`: a number denoting the area of the first sampled leaf in square centimeters
+- `leaf2area`: a number denoting the area of the second sampled leaf in square centimeters
+- `leaf_dry_mass`: a number denoting the dry mass of both sampled leaves in grams
+- `stem_dry_mass`: a number denoting the dry mass of the stem in grams
+- `corrected_leaf_area`:a number denoting the area of both leaves in addition to the area removed for chlorophyll measurements in square centimeters
+
+The dataset can be downloaded [here](https://github.com/irmoodie/teaching_datasets/blob/main/maples/maples.csv).
+
+## Instructions
+
+You should write a small report that answers the following question:
+
+**Does the addition of calcium impact sugar maple seedling growth?**
+
+Your report should include:
+
+- Descriptive statistics of the variables you think are important, with associated 95% confidence intervals when appropriate.
+- Illustrative figures that you use to present your findings.
+- At least two clearly stated hypotheses, with the null and alternative, which you then test either using a bootstrap or randomisation approach.
+- State your conclusions, refering to plots and the outcomes of your hypothesis tests.
+
+Before you make your report, you will need to:
+
+- Import the dataset and check it for errors.
+  - Remove any errors you find.
+
+If you would like feedback on your report, you can submit it via Canvas as an .Rmd file [here](https://canvas.education.lu.se/courses/33414/assignments/242889).
+
+
+
