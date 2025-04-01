@@ -1,0 +1,32 @@
+---
+title: "Exam guide"
+---
+
+The exam will be split into two halves:
+
+## Part 1: Knowledge, reasoning and understanding (50%)
+
+- Closed book (no notes, no internet, etc)
+- Answer either by hand or in a text document
+- Questions provided in English
+- Answer in either English or Swedish
+
+This section will be a mixture of short answer and multiple choice questions that cover the topics we have talked about during this course. You will not have access to any materials during this section (i.e., closed book). You can spend as long as you like on this section, but I expect it will not take more than 1 hour. Once you have completed part 1, you will need to submit your answers before starting part 2.
+
+## Part 2: Handling of biological data and applied statistics in R (50%)
+
+- Open book (but you must not plagiarize text, including from AI sources)
+  - Open book is primarily for coding related issues
+- Write your code and answers in an RMarkdown document (which you will submit at the end) 
+- Questions provided in English
+- Answer in either English or Swedish
+
+This section will be a full analysis of a dataset, from importing, cleaning (if needed), plotting, calculating confidence intervals and performing hypothesis tests to answer a specific question, as we have done in the exercises.
+
+### This is not a programming course
+
+Since this is not a programming course, you will not be penalized for coding mistakes. It is therefore very important that you write clearly what your intentions were, and what your conclusions are.
+
+If your code will not work and you have no idea why, you may raise your hand to ask me to review it. If it is a coding related issue, I will show you how to fix it (if I can). If it is a knowledge or learning outcome related issue (e.g., what test statistic to use), I cannot answer.
+
+If you know what you want to do, but do not know how to write the code in R and cannot figure it out from your notes or other materials, write a written description of what you would do. You can still recieve points for this, if you can show your understanding.
