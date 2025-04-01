@@ -1,0 +1,287 @@
+---
+title: "Analysis of variance (ANOVA)"
+subtitle: "Exercise 7"
+date: 2025-04-02
+execute:
+  echo: true
+  eval: false
+---
+
+# Get RStudio setup
+
+Each time we start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_7`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+
+Please ensure you have followed the step above before you start!
+
+# Effect of fertilizer application on crop growth
+
+Some researchers at Lund University want to understand the effectiveness of three fertilizers on promoting crop growth. To do that, they construct 7 x 7 experimental arrays of plant pots for each treatment (Figure 1). Each experimental array is kept in a seperate green house chamber (room). The control pots were filled with a standardised soil mixture. The treatment plots were filled with the same standardised soil mixture plus the addition of the fertilizer. Already germinated seedlings were randomly assigned to pots and planted. Plants were kept in the greenhouses, and watered regularly.
+
+![Figure 1: The layout of the experiment in the greenhouse chambers.](images/07/fert.png)
+
+After 30 days, the researchers used a knife to cut all of the plant's biomass that was above ground. Using an oven, they dried each plant for 24 hours before recording the mass in grams using a balance.
+
+The results of the experiment are stored in a `csv` file here: [Link to data](https://github.com/irmoodie/teaching_datasets/blob/main/crop_growth/crop_growth.csv)
+
+
+## Analysis
+
+While working on your analysis, answer the questions below:
+
+### General
+
+1. What (statistical) population are the researchers trying to make inferences about?
+
+### Data handling and plotting
+
+1. Load the `tidyverse` and `infer` packages.
+2. Import the dataset using `read_csv()`.
+3. What sort of variables are `dry_mass_g` and `treatment`?
+4. Check the data for mistakes.
+5. Make an illustrative plot of the dataset.
+
+### Descriptive statistics
+
+Report the following statistics:
+
+1. The overall mean of `dry_mass_g`.
+2. The mean of `dry_mass_g` for each `treatment` group.
+3. The standard deviation of `dry_mass_g` for each `treatment` group.
+
+### Is there a difference in means between the groups?
+
+This sort of analysis is called an ANOVA (ANalysis Of VAriance). Specifically, it is a *one-way ANOVA*, as we are interested in the effect of *one* categorical variable on a continuous variable.
+
+1. State the null and alternative hypothesis.
+2. What is the test statistic we use in an ANOVA?
+3. Calculate the observed test statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+observed_stat <-
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  calculate(stat = "______") #<3>
+
+observed_stat #<4>
+```
+1. The name of the dataset.
+2. Specify which is your response and explanatory variable.
+3. Calculate the observed statistic.
+4. Print the observe statistic to the console.
+:::
+
+4. To generate a null distribution, we can use a permutation approach, where we shuffle the assigned categories and calculate our statistic many many times. Generate a null distribution.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist <-
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  hypothesize(null = "independence") |> #<3>
+  generate(reps = 10000, type = "permute") |> #<4>
+  calculate(stat = "______") #<5>
+```
+1. The name of the dataset.
+2. Specify which is your response and explanatory variable.
+3. Our hypothesis is that our response variable is independant of our explanatory variable.
+4. Simulate data using permuations. This may take a few seconds to minutes depending on your computer.
+5. From each of our simulated permutation samples, calculate the test statistic.
+:::
+
+5. Plot the null distribution and the observed statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  visualise(bins = 15) + #<1>
+  shade_p_value(obs_stat = observed_stat, direction = "greater") + #<2>
+  labs(x = "______ statistic") #<3>
+```
+1. Pipe your `null_dist` object into `visualise()`. You can change the number of bins if you wish.
+2. Plot your `observed_stat`, and specify that the direction should be greater. Our statistic is a ratio, so is naturally bounded at 0.
+3. You can change the axis labels to make the plot more clear.
+:::
+
+6. Use your observed statistic and your null distribution to calculate a p-value.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  get_p_value(obs_stat = observed_stat, direction = "greater")
+```
+:::
+
+7. What are your conclusions? State them both clearly in terms of the null hypothesis *and* as if you were describing them to someone who does not know about statistics.
+
+```{r}
+#| echo: false
+library(tidyverse, quietly = TRUE)
+library(infer, quietly = TRUE)
+
+crop_growth <- read_csv("/Users/iain/Documents/Projects/teaching_datasets/crop_growth/crop_growth.csv")
+
+ggplot(crop_growth, aes(x = dry_mass_g)) +
+  geom_histogram() +
+  facet_wrap(~treatment)
+
+observed_f <-
+  crop_growth |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  calculate(stat = "F")
+
+null_f <-
+  crop_growth |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "F")
+
+visualise(null_f) +
+shade_p_value(observed_f, direction = "greater") +
+  labs(x = "F statistic")
+
+null_f |>
+  get_p_value(obs_stat = observed_f, direction = "greater")
+```
+
+## Post-hoc analysis
+
+You might suspect that one particular treatment group is causing your ANOVA result. As the ANOVA does not let you say *which* group(s) are different from the global mean, there is often the need for a *post-hoc* (Latin for "after this") analysis. 
+
+A post-hoc analysis are tests you do after you have seen your data (and often some results). It is important to differentiate this analysis from your original one, as you did not plan to do it and (remember from the slides) the more tests you do, the more likely you are to find a low p-value by chance alone. As such unethical researchers may be tempted to propose additional tests as if they were part of the original plan ([HARKing](https://en.wikipedia.org/wiki/HARKing)) and to keep doing analyses until they find a low p-value ([p-hacking or data-dredging](https://en.wikipedia.org/wiki/Data_dredging)). Both of these practises have likely contributed to the [replication crisis](https://en.wikipedia.org/wiki/Replication_crisis) in many field, including biology.
+
+In this case, we will perform a post-hoc analysis of the *difference of means* between one of the treatments and the control. We want to know if it has had a statistically significant effect on the growth of the crops.
+
+### Filter the dataset
+
+1. Use filter to produce another dataset that only has the `treatment` groups you are interested in.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+______ <- #<1>
+  ______ |> #<2>
+  filter(treatment == "control" | treatment == "______") #<3>
+```
+1. The new name of your filtered dataset
+2. The name of your original dataset
+3. We only keep rows where `treatment` is equal to `"control"` OR `|` where `treatment` is equal to `"______"`
+:::
+
+### Perform the post-hoc analysis
+
+2. State clearly the null and alternative hypotheses for this post-hoc analysis.
+3. Using your new dataset, calculate the observed statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+observed_stat <-
+  ______ |>  #<1>
+  specify(response = ______, explanatory = ______) |>  #<2>
+  calculate(stat = "______", order = c("______", "control")) #<3>
+
+observed_stat #<4>
+```
+1. The name of your new filtered dataset.
+2. Specify which is your response and explanatory variable.
+3. Calculate the observed statistic, specifiying the order as treatment - control. That way a positive number indicates that the treatment made the crops grow bigger.
+4. Print the observe statistic to the console.
+:::
+
+4. Generate a null distribution.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist <-
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  hypothesize(null = "independence") |> #<3>
+  generate(reps = 10000, type = "______") |> #<4>
+  calculate(stat = "______") #<5>
+```
+1. The name of the new dataset.
+2. Specify which is your response and explanatory variable.
+3. Our hypothesis is that our response variable is independant of our explanatory variable.
+4. What simulation approach should you use here?
+5. From each of our simulated samples, calculate the test statistic.
+:::
+
+5. Plot the null distribution and the observed statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  visualise(bins = 15) + #<1>
+  shade_p_value(obs_stat = observed_stat, direction = "_____") + #<2>
+  labs(x = "______") #<3>
+```
+1. Pipe your `null_dist` object into `visualise()`. You can change the number of bins if you wish.
+2. Plot your `observed_stat`, and specify that the direction of the hypothesis?
+3. You can change the axis labels to make the plot more clear.
+:::
+
+6. Use your observed statistic and your null distribution to calculate a p-value.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  get_p_value(obs_stat = observed_stat, direction = "______")
+```
+:::
+
+7. What are your conclusions of the post-hoc analysis?
+
+### Correcting p-values for multiple testing
+
+If you had gone on to perform more post-hoc tests (like testing other treatments against the control), you might want to perform a correction to your p-values that recognises that the more tests you do, the more likely you are to find a low p-value by chance.
+
+One way to do this is the [Bonferroni correction](https://en.wikipedia.org/wiki/Bonferroni_correction). This simply devides your $\alpha$ value (the p-value at which you deem a test to be significant) by the number of tests you did. So if we compared each fertilizer to the control (3 comparisons, 3 tests) we should use an $\alpha$ value of $\frac{0.05}{3}=0.0166$ (assuming our prior $\alpha=0.05$). You can achieve the same result by keeping $\alpha=0.05$ and multiplying all your p-values by the number of tests you performed.
+
+## Experimental design
+
+1. Read again the description of the experiment and look at Figure 1. 
+    i) Identify one aspect of their experimental design which will have helped them collect unbiased data.
+    ii) Suggest one way in which the researchers could improve their experimental design?
+
+```{r}
+#| echo: false
+crop_growth2 <-
+  crop_growth |>
+  filter(treatment == "control" | treatment == "fertilizer_c")
+
+observed_diff <-
+  crop_growth2 |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  calculate(stat = "diff in means", order = c("fertilizer_c", "control"))
+
+observed_diff
+
+null_dist <-
+  crop_growth2 |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("fertilizer_c", "control"))
+
+visualise(null_dist) +
+shade_p_value(observed_diff, direction = "two-sided") +
+  labs(x = "Difference in means")
+
+null_dist |>
+  get_p_value(obs_stat = observed_diff, direction = "greater")
+```
