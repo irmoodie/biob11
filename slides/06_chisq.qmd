@@ -1,0 +1,359 @@
+---
+title: "Test of and associations between categorical variables"
+draft: false
+date: 2025-04-01
+subtitle: "Lecture 6"
+webr:
+  packages:
+    - tidyverse
+    - infer
+---
+
+```{r}
+library(tidyverse, quietly = TRUE)
+library(infer, quietly = TRUE)
+library(patchwork, quietly = TRUE)
+
+theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+```
+
+# Tests of proportion {background-color="#015b58"}
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+![](images/06/dogcat.jpeg){fig-align="center"}
+
+```{r}
+animal_pref <- tibble(preference = sample(c(rep("dog", 15), rep("cat", 17))))
+
+animal_pref_se <- tibble(preference = sample(c(rep("dog", 2000/100*58), rep("cat", 2000/100*(100-58)))))
+```
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+```{r}
+#| fig-align: center
+pref_biob11 <-
+  animal_pref |>
+  ggplot(aes(x = preference)) +
+  geom_bar() +
+  labs(title = "BIOB11: Cat vs Dog")
+
+pref_biob11
+```
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+```{r}
+#| fig-align: center
+pref_se <-
+  animal_pref_se |>
+  ggplot(aes(x = preference)) +
+  geom_bar() +
+  labs(title = "Sweden: Cat vs Dog")
+
+pref_se
+```
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+```{r}
+#| fig-align: center
+#| fig-width: 10
+pref_biob11 + pref_se
+```
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+- Null hypothesis:
+  - BIOB11 does not differ in their preference for cats vs dogs from the Swedish population
+- Alternative hypothesis:
+  - BIOB11 does differ in their preference for cats vs dogs from the Swedish population
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+```{r}
+#| echo: true
+animal_pref
+```
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+Calculate the test statistic:
+
+```{r}
+#| echo: true
+observed_stat <- 
+  animal_pref |>
+  specify(response = preference, success = "dog") |>
+  calculate(stat = "prop")
+
+observed_stat
+```
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+Generate a null distibution:
+
+```{r}
+#| echo: true
+null_dist <- 
+  animal_pref |>
+  specify(response = preference, success = "dog") |>
+  hypothesize(null = "point", p = 0.58) |>
+  generate(reps = 20000, type = "draw") |>
+  calculate(stat = "prop")
+```
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+Visualise the null:
+
+```{r}
+#| echo: true
+#| fig-align: center
+null_dist |>
+  visualize(bins = 20) +
+  shade_p_value(obs_stat = observed_stat, direction = "two-sided")
+```
+
+
+## Tests of proportion
+### Could a proportion have been observed under a null hypothesis?
+
+Calculate the p-value:
+
+```{r}
+#| echo: true
+#| fig-align: center
+null_dist |>
+  get_p_value(obs_stat = observed_stat, direction = "two-sided")
+```
+
+# $\chi^2$ Goodness of fit {background-color="#015b58"}
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+![](images/06/mendel.jpg){fig-align="center"}
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+- Null hypothesis:
+  - The sample came from the hypothesised distribution
+  - The sample distribution is not different from the hypothesised distribution
+- Alternative hypotheis:
+  - The sample came from a different distribution to the one hypothesised
+  - The sample distribution is different from the hypothesised distribution
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+```{r}
+# Generate expected data under Mendelian laws for a dihybrid cross
+set.seed(123) # For reproducibility
+
+# Define expected proportions for a dihybrid cross (9:3:3:1 ratio)
+expected_proportions <- c(8.7, 2.5, 3.5, 1.3) / 16
+
+# Generate a dataset with 160 observations (to match proportions)
+mendelian_data <- tibble(
+  phenotype = rep(c("A-B-", "A-bb", "aaB-", "aabb"), times = round(expected_proportions * 120))
+)
+```
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+```{r}
+#| echo: true
+mendelian_data
+```
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+```{r}
+#| echo: true
+ggplot(mendelian_data, aes(x = phenotype)) +
+  geom_bar() +
+  geom_hline(yintercept = c(9, 3, 1)/16*nrow(mendelian_data), linetype = "dashed", color = "red")
+```
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+$$
+\chi^2 = \sum \frac{(Observed_i - Expected_i)^2}{Expected_i}
+$$
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+```{r}
+#| echo: true
+observed_statistic <- 
+  mendelian_data |>
+  specify(response = phenotype) |>
+  hypothesize(
+    null = "point",
+    p = c(
+      "A-B-" = 9/16,
+      "A-bb" = 3/16,
+      "aaB-" = 3/16,
+      "aabb" = 1/16
+    )
+   ) |>
+  calculate(stat = "Chisq")
+```
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+```{r}
+#| echo: true
+null_dist <- 
+  mendelian_data |>
+  specify(response = phenotype) |>
+  hypothesize(
+    null = "point",
+    p = c(
+      "A-B-" = 9/16,
+      "A-bb" = 3/16,
+      "aaB-" = 3/16,
+      "aabb" = 1/16
+    )
+   ) |>
+  generate(reps = 10000, type = "draw") |>
+  calculate(stat = "Chisq")
+```
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+```{r}
+#| echo: true
+null_dist |>
+  visualize() + 
+  shade_p_value(observed_statistic, direction = "greater")
+```
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+```{r}
+#| echo: true
+null_dist |>
+  get_p_value(obs_stat = observed_stat, direction = "greater")
+```
+
+## $\chi^2$ Goodness of fit
+### Does the observed data differ from an expected distribution?
+
+- Fail to reject null hypothesis.
+- The distribution of phenotypes is compatible with mendelian inheritance.
+
+# $\chi^2$ Test of independence {background-color="#015b58"}
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+- Null hypothesis:
+  - The two categorical variables are not associated with each other
+  - The two categorical variables are independent
+- Alternative hypothesis:
+  - The two categorical variables are associated with each other
+  - The two categorical variables are not independent
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+```{r}
+germ_data <- tibble(
+  treatment = rep(c("coating_a", "coating_b", "coating_c", "control"), each = 30),
+  germination_success = c(
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.70, 0.30)),
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.72, 0.28)),
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.65, 0.35)),
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.68, 0.30))
+  )
+)
+```
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+```{r}
+#| fig-width: 7
+#| fig-align: center
+germ_data |>
+  ggplot(aes(x = treatment, fill = germination_success)) +
+  geom_bar(position = "fill") +
+  ylab("Proportion") +
+  theme(legend.position = "right")
+```
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+```{r}
+#| echo: true
+germ_data
+```
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+```{r}
+#| echo: true
+observed_statistic <- 
+  germ_data |>
+  specify(response = germination_success, explanatory = treatment) |>
+  hypothesize(null = "independence") |>
+  calculate(stat = "Chisq")
+
+observed_statistic
+```
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+```{r}
+#| echo: true
+null_dist <- 
+  germ_data |>
+  specify(response = germination_success, explanatory = treatment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "Chisq")
+```
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+```{r}
+#| echo: true
+null_dist |>
+  visualize() +
+  shade_p_value(observed_statistic, direction = "greater")
+```
+
+## $\chi^2$ Test of independence
+### Are two categorical variables associated with each other?
+
+```{r}
+#| echo: true
+null_dist |>
+  get_p_value(obs_stat = observed_stat, direction = "greater")
+```
+
