@@ -2,7 +2,7 @@
 title: "Comparing means of multiple groups"
 draft: false
 date: 2025-04-01
-subtitle: "Lecture 5"
+subtitle: "Lecture 4"
 webr:
   packages:
     - tidyverse

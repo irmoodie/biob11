@@ -2,7 +2,7 @@
 title: "Theory based statistics (when sample sizes are small)"
 draft: false
 date: 2025-04-01
-subtitle: "Lecture 6"
+subtitle: "Lecture 5"
 webr:
   packages:
     - tidyverse
