@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/06_chisq.html</loc>
-    <lastmod>2025-04-02T09:57:40.709Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/07_experimental_design.html</loc>
+    <lastmod>2025-04-02T16:33:04.196Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/03_confidence_intervals.html</loc>
-    <lastmod>2025-03-31T09:52:32.865Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/05_theory_based_statistics.html</loc>
+    <lastmod>2025-04-02T09:56:17.777Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/01_sampling.html</loc>
-    <lastmod>2025-03-24T11:39:11.305Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/04_anova.html</loc>
+    <lastmod>2025-04-02T09:56:08.112Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides.html</loc>
-    <lastmod>2025-03-23T12:42:04.956Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/02_scientific_method.html</loc>
+    <lastmod>2025-03-27T15:28:14.056Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/infer.html</loc>
-    <lastmod>2025-03-31T13:46:49.259Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/00_introduction.html</loc>
+    <lastmod>2025-03-24T09:40:42.009Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/resources.html</loc>
+    <lastmod>2025-03-23T12:32:56.758Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/index.html</loc>
+    <lastmod>2025-03-30T16:29:09.501Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/exercises/07_anova.html</loc>
@@ -57,27 +65,27 @@
     <lastmod>2025-03-28T12:07:08.753Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/index.html</loc>
-    <lastmod>2025-03-30T16:29:09.501Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/exercises/08_chisq.html</loc>
+    <lastmod>2025-04-03T05:47:14.973Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/resources.html</loc>
-    <lastmod>2025-03-23T12:32:56.758Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/infer.html</loc>
+    <lastmod>2025-03-31T13:46:49.259Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/00_introduction.html</loc>
-    <lastmod>2025-03-24T09:40:42.009Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides.html</loc>
+    <lastmod>2025-03-23T12:42:04.956Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/02_scientific_method.html</loc>
-    <lastmod>2025-03-27T15:28:14.056Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/01_sampling.html</loc>
+    <lastmod>2025-03-24T11:39:11.305Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/04_anova.html</loc>
-    <lastmod>2025-04-02T09:56:08.112Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/03_confidence_intervals.html</loc>
+    <lastmod>2025-03-31T09:52:32.865Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/slides/05_theory_based_statistics.html</loc>
-    <lastmod>2025-04-02T09:56:17.777Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/slides/06_chisq.html</loc>
+    <lastmod>2025-04-02T09:57:40.709Z</lastmod>
   </url>
 </urlset>

@@ -1,12 +1,62 @@
 [
   {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Slides",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nLecture\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nLecture 0\n\n\n2025-03-24\n\n\nCourse introduction\n\n\n\n\nLecture 1\n\n\n2025-03-24\n\n\nPopulations, samples, variable types and descriptive statistics\n\n\n\n\nLecture 2\n\n\n2025-03-27\n\n\nThe scientific method\n\n\n\n\nLecture 3\n\n\n2025-03-31\n\n\nUncertainty, sampling error and confidence intervals\n\n\n\n\nLecture 4\n\n\n2025-04-01\n\n\nComparing means of multiple groups\n\n\n\n\nLecture 5\n\n\n2025-04-01\n\n\nTheory based statistics (when sample sizes are small)\n\n\n\n\nLecture 6\n\n\n2025-04-02\n\n\nTest of and associations between categorical variables\n\n\n\n\n\nNo matching items",
+    "text": "During this course, we will make reference to the following books. None of these books are intended to be read “cover to cover”. Instead, we will reference the relevant chapters at each part of the course. All the books have a high degree of topic overlap, but explain the key concepts slightly differently.\nPlease do not feel pressured to buy a copy of Ennos & Johnsson (2018) if you do not want to (note the library has some copies). It is a good book, but the other free books I have listed below cover all the same topics.\n\n\n\n\n\nStatistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)\n\n\n\n\n\n\n\n\nR for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023) (R reference book)\nR Markdown: The Definitive Guide, Xie, Allaire & Grolemund (2023) (RMarkdown reference book)\n\n\n\n\n\nStatistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025) (Ch. 1-4, 7-9)\nIntroduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024) (Ch. 2, 11-22)\n\n\n\n\n\nFundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)\n\nAlso available as an audiobook",
     "crumbs": [
-      "Slides"
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#physical-books",
+    "href": "resources.html#physical-books",
+    "title": "Resources",
+    "section": "",
+    "text": "Statistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#online-books",
+    "href": "resources.html#online-books",
+    "title": "Resources",
+    "section": "",
+    "text": "R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023) (R reference book)\nR Markdown: The Definitive Guide, Xie, Allaire & Grolemund (2023) (RMarkdown reference book)\n\n\n\n\n\nStatistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025) (Ch. 1-4, 7-9)\nIntroduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024) (Ch. 2, 11-22)\n\n\n\n\n\nFundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)\n\nAlso available as an audiobook",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#r-packages",
+    "href": "resources.html#r-packages",
+    "title": "Resources",
+    "section": "R packages",
+    "text": "R packages\nWe will make use of a set of R packages that are part of the extended tidyverse set of packages. Below are the websites for the main ones we will use, which contain guides, cheatsheets and reference materials.\n\nGeneral\n\ntidyverse\n\nggplot2 (Plotting data)\ndplyr (Manipulating data)\ntidyr (Tidying data)\nreadr (Importing/exporting data)\n\n\n\n\nStatistics\n\ninfer",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BIOB11 - Experimental Design and Analysis for Biologists",
+    "section": "",
+    "text": "Welcome to the course website for BIOB11. Here you will find all materials used in the course.\nAll course communication should take place on LU Canvas. This site is only for hosting interactive materials that are not easy to distribute as files via Canvas.\nThis website uses the webR WebAssembly engines to dynamically execute R code in your web browser so I can provide you with interactive exercises.1",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "BIOB11 - Experimental Design and Analysis for Biologists",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis means with a slow internet connection, or a slower browser/computer (especially mobile devices that place restricitons on browser RAM usage), you may experience a delay between loading a page and being able to use the interactive R console, and/or a delay in executing code in the R console. If you have any issues, let the course teacher know.↩︎",
+    "crumbs": [
+      "Home"
     ]
   },
   {
@@ -219,7 +269,7 @@
     "href": "exercises.html",
     "title": "Exercises",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nExercise\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nExercise 1\n\n\n2025-03-25\n\n\nIntroduction to R\n\n\n\n\nExercise 2\n\n\n2025-03-25\n\n\nDescriptive statistics in R\n\n\n\n\nExercise 3\n\n\n2025-03-26\n\n\nHow to install R on your local computer\n\n\n\n\nExercise 4\n\n\n2025-03-26\n\n\nHandling data using RStudio\n\n\n\n\nExercise 5\n\n\n2025-03-28\n\n\nEstimation, uncertainty and error\n\n\n\n\nExercise 6\n\n\n2025-03-28\n\n\nTest your skills\n\n\n\n\nExercise 7\n\n\n2025-04-02\n\n\nAnalysis of variance (ANOVA)\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nExercise\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nExercise 1\n\n\n2025-03-25\n\n\nIntroduction to R\n\n\n\n\nExercise 2\n\n\n2025-03-25\n\n\nDescriptive statistics in R\n\n\n\n\nExercise 3\n\n\n2025-03-26\n\n\nHow to install R on your local computer\n\n\n\n\nExercise 4\n\n\n2025-03-26\n\n\nHandling data using RStudio\n\n\n\n\nExercise 5\n\n\n2025-03-28\n\n\nEstimation, uncertainty and error\n\n\n\n\nExercise 6\n\n\n2025-03-28\n\n\nTest your skills\n\n\n\n\nExercise 7\n\n\n2025-04-02\n\n\nAnalysis of variance (ANOVA)\n\n\n\n\nExercise 8\n\n\n2025-04-03\n\n\nTests of, and associations between, categorical variables\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Exercises"
     ]
@@ -421,63 +471,34 @@
     "text": "Instructions\nYou should write a small report that answers the following question:\nDoes the addition of calcium impact sugar maple seedling growth?\nYour report should include:\n\nDescriptive statistics of the variables you think are important, with associated 95% confidence intervals when appropriate.\nIllustrative figures that you use to present your findings.\nAt least two clearly stated hypotheses, with the null and alternative, which you then test either using a bootstrap or randomisation approach.\nState your conclusions, refering to plots and the outcomes of your hypothesis tests.\n\nBefore you make your report, you will need to:\n\nImport the dataset and check it for errors.\n\nRemove any errors you find.\n\n\nIf you would like feedback on your report, you can submit it via Canvas as an .Rmd file here."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "BIOB11 - Experimental Design and Analysis for Biologists",
+    "objectID": "exercises/08_chisq.html",
+    "href": "exercises/08_chisq.html",
+    "title": "Tests of, and associations between, categorical variables",
     "section": "",
-    "text": "Welcome to the course website for BIOB11. Here you will find all materials used in the course.\nAll course communication should take place on LU Canvas. This site is only for hosting interactive materials that are not easy to distribute as files via Canvas.\nThis website uses the webR WebAssembly engines to dynamically execute R code in your web browser so I can provide you with interactive exercises.1",
-    "crumbs": [
-      "Home"
-    ]
+    "text": "Each time we start a new exercise, you should:\n\nMake a new folder in your course folder for the exercise (e.g. biob11/exercise_8)\nOpen RStudio\n\nIf you haven’t closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.\n\nSet your working directory by going to Session -&gt; Set working directory -&gt; Choose directory, then navigate to the folder you just made for this exercise.\nCreate a new Rmarkdown document (File -&gt; New file -&gt; R markdown..). Give it a clear title.\n\nPlease ensure you have followed the step above before you start!"
   },
   {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "BIOB11 - Experimental Design and Analysis for Biologists",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis means with a slow internet connection, or a slower browser/computer (especially mobile devices that place restricitons on browser RAM usage), you may experience a delay between loading a page and being able to use the interactive R console, and/or a delay in executing code in the R console. If you have any issues, let the course teacher know.↩︎",
-    "crumbs": [
-      "Home"
-    ]
+    "objectID": "exercises/08_chisq.html#analysis",
+    "href": "exercises/08_chisq.html#analysis",
+    "title": "Tests of, and associations between, categorical variables",
+    "section": "Analysis",
+    "text": "Analysis\nWhile working on your analysis, answer the questions below:\n\nGeneral\n\nWhat (statistical) population are the researchers trying to make inferences about?\n\n\n\nData handling and plotting\n\nEnsure you have loaded the tidyverse and infer packages.\nImport the dataset using read_csv().\nWhat sort of variables are species and habitat?\nCheck the data for mistakes.\nMake an illustrative plot of the dataset using ggplot().\n\n\n\nDescriptive statistics\nReport the following statistics:\n\nThe proportion of each species that are found in each habitat.\n\n\n\nAre certain species associated with certain habitats\nThe researchers want to know if some species are much more likely to be found in one habitat than another, or are they randomly spread across the bay.\n\nState the null and alternative hypothesis.\nWhat test statistic will you use? Why?\nCalculate the observed test statistic.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nobserved_statistic &lt;-\n1  ______ |&gt;\n2  specify(response = ______, explanatory = ______) |&gt;\n3  hypothesize(null = \"independence\") |&gt;\n4  calculate(stat = \"______\")\n\n5observed_statistic\n\n\n1\n\nThe name of the dataset.\n\n2\n\nSpecify which is your response and explanatory variable.\n\n3\n\nThe specific test statistic we want to use requires us to provide our null hypothesis. In this example, we want to know if the two variables are associated, so our null hypothesis is that they are independent.\n\n4\n\nCalculate the observed statistic.\n\n5\n\nPrint the observe statistic to the console.\n\n\n\n\n\n\n\n\nTo generate a null distribution, we can use a permutation approach, where we shuffle the assigned categories and calculate our statistic many many times. Generate a null distribution.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nnull_dist &lt;-\n1  ______ |&gt;\n2  specify(response = ______, explanatory = ______) |&gt;\n3  hypothesize(null = \"independence\") |&gt;\n4  generate(reps = 10000, type = \"permute\") |&gt;\n5  calculate(stat = \"______\")\n\n\n1\n\nThe name of the dataset.\n\n2\n\nSpecify which is your response and explanatory variable.\n\n3\n\nOur hypothesis is that our response variable is independant of our explanatory variable.\n\n4\n\nSimulate data using permuations. This may take a few seconds to minutes depending on your computer.\n\n5\n\nFrom each of our simulated permutation samples, calculate the test statistic.\n\n\n\n\n\n\n\n\nPlot the null distribution and the observed statistic.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nnull_dist |&gt;\n1  visualise() +\n2  shade_p_value(obs_stat = observed_statistic, direction = \"greater\") +\n3  labs(x = \"______ statistic\")\n\n\n1\n\nPipe your null_dist object into visualise().\n\n2\n\nPlot your observed_statistic, and specify that the direction should be greater. Our statistic is squared, so is naturally bounded at 0.\n\n3\n\nYou can change the axis labels to make the plot more clear.\n\n\n\n\n\n\n\n\nUse your observed statistic and your null distribution to calculate a p-value.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_statistic, direction = \"greater\")\n\n\n\n\n\nWhat are your conclusions? State them in terms of your null hypothesis, and in a more general statement."
   },
   {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
+    "objectID": "exercises/08_chisq.html#analysis-1",
+    "href": "exercises/08_chisq.html#analysis-1",
+    "title": "Tests of, and associations between, categorical variables",
+    "section": "Analysis",
+    "text": "Analysis\nWhile working on your analysis, answer the questions below:\n\nGeneral\n\nWhat (statistical) population are the researchers trying to make inferences about?\n\n\n\nData handling and plotting\n\nEnsure you have loaded the tidyverse and infer packages.\nImport the dataset using read_csv().\nWhat sort of variables is party?\nCheck the data for mistakes.\nMake an illustrative plot of the dataset using ggplot(). Can you show the expected values on the plot as well?\n\n\n\nDescriptive statistics\nReport the following statistics:\n\nThe proportion of the people surveyed who said they would vote for each party.\n\n\n\nHas public opinion changed since the election?\n\nState the null and alternative hypothesis.\nWhat test statistic will you use? Why?\nCalculate the observed test statistic.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nobserved_statistic &lt;- \n1  _____ |&gt;\n2  specify(response = _____) |&gt;\n  hypothesize(\n3    null = \"point\",\n    p = c(\n4      \"______\" = ______,\n      \"______\" = ______,\n      \"______\" = ______,\n      \"______\" = ______,\n      \"______\" = ______\n    )\n   ) |&gt;\n5  calculate(stat = \"______\")\n\n6observed_statistic\n\n\n1\n\nThe name of the dataset.\n\n2\n\nSpecify which is your response variable.\n\n3\n\nThe specific test statistic we want to use requires us to provide our null hypothesis. In this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use point.\n\n4\n\nHere we need to put in our expected or hypothesised proportions under the null hypothesis.\n\n5\n\nCalculate the observed statistic.\n\n6\n\nPrint the observe statistic to the console.\n\n\n\n\n\n\n\n\nTo generate a null distribution, we can draw from a probability distribution defined by our hypothesize() step.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nnull_dist &lt;-\n1  _____ |&gt;\n2  specify(response = _____) |&gt;\n  hypothesize(\n3    null = \"point\",\n    p = c(\n4      \"______\" = ______,\n      \"______\" = ______,\n      \"______\" = ______,\n      \"______\" = ______,\n      \"______\" = ______\n    )\n   ) |&gt;\n5   generate(reps = 10000, type = \"draw\") |&gt;\n6  calculate(stat = \"______\")\n\n\n1\n\nThe name of the dataset.\n\n2\n\nSpecify your response variable.\n\n3\n\nIn this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use point.\n\n4\n\nHere we need to put in our expected or hypothesised proportions under the null hypothesis.\n\n5\n\nSimulate data using draw\n\n6\n\nFrom each of our simulated samples, calculate the test statistic.\n\n\n\n\n\n\n\n\nPlot the null distribution and the observed statistic.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nnull_dist |&gt;\n1  visualise() +\n2  shade_p_value(obs_stat = observed_statistic, direction = \"greater\") +\n3  labs(x = \"______ statistic\")\n\n\n1\n\nPipe your null_dist object into visualise().\n\n2\n\nPlot your observed_statistic, and specify that the direction should be greater. Our statistic is squared, so is naturally bounded at 0.\n\n3\n\nYou can change the axis labels to make the plot more clear.\n\n\n\n\n\n\n\n\nUse your observed statistic and your null distribution to calculate a p-value.\n\n\n\n\n\n\n\nCode hint\n\n\n\n\n\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_statistic, direction = \"greater\")\n\n\n\n\n\nWhat are your conclusions? State them in terms of your null hypothesis, and in a more general statement."
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides",
     "section": "",
-    "text": "During this course, we will make reference to the following books. None of these books are intended to be read “cover to cover”. Instead, we will reference the relevant chapters at each part of the course. All the books have a high degree of topic overlap, but explain the key concepts slightly differently.\nPlease do not feel pressured to buy a copy of Ennos & Johnsson (2018) if you do not want to (note the library has some copies). It is a good book, but the other free books I have listed below cover all the same topics.\n\n\n\n\n\nStatistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)\n\n\n\n\n\n\n\n\nR for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023) (R reference book)\nR Markdown: The Definitive Guide, Xie, Allaire & Grolemund (2023) (RMarkdown reference book)\n\n\n\n\n\nStatistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025) (Ch. 1-4, 7-9)\nIntroduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024) (Ch. 2, 11-22)\n\n\n\n\n\nFundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)\n\nAlso available as an audiobook",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nLecture\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nLecture 0\n\n\n2025-03-24\n\n\nCourse introduction\n\n\n\n\nLecture 1\n\n\n2025-03-24\n\n\nPopulations, samples, variable types and descriptive statistics\n\n\n\n\nLecture 2\n\n\n2025-03-27\n\n\nThe scientific method\n\n\n\n\nLecture 3\n\n\n2025-03-31\n\n\nUncertainty, sampling error and confidence intervals\n\n\n\n\nLecture 4\n\n\n2025-04-01\n\n\nComparing means of multiple groups\n\n\n\n\nLecture 5\n\n\n2025-04-01\n\n\nTheory based statistics (when sample sizes are small)\n\n\n\n\nLecture 6\n\n\n2025-04-02\n\n\nTest of and associations between categorical variables\n\n\n\n\nLecture 7\n\n\n2025-04-02\n\n\nExperimental design discussion slides\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "resources.html#physical-books",
-    "href": "resources.html#physical-books",
-    "title": "Resources",
-    "section": "",
-    "text": "Statistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "resources.html#online-books",
-    "href": "resources.html#online-books",
-    "title": "Resources",
-    "section": "",
-    "text": "R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023) (R reference book)\nR Markdown: The Definitive Guide, Xie, Allaire & Grolemund (2023) (RMarkdown reference book)\n\n\n\n\n\nStatistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025) (Ch. 1-4, 7-9)\nIntroduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024) (Ch. 2, 11-22)\n\n\n\n\n\nFundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)\n\nAlso available as an audiobook",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "resources.html#r-packages",
-    "href": "resources.html#r-packages",
-    "title": "Resources",
-    "section": "R packages",
-    "text": "R packages\nWe will make use of a set of R packages that are part of the extended tidyverse set of packages. Below are the websites for the main ones we will use, which contain guides, cheatsheets and reference materials.\n\nGeneral\n\ntidyverse\n\nggplot2 (Plotting data)\ndplyr (Manipulating data)\ntidyr (Tidying data)\nreadr (Importing/exporting data)\n\n\n\n\nStatistics\n\ninfer",
-    "crumbs": [
-      "Resources"
+      "Slides"
     ]
   }
 ]

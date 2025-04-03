@@ -1,17 +1,5 @@
 [
   {
-    "listing": "/slides.html",
-    "items": [
-      "/slides/00_introduction.html",
-      "/slides/01_sampling.html",
-      "/slides/02_scientific_method.html",
-      "/slides/03_confidence_intervals.html",
-      "/slides/04_anova.html",
-      "/slides/05_theory_based_statistics.html",
-      "/slides/06_chisq.html"
-    ]
-  },
-  {
     "listing": "/exercises.html",
     "items": [
       "/exercises/01_intro_to_r.html",
@@ -20,7 +8,21 @@
       "/exercises/04_handling_data.html",
       "/exercises/05_uncertainty.html",
       "/exercises/06_test_analysis.html",
-      "/exercises/07_anova.html"
+      "/exercises/07_anova.html",
+      "/exercises/08_chisq.html"
+    ]
+  },
+  {
+    "listing": "/slides.html",
+    "items": [
+      "/slides/00_introduction.html",
+      "/slides/01_sampling.html",
+      "/slides/02_scientific_method.html",
+      "/slides/03_confidence_intervals.html",
+      "/slides/04_anova.html",
+      "/slides/05_theory_based_statistics.html",
+      "/slides/06_chisq.html",
+      "/slides/07_experimental_design.html"
     ]
   }
 ]
