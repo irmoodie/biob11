@@ -356,4 +356,3 @@ null_dist |>
 null_dist |>
   get_p_value(obs_stat = observed_stat, direction = "greater")
 ```
-

@@ -1,0 +1,344 @@
+---
+title: "Tests of, and associations between, categorical variables"
+subtitle: "Exercise 8"
+date: 2025-04-03
+execute:
+  echo: true
+  eval: false
+---
+
+# Get RStudio setup
+
+Each time we start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_8`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+
+Please ensure you have followed the step above before you start!
+
+# Species co-occurences in benthic communities
+
+![An illustration of the visual contrast between seagrass meadows (left hand side) and bare sediment sandflats (right hand side). Picture taken by Roman Zajac at Kaipara harbour, New Zealand. The white rectangle encompasses 0.5 × 0.5 m](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs12898-020-00308-4/MediaObjects/12898_2020_308_Fig1_HTML.png?as=webp){width=50%}
+
+Co-occurrence patterns of species across a landscape may arise due to shared habitat preferences, dispersal patterns, community interactions (e.g. facilitation, competition) or the interaction of these processes. To understand if communities differ in species composition and/or abundance between open sand and sea grass habitats in a shallow bay, researchers conducted snorkling transects and recorded the number of 6 important benthic species.
+
+The data the researchers collected can be found [here](https://github.com/irmoodie/teaching_datasets/blob/main/benthic_species/benthic_species.csv).
+
+## Analysis
+
+While working on your analysis, answer the questions below:
+
+### General
+
+1. What (statistical) population are the researchers trying to make inferences about?
+
+### Data handling and plotting
+
+1. Ensure you have loaded the `tidyverse` and `infer` packages.
+2. Import the dataset using `read_csv()`.
+3. What sort of variables are `species` and `habitat`?
+4. Check the data for mistakes.
+5. Make an illustrative plot of the dataset using `ggplot()`.
+
+### Descriptive statistics
+
+Report the following statistics:
+
+1. The proportion of each `species` that are found in each `habitat`.
+
+### Are certain species associated with certain habitats
+
+The researchers want to know if some species are much more likely to be found in one habitat than another, or are they randomly spread across the bay.
+
+1. State the null and alternative hypothesis.
+2. What test statistic will you use? Why?
+3. Calculate the observed test statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+observed_statistic <-
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  hypothesize(null = "independence") |> #<3>
+  calculate(stat = "______") #<4>
+
+observed_statistic #<5>
+```
+1. The name of the dataset.
+2. Specify which is your response and explanatory variable.
+3. The specific test statistic we want to use requires us to provide our null hypothesis. In this example, we want to know if the two variables are associated, so our null hypothesis is that they are independent.
+4. Calculate the observed statistic.
+5. Print the observe statistic to the console.
+:::
+
+4. To generate a null distribution, we can use a permutation approach, where we shuffle the assigned categories and calculate our statistic many many times. Generate a null distribution.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist <-
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  hypothesize(null = "independence") |> #<3>
+  generate(reps = 10000, type = "permute") |> #<4>
+  calculate(stat = "______") #<5>
+```
+1. The name of the dataset.
+2. Specify which is your response and explanatory variable.
+3. Our hypothesis is that our response variable is independant of our explanatory variable.
+4. Simulate data using permuations. This may take a few seconds to minutes depending on your computer.
+5. From each of our simulated permutation samples, calculate the test statistic.
+:::
+
+5. Plot the null distribution and the observed statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  visualise() + #<1>
+  shade_p_value(obs_stat = observed_statistic, direction = "greater") + #<2>
+  labs(x = "______ statistic") #<3>
+```
+1. Pipe your `null_dist` object into `visualise()`.
+2. Plot your `observed_statistic`, and specify that the direction should be greater. Our statistic is squared, so is naturally bounded at 0.
+3. You can change the axis labels to make the plot more clear.
+:::
+
+6. Use your observed statistic and your null distribution to calculate a p-value.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  get_p_value(obs_stat = observed_statistic, direction = "greater")
+```
+:::
+
+7. What are your conclusions? State them in terms of your null hypothesis, and in a more general statement.
+
+---
+
+```{r}
+#| echo: false
+#| eval: false
+library(tidyverse)
+library(infer)
+
+# Display the dataset
+data |>
+  ggplot(aes(x = species, fill = habitat)) +
+  geom_bar(position = "fill") +
+  ylab("Proportion") +
+  theme(legend.position = "right")
+
+observed_statistic <- 
+  data |>
+  specify(response = species, explanatory = habitat) |>
+  hypothesize(null = "independence") |>
+  calculate(stat = "Chisq")
+
+observed_statistic
+
+null_dist <- 
+  data |>
+  specify(response = species, explanatory = habitat) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "Chisq")
+
+null_dist |>
+  visualize() +
+  shade_p_value(observed_statistic, direction = "greater")
+
+null_dist |>
+  get_p_value(obs_stat = observed_statistic, direction = "greater")
+```
+
+# Has public opinion changed since the last election?
+
+![](images/08/arnaud-jaegers-IBWJsMObnnU-unsplash.jpg){width=50%}
+
+In the last general election, the red party recieved 38% of the vote, the blue party recieved 34% of the vote, the green party recieved 18% of the vote, the yellow party recieved 8% of the vote, and the purple party recieved 2%.
+
+| Party  | Vote Percentage in Last Election |
+|--------|----------------------------------|
+| Red    | 38%                             |
+| Blue   | 34%                             |
+| Green  | 18%                             |
+| Yellow | 8%                              |
+| Purple | 2%                              |
+
+
+In a recent opinion poll, 300 people were asked who they would vote tomorrow if there was an election. 
+
+The data from that opinion poll can be found [here](https://github.com/irmoodie/teaching_datasets/blob/main/poll_results/poll_results.csv).
+
+```{r}
+#| echo: false
+#| eval: false
+# Define the parties and their probabilities
+parties <- c("red", "blue", "green", "yellow", "purple")
+probabilities <- c(0.36, 0.33, 0.19, 0.10, 0.02)
+
+# Simulate the poll
+set.seed(123) # For reproducibility
+poll_results <- sample(parties, size = 300, replace = TRUE, prob = probabilities)
+
+poll_data <- tibble(party = poll_results)
+
+write_csv(poll_data, "/Users/iain/Documents/Projects/teaching_datasets/poll_results/poll_results.csv")
+
+observed_statistic <- 
+  poll_data |> #<1>
+  specify(response = party) |> #<2>
+  hypothesize(
+    null = "point", #<3>
+    p = c(
+      "red" = 0.38, #<4>
+      "blue" = 0.34,
+      "green" = 0.18,
+      "yellow" = 0.08,
+      "purple" = 0.02
+    )
+   ) |>
+  calculate(stat = "Chisq") #<5>
+
+null_dist <- 
+  poll_data |> #<1>
+  specify(response = party) |> #<2>
+  hypothesize(
+    null = "point", #<3>
+    p = c(
+      "red" = 0.38, #<4>
+      "blue" = 0.34,
+      "green" = 0.18,
+      "yellow" = 0.08,
+      "purple" = 0.02
+    )
+   ) |>
+   generate(reps = 10000, type = "draw") |>
+  calculate(stat = "Chisq") #<5>
+
+null_dist |>
+  visualise() + #<1>
+  shade_p_value(obs_stat = observed_statistic, direction = "greater") + #<2>
+  labs(x = "______ statistic") #<3>
+
+```
+
+## Analysis
+
+While working on your analysis, answer the questions below:
+
+### General
+
+1. What (statistical) population are the researchers trying to make inferences about?
+
+### Data handling and plotting
+
+1. Ensure you have loaded the `tidyverse` and `infer` packages.
+2. Import the dataset using `read_csv()`.
+3. What sort of variables is `party`?
+4. Check the data for mistakes.
+5. Make an illustrative plot of the dataset using `ggplot()`. Can you show the expected values on the plot as well?
+
+### Descriptive statistics
+
+Report the following statistics:
+
+1. The proportion of the people surveyed who said they would vote for each `party`.
+
+### Has public opinion changed since the election?
+
+1. State the null and alternative hypothesis.
+2. What test statistic will you use? Why?
+3. Calculate the observed test statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+observed_statistic <- 
+  _____ |> #<1>
+  specify(response = _____) |> #<2>
+  hypothesize(
+    null = "point", #<3>
+    p = c(
+      "______" = ______, #<4>
+      "______" = ______,
+      "______" = ______,
+      "______" = ______,
+      "______" = ______
+    )
+   ) |>
+  calculate(stat = "______") #<5>
+
+observed_statistic #<6>
+```
+1. The name of the dataset.
+2. Specify which is your response variable.
+3. The specific test statistic we want to use requires us to provide our null hypothesis. In this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use `point`.
+4. Here we need to put in our expected or hypothesised proportions under the null hypothesis.
+5. Calculate the observed statistic.
+6. Print the observe statistic to the console.
+:::
+
+4. To generate a null distribution, we can `draw` from a probability distribution defined by our `hypothesize()` step.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist <-
+  _____ |> #<1>
+  specify(response = _____) |> #<2>
+  hypothesize(
+    null = "point", #<3>
+    p = c(
+      "______" = ______, #<4>
+      "______" = ______,
+      "______" = ______,
+      "______" = ______,
+      "______" = ______
+    )
+   ) |>
+   generate(reps = 10000, type = "draw") |> #<5>
+  calculate(stat = "______") #<6>
+```
+1. The name of the dataset.
+2. Specify your response variable.
+3. In this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use `point`.
+4. Here we need to put in our expected or hypothesised proportions under the null hypothesis.
+5. Simulate data using `draw`
+6. From each of our simulated samples, calculate the test statistic.
+:::
+
+5. Plot the null distribution and the observed statistic.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  visualise() + #<1>
+  shade_p_value(obs_stat = observed_statistic, direction = "greater") + #<2>
+  labs(x = "______ statistic") #<3>
+```
+1. Pipe your `null_dist` object into `visualise()`.
+2. Plot your `observed_statistic`, and specify that the direction should be greater. Our statistic is squared, so is naturally bounded at 0.
+3. You can change the axis labels to make the plot more clear.
+:::
+
+6. Use your observed statistic and your null distribution to calculate a p-value.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+null_dist |>
+  get_p_value(obs_stat = observed_statistic, direction = "greater")
+```
+:::
+
+7. What are your conclusions? State them in terms of your null hypothesis, and in a more general statement.
