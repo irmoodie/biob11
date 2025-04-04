@@ -1,0 +1,911 @@
+---
+title: "Correlation, Causation, and Linear Regression"
+draft: false
+date: 2025-04-02
+subtitle: "Lecture 8"
+---
+
+# Correlation {background-color="#015b58"}
+
+## Correlation
+### Do two continuous variables covary?
+
+- Used to assess if two continuous variables are independent, or if they covary (linearly)
+- We do not express one variable as a function of another:
+  - No "response" and "explanatory"
+- Usually assumed that both variables are "effects of a common cause" [@sokal1995]
+- "Correlation does not mean causation"
+  - But you can measure a correlation between a cause and effect
+
+## Correlation
+### Do two continuous variables covary?
+
+```{r}
+library(tidyverse, quietly = TRUE)
+library(infer, quietly = TRUE)
+library(palmerpenguins, quietly = TRUE)
+library(lterdatasampler, quietly = TRUE)
+library(patchwork, quietly = TRUE)
+
+theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+```
+
+```{r}
+#| fig-align: center
+
+obs <-
+penguins |>
+  filter(species == "Adelie") |>
+  observe(flipper_length_mm ~ body_mass_g, stat = "correlation") |>
+  pull(stat)
+
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = flipper_length_mm/10, y = body_mass_g/1000)) +
+  geom_point(size = 3, alpha = 0.7) +
+  labs(x = "Flipper length (cm)", y = "Body mass (kg)") +
+  labs(title = paste0("r = ", round(obs,2)))
+```
+
+## Correlation
+### Do two continuous variables covary?
+
+Correlation coefficient (Pearson):
+
+$$
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2} \sqrt{\sum_{i=1}^n (y_i - \bar{y})^2}}
+$$
+
+$$
+r = \frac{\text{Covariance}(x,y)}{\text{Standard deviation}(x) \times \text{Standard deviation}(y)}
+$$
+
+$$
+r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
+$$
+
+## Correlation
+### Do two continuous variables covary?
+
+```{r}
+#| fig-align: center
+set.seed(122)
+data <- tibble(
+  x = rnorm(100, mean = 50, sd = 10),
+  y = x + rnorm(100, mean = 0, sd = 5)
+) |>
+mutate(y = mean(y) - 0.3*(mean(y) - y))
+
+
+scatterplot <-
+data |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(alpha = 0.5, size = 3) +
+  lims(x = c(20,80), y = c(20,80))
+
+x_plot <-
+data |>
+  ggplot(aes(x = x, y = "1")) +
+  geom_jitter(height = 0, alpha = 0.2, size = 3) +
+  geom_vline(aes(xintercept = mean(x)), color = "red", linetype = "dashed") +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank()
+  ) +
+  lims(x = c(20,80))
+
+y_plot <-
+data |>
+  ggplot(aes(x = "1", y = y)) +
+  geom_jitter(width = 0, alpha = 0.2, size = 3) +
+  geom_hline(aes(yintercept = mean(y)), color = "red", linetype = "dashed") +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.line.x = element_blank()
+  ) +
+  lims(y = c(20,80))
+
+```
+
+::: {.columns}
+::: {.column}
+$$
+r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
+$$
+:::
+::: {.column}
+```{r}
+scatterplot
+```
+:::
+:::
+
+## Correlation
+### Do two continuous variables covary?
+
+::: {.columns}
+::: {.column}
+$$
+r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
+$$
+
+Calculate standard deviation in $x$:
+
+$$
+\sigma_x = \sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}
+$$
+
+```{r}
+#| echo: true
+data |>
+  observe(response = x, stat = "sd")
+```
+
+:::
+::: {.column}
+```{r}
+x_plot
+```
+:::
+:::
+
+## Correlation
+### Do two continuous variables covary?
+
+::: {.columns}
+::: {.column}
+$$
+r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
+$$
+
+Calculate standard deviation in $y$:
+
+$$
+\sigma_y = \sqrt{\sum_{i=1}^n (y_i - \bar{y})^2}
+$$
+
+```{r}
+#| echo: true
+data |>
+  observe(response = y, stat = "sd")
+```
+
+:::
+::: {.column}
+```{r}
+y_plot
+```
+:::
+:::
+
+## Correlation
+### Do two continuous variables covary?
+
+::: {.columns}
+::: {.column}
+$$
+r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
+$$
+
+Calculate the covariance between $x$ and $y$:
+
+$$
+Cov(x,y) = \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})
+$$
+
+```{r}
+#| echo: true
+data |>
+  cov()
+```
+:::
+::: {.column}
+```{r}
+scatterplot + 
+geom_hline(aes(yintercept = mean(y)), color = "red", linetype = "dashed") +
+geom_vline(aes(xintercept = mean(x)), color = "red", linetype = "dashed")
+```
+:::
+:::
+
+## Correlation
+### Do two continuous variables covary?
+
+::: {.columns}
+::: {.column}
+$$
+r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
+$$
+
+```{r}
+#| echo: true
+data |>
+  specify(x ~ y) |>
+  calculate(stat = "correlation")
+```
+:::
+::: {.column}
+```{r}
+scatterplot
+```
+:::
+:::
+
+## Correlation
+### Do two continuous variables covary?
+
+![](images/08/cor.svg)
+
+## Correlation
+### Do two continuous variables covary?
+
+Correlation coefficient ($r$):
+$$
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2} \sqrt{\sum_{i=1}^n (y_i - \bar{y})^2}}
+$$
+
+Coefficient of determination ($r^2$):
+$$
+r^2 = \left(\frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2} \sqrt{\sum_{i=1}^n (y_i - \bar{y})^2}}\right)^2
+$$
+
+## Correlation
+### Do two continuous variables covary?
+
+```{r}
+#| fig-width: 10
+set.seed(123)
+
+# Dataset 1: Strong positive correlation
+data1 <- tibble(
+  x = rnorm(100, mean = 50, sd = 10),
+  y = x + rnorm(100, mean = 0, sd = 5)
+)
+
+# Dataset 2: Moderate positive correlation
+data2 <- tibble(
+  x = rnorm(100, mean = 50, sd = 10),
+  y = rnorm(100, mean = 50, sd = 10)
+)
+
+# Dataset 3: Weak positive correlation
+data3 <- tibble(
+  x = rnorm(100, mean = 50, sd = 10),
+  y = -x + rnorm(100, mean = 0, sd = 10)
+)
+
+# Calculate r and r-squared for each dataset
+calculate_stats <- function(data) {
+  r <- cor(data$x, data$y)
+  r_squared <- r^2
+  paste0("r = ", round(r, 2), ", r2 = ", round(r_squared, 2))
+}
+
+stats1 <- calculate_stats(data1)
+stats2 <- calculate_stats(data2)
+stats3 <- calculate_stats(data3)
+
+# Combine datasets for visualization
+data_combined <- bind_rows(
+  data1 |> mutate(dataset = stats1),
+  data2 |> mutate(dataset = stats2),
+  data3 |> mutate(dataset = stats3)
+)
+
+# Plot the datasets
+data_combined |>
+  ggplot(aes(x = x, y = y, color = dataset)) +
+  geom_point(alpha = 0.7, size = 3) +
+  facet_wrap(~dataset, scale = "free") +
+  theme(
+    strip.text = element_text(size = 14),
+    panel.background = element_blank()
+  )
+```
+
+## Correlation
+### Do two continuous variables covary?
+
+{{< video https://www.youtube.com/embed/rijqfllOq6g
+    title="Correlation coefficient animation"
+    start="0"
+    width="1050"
+    aspect-ratio="16x9"
+    align="center"
+>}}
+
+## Correlation
+### Do two continuous variables covary?
+
+```{r}
+#| echo: true
+#| output-location: column
+adelie_data <-
+  penguins |>
+  filter(species == "Adelie")
+  
+adelie_data |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(size = 3, alpha = 0.7)
+```
+
+## Correlation
+### Observed statistic
+
+```{r}
+#| echo: true
+observed_correlation <-
+  adelie_data |>
+  specify(flipper_length_mm ~ body_mass_g) |>
+  calculate(stat = "correlation")
+
+observed_correlation
+```
+
+## Correlation
+### Confidence intervals
+
+```{r}
+#| echo: true
+
+boot_dist <-
+  adelie_data |>
+  specify(flipper_length_mm ~ body_mass_g) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "correlation")
+
+percentile_ci <- get_ci(boot_dist, type = "percentile")
+```
+
+## Correlation
+### Confidence intervals
+
+```{r}
+#| echo: true
+visualize(boot_dist) +
+  shade_confidence_interval(endpoints = percentile_ci) +
+  labs(x = "r")
+```
+
+## Correlation
+### Confidence intervals
+
+- The correlation between flipper length and body mass was 0.468 (95% CI: 0.355, 0.572).
+
+## Correlation
+### Hypothesis test
+
+- Null hypothesis:
+  - The two variables do not covary ($r=0$)
+- Alternative hypothesis:
+  - The two variables do covary ($r\neq0$)
+
+## Correlation
+### Hypothesis test
+
+- How could we generate a null distribution?
+
+```{r}
+base_plot <-
+adelie_data |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(size = 3, alpha = 0.7)
+
+base_plot
+```
+
+## Correlation
+### Hypothesis test
+
+```{r}
+#| fig-width: 10
+reps_dat <-
+  adelie_data |>
+  specify(flipper_length_mm ~ body_mass_g) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 25, type = "permute")
+
+reps <-
+reps_dat |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(size = 1, alpha = 0.3) +
+  geom_label(data = calculate(reps_dat, stat = "correlation"), aes(label = round(stat, 2), x = mean(adelie_data$flipper_length_mm, na.rm = TRUE), y = mean(adelie_data$body_mass_g, na.rm = TRUE)), size = 4, colour = "red") +
+  facet_wrap(~replicate) +
+  cowplot::panel_border() +
+  theme(
+    axis.title = element_blank(),
+    strip.text = element_blank()
+  )
+
+base_plot + reps
+```
+
+## Correlation
+### Hypothesis test
+
+```{r}
+#| echo: true
+null_dist <-
+  adelie_data |>
+  specify(flipper_length_mm ~ body_mass_g) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "correlation")
+```
+
+## Correlation
+### Hypothesis test
+
+```{r}
+#| echo: true
+visualize(null_dist) +
+  shade_p_value(obs_stat = observed_correlation, direction = "two-sided")
+```
+
+## Correlation
+### Hypothesis test
+
+```{r}
+#| echo: true
+null_dist |>
+  get_p_value(obs_stat = observed_correlation, direction = "two-sided")
+```
+
+- Remember that our p-value is an approximation
+  - The number of decimal places of accuracy we can observe is directly linked to the number of `reps`
+
+
+# Regression {background-color="#015b58"}
+
+## Regression
+### How does variable Y depend on variable X
+
+- A mathmatical function describing the relationship between two continuous variables
+- Y is dependant on X (the)
+- Y is a function of X
+- Predictive model
+- Very powerful framework
+
+## Regression
+### How does variable Y depend on variable X
+
+$$
+y = \text{Slope}\times x + \text{Intercept}
+$$
+
+$$
+y = mx+c
+$$
+
+$$
+y = \beta_1x+\beta_0
+$$
+
+$$
+y = \beta_0+\beta_1x+\beta_2x_2+\beta_3x_3+\beta_4x_4+\beta_5x_5
+$$
+
+## Regression
+### How does variable Y depend on variable X
+
+```{r}
+#| fig-width: 10
+# Generate a range of intercept and slope values
+intercepts <- seq(-10, 10, by = 5)
+slopes <- 1
+
+# Create a grid of intercept and slope combinations
+abline_data <- expand.grid(intercept = intercepts, slope = slopes)
+
+# Generate a dataset for plotting
+plot_data <- tibble(x = seq(-10, 10, length.out = 100))
+
+# Add lines for each intercept and slope combination
+abline_data <- abline_data |>
+  rowwise() |>
+  mutate(
+    line_data = list(plot_data |> mutate(y = slope * x + intercept))
+  ) |>
+  unnest(line_data)
+
+# Plot the lines
+intercept_plot <-
+abline_data |>
+  ggplot(aes(x = x, y = y, color = as.factor(intercept))) +
+  geom_line() +
+  labs(
+    title = "Effect of Changing Intercept",
+    x = "X",
+    y = "Y",
+    color = "Intercept"
+  ) +
+  coord_cartesian(xlim = c(0, 10), expand = FALSE) +
+  theme(legend.position = "left")
+# Generate a range of intercept and slope values
+intercepts <- 0
+slopes <- seq(-5, 5, by = 2)
+
+# Create a grid of intercept and slope combinations
+abline_data <- expand.grid(intercept = intercepts, slope = slopes)
+
+# Generate a dataset for plotting
+plot_data <- tibble(x = seq(-10, 10, length.out = 100))
+
+# Add lines for each intercept and slope combination
+abline_data <- abline_data |>
+  rowwise() |>
+  mutate(
+    line_data = list(plot_data |> mutate(y = slope * x + intercept))
+  ) |>
+  unnest(line_data)
+
+# Plot the lines
+slope_plot <-
+abline_data |>
+  ggplot(aes(x = x, y = y, color = as.factor(slope))) +
+  geom_line() +
+  labs(
+    title = "Effect of Changing Slope",
+    x = "X",
+    y = "Y",
+    color = "Slope"
+  ) +
+  coord_cartesian(xlim = c(0, 10), expand = FALSE) +
+  theme(legend.position = "right")
+
+intercept_plot + slope_plot
+```
+
+## Regression
+### How does variable Y depend on variable X
+
+```{r}
+#| fig-width: 10
+calculate_stats <- function(data) {
+  model <- lm(y ~ x, data = data)
+  intercept <- coef(model)[1]
+  slope <- coef(model)[2]
+  paste0("Intercept = ", round(intercept, 2), ", Slope = ", round(slope, 2))
+}
+
+stats1 <- calculate_stats(data1)
+stats2 <- calculate_stats(data2)
+stats3 <- calculate_stats(data3)
+
+# Combine datasets for visualization
+data_combined <- bind_rows(
+  data1 |> mutate(dataset = stats1),
+  data2 |> mutate(dataset = stats2),
+  data3 |> mutate(dataset = stats3)
+)
+
+data_combined |>
+  ggplot(aes(x = x, y = y, color = dataset)) +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_point(alpha = 0.7, size = 3) +
+  facet_wrap(~dataset, scale = "free") +
+  theme(
+    strip.text = element_text(size = 14),
+    panel.background = element_blank()
+  )
+```
+
+## Regression
+### How does variable Y depend on variable X
+
+- Example: For sexual selection to operate, an increase in mating success (number of mates) must result in an increase in reproductive success (number of offspring).
+
+```{r}
+#| fig-align: center
+set.seed(123)
+# Generate two positively correlated variables
+x <- rlnorm(100, meanlog = log(5), sdlog = log(1.5))
+y <- 4 * x + rnorm(100, mean = 0, sd = 10)
+
+
+# Combine into a tibble
+mating_data <- tibble(x = round(x, 0), y = round(y, 0)) |> mutate(y = if_else(x < 6, y - (y - 10) * 0.2, y)) |> mutate(y = if_else(y < 0, 0, y))
+
+# Visualize the relationship
+sex_plot <-
+mating_data |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(alpha = 0.5, size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Mating success", y = "Reproductive success")
+
+sex_plot
+
+mating_data <- mating_data |> rename(mating_success = x, reproductive_success = y)
+
+```
+
+## Regression
+### How does variable Y depend on variable X
+
+::: {.columns}
+::: {.column}
+$$
+y = \beta_1x+\beta_0
+$$
+
+$$
+y = 3.83x-0.68
+$$
+
+- $\beta_1$ = strength of sexual selection
+- For each additional mate, an individual (on average) gains $\beta_1$ additional offspring
+- For 5 mates ($x=5$): 
+  - $y = 3.83\times5-0.68$
+  - $y = 18.47$
+:::
+::: {.column}
+```{r}
+sex_plot
+```
+:::
+:::
+
+
+
+## Regression
+### How does variable Y depend on variable X
+
+```{r}
+#| fig-align: center
+# Fit a linear model
+data1 <- slice_sample(data1, n = 20)
+# Create a second dataset with a poorly fitting line
+model1 <- lm(y ~ x, data = data1)
+
+# Add residuals and squared residuals to the first dataset
+data_with_residuals1 <- data1 |>
+  mutate(
+    fitted = predict(model1),
+    residual = y - fitted,
+    squared_residual = residual^2
+  )
+
+model2 <- lm(y ~ x, data = data1)
+
+model2$coefficients[1] <- -10
+model2$coefficients[2] <- 1.3
+
+# Add residuals and squared residuals to the second dataset
+data_with_residuals2 <- data1 |>
+  mutate(
+    fitted = predict(model2),
+    residual = y - fitted,
+    squared_residual = residual^2
+  )
+
+# Plot the data with squared residuals
+data_with_residuals1 |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
+  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
+  #geom_segment(aes(xend = x, yend = fitted), color = "red", alpha = 0.5) 
+  #geom_point(aes(y = fitted + squared_residual), color = "purple", size = 2, alpha = 0.7) +
+```
+
+## Regression
+### How does variable Y depend on variable X
+
+```{r}
+#| fig-align: center
+data_with_residuals1 |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
+  geom_segment(aes(xend = x, yend = fitted), color = "red", alpha = 0.5) +
+  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
+```
+
+## Regression
+### How does variable Y depend on variable X
+
+```{r}
+#| fig-align: center
+data_with_residuals1 |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
+  geom_rect(aes(
+    xmin = x - sqrt(squared_residual) / 2,
+    xmax = x + sqrt(squared_residual) / 2,
+    ymin = pmin(y, fitted),
+    ymax = pmax(y, fitted)
+  ), fill = "red", alpha = 0.3) +
+  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
+
+```
+
+## Regression
+### How does variable Y depend on variable X
+```{r}
+#| fig-align: center
+data_with_residuals2 |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
+  geom_rect(aes(
+    xmin = x - sqrt(squared_residual) / 2,
+    xmax = x + sqrt(squared_residual) / 2,
+    ymin = pmin(y, fitted),
+    ymax = pmax(y, fitted)
+  ), fill = "red", alpha = 0.3) +
+  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
+```
+
+## Regression
+### How does variable Y depend on variable X
+::: {.columns}
+::: {.column}
+```{r}
+data_with_residuals1 |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
+  geom_rect(aes(
+    xmin = x - sqrt(squared_residual) / 2,
+    xmax = x + sqrt(squared_residual) / 2,
+    ymin = pmin(y, fitted),
+    ymax = pmax(y, fitted)
+  ), fill = "red", alpha = 0.3) +
+  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
+
+```
+:::
+::: {.column}
+- Fit by solving to minimise the sum of the squared residuals (SSR)
+  - Find $\beta_1$ and $\beta_0$ that minimise the SSR
+  - Called a "loss function"
+  - Many approaches to do this!
+:::
+:::
+
+## Regression
+### How does variable Y depend on variable X
+
+{{< video https://www.youtube.com/embed/3dhcmeOTZ_Q
+    title="Regression animation"
+    start="0"
+    width="1050"
+    aspect-ratio="16x9"
+    align="center"
+>}}
+
+
+## Regression
+### How to fit in R?
+
+Base R:
+
+```{r}
+#| echo: true
+lm(data = mating_data, reproductive_success ~ mating_success)
+```
+
+## Regression
+### How to fit in R?
+
+With `infer`:
+
+```{r}
+#| echo: true
+observed_fit <-
+  mating_data |>
+  specify(reproductive_success ~ mating_success) |>
+  fit()
+
+observed_fit
+```
+
+
+## Regression
+### Confidence intervals
+
+```{r}
+#| echo: true
+boot_dist <-
+  mating_data |>
+  specify(reproductive_success ~ mating_success) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  fit()
+
+boot_dist
+```
+
+## Regression
+### Confidence intervals
+
+```{r}
+#| echo: true
+conf_ints <- 
+  get_confidence_interval(
+    boot_dist, 
+    level = .95, 
+    point_estimate = observed_fit
+  )
+
+conf_ints
+```
+
+## Regression
+### Confidence intervals
+
+```{r}
+#| echo: true
+visualize(boot_dist) +
+  shade_confidence_interval(endpoints = conf_ints)
+```
+
+## Regression
+### Hypothesis test
+
+- Null hypothesis:
+  - Slope = 0
+- Alternative hypothesis:
+  - Slope $\neq$ 0
+  - Slope < 0
+  - Slope > 0
+
+## Regression
+### Hypothesis test
+
+```{r}
+#| echo: true
+null_dist <-
+  mating_data |>
+  specify(reproductive_success ~ mating_success) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  fit()
+
+null_dist
+```
+
+## Regression
+### Hypothesis test
+
+```{r}
+#| echo: true
+visualize(null_dist) +
+  shade_p_value(obs_stat = observed_fit, direction = "two-sided")
+```
+
+## Regression
+### Hypothesis test
+
+```{r}
+#| echo: true
+null_dist |>
+  get_p_value(obs_stat = observed_fit, direction = "two-sided")
+```
+
+## Regression
+### Multiple regression
+
+$$
+y = \beta_1x+\beta_0
+$$
+
+$$
+y = \beta_0+\beta_1x+\beta_2x_2+\beta_3x_3+\beta_4x_4+\beta_5x_5
+$$
+
+```{r}
+#| eval: false
+#| echo: true
+
+data |>
+specify(reproductive_success ~ mating_success + sex + feather_colour) ...
+
+```
+
+##
