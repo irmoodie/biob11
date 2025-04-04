@@ -1,0 +1,54 @@
+---
+title: "Experimental design discussion slides"
+draft: false
+date: 2025-04-02
+subtitle: "Lecture 7"
+---
+
+## Scenario 1 {.smaller}
+### Effect of fertilizer application on crop growth {.smaller}
+
+Some researchers at Lund University want to understand the effectiveness of three fertilizers on promoting crop growth. To do that, they construct 7 x 7 experimental arrays of plant pots for each treatment. Each experimental array is kept in a seperate green house chamber (room). The control pots were filled with a standardised soil mixture. The treatment plots were filled with the same standardised soil mixture plus the addition of the fertilizer. Already germinated seedlings were randomly assigned to pots and planted. Plants were kept in the greenhouses, and watered regularly.
+
+After 30 days, the researchers used a knife to cut all of the plant's biomass that was above ground. Using an oven, they dried each plant for 24 hours before recording the mass in grams using a balance.
+
+![](images/07/fert.png){fig-align="center"}
+
+::: {.content-visible when-format="revealjs"}
+{{< countdown minutes=3 font-size="3rem" >}}
+:::
+
+## Scenario 2
+### Impact of classroom lighting on student focus
+
+Researchers replace the original lighting with blue-enriched lighting in one classroom and warm-toned lighting in another to compare their effects on student concentration. Two classes of the same grade level and subject are assigned to each room. Over four weeks, students complete weekly quizzes and are observed for on-task behavior (e.g., note-taking, participation). Results from quizzes and behavioral metrics are aggregated to determine which lighting condition correlates with higher focus. Classrooms are located in different wings of the school to minimize disruption.
+
+::: {.content-visible when-format="revealjs"}
+{{< countdown minutes=5 font-size="3rem" >}}
+:::
+
+## Scenario 3
+### Testing the effectiveness of a bio-pesticide on pollinator activity
+
+Researchers spray a new bio-pesticide on half of a flowering meadow to assess its impact on bee and butterfly visitation rates. The treated and untreated sections are marked with visible flags for ease of monitoring. The same team of researchers counts pollinator visits in both sections daily, recording the number of insects landing on flowers.
+
+::: {.content-visible when-format="revealjs"}
+{{< countdown minutes=5 font-size="3rem" >}}
+:::
+
+## Scenario 4
+### Understanding what drives blue-tit nestling success
+
+Researchers are interested in understanding why some blue-tit clutches have high success (all chicks survive) and why some do not (few chicks survive ). They use next boxes from a forest near Lund for their study, and count the number of chicks that successfully fledge from each nestbox. Around each nest box they record the following variables: *number of trees within a 20 m radius*, *direction the nest box is facing*, *the diversity of plant species within a 20 m radius*, *the pH of the surrounding soil* and if there was *evidence of deer in the area*. They found that the pH of the surrounding soil had a weak, but statistically significant (p < 0.05) effect on blue-tit nestling success. They conclude that to aid in blue-tit conservation, lime should be added to forest soils to increase the pH, and thereby increase blue-tit nestling success.
+
+::: {.content-visible when-format="revealjs"}
+{{< countdown minutes=5 font-size="3rem" >}}
+:::
+
+##
+
+![](images/07/PXL_20250402_125306813%20Large.jpeg)
+
+##
+
+![](images/07/PXL_20250402_130621244%20Large.jpeg)
