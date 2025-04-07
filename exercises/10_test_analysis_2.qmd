@@ -1,0 +1,57 @@
+---
+title: "Test your skills II"
+subtitle: "Exercise 10"
+date: 2025-04-04
+execute:
+  echo: true
+  eval: false
+---
+
+# Get RStudio setup
+
+Each time we start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_10`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+
+Please ensure you have followed the step above before you start!
+
+# Lake ice coverage and air temperature
+
+This dataset contains records of ice formation on two lakes (`lakeid`) since the mid 1800s. The `ice_on` date refers to the first day in the winter of `year` where the lake fully froze, and `ice_off` refers to the date the following spring where the ice fully melted. `avg_air_temp_adjusted` is the mean temperature during the winter of `year`.
+
+The dataset, `lake_ice.csv` can be found [here](https://github.com/irmoodie/teaching_datasets/blob/main/ice_cover/lake_ice.csv).
+
+Use this dataset to answer these broad research questions: 
+
+1. **Has the total amount of time each lake spends frozen each winter changed?**
+2. **Is this change associated with air temperature?**
+3. **In general, does one lake stay frozen for longer than the other?**
+
+Remember:
+
+- State clearly the research question, and what your hypotheses were. Explain why these hypotheses answer your research question.
+- Explain your choice of test statistic/method. Relate this to your hypotheses and question.
+- State your observed statistics(s) and confidence intervals. Explain what these mean. Refer to plots you have made.
+- State the outcome of your hypothesis test (quoting test statistIc(s) and p-values). Interpret this result, in both terms of your statistical hypothesis, but also the broad research question.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Hint about dates in R
+
+```{r}
+#| eval: true
+#| echo: true
+
+library(tidyverse, quietly = TRUE)
+
+date1 <- ymd("2025-04-04")
+date2 <- ymd("2025-04-01")
+
+days_difference <- date1 - date2
+days_difference
+
+```
+:::

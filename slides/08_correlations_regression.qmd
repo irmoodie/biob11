@@ -1,7 +1,7 @@
 ---
 title: "Correlation, Causation, and Linear Regression"
 draft: false
-date: 2025-04-02
+date: 2025-04-04
 subtitle: "Lecture 8"
 ---
 

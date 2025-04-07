@@ -1,0 +1,203 @@
+---
+title: "Correlation and linear regression I"
+subtitle: "Exercise 9"
+date: 2025-04-04
+execute:
+  echo: true
+  eval: false
+---
+
+# Get RStudio setup
+
+Each time we start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_9`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+
+Please ensure you have followed the step above before you start!
+
+# Bergmann's rule and fiddler crabs
+
+![](https://bugguide.net/images/cache/5HT/HXH/5HTHXHDH6H6ZMLAZMLNZXLGZ7LRR7LBZ9HJHXL9Z5L1Z4LJHIH8ZIHEZ0LVHPHHR5LEZGH5ZSL2ZHLGZSLAZ8LJH8L.jpg){fig-align="center"}
+
+The Atlantic marsh fiddler crab, _Minuca pugnax_, lives in salt marshes throughout the eastern coast of the United States. Historically, _M. pugnax_ were distributed from northern Florida to Cape Cod, Massachusetts, but like other species have expanded their range northward due to ocean warming.
+
+The `pie_crab.csv` dataset is from a study by Johnson and colleagues at the Plum Island Ecosystem Long Term Ecological Research site.
+
+You can download the dataset [here](https://github.com/irmoodie/teaching_datasets/blob/main/pie_crab/pie_crab.csv).
+
+Data sampling overview:
+
+- 13 marshes were sampled on the Atlantic coast of the United States in summer 2016
+- Spanning > 12 degrees of latitude, from northeast Florida to northeast Massachusetts
+- Between 25 and 37 adult male fiddler crabs were collected, and their carapace size (mm) recorded
+
+The dataset was collected to test Bergmann's rule:
+
+> One of the best-known patterns in biogeography is Bergmann’s rule. It predicts that organisms at higher latitudes are larger than ones at lower latitudes. Many organisms follow Bergmann’s rule, including insects, birds, snakes, marine invertebrates, and terrestrial and marine mammals (Johnson et al. 2019).
+
+## Analysis
+
+### General
+
+1. In your opinion, what (statistical) population are the researchers trying to make inferences about?
+
+### Data handling and plotting
+
+1. Ensure you have loaded the `tidyverse` and `infer` packages.
+2. Import the dataset using `read_csv()`.
+3. Check the data for mistakes.
+4. Make illustrative plot(s) of the key variables to address "Bergmann's rule" in the dataset using `ggplot()`.
+
+### Does _Minuca pugnax_ follow Bergmann's rule
+
+1. State the null and alternative hypothesis.
+2. What method and test statistic(s) will you use? Why?
+
+::: {.callout-note collapse="true" icon="false"}
+#### Hint
+I think this is one of the examples where you could argue for either using a correlation analysis or using a regression analysis. It depends on if you think it would be meaningful to make the statement: "For each degree increase in latitude, _Minuca pugnax_ will be on average X bigger". If yes, and the relationship appears to be linear, then use linear regression. If you would feel safer saying "There is a positive/negative correlation between _Minuca pugnax_ size and latitude", and not ascribing causality or a strict rule, then you should use a correlation approach. You could also answer the question in a completely different way, by testing if crabs from the highest latitude differ from those at the lowest, for example.
+:::
+
+3. Calculate the observed statistic(s).
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+
+**Correlation:**
+```{r}
+observed_statistic <-
+  ______ |> #<1>
+  specify(______ ~ ______) |> #<2>
+  calculate(stat = "______") #<3>
+
+observed_statistic #<4>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant`
+3. Calculate the observed statistic.
+4. Print the observe statistic to the console.
+
+**Linear regression:**
+```{r}
+observed_fit <-
+  ______ |> #<1>
+  specify(______ ~ ______) |> #<2>
+  fit() #<3>
+
+observed_fit #<4>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant`
+3. Fit the linear model.
+4. Print the observe fit to the console.
+:::
+
+4. Calculate 95% confidence intervals for your observed statistic(s).
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+
+**Correlation:**
+```{r}
+______ <-
+  ______ |>  #<1>
+  specify(______ ~ ______) |> #<2>
+  generate(reps = ______, type = "______") |> #<3>
+  calculate(stat = "______") #<4>
+
+percentile_ci <- get_ci(______, type = "______", level = ______) #<5>
+
+percentile_ci #<6>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant` (order does not matter for a correlation)
+3. Decide how you will generate a datasets to use in your sampling distribution.
+4. Calculate the statistic for each sample to make a sampling distribution.
+5. Use your sampling distribution object to calculate the confidence internals
+6. Print the CI
+
+**Linear regression:**
+```{r}
+______ <-
+  ______ |>  #<1>
+  specify(______ ~ ______) |> #<2>
+  generate(reps = ______, type = "______") |> #<3>
+  fit() #<4>
+
+percentile_ci <- get_ci(______, point_estimate = ______, level = ______) #<5>
+
+percentile_ci #<6>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant`
+3. Decide how you will generate a datasets to use in your sampling distribution.
+4. Fit the linear regression to each sample to get a sampling distribution.
+5. Use your sampling distribution object and your observed statistics to calculate the confidence internals
+6. Print the CI
+:::
+
+5. Generate a null distribution. Describe why your chosen method is appropriate.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+
+**Correlation:**
+```{r}
+______ <-
+  ______ |>  #<1>
+  specify(______ ~ ______) |> #<2>
+  hypothesize(null = "______") |>#<3>
+  generate(reps = ______, type = "______") |> #<4>
+  calculate(stat = "______") #<5>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant` (order does not matter for a correlation)
+3. What is your null hypothesis?
+4. Decide how you will generate a datasets under your null hypothesis to use in your null distribution.
+5. Calculate the statistic for each sample to make a sampling distribution.
+
+**Linear regression:**
+```{r}
+______ <-
+  ______ |>  #<1>
+  specify(______ ~ ______) |> #<2>
+  hypothesize(null = "______") |> #<3>
+  generate(reps = ______, type = "______") |> #<4>
+  fit() #<5>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant`
+3. What is your null hypothesis?
+4. Decide how you will generate a datasets under your null hypothesis to use in your null distribution.
+5. Fit the linear regression to each sample to get a sampling distribution.
+:::
+
+6. Plot the null distribution and the observed statistic. Calculate a p-value(s) for your null hypothesis.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+
+```{r}
+______ |>
+  visualise() + #<1>
+  shade_p_value(obs_stat = ______, direction = "______") + #<2>
+  labs(x = "______") #<3>
+
+_____ |> #<4>
+  get_p_value(obs_stat = ______, direction = "______")
+```
+1. Pipe your null distribution object into `visualise()`.
+2. Plot your observed statistic(s), and specify that the direction of your hypothesis.
+3. You can change the axis labels to make the plot more clear.
+4. Your null distribution.
+:::
+
+7. Write a small statement that summarises your statistical methods and findings. You should:
+    i) State clearly the research question, and what your hypotheses were. Explain why these hypotheses answer your research question.
+    ii) Explain your choice of test statistic/method. Relate this to your hypotheses and question.
+    iii) State your observed statistics(s) and confidence intervals. Explain what these mean. Refer to a plot you made that shows the data.
+    iv) State the outcome of your hypothesis test (quoting test statisitc(s) and p-values). Interpret this result, in both terms of your statistical hypothesis, but also the broad research question.

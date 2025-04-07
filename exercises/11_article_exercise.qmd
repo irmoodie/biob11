@@ -1,0 +1,239 @@
+---
+title: "Article exercise"
+subtitle: "Exercise 11"
+date: 2025-04-07
+execute:
+  echo: true
+  eval: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse, quietly = TRUE)
+```
+
+# Instructions
+
+In this assignment you will read the introduction and methods sections of a published research paper. However, the results and discussion sections have been removed, as have most references to statistical methods used. **For this exercise to be useful, please do not look-up the original paper.** This is not a test, it is a learning exercise.
+
+**The redacted version of the paper can be downloaded [here](https://github.com/irmoodie/teaching_datasets/blob/main/cricket_density/article.pdf).**
+
+**The dataset the researchers collected can be downloaded [here](https://github.com/irmoodie/teaching_datasets/blob/main/cricket_density/cricket_density.csv).**
+
+Your task is to:
+
+1. Identify the research questions and hypotheses of the study.
+2. Design a set of statistical methods to test those hypotheses, given the data the authors collected, and write the missing *Statistical analysis* section of the methods section.
+3. Carry out those statistical tests, and produce tables and figures that could make up the missing *Results* section of the paper.
+
+## Identify the hypotheses
+
+Read through the paper, and highlight any sentence that could form a testable hypothesis. For example on page 3:
+
+> "we expected that males perceiving high-density environments would have larger testes and accessory glands (that produce seminal fluid) due to increased sperm competition."
+
+This is a clear statement of a hypothesis about how perceived population density could have a directional effect on testes and accessory gland size.
+
+**Identify *at least* one hypothesis from the paper in each of the following topics:**
+
+- Metabolic rate
+- Reproductive investment
+- Aggressive behaviours
+- Song characteristics
+
+If while reading you develop your own own hypotheses, you can also add them.
+
+## Understand the data
+
+Before moving any further, now would be a good time to see what data you have to work with. I suggest you setup RStudio and a RMarkdown file if you haven't already. Use the guides below to help.
+
+::: {.callout-note collapse="true" icon="false"}
+#### How to setup RStudio
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/writing_assignment`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+#### Helpful functions
+
+- `library(package-name)` to load a package.
+- `read_csv("filename_of_file.csv")` to load a csv file (requires `tidyverse`). 
+- `filter()` to subset the data based on specific conditions (requires `tidyverse`).
+- `group_by()` to group the data by one or more variables (requires `tidyverse`).
+- `summarise()` to calculate summary statistics (e.g., mean, median, sum) for each group (requires `tidyverse`).
+
+:::
+
+The dataset (download link at the top of the page) contains 29 variables. You are not requried to use them all. A basic definition is given for each variable below, but consulting the original paper is required to fully understand what each means, and to decide how to use it properly in a statistical test. The dataset also contains many NA values, as not all crickets were used for all experiments. Be mindful of this when working with it.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Variable definitions
+
+##### Cricket variables
+
+- `cricket_id`: identifier of the cricket
+- `juvenile_environment`: either `high_density` or `low_density`
+
+##### Respiration variables
+- `resp_mass_g`: mass in grams of the cricket prior to the respiration measurements
+- `resp_age_days`: age of the cricket in days prior to the respiration measurements
+- `resp_volume_co2`: rate of $\text{CO}_2$ production (μL/min)
+- `resp_volume_o2`: rate of $\text{O}_2$ consumption (μL/min)
+
+##### Disection variables
+
+- `dis_mass_g`: mass in grams of the cricket prior to the disection
+- `dis_age_days`: age of the cricket in days prior to disection
+- `dis_accessory_g`: mass in grams of the accessory glands
+- `dis_testes_g`: mass in grams of the testes
+
+##### Song variables
+
+- `song_mass_g`: mass in grams of the cricket prior to the song measurements
+- `song_age_days`: age of the cricket in days prior to song measurements
+- `song_chirp_rate`: probably chirps per second
+- `song_chirp_duration`: length of chirps (seconds)
+- `song_pulses_per_chirp`: average number of pulses per chirp
+- `song_pulse_duration`: average length of pulse duration
+- `song_dominant_frequency`: song dominant frequency (kHz)
+
+##### Aggresion variables
+
+- `agg_mass_g`: mass in grams of the cricket prior to the aggresion trials
+- `agg_age_days`: age of the cricket in days prior to the aggression trials
+- `agg_trial_id`: identifier of the trial (shared between two crickets)
+- `agg_winner`: was the cricket deemed to have won the aggression trial?
+- `agg_dot_colour`: the colour dot that was used to identify the cricket in the trial
+- `agg_female_present`: did the trial have a female present in the center of the arena?
+- `agg_num_wins`: the number of battles the cricket won
+- `agg_num_battles`: the total number of battles in the trial
+- `agg_first_behaviour`: was the cricket the first in the trial to show an aggressive behaviour?
+- `agg_first_song`: was the cricket the first in the trial to sing aggressively?
+- `agg_first_song_length`: length of the first aggressive song the cricket sang.
+- `agg_first_winner`: was the cricket the winner of the first aggressive encounter?
+
+:::
+
+Once you have the dataset loaded, and have a general idea of the data available to you, move to the next section.
+
+## Design the statistical analysis
+
+Take each of your identified hypotheses and complete the following steps:
+
+1. Decide which variables you can use to test it. What are your response and explanatory variables?
+2. Decide on a test statistic (mean, variance, standard deviation, difference in means, $F$, $\chi^2$, correlation, etc) that would be best to address the hypothesis.
+3. Turn the hypothesis into a clear null and alternative hypothesis. Make sure to indicate the direction (lesser, greater, two-sided) if appropriate.
+4. Write a short paragraph that could be used in the statistical analysis section in the paper.
+
+::: {.callout-note collapse="true" icon="false"}
+#### Guide on how to write about a statistical analysis
+
+For each statistical approach, include the following in your text:
+
+- **Objective**: Describe the rationale for the analysis and how it relates to the study objective.
+- **Variables**: Define the experimental unit and the response and explanatory variables clearly.
+- **Statistical method**: Describe the statistical method (e.g., ANOVA, difference in means, linear regression). How was the null distribution generated? What (if any) $\alpha$ value will you use (e.g., $\alpha$ = 0.05?). How will you calculate the p-value?
+- **Implementation**: Describe the function (e.g., `calculate()` from the `infer` package), package (e.g. `infer`), and software (e.g., R version 4.4.1) used and include any appropriate citations.
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+#### How to cite R correctly
+
+To generate a citation for R itself, you can run:
+```{r}
+citation()
+```
+
+To get the name of the version of R you are running:
+```{r}
+R.version.string
+```
+
+To get the citation for any package you are using:
+```{r}
+citation("tidyverse")
+```
+
+```{r}
+citation("infer")
+```
+
+::: 
+
+## Create appropriate tables and or figures
+
+Use `summarize()` and `ggplot()` to create a set of tables/figures that illustrate each hypothesis. You should create *at least* 4 tables/figures (one for each topic). You will refer to these tables/figures in your results section. Ensure that any plot clearly shows the variables in questions and that the axis are clearly labelled.
+
+Anytime you report a value in a table, try and also provide 95% confidence intervals (if approportiate).
+
+::: {.callout-note collapse="true" icon="false"}
+#### `ggplot2` quick guide
+
+```{r}
+#| eval: false
+my_data |> #<1>
+  ggplot(mapping = aes(x = _____, y = _____, colour = _____, fill = _____)) + #<2>
+  geom_____() + #<3>
+  labs(x = _____, y = _____, title = _____) + #<4>
+  theme______() #<5>
+```
+1. Your dataset.
+2. Identify which variables should be mapped to which features of the plot.
+3. Identify what geometries you will use. More than one is allowed!
+4. Give your plot clear axis labels.
+5. Change the theme if you wish.
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+#### Markdown tables quick guide
+
+If you would like your tables to format nicely when you "knit" your RMarkdown file, you can pipe them into the `knitr` function called `kable()`. You need to either load the `knitr` package first, or you can simply write `knitr::kable()`. This syntax allows R to access a single function within a package, without loading the whole package.
+
+When the document is knitted, they will look nice:
+
+```{r}
+iris |> 
+  group_by(Species) |>
+  summarise(
+    n = n(),
+    mean_sepal_length = mean(Sepal.Length),
+    mean_petal_length = mean(Petal.Length)
+    ) |>
+  knitr::kable()
+```
+
+:::
+
+## Perform the statistical analysis
+
+Use what you have learned during the course so far to conduct the analysis you have described. Make use of the `infer` package. Use examples from previous exercises, or from the [`infer` set of examples](https://infer.tidymodels.org/articles/observed_stat_examples.html). Record the outcome of each test in the RMarkdown document.
+
+## Write a results section
+
+A results section is where you report your findings to all the hypotheses laid out in the introduction and methods. You have already described your statistical analysis in the methods section, so there is no need to go into great detail here. Importantly, in a paper with separate results and discussion sections, you should not discuss your findings in the results section, only report them. Any time you report a result, you should back it up with a statistic, and a relevant figure. A helpful two part structure you can follow for each result is the following:
+
+1. Report the overall result in plain language. If the reader reads only this sentence, they should get the whole picture in broad terms.
+
+> Perceived population density during development had X effect on reproductive investment.
+
+2. Report the result in more specific terms. Make reference to the source of your results, such as statistical tests, tables and figures. You may have several sentences like this for each overall result.
+
+> Accessory gland mass [did/did not] differ significantly between males reared in high or low densities (difference in means test, diff = X, $p = Y, figure Z).
+
+## Give the paper a title
+
+Often the title of a paper will summarise the results in a single line. Can you think of a good title that summarises what you found?
+
+## End of the exercise
+
+Once you are finished with the exercise (or at the end of the exercise session if you have not finished), submit your work to the [Canvas assignment](https://canvas.education.lu.se/courses/33414/assignments/243657). You will not be graded, and instead I will provide broad feedback to the class.
+
+
+
