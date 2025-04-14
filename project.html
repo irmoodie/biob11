@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resources – BIOB11</title>
+<title>Project work – BIOB11</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -65,10 +67,67 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<meta property="og:title" content="Resources – BIOB11">
-<meta property="og:description" content="Homepage for BIOB11 - Experimental Design and Analysis for Biologists at Lund University, VT25">
+    const options = {
+      valueNames: ['listing-subtitle','listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Project work – BIOB11">
 <meta property="og:site_name" content="BIOB11">
 </head>
 
@@ -81,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./resources.html">Resources</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project.html">Project work</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -132,13 +191,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources.html" class="sidebar-item-text sidebar-link active">
+  <a href="./resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project.html" class="sidebar-item-text sidebar-link">
+  <a href="./project.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Project work</span></a>
   </div>
 </li>
@@ -147,41 +206,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#books" id="toc-books" class="nav-link active" data-scroll-target="#books">Books</a>
-  <ul class="collapse">
-  <li><a href="#physical-books" id="toc-physical-books" class="nav-link" data-scroll-target="#physical-books">Physical books</a>
-  <ul class="collapse">
-  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a></li>
-  </ul></li>
-  <li><a href="#online-books" id="toc-online-books" class="nav-link" data-scroll-target="#online-books">Online books</a>
-  <ul class="collapse">
-  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
-  <li><a href="#statistics-with-r" id="toc-statistics-with-r" class="nav-link" data-scroll-target="#statistics-with-r">Statistics (with R)</a></li>
-  <li><a href="#statistics-1" id="toc-statistics-1" class="nav-link" data-scroll-target="#statistics-1">Statistics</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a>
-  <ul class="collapse">
-  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R packages</a>
-  <ul class="collapse">
-  <li><a href="#general" id="toc-general" class="nav-link" data-scroll-target="#general">General</a></li>
-  <li><a href="#statistics-2" id="toc-statistics-2" class="nav-link" data-scroll-target="#statistics-2">Statistics</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Resources</h1>
+<h1 class="title">Project work</h1>
 </div>
 
 
@@ -198,81 +231,65 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="books" class="level1">
-<h1>Books</h1>
-<p>During this course, we will make reference to the following books. None of these books are intended to be read “cover to cover”. Instead, we will reference the relevant chapters at each part of the course. All the books have a high degree of topic overlap, but explain the key concepts slightly differently.</p>
-<p>Please do not feel pressured to buy a copy of Ennos &amp; Johnsson (2018) if you do not want to (note the library has some copies). It is a good book, but the other free books I have listed below cover all the same topics.</p>
-<section id="physical-books" class="level2">
-<h2 class="anchored" data-anchor-id="physical-books">Physical books</h2>
-<section id="statistics" class="level3">
-<h3 class="anchored" data-anchor-id="statistics">Statistics</h3>
-<ul>
-<li><a href="https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=5164304" target="_blank">Statistical and data handling skills in biology, 4th ed., Ennos &amp; Johnsson (2018)</a></li>
-</ul>
-</section>
-</section>
-<section id="online-books" class="level2">
-<h2 class="anchored" data-anchor-id="online-books">Online books</h2>
-<section id="r" class="level3">
-<h3 class="anchored" data-anchor-id="r">R</h3>
-<ul>
-<li><a href="https://r4ds.hadley.nz/" target="_blank">R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel &amp; Grolemund (2023)</a> (R reference book)</li>
-<li><a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide, Xie, Allaire &amp; Grolemund (2023)</a> (RMarkdown reference book)</li>
-</ul>
-</section>
-<section id="statistics-with-r" class="level3">
-<h3 class="anchored" data-anchor-id="statistics-with-r">Statistics (with R)</h3>
-<ul>
-<li><a href="https://moderndive.com/v2/" target="_blank">Statistical Inference via Data Science 2nd ed., Ismay, Kim &amp; Valdivia (2025)</a> (Ch. 1-4, 7-9)</li>
-<li><a href="https://openintro-ims.netlify.app/" target="_blank">Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel &amp; Hardin (2024)</a> (Ch. 2, 11-22)</li>
-</ul>
-</section>
-<section id="statistics-1" class="level3">
-<h3 class="anchored" data-anchor-id="statistics-1">Statistics</h3>
-<ul>
-<li><a href="https://bradduthie.github.io/stats/" target="_blank">Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed.&nbsp;Duthie (2025)</a>
-<ul>
-<li>Also available as an <a href="https://bradduthie.github.io/audiobook.html" target="_blank">audiobook</a></li>
-</ul></li>
-</ul>
-</section>
-</section>
-</section>
-<section id="software" class="level1">
-<h1>Software</h1>
-<p>During the course we will use R and RStudio as tools to handle data, make plots and do statistics.</p>
-<ul>
-<li><a href="https://www.r-project.org/" target="_blank">The R Project for Statistical Computing</a></li>
-<li><a href="https://posit.co/download/rstudio-desktop/" target="_blank">RStudio Desktop</a></li>
-</ul>
-<p>If you want to use another software package for these purposes, you are very welcome to, but you do so at your own undertaking.</p>
-<section id="r-packages" class="level2">
-<h2 class="anchored" data-anchor-id="r-packages">R packages</h2>
-<p>We will make use of a set of R packages that are part of the extended <code>tidyverse</code> set of packages. Below are the websites for the main ones we will use, which contain guides, cheatsheets and reference materials.</p>
-<section id="general" class="level3">
-<h3 class="anchored" data-anchor-id="general">General</h3>
-<ul>
-<li><a href="https://www.tidyverse.org/" target="_blank"><code>tidyverse</code></a>
-<ul>
-<li><a href="https://ggplot2.tidyverse.org/" target="_blank"><code>ggplot2</code></a> (Plotting data)</li>
-<li><a href="https://dplyr.tidyverse.org/" target="_blank"><code>dplyr</code></a> (Manipulating data)</li>
-<li><a href="https://tidyr.tidyverse.org/" target="_blank"><code>tidyr</code></a> (Tidying data)</li>
-<li><a href="https://readr.tidyverse.org/" target="_blank"><code>readr</code></a> (Importing/exporting data)</li>
-</ul></li>
-</ul>
-</section>
-<section id="statistics-2" class="level3">
-<h3 class="anchored" data-anchor-id="statistics-2">Statistics</h3>
-<ul>
-<li><a href="https://infer.tidymodels.org/" target="_blank"><code>infer</code></a></li>
-</ul>
 
 
-</section>
-</section>
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-title-sort" data-direction="asc">
+          Topic
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Session
+</th>
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-listing-date-sort="1744581600000" data-listing-file-modified-sort="1744616337805" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="447" data-listing-title-sort="Group projects overview" data-listing-filename-sort="01_introduction.qmd">
+<td>
+<span class="listing-subtitle">Session 1</span>
+</td>
+<td>
+<span class="listing-date">2025-04-14</span>
+</td>
+<td>
+<a href="./project/01_introduction.html" class="title listing-title">Group projects overview</a>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -28,5 +28,11 @@
       "/exercises/10_test_analysis_2.html",
       "/exercises/11_article_exercise.html"
     ]
+  },
+  {
+    "listing": "/project.html",
+    "items": [
+      "/project/01_introduction.html"
+    ]
   }
 ]
