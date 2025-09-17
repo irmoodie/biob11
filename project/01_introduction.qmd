@@ -1,0 +1,76 @@
+---
+title: "Group projects overview"
+subtitle: "Session 1"
+date: 2025-04-14
+execute:
+  echo: true
+  eval: false
+---
+
+# Overview
+
+In groups of 3-4, you will design and carry out a small research project. Your project should:
+
+- be motivated by a clear hypothesis
+- take 1-3 days to collect data
+- be possible to analyse using methods we have covered during the course
+- not require ethical approval
+
+Your project can be:
+
+- experimental (involving manipulations)
+- observation based
+- survey based
+- literature based (gathering data from other works)
+
+## Groups
+
+If you have a preference for who you work with, self assign yourself to a group in Canvas.
+
+**Do this before 13:15 14th April.**
+
+## Rough schedule
+
+| Date       | Activity                              |
+|------------|---------------------------------------|
+| Mon 14     | Brainstorming and form groups         |
+| Tues 15    | Project proposals / collect data      |
+| Easter break |                                     |
+| Tues 22    | Collect data                          |
+| Wed 23     | Collect data / analyse                |
+| Thurs 24   | Analyse / write                       |
+| Fri 25     | Write / presentation prep (Report due)|
+| Mon 26     | Presentations                         |
+
+## Project proposal
+
+**DUE: 15/4**
+
+Your groups needs to make a project proposal to be reviewed. It should contain:
+
+- A brief motivation for the project (why)
+- How you plan to collect data
+  - What (if any) equipment you need
+  - How long you need to collect the data
+- How you would analyse the data
+
+## Project report
+
+**DUE: 25/4**
+
+- 2-3 pages
+- Abstract: summary
+- Introduction: background, motivation and hypotheses
+- Methods: brief description of data collection and statistical methods
+- Results: figures, results from statistics
+- Discussion: interpretation, link back to introduction, future directions
+
+## Project presentations
+
+**DUE: 28/4**
+
+- 10 minute presentation + 5 minute questions
+- 3 groups at a time
+- 1 group primary opponent
+
+

@@ -1,0 +1,13 @@
+---
+title: "Project work"
+listing:
+  contents: project
+  type: table
+  fields: [subtitle, date, title]
+  sort: "date"
+  field-display-names:
+    date: "Date"
+    subtitle: "Session"
+    title: "Topic"
+  date-format: iso
+---

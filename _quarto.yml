@@ -33,7 +33,7 @@ website:
       - slides.qmd
       - exercises.qmd
       - resources.qmd
-      - exam.qmd
+      - project.qmd
 
 format:
   html:
