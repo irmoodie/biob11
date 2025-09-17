@@ -1,6 +1,6 @@
-This repo contains the course files and resources for *BIOB11: Experimental Design and Analysis for Biologists* (2025).
+This repo contains the course files and resources for *BIOB11: Experimental Design and Analysis for Biologists* (2025) organised as a quarto website. At the end of each semester, the site is archived via GitHub releases.
 
-The site makes heavy use of [R for WebAssembly](https://github.com/r-wasm) to enable interactive teaching examples in a static website framework.
+The site makes use of [R for WebAssembly](https://github.com/r-wasm) to enable interactive teaching examples in a static website framework.
 
 # Dependencies
 - Requires [Quarto v1.6+](https://quarto.org/)
