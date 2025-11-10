@@ -1,0 +1,115 @@
+---
+title: "Null distributions"
+draft: true
+date: 2025-03-31
+subtitle: "Lecture 4"
+webr:
+  packages:
+    - tidyverse
+    - infer
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Hypothesis tests
+### All hypothesis tests follow this general formula
+
+1. Calcualte the **observed test statistic** of our population
+    - Decided by our initial hypothesis
+2. Create a null distribution of the test statistic (in a world where the null hypothesis is true)
+    - What values of our test statistic could we observe?
+    - If we kept taking new samples from our population and calculating our test statistic
+3. Compare our **observed test statistic** with the null distribution
+
+## The null distribution
+### How do we generate one?
+
+1. Clearly state your null hypothesis
+2. Simulate samples that could be collected if your null hypothesis was true
+3. Calculate your chosen statistic from the simulated samples to make a null distribution.
+
+## The null distribution
+### 1. What is the null hypothesis
+
+What is our null hypothesis?
+
+- `"point"` (only response)
+  - "The mean height is not different from 1.8 m"
+  - "The standard deviation of weight is not different from 1.1 kg"
+- `"independence"` (response and explanatory)
+  - "The difference in mean mass does not depend on sex"
+  - "There is no correlation between beak length and body mass"
+
+## The null distribution
+### 2. Generate data under the null hypothesis (`null = "independence"`)
+
+```{r}
+library(tidyverse)
+library(infer)
+
+theme_set(
+  cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1, legend.position = "none")
+)
+
+# tephritis_data <-
+#   read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/tephritis_phenotype/tephritis_phenotype.csv") |>
+#   filter(wing_length_mm < 10, body_length_mm < 10)
+
+set.seed(123)
+# Generate two normal distributions with different means
+group_a <- rnorm(100, mean = 5, sd = 2) # Mean = 5, SD = 2
+group_b <- rnorm(100, mean = 6.5, sd = 2) # Mean = 6.1, SD = 2
+
+# Combine into a data frame
+growth_data <- tibble(
+  group = rep(c("Control", "Treatment"), each = 100),
+  mass = c(group_a, group_b)
+)
+
+# Plot the simulated data
+ggplot(growth_data, aes(x = group, y = mass)) +
+  geom_boxplot(outliers = FALSE) +
+  geom_jitter(alpha = 0.3) +
+  labs(
+    title = "Growth hormone treatment data",
+    x = "Experimental group",
+    y = "Body mass (g)"
+  )
+
+```
+
+## The null distribution
+### 2. Generate data under the null hypothesis (`null = "independence"`)
+
+- Null hypothesis: 
+  - "Mean body mass does not differ between control and treatment"
+  - "The mean difference in body mass between control and treatment = 0"
+  - "Mean body mass does not depend on experimental group"
+- If the null hypothesis is TRUE, then the experimental group of an individual should have no affect on their mass
+  - Mass and experimental group are independant of each other
+
+## The null distribution
+### 2. Generate data under the null hypothesis (`null = "independence"`)
+
+- Permutating/shuffling/randomising the experimental group of individuals in the data
+
+```{r}
+#| fig-width: 10
+permute_data <-
+  growth_data |>
+  specify(mass ~ group) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 12, type = "permute")
+
+ggplot(permute_data, aes(x = group, y = mass)) +
+  geom_boxplot(outliers = TRUE) +
+  labs(
+    title = "Growth hormone treatment data",
+    x = "Experimental group",
+    y = "Body mass (g)"
+  ) +
+  facet_wrap(~replicate)
+
+```
+

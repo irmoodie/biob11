@@ -1,0 +1,86 @@
+---
+title: "Type I Error and Sample Size"
+subtitle: "Exercise 12"
+draft: true
+date: 2025-04-22
+execute:
+  echo: true
+  eval: true
+format:
+  html:
+    code-fold: false
+---
+
+## Introduction
+
+In hypothesis testing, Type I error occurs when we reject a null hypothesis that is actually true.
+The probability of making this error is controlled by our significance level (alpha), typically set at 0.05.
+
+This exercise demonstrates that increasing sample size does not affect the Type I error rate.
+
+## Simulation Setup
+
+```{r}
+# Set parameters
+set.seed(123) # For reproducibility
+sample_sizes <- c(10, 30, 50, 100, 200, 500, 1000, 10000)
+num_simulations <- 10000 # Number of simulations for each sample size
+alpha <- 0.05 # Significance level
+```
+
+## Running the Simulation
+
+We'll simulate drawing samples from a normal distribution with mean=0 and sd=1. 
+The null hypothesis H₀: μ = 0 is true, so any rejections are Type I errors.
+
+```{r}
+# Function to run one simulation for a given sample size
+run_simulation <- function(n) {
+  sample_data <- rnorm(n, mean = 0, sd = 1)
+  t_test_result <- t.test(sample_data, mu = 0)
+  return(t_test_result$p.value < alpha) # TRUE if null hypothesis is rejected
+}
+
+# Run simulations for each sample size
+results <- data.frame(
+  sample_size = sample_sizes,
+  type_I_error_rate = numeric(length(sample_sizes))
+)
+
+for (i in 1:length(sample_sizes)) {
+  n <- sample_sizes[i]
+  rejections <- replicate(num_simulations, run_simulation(n))
+  results$type_I_error_rate[i] <- mean(rejections)
+}
+```
+
+## Results
+
+```{r}
+# Print the results
+results
+
+# Plot the results
+library(ggplot2)
+ggplot(results, aes(x = sample_size, y = type_I_error_rate)) +
+  geom_line() +
+  geom_point(size = 3) +
+  geom_hline(yintercept = alpha, linetype = "dashed", color = "red") +
+  labs(
+    x = "Sample Size",
+    y = "Type I Error Rate",
+    title = "Type I Error Rate vs. Sample Size"
+  ) +
+  theme_minimal() +
+  scale_x_continuous(trans = "log10", breaks = sample_sizes) +
+  ylim(0, 0.1)
+```
+
+## Discussion
+
+The simulation results show that regardless of sample size, the Type I error rate remains around the significance level of 0.05. This demonstrates an important property of hypothesis testing: when the null hypothesis is true, the probability of falsely rejecting it is controlled by alpha, not by sample size.
+
+Note that while the observed error rates may not be exactly 0.05 due to random variation in our simulations, they should hover around this value with no systematic trend related to sample size.
+
+Additional note: While Type I error rates are not affected by sample size, it's important to remember that Type II error rates (failing to reject a false null) are strongly affected by sample size, with larger samples providing greater statistical power.
+
