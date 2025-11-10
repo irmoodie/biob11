@@ -425,6 +425,7 @@ my_data_1 <- function_1(my_data) # <1>
 my_data_2 <- function_2(my_data_1) # <2>
 my_data_final <- function_3(my_data_2) # <3>
 ```
+
 1. The original data, `my_data`, is passed to `function_1()`, and the result is stored in `my_data_1`.
 2. The transformed data, `my_data_1`, is then passed to `function_2()`, and the result is stored in `my_data_2`.
 3. Finally, the data from `my_data_2` is passed to `function_3()`, and the result is stored in `my_data_final`.
@@ -546,6 +547,7 @@ iris |>
   ggplot(aes(x = Sepal.Length, y = Sepal.Width, colour = Species)) +
   geom_point()
 ```
+
 1. Make sure to load the `ggplot2` package before the `ggplot()` function. Code is always executed top to bottom.
 :::
 

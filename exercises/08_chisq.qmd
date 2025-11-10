@@ -68,11 +68,13 @@ observed_statistic <-
 
 observed_statistic #<5>
 ```
+
 1. The name of the dataset.
 2. Specify which is your response and explanatory variable.
 3. The specific test statistic we want to use requires us to provide our null hypothesis. In this example, we want to know if the two variables are associated, so our null hypothesis is that they are independent.
 4. Calculate the observed statistic.
 5. Print the observe statistic to the console.
+
 :::
 
 4. To generate a null distribution, we can use a permutation approach, where we shuffle the assigned categories and calculate our statistic many many times. Generate a null distribution.
@@ -87,11 +89,13 @@ null_dist <-
   generate(reps = 10000, type = "permute") |> #<4>
   calculate(stat = "______") #<5>
 ```
+
 1. The name of the dataset.
 2. Specify which is your response and explanatory variable.
 3. Our hypothesis is that our response variable is independant of our explanatory variable.
 4. Simulate data using permuations. This may take a few seconds to minutes depending on your computer.
 5. From each of our simulated permutation samples, calculate the test statistic.
+
 :::
 
 5. Plot the null distribution and the observed statistic.
@@ -104,6 +108,7 @@ null_dist |>
   shade_p_value(obs_stat = observed_statistic, direction = "greater") + #<2>
   labs(x = "______ statistic") #<3>
 ```
+
 1. Pipe your `null_dist` object into `visualise()`.
 2. Plot your `observed_statistic`, and specify that the direction should be greater. Our statistic is squared, so is naturally bounded at 0.
 3. You can change the axis labels to make the plot more clear.
@@ -117,6 +122,7 @@ null_dist |>
 null_dist |>
   get_p_value(obs_stat = observed_statistic, direction = "greater")
 ```
+
 :::
 
 7. What are your conclusions? State them in terms of your null hypothesis, and in a more general statement.
@@ -136,7 +142,7 @@ data |>
   ylab("Proportion") +
   theme(legend.position = "right")
 
-observed_statistic <- 
+observed_statistic <-
   data |>
   specify(response = species, explanatory = habitat) |>
   hypothesize(null = "independence") |>
@@ -144,7 +150,7 @@ observed_statistic <-
 
 observed_statistic
 
-null_dist <- 
+null_dist <-
   data |>
   specify(response = species, explanatory = habitat) |>
   hypothesize(null = "independence") |>
@@ -187,13 +193,21 @@ probabilities <- c(0.36, 0.33, 0.19, 0.10, 0.02)
 
 # Simulate the poll
 set.seed(123) # For reproducibility
-poll_results <- sample(parties, size = 300, replace = TRUE, prob = probabilities)
+poll_results <- sample(
+  parties,
+  size = 300,
+  replace = TRUE,
+  prob = probabilities
+)
 
 poll_data <- tibble(party = poll_results)
 
-write_csv(poll_data, "/Users/iain/Documents/Projects/teaching_datasets/poll_results/poll_results.csv")
+write_csv(
+  poll_data,
+  "/Users/iain/Documents/Projects/teaching_datasets/poll_results/poll_results.csv"
+)
 
-observed_statistic <- 
+observed_statistic <-
   poll_data |> #<1>
   specify(response = party) |> #<2>
   hypothesize(
@@ -205,10 +219,10 @@ observed_statistic <-
       "yellow" = 0.08,
       "purple" = 0.02
     )
-   ) |>
+  ) |>
   calculate(stat = "Chisq") #<5>
 
-null_dist <- 
+null_dist <-
   poll_data |> #<1>
   specify(response = party) |> #<2>
   hypothesize(
@@ -220,8 +234,8 @@ null_dist <-
       "yellow" = 0.08,
       "purple" = 0.02
     )
-   ) |>
-   generate(reps = 10000, type = "draw") |>
+  ) |>
+  generate(reps = 10000, type = "draw") |>
   calculate(stat = "Chisq") #<5>
 
 null_dist |>
@@ -262,7 +276,7 @@ Report the following statistics:
 ::: {.callout-note collapse="true" icon="false"}
 #### Code hint
 ```{r}
-observed_statistic <- 
+observed_statistic <-
   _____ |> #<1>
   specify(response = _____) |> #<2>
   hypothesize(
@@ -274,17 +288,19 @@ observed_statistic <-
       "______" = ______,
       "______" = ______
     )
-   ) |>
+  ) |>
   calculate(stat = "______") #<5>
 
 observed_statistic #<6>
 ```
+
 1. The name of the dataset.
 2. Specify which is your response variable.
 3. The specific test statistic we want to use requires us to provide our null hypothesis. In this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use `point`.
 4. Here we need to put in our expected or hypothesised proportions under the null hypothesis.
 5. Calculate the observed statistic.
 6. Print the observe statistic to the console.
+
 :::
 
 4. To generate a null distribution, we can `draw` from a probability distribution defined by our `hypothesize()` step.
@@ -304,16 +320,18 @@ null_dist <-
       "______" = ______,
       "______" = ______
     )
-   ) |>
-   generate(reps = 10000, type = "draw") |> #<5>
+  ) |>
+  generate(reps = 10000, type = "draw") |> #<5>
   calculate(stat = "______") #<6>
 ```
+
 1. The name of the dataset.
 2. Specify your response variable.
 3. In this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use `point`.
 4. Here we need to put in our expected or hypothesised proportions under the null hypothesis.
 5. Simulate data using `draw`
 6. From each of our simulated samples, calculate the test statistic.
+
 :::
 
 5. Plot the null distribution and the observed statistic.
@@ -326,9 +344,11 @@ null_dist |>
   shade_p_value(obs_stat = observed_statistic, direction = "greater") + #<2>
   labs(x = "______ statistic") #<3>
 ```
+
 1. Pipe your `null_dist` object into `visualise()`.
 2. Plot your `observed_statistic`, and specify that the direction should be greater. Our statistic is squared, so is naturally bounded at 0.
 3. You can change the axis labels to make the plot more clear.
+
 :::
 
 6. Use your observed statistic and your null distribution to calculate a p-value.
@@ -339,6 +359,7 @@ null_dist |>
 null_dist |>
   get_p_value(obs_stat = observed_statistic, direction = "greater")
 ```
+
 :::
 
 7. What are your conclusions? State them in terms of your null hypothesis, and in a more general statement.

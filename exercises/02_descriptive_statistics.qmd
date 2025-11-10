@@ -609,15 +609,16 @@ my_species <-
 #| eval: false
 #| echo: true
 descriptive_data <-
-  my_species |> 
+  my_species |>
   group_by(sex) |>
   summarise(
     mean_body_mass_g = mean(______, na.rm = TRUE), #<1>
     sd_body_mass_g = sd(______, na.rm = TRUE), #<1>
-    )
+  )
 
 mean_data #<2>
 ```
+
 1. Replace `_____` with your chosen variable
 2. To print the results
 :::
@@ -637,6 +638,7 @@ my_species |>
   ggplot(aes(x = sex, y = ______)) + #<1>
   geom_boxplot()
 ```
+
 1. Replace `_____` with your chosen variable
 :::
 

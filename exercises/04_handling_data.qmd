@@ -209,6 +209,7 @@ banksiae,1.7,8
 ```{r}
 tephritis_data <- read_csv("tephritis_phenotype.csv") #<1>
 ```
+
 1. Be sure to use quote marks around the file name.
 
 If that worked, you should get the following message with some information about the data:
@@ -232,6 +233,7 @@ Let's use a few more functions to get a better understanding of the dataset. You
 ```{r}
 print(tephritis_data) #<1>
 ```
+
 1. We can also just simply write `tephritis_data` without the print statement, and we would get the same output.
 
 We can also use `glimpse()` for an alternative view:
@@ -305,6 +307,7 @@ We will use a `filter()` function to inspect rows that contain improbably values
 ```{r}
 tephritis_data |> filter(wing_length_mm > _____) #<1>
 ```
+
 1. This will only let though rows that have a `wing_length_mm` greater than `>` _____
 
 What do you think? Do these values seem real, or are they probably mistakes? **Use the code above to check your other suspicious variables.** If you think these values are mistakes, then we need to get rid of them.
@@ -317,6 +320,7 @@ clean_data <- #<1>
   filter(wing_length_mm < _____) |>
   filter(______ ______ ______) #<2>
 ```
+
 1. I assigned the cleaned data to a new object, called `clean_data`.
 2. You can add more `filter()` functions as you wish.
 

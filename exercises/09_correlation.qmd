@@ -76,6 +76,7 @@ observed_statistic <-
 
 observed_statistic #<4>
 ```
+
 1. The name of the dataset.
 2. A formula in the form of `dependant ~ independant`
 3. Calculate the observed statistic.
@@ -90,6 +91,7 @@ observed_fit <-
 
 observed_fit #<4>
 ```
+
 1. The name of the dataset.
 2. A formula in the form of `dependant ~ independant`
 3. Fit the linear model.
@@ -104,7 +106,7 @@ observed_fit #<4>
 **Correlation:**
 ```{r}
 ______ <-
-  ______ |>  #<1>
+  ______ |> #<1>
   specify(______ ~ ______) |> #<2>
   generate(reps = ______, type = "______") |> #<3>
   calculate(stat = "______") #<4>
@@ -113,6 +115,7 @@ percentile_ci <- get_ci(______, type = "______", level = ______) #<5>
 
 percentile_ci #<6>
 ```
+
 1. The name of the dataset.
 2. A formula in the form of `dependant ~ independant` (order does not matter for a correlation)
 3. Decide how you will generate a datasets to use in your sampling distribution.
@@ -123,7 +126,7 @@ percentile_ci #<6>
 **Linear regression:**
 ```{r}
 ______ <-
-  ______ |>  #<1>
+  ______ |> #<1>
   specify(______ ~ ______) |> #<2>
   generate(reps = ______, type = "______") |> #<3>
   fit() #<4>
@@ -132,6 +135,7 @@ percentile_ci <- get_ci(______, point_estimate = ______, level = ______) #<5>
 
 percentile_ci #<6>
 ```
+
 1. The name of the dataset.
 2. A formula in the form of `dependant ~ independant`
 3. Decide how you will generate a datasets to use in your sampling distribution.
@@ -148,12 +152,13 @@ percentile_ci #<6>
 **Correlation:**
 ```{r}
 ______ <-
-  ______ |>  #<1>
+  ______ |> #<1>
   specify(______ ~ ______) |> #<2>
-  hypothesize(null = "______") |>#<3>
+  hypothesize(null = "______") |> #<3>
   generate(reps = ______, type = "______") |> #<4>
   calculate(stat = "______") #<5>
 ```
+
 1. The name of the dataset.
 2. A formula in the form of `dependant ~ independant` (order does not matter for a correlation)
 3. What is your null hypothesis?
@@ -163,12 +168,13 @@ ______ <-
 **Linear regression:**
 ```{r}
 ______ <-
-  ______ |>  #<1>
+  ______ |> #<1>
   specify(______ ~ ______) |> #<2>
   hypothesize(null = "______") |> #<3>
   generate(reps = ______, type = "______") |> #<4>
   fit() #<5>
 ```
+
 1. The name of the dataset.
 2. A formula in the form of `dependant ~ independant`
 3. What is your null hypothesis?
@@ -190,6 +196,7 @@ ______ |>
 _____ |> #<4>
   get_p_value(obs_stat = ______, direction = "______")
 ```
+
 1. Pipe your null distribution object into `visualise()`.
 2. Plot your observed statistic(s), and specify that the direction of your hypothesis.
 3. You can change the axis labels to make the plot more clear.

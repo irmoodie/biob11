@@ -184,6 +184,7 @@ my_data |> #<1>
   labs(x = _____, y = _____, title = _____) + #<4>
   theme______() #<5>
 ```
+
 1. Your dataset.
 2. Identify which variables should be mapped to which features of the plot.
 3. Identify what geometries you will use. More than one is allowed!
@@ -199,13 +200,13 @@ If you would like your tables to format nicely when you "knit" your RMarkdown fi
 When the document is knitted, they will look nice:
 
 ```{r}
-iris |> 
+iris |>
   group_by(Species) |>
   summarise(
     n = n(),
     mean_sepal_length = mean(Sepal.Length),
     mean_petal_length = mean(Petal.Length)
-    ) |>
+  ) |>
   knitr::kable()
 ```
 

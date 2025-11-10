@@ -72,6 +72,7 @@ observed_stat <-
 
 observed_stat #<4>
 ```
+
 1. The name of the dataset.
 2. Specify which is your response and explanatory variable.
 3. Calculate the observed statistic.
@@ -90,6 +91,7 @@ null_dist <-
   generate(reps = 10000, type = "permute") |> #<4>
   calculate(stat = "______") #<5>
 ```
+
 1. The name of the dataset.
 2. Specify which is your response and explanatory variable.
 3. Our hypothesis is that our response variable is independant of our explanatory variable.
@@ -107,6 +109,7 @@ null_dist |>
   shade_p_value(obs_stat = observed_stat, direction = "greater") + #<2>
   labs(x = "______ statistic") #<3>
 ```
+
 1. Pipe your `null_dist` object into `visualise()`. You can change the number of bins if you wish.
 2. Plot your `observed_stat`, and specify that the direction should be greater. Our statistic is a ratio, so is naturally bounded at 0.
 3. You can change the axis labels to make the plot more clear.
@@ -120,6 +123,7 @@ null_dist |>
 null_dist |>
   get_p_value(obs_stat = observed_stat, direction = "greater")
 ```
+
 :::
 
 7. What are your conclusions? State them both clearly in terms of the null hypothesis *and* as if you were describing them to someone who does not know about statistics.
@@ -129,7 +133,9 @@ null_dist |>
 library(tidyverse, quietly = TRUE)
 library(infer, quietly = TRUE)
 
-crop_growth <- read_csv("/Users/iain/Documents/Projects/teaching_datasets/crop_growth/crop_growth.csv")
+crop_growth <- read_csv(
+  "/Users/iain/Documents/Projects/teaching_datasets/crop_growth/crop_growth.csv"
+)
 
 ggplot(crop_growth, aes(x = dry_mass_g)) +
   geom_histogram() +
@@ -148,7 +154,7 @@ null_f <-
   calculate(stat = "F")
 
 visualise(null_f) +
-shade_p_value(observed_f, direction = "greater") +
+  shade_p_value(observed_f, direction = "greater") +
   labs(x = "F statistic")
 
 null_f |>
@@ -174,6 +180,7 @@ ______ <- #<1>
   ______ |> #<2>
   filter(treatment == "control" | treatment == "______") #<3>
 ```
+
 1. The new name of your filtered dataset
 2. The name of your original dataset
 3. We only keep rows where `treatment` is equal to `"control"` OR `|` where `treatment` is equal to `"______"`
@@ -188,12 +195,13 @@ ______ <- #<1>
 #### Code hint
 ```{r}
 observed_stat <-
-  ______ |>  #<1>
-  specify(response = ______, explanatory = ______) |>  #<2>
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
   calculate(stat = "______", order = c("______", "control")) #<3>
 
 observed_stat #<4>
 ```
+
 1. The name of your new filtered dataset.
 2. Specify which is your response and explanatory variable.
 3. Calculate the observed statistic, specifiying the order as treatment - control. That way a positive number indicates that the treatment made the crops grow bigger.
@@ -212,6 +220,7 @@ null_dist <-
   generate(reps = 10000, type = "______") |> #<4>
   calculate(stat = "______") #<5>
 ```
+
 1. The name of the new dataset.
 2. Specify which is your response and explanatory variable.
 3. Our hypothesis is that our response variable is independant of our explanatory variable.
@@ -229,6 +238,7 @@ null_dist |>
   shade_p_value(obs_stat = observed_stat, direction = "_____") + #<2>
   labs(x = "______") #<3>
 ```
+
 1. Pipe your `null_dist` object into `visualise()`. You can change the number of bins if you wish.
 2. Plot your `observed_stat`, and specify that the direction of the hypothesis?
 3. You can change the axis labels to make the plot more clear.
@@ -242,6 +252,7 @@ null_dist |>
 null_dist |>
   get_p_value(obs_stat = observed_stat, direction = "______")
 ```
+
 :::
 
 7. What are your conclusions of the post-hoc analysis?
@@ -279,7 +290,7 @@ null_dist <-
   calculate(stat = "diff in means", order = c("fertilizer_c", "control"))
 
 visualise(null_dist) +
-shade_p_value(observed_diff, direction = "two-sided") +
+  shade_p_value(observed_diff, direction = "two-sided") +
   labs(x = "Difference in means")
 
 null_dist |>

@@ -103,6 +103,7 @@ bootstrap_statistics |> #<1>
 ggplot(aes(x = stat)) +
 geom_histogram()
 ```
+
 1. Where `bootstrap_statistics` is the data frame of calculated statistics from your bootstrap simulations.
 
 Answer the following questions:
@@ -149,6 +150,7 @@ To visualize these confidence intervals on our bootstrap sampling distribution, 
 ```{r}
 + shade_confidence_interval(endpoints = ______) #<1>
 ```
+
 1. Replace `______` with your percentile confidence intervals
 
 **Write your 95% percentile CI on the board next to your observed test statistics**
@@ -226,6 +228,7 @@ tree_data |> #<3>
   geom_jitter(width = 0.05, alpha = 0.3) +
   geom_pointrange(data = summary_data, aes(ymin = lower_ci, ymax = upper_ci), colour = "red") #<5>
 ```
+
 1. I first make a new dataframe, by combining my observed mean and my confidence interval dataframes with `bind_cols()`
 2. To make sure `ggplot` knows that I want the mean value to be on the same scale as the normal data, I rename it to have the same name.
 3. `tree_data` is my original sample dataframe.
@@ -255,6 +258,7 @@ ______ <- #<3>
 _______ |> #<1>
   mutate(harvest_status = if_else(condition = tree_height_m ______, true = "______", false = "______")) #<2>
 ```
+
 1. Use your sample data frame.
 2. Here we use a `mutate()` function. `mutate()` can create new variables from existing variables. I first write the name of my new variable `harvest_status`, then I use an `if_else()` command. If you have encountered this command in any spreadsheet software, it does the same thing here. It takes a conditional statement `condition`, and if it is `TRUE` it outputs one thing, and if it is `FALSE` it outputs another thing. For example here, you might want `true = "ready to harvest"` and `false = "not ready to harvest"`. Or maybe simply `"yes"` and `"no"`.
 3. To save the changes we made to the sample dataframe, assign it to an object. This could be the same name as your original sample, or a new object.
@@ -279,6 +283,7 @@ ______ <- #<3>
    specify(response = ______, success = "______") |> #<1>
    calculate(stat = "______") #<2>
 ```
+
 1. When we use a proportion as our statistic, we use terminology that comes from thinking about a proportion as a probability. For example, if you flipped a coin 100 times, and recorded the proportion of heads (which we would expect to be about 0.5), then the number of "successes" in our "trial" would be 50. As such, we would say that the probability of flipping a coin and getting a "success" (heads in this case) is 0.5. For `success = "______"`, you should provide the value in your `response = ` variable that would indicate the tree is ready for harvest.
 2. Use the helpfile (`?calculate`) to figure out what you should write to get a proportion.
 3. Assign this to a new object, as we will use it later.
