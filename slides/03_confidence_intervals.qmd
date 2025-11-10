@@ -173,18 +173,15 @@ sample_plots[["sample_dist_obs"]] <-
 ```{r}
 #| echo: false
 forest_plot[["pop"]]
-``
-`
+```
+
 :::
 :::
 
 ## Tree heights in a forest 
 ### Simulated population and sample(s)
-`
-``
-{
-  r
-}
+
+```{r}
 #| echo: false
 #| fig-align: center
 forest_plot[["pop_sample"]]
