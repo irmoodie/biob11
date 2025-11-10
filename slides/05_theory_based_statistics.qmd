@@ -62,18 +62,21 @@ webr:
 
 ```{r}
 # Generate some example data
-set.seed(123)  # For reproducibility
+set.seed(123) # For reproducibility
 
 library(tidyverse, quietly = true)
 library(infer, quietly = true)
-theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+theme_set(
+  cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1, legend.position = "none")
+)
 # Create two groups with random data
-group1 <- sample(round(c(rnorm(50, mean = 42, sd = 7),rep(40, 12)),1))  # Group 1 with mean 5 and standard deviation 1
-group2 <- round(rnorm(10, mean = 6, sd = 1),2)  # Group 2 with mean 6 and standard deviation 1
+group1 <- sample(round(c(rnorm(50, mean = 42, sd = 7), rep(40, 12)), 1)) # Group 1 with mean 5 and standard deviation 1
+group2 <- round(rnorm(10, mean = 6, sd = 1), 2) # Group 2 with mean 6 and standard deviation 1
 
 data <- tibble(hours_worked = group1)
 
-# data <- 
+# data <-
 #   tibble(
 #   group = c(rep("Group 1", 10), rep("Group 2", 10)),
 #   value = c(group1,group2)
@@ -106,7 +109,7 @@ ggplot(data, aes(x = hours_worked)) +
 
 ```{r}
 #| echo: true
-observed_mean <- 
+observed_mean <-
   data |>
   specify(response = hours_worked) |>
   calculate(stat = "mean")
@@ -119,7 +122,7 @@ observed_mean
 
 ```{r}
 #| echo: true
-null_dist_resample <- 
+null_dist_resample <-
   data |>
   specify(response = hours_worked) |>
   hypothesize(null = "point", mu = 40) |>
@@ -142,7 +145,7 @@ null_dist_resample |>
 
 ```{r}
 #| echo: true
-p_value_resampling <- 
+p_value_resampling <-
   null_dist_resample |>
   get_p_value(obs_stat = observed_mean, direction = "greater")
 
@@ -163,7 +166,7 @@ $$
 
 ```{r}
 #| echo: true
-observed_t <- 
+observed_t <-
   data |>
   specify(response = hours_worked) |>
   hypothesize(null = "point", mu = 40) |>
@@ -209,7 +212,8 @@ p_value_resampling
 ```{r}
 #| fig-width: 10
 x <- visualize(null_theory) + shade_p_value(observed_t, direction = "greater")
-y <- visualize(null_dist_resample) + shade_p_value(observed_mean, direction = "greater")
+y <- visualize(null_dist_resample) +
+  shade_p_value(observed_mean, direction = "greater")
 
 library(patchwork)
 

@@ -14,7 +14,10 @@ library(tidyverse, quietly = TRUE)
 library(infer, quietly = TRUE)
 library(patchwork, quietly = TRUE)
 
-theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+theme_set(
+  cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1, legend.position = "none")
+)
 ```
 
 # Tests of proportion {background-color="#015b58"}
@@ -27,7 +30,12 @@ theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(
 ```{r}
 animal_pref <- tibble(preference = sample(c(rep("dog", 15), rep("cat", 17))))
 
-animal_pref_se <- tibble(preference = sample(c(rep("dog", 2000/100*58), rep("cat", 2000/100*(100-58)))))
+animal_pref_se <- tibble(
+  preference = sample(c(
+    rep("dog", 2000 / 100 * 58),
+    rep("cat", 2000 / 100 * (100 - 58))
+  ))
+)
 ```
 
 ## Tests of proportion
@@ -90,7 +98,7 @@ Calculate the test statistic:
 
 ```{r}
 #| echo: true
-observed_stat <- 
+observed_stat <-
   animal_pref |>
   specify(response = preference, success = "dog") |>
   calculate(stat = "prop")
@@ -105,7 +113,7 @@ Generate a null distibution:
 
 ```{r}
 #| echo: true
-null_dist <- 
+null_dist <-
   animal_pref |>
   specify(response = preference, success = "dog") |>
   hypothesize(null = "point", p = 0.58) |>
@@ -168,7 +176,10 @@ expected_proportions <- c(8.7, 2.5, 3.5, 1.3) / 16
 
 # Generate a dataset with 160 observations (to match proportions)
 mendelian_data <- tibble(
-  phenotype = rep(c("A-B-", "A-bb", "aaB-", "aabb"), times = round(expected_proportions * 120))
+  phenotype = rep(
+    c("A-B-", "A-bb", "aaB-", "aabb"),
+    times = round(expected_proportions * 120)
+  )
 )
 ```
 
@@ -187,7 +198,11 @@ mendelian_data
 #| echo: true
 ggplot(mendelian_data, aes(x = phenotype)) +
   geom_bar() +
-  geom_hline(yintercept = c(9, 3, 1)/16*nrow(mendelian_data), linetype = "dashed", color = "red")
+  geom_hline(
+    yintercept = c(9, 3, 1) / 16 * nrow(mendelian_data),
+    linetype = "dashed",
+    color = "red"
+  )
 ```
 
 ## $\chi^2$ Goodness of fit
@@ -202,18 +217,18 @@ $$
 
 ```{r}
 #| echo: true
-observed_statistic <- 
+observed_statistic <-
   mendelian_data |>
   specify(response = phenotype) |>
   hypothesize(
     null = "point",
     p = c(
-      "A-B-" = 9/16,
-      "A-bb" = 3/16,
-      "aaB-" = 3/16,
-      "aabb" = 1/16
+      "A-B-" = 9 / 16,
+      "A-bb" = 3 / 16,
+      "aaB-" = 3 / 16,
+      "aabb" = 1 / 16
     )
-   ) |>
+  ) |>
   calculate(stat = "Chisq")
 ```
 
@@ -222,18 +237,18 @@ observed_statistic <-
 
 ```{r}
 #| echo: true
-null_dist <- 
+null_dist <-
   mendelian_data |>
   specify(response = phenotype) |>
   hypothesize(
     null = "point",
     p = c(
-      "A-B-" = 9/16,
-      "A-bb" = 3/16,
-      "aaB-" = 3/16,
-      "aabb" = 1/16
+      "A-B-" = 9 / 16,
+      "A-bb" = 3 / 16,
+      "aaB-" = 3 / 16,
+      "aabb" = 1 / 16
     )
-   ) |>
+  ) |>
   generate(reps = 10000, type = "draw") |>
   calculate(stat = "Chisq")
 ```
@@ -244,7 +259,7 @@ null_dist <-
 ```{r}
 #| echo: true
 null_dist |>
-  visualize() + 
+  visualize() +
   shade_p_value(observed_statistic, direction = "greater")
 ```
 
@@ -280,12 +295,35 @@ null_dist |>
 
 ```{r}
 germ_data <- tibble(
-  treatment = rep(c("coating_a", "coating_b", "coating_c", "control"), each = 30),
+  treatment = rep(
+    c("coating_a", "coating_b", "coating_c", "control"),
+    each = 30
+  ),
   germination_success = c(
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.70, 0.30)),
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.72, 0.28)),
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.65, 0.35)),
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.68, 0.30))
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.70, 0.30)
+    ),
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.72, 0.28)
+    ),
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.65, 0.35)
+    ),
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.68, 0.30)
+    )
   )
 )
 ```
@@ -316,7 +354,7 @@ germ_data
 
 ```{r}
 #| echo: true
-observed_statistic <- 
+observed_statistic <-
   germ_data |>
   specify(response = germination_success, explanatory = treatment) |>
   hypothesize(null = "independence") |>
@@ -330,7 +368,7 @@ observed_statistic
 
 ```{r}
 #| echo: true
-null_dist <- 
+null_dist <-
   germ_data |>
   specify(response = germination_success, explanatory = treatment) |>
   hypothesize(null = "independence") |>

@@ -225,15 +225,18 @@ library(tidyverse)
 
 penguins2 <- penguins |> filter(!is.na(body_mass_g))
 
-theme_set(theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1))
+theme_set(
+  theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1)
+)
 
 bm_hist <-
   ggplot(
     data = penguins,
     mapping = aes(x = body_mass_g)
   ) +
-    geom_histogram(bins = 18, colour = "white", fill = "grey60") +
-    labs(x = "Body mass (g)")
+  geom_histogram(bins = 18, colour = "white", fill = "grey60") +
+  labs(x = "Body mass (g)")
 
 ```
 
@@ -274,7 +277,11 @@ data <- c(6, 8, 6, 2, 9, 9, 7, 9)
 ```{r}
 #| warning: false
 bm_hist +
-  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
+  geom_vline(
+    aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"),
+    linetype = "dashed",
+    size = 2
+  ) +
   scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6")) +
   theme(legend.position = c(0.8, 0.8))
 ```
@@ -307,9 +314,20 @@ data <- c(6, 8, 6, 2, 9, 9, 7, 9)
 ```{r}
 #| warning: false
 bm_hist +
-  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
-  geom_vline(aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"), linetype = "dotted", size = 2) +
-  scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6", "Median" = "#e63946")) +
+  geom_vline(
+    aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"),
+    linetype = "dashed",
+    size = 2
+  ) +
+  geom_vline(
+    aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"),
+    linetype = "dotted",
+    size = 2
+  ) +
+  scale_color_manual(
+    name = "Statistics",
+    values = c("Mean" = "#a53ce6", "Median" = "#e63946")
+  ) +
   theme(legend.position = c(0.8, 0.8))
 ```
 
@@ -335,10 +353,30 @@ data <- c(6, 8, 6, 2, 9, 9, 7, 9)
 ```{r}
 #| warning: false
 bm_hist +
-  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
-  geom_vline(aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"), linetype = "dotted", size = 2) +
-  geom_vline(aes(xintercept = as.numeric(names(sort(table(body_mass_g), decreasing = TRUE)[1])), color = "Mode"), linetype = "solid", size = 2) +
-  scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6", "Median" = "#e63946", "Mode" = "#2a9d8f")) +
+  geom_vline(
+    aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"),
+    linetype = "dashed",
+    size = 2
+  ) +
+  geom_vline(
+    aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"),
+    linetype = "dotted",
+    size = 2
+  ) +
+  geom_vline(
+    aes(
+      xintercept = as.numeric(names(sort(table(body_mass_g), decreasing = TRUE)[
+        1
+      ])),
+      color = "Mode"
+    ),
+    linetype = "solid",
+    size = 2
+  ) +
+  scale_color_manual(
+    name = "Statistics",
+    values = c("Mean" = "#a53ce6", "Median" = "#e63946", "Mode" = "#2a9d8f")
+  ) +
   theme(legend.position = c(0.8, 0.8))
 
 ```
@@ -363,7 +401,11 @@ tibble(
   ggplot(aes(x)) +
   facet_wrap(~var, ncol = 2) +
   geom_histogram(bins = 18, colour = "white", fill = "grey60") +
-  geom_vline(aes(xintercept = mean(x), color = "Mean"), linetype = "dashed", size = 1) +
+  geom_vline(
+    aes(xintercept = mean(x), color = "Mean"),
+    linetype = "dashed",
+    size = 1
+  ) +
   scale_color_manual(name = "", values = c("Mean" = "#a53ce6")) +
   theme(legend.position = "top")
 
@@ -391,9 +433,20 @@ data <- c(6, 8, 6, 2, 9, 9, 7, 9)
 ```{r}
 #| warning: false
 bm_hist +
-  geom_vline(aes(xintercept = min(body_mass_g, na.rm = TRUE), color = "Min"), linetype = "solid", size = 2) +
-  geom_vline(aes(xintercept = max(body_mass_g, na.rm = TRUE), color = "Max"), linetype = "solid", size = 2) +
-  scale_color_manual(name = "Statistics", values = c("Min" = "#2a9d8f", "Max" = "#f4a261")) +
+  geom_vline(
+    aes(xintercept = min(body_mass_g, na.rm = TRUE), color = "Min"),
+    linetype = "solid",
+    size = 2
+  ) +
+  geom_vline(
+    aes(xintercept = max(body_mass_g, na.rm = TRUE), color = "Max"),
+    linetype = "solid",
+    size = 2
+  ) +
+  scale_color_manual(
+    name = "Statistics",
+    values = c("Min" = "#2a9d8f", "Max" = "#f4a261")
+  ) +
   theme(legend.position = c(0.8, 0.8))
 ```
 
@@ -423,12 +476,41 @@ data <- c(6, 8, 6, 2, 9, 9, 7, 9)
 ```{r}
 #| warning: false
 bm_hist +
-  geom_vline(aes(xintercept = min(body_mass_g, na.rm = TRUE), color = "Min"), linetype = "solid", size = 2) +
-  geom_vline(aes(xintercept = max(body_mass_g, na.rm = TRUE), color = "Max"), linetype = "solid", size = 2) +
-  geom_vline(aes(xintercept = quantile(body_mass_g, 0.25, na.rm = TRUE), color = "Q1"), linetype = "dotted", size = 2) +
-  geom_vline(aes(xintercept = quantile(body_mass_g, 0.75, na.rm = TRUE), color = "Q3"), linetype = "dotted", size = 2) +
-  geom_vline(aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"), linetype = "dashed", size = 2) +
-  scale_color_manual(name = "Statistics", values = c("Min" = "#2a9d8f", "Max" = "#f4a261", "Q1" = "#e63946", "Q3" = "#e63946", "Median" = "#e63946")) +
+  geom_vline(
+    aes(xintercept = min(body_mass_g, na.rm = TRUE), color = "Min"),
+    linetype = "solid",
+    size = 2
+  ) +
+  geom_vline(
+    aes(xintercept = max(body_mass_g, na.rm = TRUE), color = "Max"),
+    linetype = "solid",
+    size = 2
+  ) +
+  geom_vline(
+    aes(xintercept = quantile(body_mass_g, 0.25, na.rm = TRUE), color = "Q1"),
+    linetype = "dotted",
+    size = 2
+  ) +
+  geom_vline(
+    aes(xintercept = quantile(body_mass_g, 0.75, na.rm = TRUE), color = "Q3"),
+    linetype = "dotted",
+    size = 2
+  ) +
+  geom_vline(
+    aes(xintercept = median(body_mass_g, na.rm = TRUE), color = "Median"),
+    linetype = "dashed",
+    size = 2
+  ) +
+  scale_color_manual(
+    name = "Statistics",
+    values = c(
+      "Min" = "#2a9d8f",
+      "Max" = "#f4a261",
+      "Q1" = "#e63946",
+      "Q3" = "#e63946",
+      "Median" = "#e63946"
+    )
+  ) +
   theme(legend.position = c(0.8, 0.75))
 ```
 
@@ -568,12 +650,43 @@ data <- c(5.5, 4.7, 8.3, 2.1, 9.6, 3.4, 7.7)
 ```{r}
 #| warning: false
 bm_hist +
-  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"), linetype = "dashed", size = 2) +
-  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE) + sd(body_mass_g, na.rm = TRUE), color = "SD"), linetype = "dotted", size = 2) +
-  geom_vline(aes(xintercept = mean(body_mass_g, na.rm = TRUE) - sd(body_mass_g, na.rm = TRUE), color = "SD"), linetype = "dotted", size = 2) +
-  geom_segment(aes(x = mean(body_mass_g, na.rm = TRUE), y = 40, xend = mean(body_mass_g, na.rm = TRUE) + sd(body_mass_g, na.rm = TRUE), yend = 40), 
-               arrow = arrow(length = unit(0.3, "cm"), ends = "both"), color = "#e63946") +
-  scale_color_manual(name = "Statistics", values = c("Mean" = "#a53ce6", "SD" = "#e63946")) +
+  geom_vline(
+    aes(xintercept = mean(body_mass_g, na.rm = TRUE), color = "Mean"),
+    linetype = "dashed",
+    size = 2
+  ) +
+  geom_vline(
+    aes(
+      xintercept = mean(body_mass_g, na.rm = TRUE) +
+        sd(body_mass_g, na.rm = TRUE),
+      color = "SD"
+    ),
+    linetype = "dotted",
+    size = 2
+  ) +
+  geom_vline(
+    aes(
+      xintercept = mean(body_mass_g, na.rm = TRUE) -
+        sd(body_mass_g, na.rm = TRUE),
+      color = "SD"
+    ),
+    linetype = "dotted",
+    size = 2
+  ) +
+  geom_segment(
+    aes(
+      x = mean(body_mass_g, na.rm = TRUE),
+      y = 40,
+      xend = mean(body_mass_g, na.rm = TRUE) + sd(body_mass_g, na.rm = TRUE),
+      yend = 40
+    ),
+    arrow = arrow(length = unit(0.3, "cm"), ends = "both"),
+    color = "#e63946"
+  ) +
+  scale_color_manual(
+    name = "Statistics",
+    values = c("Mean" = "#a53ce6", "SD" = "#e63946")
+  ) +
   theme(legend.position = c(0.8, 0.8))
 
 
@@ -674,12 +787,15 @@ cat("Standard error calculated with formula =", calc_se)
 set.seed(1234)
 right_skewed <- rbeta(10000, 2, 6) * 100
 left_skewed <- rbeta(10000, 6, 2) * 100
-no_skew <- rnorm(10000, 50, 3) 
+no_skew <- rnorm(10000, 50, 3)
 
 # Combine into a single dataframe
 skewed_data <- tibble(
   value = c(left_skewed, no_skew, right_skewed),
-  skew = rep(c("Left / negative skew", "No skew (normal)", "Right / positive skew"), each = 10000)
+  skew = rep(
+    c("Left / negative skew", "No skew (normal)", "Right / positive skew"),
+    each = 10000
+  )
 )
 
 means <- tibble(
@@ -697,9 +813,16 @@ ggplot(skewed_data, aes(x = value)) +
   geom_histogram(bins = 30, fill = "grey60", color = "white") +
   geom_vline(data = means, aes(xintercept = value, color = "Mean")) +
   geom_vline(data = medians, aes(xintercept = value, color = "Median")) +
-  scale_color_manual(name = "Statistic", values = c("Mean" = "purple", "Median" = "red")) +
-  facet_wrap(~ skew, scales = "free") +
-  theme(axis.text = element_blank(), axis.ticks = element_blank(), legend.position = "top")
+  scale_color_manual(
+    name = "Statistic",
+    values = c("Mean" = "purple", "Median" = "red")
+  ) +
+  facet_wrap(~skew, scales = "free") +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    legend.position = "top"
+  )
 
 ```
 
@@ -720,15 +843,21 @@ platykurtic <- sort(rnorm(10000, 40, 100))[100:9900]
 # Combine into a single dataframe
 kurtosis_data <- tibble(
   value = c(leptokurtic, platykurtic),
-  kurtosis = c(rep("Leptokurtic", times = 10000), rep("Platykurtic", times= 9801))
+  kurtosis = c(
+    rep("Leptokurtic", times = 10000),
+    rep("Platykurtic", times = 9801)
+  )
 )
 
 # Plot using ggplot with facets
 ggplot(kurtosis_data, aes(x = value)) +
   geom_histogram(bins = 30, fill = "grey60", color = "white") +
-  facet_wrap(~ kurtosis, scales = "free") +
-  theme(axis.text = element_blank(), axis.ticks = element_blank(), legend.position = "top")
-
+  facet_wrap(~kurtosis, scales = "free") +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    legend.position = "top"
+  )
 
 ```
 

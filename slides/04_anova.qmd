@@ -18,7 +18,10 @@ library(tidyverse, quietly = TRUE)
 library(infer, quietly = TRUE)
 library(patchwork)
 
-theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+theme_set(
+  cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1, legend.position = "none")
+)
 ```
 
 ## Comparing means between groups
@@ -26,9 +29,15 @@ theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(
 
 ```{r}
 #| fig-align: center
-penguins_modified <- 
+penguins_modified <-
   penguins |>
-  mutate(bill_length_mm = if_else(species == "Adelie", bill_length_mm + 10, bill_length_mm))
+  mutate(
+    bill_length_mm = if_else(
+      species == "Adelie",
+      bill_length_mm + 10,
+      bill_length_mm
+    )
+  )
 
 penguins_means <-
   penguins_modified |>
@@ -40,7 +49,13 @@ penguins_modified |>
   filter(species != "Gentoo") |>
   ggplot(aes(x = species, y = bill_length_mm)) +
   geom_jitter(size = 2, alpha = 0.4, width = 0.05) +
-  geom_point(data = penguins_means |> filter(species != "Gentoo"), size = 4, shape = 23, fill = "red", colour = "white") +
+  geom_point(
+    data = penguins_means |> filter(species != "Gentoo"),
+    size = 4,
+    shape = 23,
+    fill = "red",
+    colour = "white"
+  ) +
   labs(y = "Bill length (mm)", x = "Species")
 ```
 
@@ -51,11 +66,17 @@ penguins_modified |>
 #| fig-align: center
 
 penguin_plot <-
-penguins_modified |>
+  penguins_modified |>
   drop_na(bill_length_mm) |>
   ggplot(aes(x = species, y = bill_length_mm)) +
   geom_jitter(size = 2, alpha = 0.4, width = 0.05) +
-  geom_point(data = penguins_means, size = 4, shape = 23, fill = "red", colour = "white") +
+  geom_point(
+    data = penguins_means,
+    size = 4,
+    shape = 23,
+    fill = "red",
+    colour = "white"
+  ) +
   labs(y = "Bill length (mm)", x = "Species")
 
 penguin_plot
@@ -88,14 +109,17 @@ triangular_numbers |>
 #| fig-align: center
 p_values <- tibble(
   n = triangular_numbers$triangular,
-  prob_significant_result = 100*(1-0.95^n)
+  prob_significant_result = 100 * (1 - 0.95^n)
 )
 
 p_values |>
   ggplot(aes(x = n, y = prob_significant_result)) +
-    geom_point(size = 3, color = "purple") +
+  geom_point(size = 3, color = "purple") +
   geom_line(color = "purple") +
-  labs(x = "Number of hypothesis tests needed", y = "Probability of finding a p < 0.05 by chance")
+  labs(
+    x = "Number of hypothesis tests needed",
+    y = "Probability of finding a p < 0.05 by chance"
+  )
 ```
 
 ## Comparing means between groups
@@ -155,13 +179,13 @@ set.seed(123)
 data_within_variance <- tibble(
   group = rep(c("Group 1", "Group 2"), each = 50),
   value = c(
-    rnorm(50, mean = 10, sd = 5),  # High within-group variance
+    rnorm(50, mean = 10, sd = 5), # High within-group variance
     rnorm(50, mean = 12, sd = 5)
   )
 )
 
 means <-
-data_within_variance |>
+  data_within_variance |>
   group_by(group) |>
   summarise(group_mean = mean(value)) |>
   mutate(overall_mean = mean(group_mean))
@@ -171,8 +195,16 @@ within_plot <-
   data_within_variance |>
   ggplot(aes(x = group, y = value, colour = group)) +
   geom_jitter(size = 2, alpha = 0.8, width = 0.1) +
-  geom_hline(data = means, aes(yintercept = group_mean, colour = group), linetype = "solid") +
-  geom_hline(data = means, aes(yintercept = overall_mean), linetype = "dashed") +
+  geom_hline(
+    data = means,
+    aes(yintercept = group_mean, colour = group),
+    linetype = "solid"
+  ) +
+  geom_hline(
+    data = means,
+    aes(yintercept = overall_mean),
+    linetype = "dashed"
+  ) +
   labs(x = "Group", y = "Value", title = "Most variance within groups") +
   theme(legend.position = "top")
 
@@ -182,13 +214,13 @@ set.seed(123)
 data_within_variance <- tibble(
   group = rep(c("Group 1", "Group 2"), each = 50),
   value = c(
-    rnorm(50, mean = 10, sd = 0.5),  # High within-group variance
+    rnorm(50, mean = 10, sd = 0.5), # High within-group variance
     rnorm(50, mean = 20, sd = 0.5)
   )
 )
 
 means <-
-data_within_variance |>
+  data_within_variance |>
   group_by(group) |>
   summarise(group_mean = mean(value)) |>
   mutate(overall_mean = mean(group_mean))
@@ -198,8 +230,16 @@ between_plot <-
   data_within_variance |>
   ggplot(aes(x = group, y = value, colour = group)) +
   geom_jitter(size = 2, alpha = 0.8, width = 0.1) +
-  geom_hline(data = means, aes(yintercept = group_mean, colour = group), linetype = "solid") +
-  geom_hline(data = means, aes(yintercept = overall_mean), linetype = "dashed") +
+  geom_hline(
+    data = means,
+    aes(yintercept = group_mean, colour = group),
+    linetype = "solid"
+  ) +
+  geom_hline(
+    data = means,
+    aes(yintercept = overall_mean),
+    linetype = "dashed"
+  ) +
   labs(x = "Group", y = "Value", title = "Most variance between groups") +
   theme(legend.position = "top")
 
