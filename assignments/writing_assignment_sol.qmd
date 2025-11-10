@@ -1,0 +1,331 @@
+---
+title: "Writing assignment - Iain's solution"
+date: 2025-04-07
+draft: true
+execute:
+  echo: true
+  eval: true
+---
+
+# Hypotheses
+
+The researchers make many hypotheses during their introduction. Here's the few I selected to test:
+
+## Respiration
+
+1. Does the rate of $\text{CO}_2$ production differ between crickets raised in high and low density environments?
+2. Does the rate of $\text{O}_2$ consumption differ between crickets raised in high and low density environments?
+
+# Statistical analysis
+
+## Load data & packages
+
+```{r}
+library(tidyverse)
+library(infer)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+theme_set(theme(aspect.ratio = 1))
+```
+
+```{r}
+#| echo: false
+#| eval: false
+cricket_data <- read_csv("assignments/acheta_density.csv")
+
+respiration_data <-
+  cricket_data |>
+  mutate(env = if_else(env == "H", "high_density", "low_density")) |>
+  select(
+    cricket_id = `id...3`,
+    juvenile_environment = env,
+    resp_mass_g = respweight,
+    resp_age_days = respage,
+    resp_volume_co2 = vco2,
+    resp_volume_o2 = vo2
+  ) |>
+  filter(!is.na(cricket_id))
+
+mass_data <-
+  cricket_data |>
+  mutate(env = if_else(env == "H", "high_density", "low_density")) |>
+  filter(dis == "y") |>
+  select(
+    cricket_id = `id...3`,
+    juvenile_environment = env,
+    dis_age_days = disage,
+    dis_mass_g = disweight,
+    dis_accessory_g = accessory,
+    dis_testes_g = testes
+  )
+
+song_data <-
+  cricket_data |>
+  filter(rec == "y") |>
+  mutate(env = if_else(env == "H", "high_density", "low_density")) |>
+  select(
+    cricket_id = `id...3`,
+    juvenile_environment = env,
+    song_mass_g = recweight,
+    song_age_days = recage,
+    song_chirp_rate = chirprate,
+    song_chirp_duration = chirpduration,
+    song_pulses_per_chirp = `# pulses`,
+    song_pulse_duration = pulseduration,
+    song_dominant_frequency = df
+  ) |>
+  filter(!is.na(cricket_id))
+
+aggresion_data <-
+  cricket_data |>
+  filter(agg == "y") |>
+  mutate(
+    env = if_else(env == "H", "high_density", "low_density"),
+    winner = as.logical(winner),
+    color = tolower(color),
+    female = if_else(female == "Y", TRUE, FALSE),
+    firstuniquebehavior = as.logical(firstuniquebehavior),
+    firstmaleaggsong = as.logical(firstmaleaggsong),
+    firstwinner = as.logical(firstwinner)
+  ) |>
+  select(
+    cricket_id = `id...3`,
+    juvenile_environment = env,
+    agg_mass_g = aggweight,
+    agg_age_days = aggage,
+    agg_trial_id = aggtrial,
+    agg_winner = winner,
+    agg_dot_colour = color,
+    agg_female_present = female,
+    agg_num_wins = numwins,
+    agg_num_battles = numbat,
+    agg_first_behaviour = firstuniquebehavior,
+    agg_first_song = firstmaleaggsong,
+    agg_first_song_length = firstaggsonglength,
+    agg_first_winner = firstwinner
+  )
+
+respiration_data |>
+  full_join(mass_data) |>
+  full_join(song_data) |>
+  full_join(aggresion_data) |>
+  write_csv(
+    "/Users/iain/Documents/Projects/teaching_datasets/cricket_density/cricket_density.csv"
+  )
+
+```
+
+```{r}
+cricket_data <- read_csv(
+  "/Users/iain/Documents/Projects/teaching_datasets/cricket_density/cricket_density.csv"
+)
+```
+
+
+
+## Respiration analysis
+
+### Does the rate of $\text{CO}_2$ production differ between crickets raised in high and low density environments?
+
+- Null hypothesis: The rate of $\text{CO}_2$ production *does not* differ between crickets raised in high and low density environments?
+- Alternative hypothesis: The rate of $\text{CO}_2$ production *is greater* in crickets raised in high density environments?
+
+I think the researchers have a one-sided hypothesis. They write:
+
+> Specifically, variation in population densities during development  could entail physiological (e.g., metabolism or reproductive investment) or behavioural (e.g., aggression or mating behaviour) changes.  Individuals with higher metabolic rates may be capable of performing  longer or more frequent energy-demanding tasks, such as mate  searching, organ development or predator/competitor interactions  (Lorenz & Gäde, 2009).
+
+Which leads me to think that males raised in a high density environment will have higher metabolic rates.
+
+I will analyse this using a test of difference in means.
+
+#### Observed statistic & 95% CI
+
+```{r}
+resp_co2_obs <-
+  cricket_data |>
+  specify(response = resp_volume_co2, explanatory = juvenile_environment) |>
+  calculate(stat = "diff in means", order = c("high_density", "low_density"))
+
+resp_co2_obs
+```
+
+```{r}
+resp_co2_ci <-
+  cricket_data |>
+  specify(response = resp_volume_co2, explanatory = juvenile_environment) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "diff in means", order = c("high_density", "low_density")) |>
+  get_confidence_interval(level = 0.95)
+
+resp_co2_ci
+```
+
+The observed difference between crickets raised in high density vs low density environments in the mean rate of $\text{CO}_2$ production is `{r} round(resp_co2_obs, 3)` (95% CI:`{r} round(resp_co2_ci[[1]], 3)`--`{r} round(resp_co2_ci[[2]], 3)`) μL/min.
+
+Since I observe that low density males have higher $\text{CO}_2$ consumption, my one-sided hypothesis that high density males would have higher $\text{CO}_2$ consumption seems a bit redundant now. For demonstration purposes, I will switch to using a two-sided hypothesis.
+
+#### Plot
+
+So I can show the means on the plot, I will calculate those for each environment first.
+
+```{r}
+resp_co2_means <-
+  cricket_data |>
+  group_by(juvenile_environment) |>
+  summarise(resp_volume_co2 = mean(resp_volume_co2))
+```
+
+```{r}
+cricket_data |>
+  ggplot(aes(x = juvenile_environment, y = resp_volume_co2)) +
+  geom_jitter(width = 0.1, alpha = 0.5) +
+  geom_line(
+    data = resp_co2_means,
+    aes(group = 1),
+    color = "red",
+    linetype = "solid"
+  ) +
+  geom_point(
+    data = resp_co2_means,
+    fill = "red",
+    colour = "white",
+    size = 4,
+    shape = 23
+  ) +
+  labs(x = "Juvenile environment", y = "CO2 production rate (μL/min)")
+```
+
+#### Hypothesis test
+
+Since we are comparing the mean of two groups, permuation is a very good way of generating a null distribution.
+
+```{r}
+resp_co2_null <-
+  cricket_data |>
+  specify(response = resp_volume_co2, explanatory = juvenile_environment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("high_density", "low_density"))
+
+resp_co2_null |>
+  visualize() +
+  shade_p_value(obs_stat = resp_co2_obs, direction = "two-sided")
+
+resp_co2_p <-
+  resp_co2_null |>
+  get_p_value(obs_stat = resp_co2_obs, direction = "two-sided")
+
+resp_co2_p
+```
+
+The probability of observing our observed difference under the null hypothesis is very high (p = `{r} round(resp_co2_p[[1]], 3)`), so I fail to reject the null hypothesis. There is likely no difference in $\text{CO}_2$ production rate.
+
+### Does the rate of $\text{O}_2$ consumption differ between crickets raised in high and low density environments?
+
+- Null hypothesis: The rate of $\text{O}_2$ consumption *does not* differ between crickets raised in high and low density environments?
+- Alternative hypothesis: The rate of $\text{O}_2$ consumption *is greater* in crickets raised in high density environments?
+
+Similar to above, I will do the same tests with $\text{O}_2$ consumption.
+
+#### Observed statistic & 95% CI
+
+```{r}
+resp_o2_obs <-
+  cricket_data |>
+  specify(response = resp_volume_o2, explanatory = juvenile_environment) |>
+  calculate(stat = "diff in means", order = c("high_density", "low_density"))
+
+resp_o2_obs
+```
+
+```{r}
+resp_o2_ci <-
+  cricket_data |>
+  specify(response = resp_volume_o2, explanatory = juvenile_environment) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "diff in means", order = c("high_density", "low_density")) |>
+  get_confidence_interval(level = 0.95)
+
+resp_o2_ci
+```
+
+The observed difference between crickets raised in high density vs low density environments in the mean rate of $\text{O}_2$ consumption is `{r} round(resp_o2_obs, 3)` (95% CI:`{r} round(resp_o2_ci[[1]], 3)`--`{r} round(resp_o2_ci[[2]], 3)`) μL/min.
+
+Since the observed stat is positive this time, I will stick to the original plan and do a one-sided test.
+
+#### Plot
+
+```{r}
+resp_o2_means <-
+  cricket_data |>
+  group_by(juvenile_environment) |>
+  summarise(resp_volume_o2 = mean(resp_volume_o2))
+```
+
+```{r}
+cricket_data |>
+  ggplot(aes(x = juvenile_environment, y = resp_volume_o2)) +
+  geom_jitter(width = 0.1, alpha = 0.5) +
+  geom_line(
+    data = resp_o2_means,
+    aes(group = 1),
+    color = "red",
+    linetype = "solid"
+  ) +
+  geom_point(
+    data = resp_o2_means,
+    fill = "red",
+    colour = "white",
+    size = 4,
+    shape = 23
+  ) +
+  labs(x = "Juvenile environment", y = "O2 consumption rate (μL/min)")
+```
+
+#### Hypothesis test
+
+```{r}
+resp_o2_null <-
+  cricket_data |>
+  specify(response = resp_volume_o2, explanatory = juvenile_environment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("high_density", "low_density"))
+
+resp_o2_null |>
+  visualize() +
+  shade_p_value(obs_stat = resp_o2_obs, direction = "greater")
+
+resp_o2_p <-
+  resp_o2_null |>
+  get_p_value(obs_stat = resp_o2_obs, direction = "greater")
+
+resp_o2_p
+```
+
+The probability of observing our observed difference under the null hypothesis is very high (p = `{r} round(resp_o2_p[[1]], 3)`), so I fail to reject the null hypothesis. It is unlikely that males from high density environments have higher $\text{O}_2$ consumption rates than males from low density environments.
+
+::: {.callout-note collapse="true" icon="false"}
+#### AI generated quick overview
+
+##### Introduction
+
+Environmental conditions during development, such as population density, can shape adult traits, but the influence of juvenile density experience remains understudied. This study investigates how perceived acoustic population density during development affects adult physiology and behavior in the house cricket (*Acheta domesticus*). Previous research highlights density-dependent effects on traits like aggression, reproductive investment, and acoustic signaling in adults, but little is known about developmental plasticity in response to acoustic cues. The authors hypothesize that juvenile exposure to high-density acoustic signals may lead males to prioritize attractive song production, while low-density conditions favor aggressive territorial behaviors, reflecting alternative mating tactics.
+
+##### Methods
+
+Commercially bred *A. domesticus* nymphs were reared in controlled environments simulating high- or low-density conditions using live male song. High-density treatment involved housing nymphs near 20–30 calling adult males, while low-density nymphs were isolated from male song. Both groups were maintained in individual containers with standardized food, shelter, and a reversed light-dark cycle (28°C).
+
+##### Measurements
+
+- **Resting Metabolic Rate**: Closed-circuit respirometry measured CO₂ production and O₂ consumption in adult males during inactivity.
+- **Reproductive Investment**: Testes and accessory gland masses were recorded post-dissection.
+- **Calling Song Characteristics**: Males were recorded in anechoic chambers; parameters included chirp rate, duration, pulses per chirp, pulse duration, and dominant frequency.
+- **Aggression Trials**: Paired contests between high- and low-density males were video-recorded in a controlled arena. Behaviors analyzed included contest initiation, aggressive song production, and contest outcomes.
+
+All experiments were conducted during the crickets’ active (dark) phase to align with natural behavior. Acoustic treatments ensured no physical or chemical contact, isolating the effect of auditory cues.
+
+:::
