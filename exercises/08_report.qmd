@@ -1,0 +1,10 @@
+---
+title: "Data analysis & report writing assignment"
+subtitle: "Exercise 8"
+date: 2026-04-08
+execute:
+  echo: true
+  eval: false
+---
+
+Coming soon!

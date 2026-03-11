@@ -1,0 +1,8 @@
+---
+title: "The foundations of inference"
+subtitle: "Lecture 4"
+date: 2026-03-27
+author: "Iain R. Moodie"
+---
+
+Coming soon!

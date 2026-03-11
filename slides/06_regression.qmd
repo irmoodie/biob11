@@ -1,0 +1,8 @@
+---
+title: "Regression modelling"
+subtitle: "Lecture 6"
+date: 2026-04-01
+author: "Iain R. Moodie"
+---
+
+Coming soon!

@@ -1,0 +1,8 @@
+---
+title: "Introduction to project work"
+subtitle: "Lecture 8"
+date: 2026-04-17
+author: "Iain R. Moodie"
+---
+
+Coming soon!

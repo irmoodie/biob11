@@ -2,31 +2,92 @@
 title: "Resources"
 ---
 
+Here you will find a list of resources which will be useful during this course.
+
 # Books
 
-During this course, we will make reference to the following books. None of these books are intended to be read "cover to cover". Instead, we will reference the relevant chapters at each part of the course. All the books have a high degree of topic overlap, but explain the key concepts slightly differently.
+In short my recommendation is:
 
-Please do not feel pressured to buy a copy of Ennos & Johnsson (2018) if you do not want to (note the library has some copies). It is a good book, but the other free books I have listed below cover all the same topics.
+Focus your efforts on [IMS2](https://openintro-ims.netlify.app/) as it covers experimental design, statistics and how to present results. To better understand a data analysis workflow, use [R4DS](https://r4ds.hadley.nz/) and [MD2](https://moderndive.com/v2/). For help with a basic programming concept, consult [HOPR](https://rstudio-education.github.io/hopr/). For alternative explanations of statistical approaches, use [MD2](https://moderndive.com/v2/) and [StatBio](https://bradduthie.github.io/stats/).
 
-## Physical books
+#### [Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)](https://openintro-ims.netlify.app/){target="_blank"}
 
-### Statistics
+**Main course book (IMS2)** 
 
-- [Statistical and data handling skills in biology, 4th ed., Ennos & Johnsson (2018)](https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=5164304){target="_blank"}
+Good for:
 
-## Online books
+- All the statistical methods we cover in this course
+- General advice for making figures and presenting results
+- Introductory level explanations of theory
+- Simple practical exercises (see *Applications* sections)
 
-### R
-- [R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)](https://r4ds.hadley.nz/){target="_blank"} (R reference book)
-- [R Markdown: The Definitive Guide, Xie, Allaire & Grolemund (2023)](https://bookdown.org/yihui/rmarkdown/){target="_blank"} (RMarkdown reference book)
+Not so good for:
 
-### Statistics (with R)
-- [Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)](https://moderndive.com/v2/){target="_blank"} (Ch. 1-4, 7-9)
-- [Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)](https://openintro-ims.netlify.app/){target="_blank"} (Ch. 2, 11-22)
+- How to do something in R
+- Deeper explanations of statistical methods
+- Biological examples (most examples are from social sciences / business)
 
-### Statistics
-- [Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)](https://bradduthie.github.io/stats/){target="_blank"}
-  - Also available as an [audiobook](https://bradduthie.github.io/audiobook.html){target="_blank"}
+#### [Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)](https://moderndive.com/v2/){target="_blank"}
+
+**(MD2)**
+
+Good for:
+
+- Alternative explanation of some statistical methods we cover in this course
+- R code examples simple data handling, plotting and analysis
+- Simple coding exercises to help understand core concepts
+
+Not so good for:
+
+- Anything multivariate
+- Biological examples (most examples are from social sciences / business)
+- More advanced R problems
+
+#### [R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)](https://r4ds.hadley.nz/){target="_blank"}
+
+**(R4DS)**
+
+Good for:
+
+- R code for importing, handling, cleaning and plotting data with `tidyverse`
+- Help with Quarto documents
+
+Not so good for:
+
+- Statistics
+- Core R programming concepts
+
+#### [Hands-On Programming with R, Grolemund (2018)](https://rstudio-education.github.io/hopr/){target="_blank"}
+
+**(HOPR)**
+
+Good for:
+
+- Basic introduction to R
+- Core R programming concepts
+
+Not so good for:
+
+- Tidyverse packages
+- Statistics
+
+#### [Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)](https://bradduthie.github.io/stats/){target="_blank"}
+
+**(StatBio)**
+
+Good for:
+
+- Theory based statistics
+- Biological examples
+- Basic introduction to classical frequentist statistical methods
+- Also available as an [audiobook](https://bradduthie.github.io/audiobook.html){target="_blank"}
+
+Not so good for:
+
+- R code
+- Randomisation and simulation based inference
+
+---
 
 # Software
 
@@ -37,11 +98,9 @@ During the course we will use R and RStudio as tools to handle data, make plots 
 
 If you want to use another software package for these purposes, you are very welcome to, but you do so at your own undertaking.
 
-## R packages
+We will make use of a set of R packages that are part of the extended `tidyverse` set of packages. Below are the websites for the main ones we will use, which contain guides, "cheatsheets" and reference materials.
 
-We will make use of a set of R packages that are part of the extended `tidyverse` set of packages. Below are the websites for the main ones we will use, which contain guides, cheatsheets and reference materials.
-
-### General
+#### General
 
 - [`tidyverse`](https://www.tidyverse.org/){target="_blank"}
   - [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} (Plotting data)
@@ -49,6 +108,6 @@ We will make use of a set of R packages that are part of the extended `tidyverse
   - [`tidyr`](https://tidyr.tidyverse.org/){target="_blank"} (Tidying data)
   - [`readr`](https://readr.tidyverse.org/){target="_blank"} (Importing/exporting data)
 
-### Statistics
+#### Statistics
 
 - [`infer`](https://infer.tidymodels.org/){target="_blank"}
