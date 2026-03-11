@@ -2,37 +2,33 @@
   {
     "listing": "/slides.html",
     "items": [
-      "/slides/00_introduction.html",
-      "/slides/01_sampling.html",
-      "/slides/02_scientific_method.html",
-      "/slides/03_confidence_intervals.html",
-      "/slides/04_anova.html",
-      "/slides/05_theory_based_statistics.html",
-      "/slides/06_chisq.html",
-      "/slides/07_experimental_design.html",
-      "/slides/08_correlations_regression.html"
+      "/slides/01_intro.html",
+      "/slides/02_data.html",
+      "/slides/03_expdes.html",
+      "/slides/04_inference.html",
+      "/slides/05_hypothesis.html",
+      "/slides/06_regression.html",
+      "/slides/07_math.html",
+      "/slides/08_project.html"
     ]
   },
   {
     "listing": "/exercises.html",
     "items": [
-      "/exercises/01_intro_to_r.html",
-      "/exercises/02_descriptive_statistics.html",
-      "/exercises/03_local_r.html",
-      "/exercises/04_handling_data.html",
-      "/exercises/05_uncertainty.html",
-      "/exercises/06_test_analysis.html",
-      "/exercises/07_anova.html",
-      "/exercises/08_chisq.html",
-      "/exercises/09_correlation.html",
-      "/exercises/10_test_analysis_2.html",
-      "/exercises/11_article_exercise.html"
+      "/exercises/01_eda.html",
+      "/exercises/02_r.html",
+      "/exercises/03_reproducible.html",
+      "/exercises/04_bootstrap.html",
+      "/exercises/05_randomisation.html",
+      "/exercises/06_regression.html",
+      "/exercises/07_seminar.html",
+      "/exercises/08_report.html",
+      "/exercises/09_practise.html",
+      "/exercises/10_project.html"
     ]
   },
   {
     "listing": "/project.html",
-    "items": [
-      "/project/01_introduction.html"
-    ]
+    "items": []
   }
 ]

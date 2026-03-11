@@ -6,10 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+  <meta name="generator" content="quarto-1.7.29">
 
   <meta name="author" content="Iain R. Moodie">
   <meta name="dcterms.date" content="2025-04-01">
@@ -32,8 +32,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -44,7 +45,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -97,7 +98,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2071bad41b2e76109edcda930cb2754a.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5662d010d742e355be91544bf2d27acf.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -292,7 +293,41 @@ Iain R. Moodie
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="is-a-mean-number-of-hours-worked-by-a-phd-student-greater-than-40">Is a mean number of hours worked by a PhD student greater than 40?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Generate some example data</span></span>
+<span id="cb1-2"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># For reproducibility</span></span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="fu">library</span>(tidyverse, <span class="at">quietly =</span> true)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(infer, <span class="at">quietly =</span> true)</span>
+<span id="cb3-2"><a></a><span class="fu">theme_set</span>(</span>
+<span id="cb3-3"><a></a>  cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>(<span class="at">font_family =</span> <span class="st">"Atkinson Hyperlegible"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a></a>    <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>, <span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb3-5"><a></a>)</span>
+<span id="cb3-6"><a></a><span class="co"># Create two groups with random data</span></span>
+<span id="cb3-7"><a></a>group1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">42</span>, <span class="at">sd =</span> <span class="dv">7</span>), <span class="fu">rep</span>(<span class="dv">40</span>, <span class="dv">12</span>)), <span class="dv">1</span>)) <span class="co"># Group 1 with mean 5 and standard deviation 1</span></span>
+<span id="cb3-8"><a></a>group2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="dv">2</span>) <span class="co"># Group 2 with mean 6 and standard deviation 1</span></span>
+<span id="cb3-9"><a></a></span>
+<span id="cb3-10"><a></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">hours_worked =</span> group1)</span>
+<span id="cb3-11"><a></a></span>
+<span id="cb3-12"><a></a><span class="co"># data &lt;-</span></span>
+<span id="cb3-13"><a></a><span class="co">#   tibble(</span></span>
+<span id="cb3-14"><a></a><span class="co">#   group = c(rep("Group 1", 10), rep("Group 2", 10)),</span></span>
+<span id="cb3-15"><a></a><span class="co">#   value = c(group1,group2)</span></span>
+<span id="cb3-16"><a></a><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 62 × 1
    hours_worked
@@ -314,8 +349,15 @@ Iain R. Moodie
 <section id="re-sampling-vs-theory-based-statistics-4" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="is-a-mean-number-of-hours-worked-by-a-phd-student-greater-than-40-1">Is a mean number of hours worked by a PhD student greater than 40?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> hours_worked)) <span class="sc">+</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
 
-<img data-src="05_theory_based_statistics_files/figure-revealjs/unnamed-chunk-3-1.png" width="480" class="r-stretch"></section>
+</div>
+<img data-src="05_theory_based_statistics_files/figure-html/unnamed-chunk-3-1.png" width="672" class="r-stretch"></section>
 <section id="re-sampling-vs-theory-based-statistics-5" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="is-a-mean-number-of-hours-worked-by-a-phd-student-greater-than-40-2">Is a mean number of hours worked by a PhD student greater than 40?</h3>
@@ -334,12 +376,12 @@ Iain R. Moodie
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="resampling-approach">Resampling approach</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>observed_mean <span class="ot">&lt;-</span> </span>
-<span id="cb3-2"><a></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a>observed_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>observed_mean <span class="ot">&lt;-</span></span>
+<span id="cb8-2"><a></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
+<span id="cb8-5"><a></a></span>
+<span id="cb8-6"><a></a>observed_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: hours_worked (numeric)
 # A tibble: 1 × 1
@@ -353,33 +395,33 @@ Iain R. Moodie
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="resampling-approach-1">Resampling approach</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>null_dist_resample <span class="ot">&lt;-</span> </span>
-<span id="cb5-2"><a></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>null_dist_resample <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="re-sampling-vs-theory-based-statistics-8" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="resampling-approach-2">Resampling approach</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>null_dist_resample <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">shade_p_value</span>(observed_mean, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>null_dist_resample <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">shade_p_value</span>(observed_mean, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="05_theory_based_statistics_files/figure-revealjs/unnamed-chunk-6-1.png" width="480" class="r-stretch"></section>
+<img data-src="05_theory_based_statistics_files/figure-html/unnamed-chunk-6-1.png" width="672" class="r-stretch"></section>
 <section id="re-sampling-vs-theory-based-statistics-9" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="resampling-approach-3">Resampling approach</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>p_value_resampling <span class="ot">&lt;-</span> </span>
-<span id="cb7-2"><a></a>  null_dist_resample <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_mean, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a>p_value_resampling</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>p_value_resampling <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a></a>  null_dist_resample <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_mean, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb12-4"><a></a></span>
+<span id="cb12-5"><a></a>p_value_resampling</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -400,13 +442,13 @@ Iain R. Moodie
 t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>observed_t <span class="ot">&lt;-</span> </span>
-<span id="cb9-2"><a></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"t"</span>)</span>
-<span id="cb9-6"><a></a></span>
-<span id="cb9-7"><a></a>observed_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>observed_t <span class="ot">&lt;-</span></span>
+<span id="cb14-2"><a></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"t"</span>)</span>
+<span id="cb14-6"><a></a></span>
+<span id="cb14-7"><a></a>observed_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: hours_worked (numeric)
 Null Hypothesis: point
@@ -421,35 +463,35 @@ Null Hypothesis: point
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="theory-approach-1-sample-t-test-1">Theory approach (1 sample t-test)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>null_theory <span class="ot">&lt;-</span></span>
-<span id="cb11-2"><a></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a></a>  <span class="fu">assume</span>(<span class="at">distribution =</span> <span class="st">"t"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>null_theory <span class="ot">&lt;-</span></span>
+<span id="cb16-2"><a></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours_worked) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">assume</span>(<span class="at">distribution =</span> <span class="st">"t"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="re-sampling-vs-theory-based-statistics-13" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="theory-approach-1-sample-t-test-2">Theory approach (1 sample t-test)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">visualize</span>(null_theory) <span class="sc">+</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">shade_p_value</span>(observed_t, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">visualize</span>(null_theory) <span class="sc">+</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">shade_p_value</span>(observed_t, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="05_theory_based_statistics_files/figure-revealjs/unnamed-chunk-10-1.png" width="480" class="r-stretch"></section>
+<img data-src="05_theory_based_statistics_files/figure-html/unnamed-chunk-10-1.png" width="672" class="r-stretch"></section>
 <section id="re-sampling-vs-theory-based-statistics-14" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="theory-approach-1-sample-t-test-3">Theory approach (1 sample t-test)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>p_value_theory <span class="ot">&lt;-</span> <span class="fu">get_p_value</span>(null_theory, observed_t, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
-<span id="cb13-2"><a></a>p_value_theory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>p_value_theory <span class="ot">&lt;-</span> <span class="fu">get_p_value</span>(null_theory, observed_t, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb18-2"><a></a>p_value_theory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
 1 0.00935</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>p_value_resampling</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>p_value_resampling</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -461,8 +503,17 @@ Null Hypothesis: point
 <section id="re-sampling-vs-theory-based-statistics-15" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="comparison">Comparison</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">visualize</span>(null_theory) <span class="sc">+</span> <span class="fu">shade_p_value</span>(observed_t, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb22-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">visualize</span>(null_dist_resample) <span class="sc">+</span></span>
+<span id="cb22-3"><a></a>  <span class="fu">shade_p_value</span>(observed_mean, <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb22-4"><a></a></span>
+<span id="cb22-5"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb22-6"><a></a></span>
+<span id="cb22-7"><a></a>x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="05_theory_based_statistics_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+</div>
+<img data-src="05_theory_based_statistics_files/figure-html/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="re-sampling-vs-theory-based-statistics-16" class="slide level2">
 <h2>Re-sampling vs theory based statistics</h2>
 <h3 id="which-to-use">Which to use?</h3>
@@ -749,229 +800,173 @@ W10=
     window._ojs.selfContained = false;
     window._ojs.runtime.interpretFromScriptTags();
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/irmoodie\.github\.io\/biob11\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

@@ -6,10 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+  <meta name="generator" content="quarto-1.7.29">
 
   <meta name="author" content="Iain R. Moodie">
   <meta name="dcterms.date" content="2025-04-02">
@@ -32,8 +32,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -44,7 +45,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -97,7 +98,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2071bad41b2e76109edcda930cb2754a.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5662d010d742e355be91544bf2d27acf.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -220,6 +221,31 @@ Iain R. Moodie
 
   <p class="date">2025-04-02</p>
 </section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse, <span class="at">quietly =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(infer, <span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a></a><span class="fu">library</span>(patchwork, <span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a><span class="fu">theme_set</span>(</span>
+<span id="cb3-5"><a></a>  cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>(<span class="at">font_family =</span> <span class="st">"Atkinson Hyperlegible"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a></a>    <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>, <span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb3-7"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section>
 <section id="tests-of-proportion" class="title-slide slide level1 center" data-background-color="#015b58">
 <h1>Tests of proportion</h1>
@@ -229,22 +255,53 @@ Iain R. Moodie
 <h2>Tests of proportion</h2>
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis">Could a proportion have been observed under a null hypothesis?</h3>
 
-<img data-src="images/06/dogcat.jpeg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/06/dogcat.jpeg" class="quarto-figure quarto-figure-center r-stretch"><div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>animal_pref <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">preference =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"dog"</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="st">"cat"</span>, <span class="dv">17</span>))))</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>animal_pref_se <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-4"><a></a>  <span class="at">preference =</span> <span class="fu">sample</span>(<span class="fu">c</span>(</span>
+<span id="cb4-5"><a></a>    <span class="fu">rep</span>(<span class="st">"dog"</span>, <span class="dv">2000</span> <span class="sc">/</span> <span class="dv">100</span> <span class="sc">*</span> <span class="dv">58</span>),</span>
+<span id="cb4-6"><a></a>    <span class="fu">rep</span>(<span class="st">"cat"</span>, <span class="dv">2000</span> <span class="sc">/</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="dv">100</span> <span class="sc">-</span> <span class="dv">58</span>))</span>
+<span id="cb4-7"><a></a>  ))</span>
+<span id="cb4-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="tests-of-proportion-2" class="slide level2">
 <h2>Tests of proportion</h2>
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-1">Could a proportion have been observed under a null hypothesis?</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>pref_biob11 <span class="ot">&lt;-</span></span>
+<span id="cb5-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> preference)) <span class="sc">+</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"BIOB11: Cat vs Dog"</span>)</span>
+<span id="cb5-6"><a></a></span>
+<span id="cb5-7"><a></a>pref_biob11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+</div>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="tests-of-proportion-3" class="slide level2">
 <h2>Tests of proportion</h2>
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-2">Could a proportion have been observed under a null hypothesis?</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>pref_se <span class="ot">&lt;-</span></span>
+<span id="cb6-2"><a></a>  animal_pref_se <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> preference)) <span class="sc">+</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sweden: Cat vs Dog"</span>)</span>
+<span id="cb6-6"><a></a></span>
+<span id="cb6-7"><a></a>pref_se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+</div>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="tests-of-proportion-4" class="slide level2">
 <h2>Tests of proportion</h2>
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-3">Could a proportion have been observed under a null hypothesis?</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>pref_biob11 <span class="sc">+</span> pref_se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+</div>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="tests-of-proportion-5" class="slide level2">
 <h2>Tests of proportion</h2>
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-4">Could a proportion have been observed under a null hypothesis?</h3>
@@ -263,20 +320,20 @@ Iain R. Moodie
 <h2>Tests of proportion</h2>
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-5">Could a proportion have been observed under a null hypothesis?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>animal_pref</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>animal_pref</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 32 × 1
    preference
    &lt;chr&gt;     
  1 cat       
  2 dog       
- 3 dog       
+ 3 cat       
  4 dog       
  5 dog       
  6 cat       
  7 dog       
- 8 dog       
- 9 cat       
+ 8 cat       
+ 9 dog       
 10 dog       
 # ℹ 22 more rows</code></pre>
 </div>
@@ -287,12 +344,12 @@ Iain R. Moodie
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-6">Could a proportion have been observed under a null hypothesis?</h3>
 <p>Calculate the test statistic:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>observed_stat <span class="ot">&lt;-</span> </span>
-<span id="cb3-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> preference, <span class="at">success =</span> <span class="st">"dog"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a>observed_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>observed_stat <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> preference, <span class="at">success =</span> <span class="st">"dog"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a>observed_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: preference (factor)
 # A tibble: 1 × 1
@@ -307,12 +364,12 @@ Iain R. Moodie
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-7">Could a proportion have been observed under a null hypothesis?</h3>
 <p>Generate a null distibution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>null_dist <span class="ot">&lt;-</span> </span>
-<span id="cb5-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> preference, <span class="at">success =</span> <span class="st">"dog"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> <span class="fl">0.58</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">20000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> preference, <span class="at">success =</span> <span class="st">"dog"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> <span class="fl">0.58</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">20000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tests-of-proportion-9" class="slide level2">
@@ -320,24 +377,24 @@ Iain R. Moodie
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-8">Could a proportion have been observed under a null hypothesis?</h3>
 <p>Visualise the null:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">visualize</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">visualize</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="tests-of-proportion-10" class="slide level2">
 <h2>Tests of proportion</h2>
 <h3 id="could-a-proportion-have-been-observed-under-a-null-hypothesis-9">Could a proportion have been observed under a null hypothesis?</h3>
 <p>Calculate the p-value:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1   0.273</code></pre>
+1   0.272</code></pre>
 </div>
 </div>
 </section></section>
@@ -370,12 +427,27 @@ Iain R. Moodie
 <section id="chi2-goodness-of-fit-3" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-2">Does the observed data differ from an expected distribution?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Generate expected data under Mendelian laws for a dihybrid cross</span></span>
+<span id="cb16-2"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># For reproducibility</span></span>
+<span id="cb16-3"><a></a></span>
+<span id="cb16-4"><a></a><span class="co"># Define expected proportions for a dihybrid cross (9:3:3:1 ratio)</span></span>
+<span id="cb16-5"><a></a>expected_proportions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.7</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">1.3</span>) <span class="sc">/</span> <span class="dv">16</span></span>
+<span id="cb16-6"><a></a></span>
+<span id="cb16-7"><a></a><span class="co"># Generate a dataset with 160 observations (to match proportions)</span></span>
+<span id="cb16-8"><a></a>mendelian_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb16-9"><a></a>  <span class="at">phenotype =</span> <span class="fu">rep</span>(</span>
+<span id="cb16-10"><a></a>    <span class="fu">c</span>(<span class="st">"A-B-"</span>, <span class="st">"A-bb"</span>, <span class="st">"aaB-"</span>, <span class="st">"aabb"</span>),</span>
+<span id="cb16-11"><a></a>    <span class="at">times =</span> <span class="fu">round</span>(expected_proportions <span class="sc">*</span> <span class="dv">120</span>)</span>
+<span id="cb16-12"><a></a>  )</span>
+<span id="cb16-13"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="chi2-goodness-of-fit-4" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-3">Does the observed data differ from an expected distribution?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>mendelian_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>mendelian_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 120 × 1
    phenotype
@@ -398,12 +470,16 @@ Iain R. Moodie
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-4">Does the observed data differ from an expected distribution?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(mendelian_data, <span class="fu">aes</span>(<span class="at">x =</span> phenotype)) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">1</span>)<span class="sc">/</span><span class="dv">16</span><span class="sc">*</span><span class="fu">nrow</span>(mendelian_data), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(mendelian_data, <span class="fu">aes</span>(<span class="at">x =</span> phenotype)) <span class="sc">+</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb19-4"><a></a>    <span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">16</span> <span class="sc">*</span> <span class="fu">nrow</span>(mendelian_data),</span>
+<span id="cb19-5"><a></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb19-6"><a></a>    <span class="at">color =</span> <span class="st">"red"</span></span>
+<span id="cb19-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-13-1.png" width="480" class="r-stretch"></section>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-13-1.png" width="672" class="r-stretch"></section>
 <section id="chi2-goodness-of-fit-6" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-5">Does the observed data differ from an expected distribution?</h3>
@@ -415,57 +491,57 @@ Iain R. Moodie
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-6">Does the observed data differ from an expected distribution?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>observed_statistic <span class="ot">&lt;-</span> </span>
-<span id="cb12-2"><a></a>  mendelian_data <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> phenotype) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">hypothesize</span>(</span>
-<span id="cb12-5"><a></a>    <span class="at">null =</span> <span class="st">"point"</span>,</span>
-<span id="cb12-6"><a></a>    <span class="at">p =</span> <span class="fu">c</span>(</span>
-<span id="cb12-7"><a></a>      <span class="st">"A-B-"</span> <span class="ot">=</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">16</span>,</span>
-<span id="cb12-8"><a></a>      <span class="st">"A-bb"</span> <span class="ot">=</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>,</span>
-<span id="cb12-9"><a></a>      <span class="st">"aaB-"</span> <span class="ot">=</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>,</span>
-<span id="cb12-10"><a></a>      <span class="st">"aabb"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">16</span></span>
-<span id="cb12-11"><a></a>    )</span>
-<span id="cb12-12"><a></a>   ) <span class="sc">|&gt;</span></span>
-<span id="cb12-13"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>observed_statistic <span class="ot">&lt;-</span></span>
+<span id="cb20-2"><a></a>  mendelian_data <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> phenotype) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a></a>  <span class="fu">hypothesize</span>(</span>
+<span id="cb20-5"><a></a>    <span class="at">null =</span> <span class="st">"point"</span>,</span>
+<span id="cb20-6"><a></a>    <span class="at">p =</span> <span class="fu">c</span>(</span>
+<span id="cb20-7"><a></a>      <span class="st">"A-B-"</span> <span class="ot">=</span> <span class="dv">9</span> <span class="sc">/</span> <span class="dv">16</span>,</span>
+<span id="cb20-8"><a></a>      <span class="st">"A-bb"</span> <span class="ot">=</span> <span class="dv">3</span> <span class="sc">/</span> <span class="dv">16</span>,</span>
+<span id="cb20-9"><a></a>      <span class="st">"aaB-"</span> <span class="ot">=</span> <span class="dv">3</span> <span class="sc">/</span> <span class="dv">16</span>,</span>
+<span id="cb20-10"><a></a>      <span class="st">"aabb"</span> <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">16</span></span>
+<span id="cb20-11"><a></a>    )</span>
+<span id="cb20-12"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-13"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="chi2-goodness-of-fit-8" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-7">Does the observed data differ from an expected distribution?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>null_dist <span class="ot">&lt;-</span> </span>
-<span id="cb13-2"><a></a>  mendelian_data <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> phenotype) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a></a>  <span class="fu">hypothesize</span>(</span>
-<span id="cb13-5"><a></a>    <span class="at">null =</span> <span class="st">"point"</span>,</span>
-<span id="cb13-6"><a></a>    <span class="at">p =</span> <span class="fu">c</span>(</span>
-<span id="cb13-7"><a></a>      <span class="st">"A-B-"</span> <span class="ot">=</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">16</span>,</span>
-<span id="cb13-8"><a></a>      <span class="st">"A-bb"</span> <span class="ot">=</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>,</span>
-<span id="cb13-9"><a></a>      <span class="st">"aaB-"</span> <span class="ot">=</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>,</span>
-<span id="cb13-10"><a></a>      <span class="st">"aabb"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">16</span></span>
-<span id="cb13-11"><a></a>    )</span>
-<span id="cb13-12"><a></a>   ) <span class="sc">|&gt;</span></span>
-<span id="cb13-13"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-14"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
+<span id="cb21-2"><a></a>  mendelian_data <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> phenotype) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">hypothesize</span>(</span>
+<span id="cb21-5"><a></a>    <span class="at">null =</span> <span class="st">"point"</span>,</span>
+<span id="cb21-6"><a></a>    <span class="at">p =</span> <span class="fu">c</span>(</span>
+<span id="cb21-7"><a></a>      <span class="st">"A-B-"</span> <span class="ot">=</span> <span class="dv">9</span> <span class="sc">/</span> <span class="dv">16</span>,</span>
+<span id="cb21-8"><a></a>      <span class="st">"A-bb"</span> <span class="ot">=</span> <span class="dv">3</span> <span class="sc">/</span> <span class="dv">16</span>,</span>
+<span id="cb21-9"><a></a>      <span class="st">"aaB-"</span> <span class="ot">=</span> <span class="dv">3</span> <span class="sc">/</span> <span class="dv">16</span>,</span>
+<span id="cb21-10"><a></a>      <span class="st">"aabb"</span> <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">16</span></span>
+<span id="cb21-11"><a></a>    )</span>
+<span id="cb21-12"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-13"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-14"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="chi2-goodness-of-fit-9" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-8">Does the observed data differ from an expected distribution?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span> </span>
-<span id="cb14-3"><a></a>  <span class="fu">shade_p_value</span>(observed_statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a></a>  <span class="fu">shade_p_value</span>(observed_statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-16-1.png" width="480" class="r-stretch"></section>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-16-1.png" width="672" class="r-stretch"></section>
 <section id="chi2-goodness-of-fit-10" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-9">Does the observed data differ from an expected distribution?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -506,17 +582,58 @@ Iain R. Moodie
 <section id="chi2-test-of-independence-2" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-1">Are two categorical variables associated with each other?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>germ_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb25-2"><a></a>  <span class="at">treatment =</span> <span class="fu">rep</span>(</span>
+<span id="cb25-3"><a></a>    <span class="fu">c</span>(<span class="st">"coating_a"</span>, <span class="st">"coating_b"</span>, <span class="st">"coating_c"</span>, <span class="st">"control"</span>),</span>
+<span id="cb25-4"><a></a>    <span class="at">each =</span> <span class="dv">30</span></span>
+<span id="cb25-5"><a></a>  ),</span>
+<span id="cb25-6"><a></a>  <span class="at">germination_success =</span> <span class="fu">c</span>(</span>
+<span id="cb25-7"><a></a>    <span class="fu">sample</span>(</span>
+<span id="cb25-8"><a></a>      <span class="fu">c</span>(<span class="st">"germinated"</span>, <span class="st">"failed_to_germinate"</span>),</span>
+<span id="cb25-9"><a></a>      <span class="at">size =</span> <span class="dv">30</span>,</span>
+<span id="cb25-10"><a></a>      <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-11"><a></a>      <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.70</span>, <span class="fl">0.30</span>)</span>
+<span id="cb25-12"><a></a>    ),</span>
+<span id="cb25-13"><a></a>    <span class="fu">sample</span>(</span>
+<span id="cb25-14"><a></a>      <span class="fu">c</span>(<span class="st">"germinated"</span>, <span class="st">"failed_to_germinate"</span>),</span>
+<span id="cb25-15"><a></a>      <span class="at">size =</span> <span class="dv">30</span>,</span>
+<span id="cb25-16"><a></a>      <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-17"><a></a>      <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.72</span>, <span class="fl">0.28</span>)</span>
+<span id="cb25-18"><a></a>    ),</span>
+<span id="cb25-19"><a></a>    <span class="fu">sample</span>(</span>
+<span id="cb25-20"><a></a>      <span class="fu">c</span>(<span class="st">"germinated"</span>, <span class="st">"failed_to_germinate"</span>),</span>
+<span id="cb25-21"><a></a>      <span class="at">size =</span> <span class="dv">30</span>,</span>
+<span id="cb25-22"><a></a>      <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-23"><a></a>      <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.65</span>, <span class="fl">0.35</span>)</span>
+<span id="cb25-24"><a></a>    ),</span>
+<span id="cb25-25"><a></a>    <span class="fu">sample</span>(</span>
+<span id="cb25-26"><a></a>      <span class="fu">c</span>(<span class="st">"germinated"</span>, <span class="st">"failed_to_germinate"</span>),</span>
+<span id="cb25-27"><a></a>      <span class="at">size =</span> <span class="dv">30</span>,</span>
+<span id="cb25-28"><a></a>      <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-29"><a></a>      <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.68</span>, <span class="fl">0.30</span>)</span>
+<span id="cb25-30"><a></a>    )</span>
+<span id="cb25-31"><a></a>  )</span>
+<span id="cb25-32"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="chi2-test-of-independence-3" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-2">Are two categorical variables associated with each other?</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>germ_data <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">fill =</span> germination_success)) <span class="sc">+</span></span>
+<span id="cb26-3"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a></a>  <span class="fu">ylab</span>(<span class="st">"Proportion"</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
+</div>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="chi2-test-of-independence-4" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-3">Are two categorical variables associated with each other?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>germ_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>germ_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 120 × 2
    treatment germination_success
@@ -539,17 +656,17 @@ Iain R. Moodie
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-4">Are two categorical variables associated with each other?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>observed_statistic <span class="ot">&lt;-</span> </span>
-<span id="cb19-2"><a></a>  germ_data <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> germination_success, <span class="at">explanatory =</span> treatment) <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span>
-<span id="cb19-6"><a></a></span>
-<span id="cb19-7"><a></a>observed_statistic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>observed_statistic <span class="ot">&lt;-</span></span>
+<span id="cb29-2"><a></a>  germ_data <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> germination_success, <span class="at">explanatory =</span> treatment) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span>
+<span id="cb29-6"><a></a></span>
+<span id="cb29-7"><a></a>observed_statistic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: germination_success (factor)
 Explanatory: treatment (factor)
-Null Hypothesis: independence
+Null H...
 # A tibble: 1 × 1
    stat
   &lt;dbl&gt;
@@ -561,30 +678,30 @@ Null Hypothesis: independence
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-5">Are two categorical variables associated with each other?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>null_dist <span class="ot">&lt;-</span> </span>
-<span id="cb21-2"><a></a>  germ_data <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> germination_success, <span class="at">explanatory =</span> treatment) <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
+<span id="cb31-2"><a></a>  germ_data <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> germination_success, <span class="at">explanatory =</span> treatment) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="chi2-test-of-independence-7" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-6">Are two categorical variables associated with each other?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb22-3"><a></a>  <span class="fu">shade_p_value</span>(observed_statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb32-3"><a></a>  <span class="fu">shade_p_value</span>(observed_statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="06_chisq_files/figure-revealjs/unnamed-chunk-23-1.png" width="480" class="r-stretch"></section>
+<img data-src="06_chisq_files/figure-html/unnamed-chunk-23-1.png" width="672" class="r-stretch"></section>
 <section id="chi2-test-of-independence-8" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-7">Are two categorical variables associated with each other?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -836,229 +953,173 @@ W10=
     window._ojs.selfContained = false;
     window._ojs.runtime.interpretFromScriptTags();
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/irmoodie\.github\.io\/biob11\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
