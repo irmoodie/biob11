@@ -1,0 +1,10 @@
+---
+title: "Group seminar activity"
+subtitle: "Exercise 7"
+date: 2026-04-08
+execute:
+  echo: true
+  eval: false
+---
+
+Coming soon!

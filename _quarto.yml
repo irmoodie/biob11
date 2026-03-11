@@ -4,10 +4,11 @@ project:
     - "*.qmd"
     - "!*.Rmd"
     - "!*_exam.qmd"
+    - "!old_*"
 
 website:
   title: "BIOB11"
-  description: "Homepage for BIOB11 - Experimental Design and Analysis for Biologists at Lund University, VT25"
+  description: "Homepage for BIOB11 - Experimental Design and Analysis for Biologists at Lund University, VT26"
 
   open-graph: true
 
@@ -28,12 +29,20 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - href: https://canvas.education.lu.se/courses/33414
+        icon: house-fill
+      - href: https://canvas.education.lu.se/courses/39432
         text: LU Canvas
-      - slides.qmd
-      - exercises.qmd
-      - resources.qmd
-      - project.qmd
+        icon: mortarboard-fill
+      - href: slides.qmd
+        text: Slides
+        icon: easel-fill
+      - href: exercises.qmd
+        text: Exercises
+        icon: laptop-fill
+      - href: resources.qmd
+        text: Resources
+        icon: book-fill
+      # - project.qmd
 
 format:
   html:

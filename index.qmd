@@ -1,9 +1,300 @@
 ---
-title: "BIOB11 - Experimental Design and Analysis for Biologists"
+title: "Course overview"
+subtitle: "Spring 2026"
+
 ---
 
-Welcome to the course website for BIOB11. Here you will find all materials used in the course.
+On this website you will find all materials for sections taught by [Iain Moodie](https://portal.research.lu.se/en/persons/iain-moodie/) on the course [BIOB11](https://www.biologiutbildning.lu.se/utbildning/kurser/grundkurser/forsoksdesign-och-analys-biologer-biob11) at Lund University. All course communication should take place on [LU Canvas](https://canvas.education.lu.se/courses/39432). The full schedule for the spring 2026 version of the course is shown below. Previous versions of the course are archived as [releases on GitHub](https://github.com/irmoodie/biob11/releases).
 
-All course communication should take place on [LU Canvas](https://canvas.education.lu.se/courses/33414). This site is only for hosting interactive materials that are not easy to distribute as files via Canvas.
 
-This website uses the [`webR`](https://docs.r-wasm.org/webr/latest/) WebAssembly engines to dynamically execute R code in your web browser so I can provide you with interactive exercises.^[This means with a slow internet connection, or a slower browser/computer (especially mobile devices that place restricitons on browser RAM usage), you may experience a delay between loading a page and being able to use the interactive R console, and/or a delay in executing code in the R console. If you have any issues, let the course teacher know.]
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(gt)
+library(janitor)
+
+# Course website base url
+base_url <- "https://irmoodie.com/biob11/"
+
+# downloaded from https://cloud.timeedit.net/lu/web/n1/ri1Y4X1QQ5wZ06Qv75079225yYY36ZQ7.html
+timeedit <-
+  read_csv(
+    "schedule/TimeEdit_BIOB11_Biologi_Forsoksdesign_och_analys_for_biologer_2026-03-05_15_50.csv",
+    skip = 3
+  ) |>
+  select(
+    date = Startdatum,
+    start_time = Starttid,
+    end_time = Sluttid,
+    location = `Lokal,Platskommentar`,
+    title = `Titel,Publik kommentar,URL`,
+    activity_type = Aktivitet
+  )
+
+is_all_day <- function(start_time, end_time) {
+  return(
+    hms::as_hms(start_time) < hms::as_hms("12:00:00") &
+      hms::as_hms(end_time) > hms::as_hms("13:00:00")
+  )
+}
+
+schedule <-
+  timeedit |>
+  mutate(all_day = is_all_day(start_time, end_time)) |>
+  mutate(
+    rows = if_else(
+      all_day,
+      list(c("morning", "afternoon")),
+      list("single")
+    )
+  ) |>
+  unnest(rows) |>
+  mutate(
+    time_of_day = case_when(
+      !all_day &
+        hms::as_hms(end_time) <= hms::as_hms("13:00:00") ~ "morning",
+      !all_day &
+        hms::as_hms(start_time) >= hms::as_hms("13:00:00") ~ "afternoon",
+      all_day & rows == "morning" ~ "morning",
+      all_day & rows == "afternoon" ~ "afternoon"
+    ),
+    start_time = if_else(
+      all_day & rows == "afternoon",
+      hms::as_hms("13:00:00"),
+      start_time
+    ),
+    end_time = if_else(
+      all_day & rows == "morning",
+      hms::as_hms("12:00:00"),
+      end_time
+    )
+  ) |>
+  mutate(
+    mandatory = case_when(
+      str_detect(activity_type, "Obligatoriskt") ~ TRUE,
+      TRUE ~ FALSE
+    ),
+    activity_type = case_when(
+      str_detect(activity_type, "Redovisning") ~ "Group project presentations",
+      str_detect(activity_type, "Projekt") ~ "Group project",
+      str_detect(activity_type, "Introduktion") ~ "Introduction",
+      str_detect(activity_type, "Laboration") ~ "Computer Lab",
+      str_detect(activity_type, "Föreläsning") ~ "Lecture",
+      str_detect(activity_type, "Seminarium") ~ "Seminar",
+      str_detect(activity_type, "Självstudier") ~ "Self study",
+      str_detect(activity_type, "Tentamen") ~ "Exam",
+      str_detect(activity_type, "Omtentamen") ~ "Retake exam",
+      str_detect(activity_type, "Frågestund") ~ "Q&A session",
+      str_detect(title, "Vetenskaplig integritet och etik") ~ "Lecture", # Kaj's lecture
+    ),
+    title = case_when(
+      activity_type == "Retake exam" ~ "Retake exam", # fix title
+      TRUE ~ title
+    )
+  ) |>
+  filter(activity_type != "Self study") |>
+  mutate(
+    emoji = case_when(
+      activity_type == "Lecture" ~ "👨🏻‍🏫",
+      activity_type == "Computer Lab" ~ "💻",
+      activity_type == "Seminar" ~ "💬",
+      activity_type == "Group project" ~ "👥",
+      activity_type == "Group project presentations" ~ "🎤",
+      activity_type == "Introduction" ~ "👋",
+      activity_type == "Exam" ~ "📝",
+      activity_type == "Retake exam" ~ "📝",
+      activity_type == "Q&A session" ~ "❓",
+      TRUE ~ ""
+    )
+  ) |>
+  mutate(
+    week_number = glue::glue("Week {lubridate::isoweek(date)}")
+  ) |>
+  select(
+    date,
+    week_number,
+    start_time,
+    end_time,
+    activity_type,
+    emoji,
+    mandatory,
+    location,
+    title,
+    time_of_day
+  )
+
+due_dates <-
+  tribble(
+    ~date        , ~due                                                                                             ,
+    "2026-03-23" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
+    "2026-03-27" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
+    "2026-03-31" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
+    "2026-04-01" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
+    "2026-04-09" , "✅ [Analysis and report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00" ,
+    "2026-04-16" , "✅ [Exam](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 13:00"                ,
+    "2026-04-17" , "✅ [Project proposal](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 14:00"    ,
+    "2026-04-23" , "✅ [Project report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 13:00"      ,
+    "2026-04-24" , "✅ [Peer-review](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"
+  ) |>
+  mutate(date = lubridate::as_date(date))
+
+# 📖 Read X <br> ▶️ Watch X <br> 🎧 Listen X
+
+book_dates <-
+  tribble(
+    ~date        , ~book                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ,
+    "2026-03-24" , "📖 [IMS2](https://openintro-ims.netlify.app/) [[1]](https://openintro-ims.netlify.app/data-hello) [[4]](https://openintro-ims.netlify.app/explore-categorical) [[5]](https://openintro-ims.netlify.app/explore-numerical) <br> 🛠️ [HOPR](https://rstudio-education.github.io/hopr/) [[2]](https://rstudio-education.github.io/hopr/basics.html)"                                                                                                                                                                                                                                                                                                                                                                                                                       ,
+    "2026-04-01" , "📖 [IMS2](https://openintro-ims.netlify.app/) [[7]](https://openintro-ims.netlify.app/model-slr) [[8]](https://openintro-ims.netlify.app/model-mlr) [[9]](https://openintro-ims.netlify.app/model-logistic) [[24.1-3]](https://openintro-ims.netlify.app/inf-model-slr) [[25]](https://openintro-ims.netlify.app/inf-model-mlr) [[26]](https://openintro-ims.netlify.app/inf-model-logistic)"                                                                                                                                                                                                                                                                                                                                                                          ,
+    "2026-03-27" , "📖 [IMS2](https://openintro-ims.netlify.app/) [[12]](https://openintro-ims.netlify.app/foundations-bootstrapping) [[16.1]](https://openintro-ims.netlify.app/inference-one-prop#sec-one-prop-null-boot) [[17.2]](https://openintro-ims.netlify.app/inference-two-props#sec-two-prop-boot-ci) [[19.1]](https://openintro-ims.netlify.app/inference-one-mean#sec-boot1mean) [[20.2]](https://openintro-ims.netlify.app/inference-two-means#bootstrap-confidence-interval-for-the-difference-in-means) [[21.2]](https://openintro-ims.netlify.app/inference-paired-means#bootstrap-confidence-interval-for-the-mean-paired-difference)"                                                                                                                                   ,
+    "2026-03-26" , "📖 [IMS2](https://openintro-ims.netlify.app/) [[2]](https://openintro-ims.netlify.app/data-design)"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ,
+    "2026-03-25" , "🛠️ [R4DS](https://r4ds.hadley.nz/) [[1]](https://r4ds.hadley.nz/data-visualize.html) [[3]](https://r4ds.hadley.nz/data-transform.html) [[5]](https://r4ds.hadley.nz/data-tidy.html) [[7]](https://r4ds.hadley.nz/data-import.html) [[10]](https://r4ds.hadley.nz/EDA.html) [[28]](https://r4ds.hadley.nz/quarto.html)"                                                                                                                                                                                                                                                                                                                                                                                                                                                ,
+    "2026-03-31" , "📖 [IMS2](https://openintro-ims.netlify.app/) [[11]](https://openintro-ims.netlify.app/foundations-randomization) [[14]](https://openintro-ims.netlify.app/foundations-errors) [[17.1]](https://openintro-ims.netlify.app/inference-two-props#sec-two-prop-errors) [[18.1]](https://openintro-ims.netlify.app/inference-tables#randomization-test-of-independence) [[20.1]](https://openintro-ims.netlify.app/inference-two-means#sec-rand2mean) [[21.1]](https://openintro-ims.netlify.app/inference-paired-means#randomization-test-for-the-mean-paired-difference) [[22.2]](https://openintro-ims.netlify.app/inference-many-means#sec-randANOVA)"                                                                                                                  ,
+    "2026-04-07" , "📖 [IMS2](https://openintro-ims.netlify.app/) [[13]](https://openintro-ims.netlify.app/foundations-mathematical) [[16.2]](https://openintro-ims.netlify.app/inference-one-prop#sec-one-prop-norm) [[17.3]](https://openintro-ims.netlify.app/inference-two-props#sec-math-2prop) [[18.2]](https://openintro-ims.netlify.app/inference-tables#sec-mathchisq) [[19.2]](https://openintro-ims.netlify.app/inference-one-mean#sec-one-mean-math) [[20.3]](https://openintro-ims.netlify.app/inference-two-means#sec-math2samp) [[21.3]](https://openintro-ims.netlify.app/inference-paired-means#sec-mathpaired) [[22.3]](https://openintro-ims.netlify.app/inference-many-means#sec-mathANOVA) [[24.4-5]](https://openintro-ims.netlify.app/inf-model-slr#sec-mathslope)"
+  ) |>
+  mutate(date = lubridate::as_date(date))
+
+prep_dates <-
+  tribble(
+    ~date        , ~prep                                           ,
+    "2026-03-23" , "💻 Access a laptop"                             ,
+    "2026-04-8"  , "📃 Read seminar papers"                         ,
+    "2026-04-14" , "❓ Prepare questions"                           ,
+    "2026-04-16" , "📝 Read the exam guide"                         ,
+    "2026-05-07" , "📝 Read the exam guide"                         ,
+    "2026-04-24" , "📝 Read assigned report <br> ⬆️ Upload slides "
+  ) |>
+  mutate(date = lubridate::as_date(date))
+
+
+material_dates <-
+  tribble(
+    ~date        , ~link_morning                                  , ~link_afternoon              ,
+    "2026-03-23" , "slides/01_intro"                              , "exercises/01_eda"           ,
+    "2026-03-24" , "slides/02_data"                               , "exercises/02_r"             ,
+    "2026-03-25" , "exercises/03_reproducible"                    , "exercises/03_reproducible"  ,
+    "2026-03-26" , "slides/03_expdes"                             , NA                           ,
+    "2026-03-27" , "slides/04_inference"                          , "exercises/04_bootstrap"     ,
+    "2026-03-30" , "https://canvas.education.lu.se/courses/39432" , "slides/05_hypothesis"       ,
+    "2026-03-31" , "exercises/05_randomisation"                   , "exercises/05_randomisation" ,
+    "2026-04-01" , "slides/06_regression"                         , "exercises/06_regression"    ,
+    "2026-04-07" , "slides/07_math"                               , NA                           ,
+    "2026-04-08" , "exercises/07_seminar"                         , "exercises/08_report"        ,
+    "2026-04-09" , "exercises/08_report"                          , "exercises/08_report"        ,
+    "2026-04-10" , "exercises/09_practise"                        , NA                           ,
+    "2026-04-14" , "exam_info"                                    , NA                           ,
+    "2026-04-16" , "exam_info"                                    , NA                           ,
+    "2026-04-17" , "slides/08_project"                            , "exercises/10_project"       ,
+    "2026-04-20" , "exercises/10_project"                         , "exercises/10_project"       ,
+    "2026-04-21" , "exercises/10_project"                         , "exercises/10_project"       ,
+    "2026-04-22" , "exercises/10_project"                         , "exercises/10_project"       ,
+    "2026-04-23" , "exercises/10_project"                         , NA                           ,
+    "2026-04-24" , "exercises/10_project"                         , "exercises/10_project"       ,
+    "2026-05-07" , NA                                             , "exam_info"                  ,
+  ) |>
+  mutate(
+    date = lubridate::as_date(date),
+    link_morning = if_else(
+      str_detect(link_morning, "^https://"),
+      link_morning,
+      paste0(base_url, link_morning, ".html")
+    ),
+    link_afternoon = if_else(
+      str_detect(link_afternoon, "^https://"),
+      link_afternoon,
+      paste0(base_url, link_afternoon, ".html")
+    )
+  )
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+
+schedule |>
+  summarise(
+    start_time = first(start_time),
+    end_time = last(end_time),
+    week_number = unique(week_number),
+    location = paste(unique(location), collapse = ", "),
+    title = paste(unique(title), collapse = " & "),
+    emoji = paste(unique(emoji), collapse = " "),
+    activity_type = paste(unique(activity_type), collapse = ", "),
+    mandatory = paste(unique(mandatory), collapse = ", "),
+    .by = c(date, time_of_day)
+  ) |>
+  pivot_wider(
+    names_from = time_of_day,
+    values_from = c(
+      start_time,
+      end_time,
+      location,
+      title,
+      activity_type,
+      mandatory,
+      emoji
+    ),
+    id_cols = c(date, week_number)
+  ) |>
+  left_join(material_dates, by = join_by(date)) |>
+  mutate(
+    morning = glue::glue(
+      "
+      {emoji_morning} [{title_morning}]({link_morning}) <br> 
+      📍 {str_replace_all(location_morning, ',', ', ')} <br> 
+      🕒 {strftime(start_time_morning, '%H:%M')}--{strftime(end_time_morning, '%H:%M')}
+      "
+    ),
+    afternoon = glue::glue(
+      "
+      {emoji_afternoon} [{title_afternoon}]({link_afternoon}) <br> 
+      📍 {str_replace_all(location_afternoon, ',', ', ')} <br> 
+      🕒 {strftime(start_time_afternoon, '%H:%M')}--{strftime(end_time_afternoon, '%H:%M')}
+      "
+    )
+  ) |>
+  mutate(
+    morning = if_else(str_detect(morning, "NA--NA"), "", morning),
+    afternoon = if_else(str_detect(afternoon, "NA--NA"), "", afternoon)
+  ) |>
+  left_join(due_dates) |>
+  left_join(book_dates) |>
+  left_join(prep_dates) |>
+  select(week_number, date, prep, morning, afternoon, due, book) |>
+  gt(groupname_col = "week_number") |>
+  fmt_date(date, date_style = 31) |>
+  fmt_markdown(columns = c(prep, book, morning, afternoon, due)) |>
+  cols_align(
+    align = "left",
+    columns = c(prep, book, morning, afternoon, due)
+  ) |>
+  cols_align(
+    align = "right",
+    columns = c(date)
+  ) |>
+  opt_row_striping() |>
+  cols_width(
+    date ~ pct(7),
+    prep ~ pct(13),
+    morning ~ pct(27.5),
+    afternoon ~ pct(27.5),
+    due ~ pct(12),
+    book ~ pct(13)
+  ) |>
+  cols_label(
+    date = "",
+    prep = md("**Prep**"),
+    morning = md("**Morning**"),
+    afternoon = md("**Afternoon**"),
+    due = md("**Due**"),
+    book = md("**Book**")
+  ) |>
+  sub_missing(
+    columns = c(book, due, prep),
+    missing_text = ""
+  ) |>
+  tab_options(table.font.size = 13)
+```

@@ -1,0 +1,10 @@
+---
+title: "Hypothesis testing with randomisation"
+subtitle: "Exercise 5"
+date: 2026-03-31
+execute:
+  echo: true
+  eval: false
+---
+
+Coming soon!

@@ -3,6 +3,7 @@ author:
     affiliations: 
       - BIOB11 - Experimental design and analysis for biologists
       - Department of Biology, Lund University
+date-format: "dddd Do MMMM, YYYY"
 format: 
   live-revealjs:
     fig-height: 5

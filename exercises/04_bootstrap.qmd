@@ -1,0 +1,10 @@
+---
+title: "Statistical inference with bootstrap"
+subtitle: "Exercise 4"
+date: 2026-03-27
+execute:
+  echo: true
+  eval: false
+---
+
+Coming soon!

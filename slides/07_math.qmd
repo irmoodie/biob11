@@ -1,0 +1,8 @@
+---
+title: "Statistical inference with mathematical models"
+subtitle: "Lecture 7"
+date: 2026-04-07
+author: "Iain R. Moodie"
+---
+
+Coming soon!

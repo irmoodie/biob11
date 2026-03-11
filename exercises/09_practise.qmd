@@ -1,0 +1,10 @@
+---
+title: "Practise Exam"
+subtitle: "Exercise 9"
+date: 2026-04-10
+execute:
+  echo: true
+  eval: false
+---
+
+Coming soon!
