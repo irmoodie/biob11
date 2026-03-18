@@ -6,7 +6,6 @@ subtitle: "Spring 2026"
 
 On this website you will find all materials for sections taught by [Iain Moodie](https://portal.research.lu.se/en/persons/iain-moodie/) on the course [BIOB11](https://www.biologiutbildning.lu.se/utbildning/kurser/grundkurser/forsoksdesign-och-analys-biologer-biob11) at Lund University. All course communication should take place on [LU Canvas](https://canvas.education.lu.se/courses/39432). The full schedule for the spring 2026 version of the course is shown below. Previous versions of the course are archived as [releases on GitHub](https://github.com/irmoodie/biob11/releases).
 
-
 ```{r}
 #| echo: false
 #| message: false
@@ -158,12 +157,13 @@ book_dates <-
 
 prep_dates <-
   tribble(
-    ~date        , ~prep                                           ,
-    "2026-03-23" , "💻 Access a laptop"                             ,
-    "2026-04-8"  , "📃 Read seminar papers"                         ,
-    "2026-04-14" , "❓ Prepare questions"                           ,
-    "2026-04-16" , "📝 Read the exam guide"                         ,
-    "2026-05-07" , "📝 Read the exam guide"                         ,
+    ~date        , ~prep                                                           ,
+    "2026-03-23" , "💻 Access a laptop"                                             ,
+    "2026-03-24" , glue::glue("💻 [Install R + RStudio]({base_url}install_r.html)") ,
+    "2026-04-8"  , "📃 Read seminar papers"                                         ,
+    "2026-04-14" , "❓ Prepare questions"                                           ,
+    "2026-04-16" , "📝 Read the exam guide"                                         ,
+    "2026-05-07" , "📝 Read the exam guide"                                         ,
     "2026-04-24" , "📝 Read assigned report <br> ⬆️ Upload slides "
   ) |>
   mutate(date = lubridate::as_date(date))
@@ -208,7 +208,6 @@ material_dates <-
     )
   )
 ```
-
 
 ```{r}
 #| echo: false
@@ -264,6 +263,18 @@ schedule |>
   left_join(book_dates) |>
   left_join(prep_dates) |>
   select(week_number, date, prep, morning, afternoon, due, book) |>
+  bind_rows(
+    tribble(
+      ~week_number , ~date        , ~prep , ~morning , ~afternoon , ~due , ~book ,
+      "Week 14"    , "2026-04-02" , NA    , NA       , NA         , NA   , NA    ,
+      "Week 14"    , "2026-04-03" , NA    , NA       , NA         , NA   , NA    ,
+      "Week 15"    , "2026-04-06" , NA    , NA       , NA         , NA   , NA    ,
+      "Week 16"    , "2026-04-13" , NA    , NA       , NA         , NA   , NA    ,
+      "Week 16"    , "2026-04-15" , NA    , NA       , NA         , NA   , NA
+    ) |>
+      mutate(date = lubridate::as_date(date))
+  ) |>
+  arrange(date) |>
   gt(groupname_col = "week_number") |>
   fmt_date(date, date_style = 31) |>
   fmt_markdown(columns = c(prep, book, morning, afternoon, due)) |>
@@ -276,6 +287,14 @@ schedule |>
     columns = c(date)
   ) |>
   opt_row_striping() |>
+  tab_style(
+    style = cell_fill(color = "#8e61aa"),
+    locations = cells_row_groups()
+  ) |>
+  tab_style(
+    style = cell_text(color = "white"),
+    locations = cells_row_groups()
+  ) |>
   cols_width(
     date ~ pct(7),
     prep ~ pct(13),
@@ -293,7 +312,7 @@ schedule |>
     book = md("**Book**")
   ) |>
   sub_missing(
-    columns = c(book, due, prep),
+    columns = c(morning, afternoon, book, due, prep),
     missing_text = ""
   ) |>
   tab_options(table.font.size = 13)

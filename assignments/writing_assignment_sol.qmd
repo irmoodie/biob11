@@ -124,8 +124,6 @@ cricket_data <- read_csv(
 )
 ```
 
-
-
 ## Respiration analysis
 
 ### Does the rate of $\text{CO}_2$ production differ between crickets raised in high and low density environments?
@@ -309,6 +307,7 @@ resp_o2_p
 The probability of observing our observed difference under the null hypothesis is very high (p = `{r} round(resp_o2_p[[1]], 3)`), so I fail to reject the null hypothesis. It is unlikely that males from high density environments have higher $\text{O}_2$ consumption rates than males from low density environments.
 
 ::: {.callout-note collapse="true" icon="false"}
+
 #### AI generated quick overview
 
 ##### Introduction

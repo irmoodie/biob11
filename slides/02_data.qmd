@@ -2,7 +2,819 @@
 title: "Data, plots and descriptive statistics"
 subtitle: "Lecture 2"
 date: 2026-03-24
-author: "Iain R. Moodie"
+webr:
+  packages:
+    - tidyverse
+    - palmerpenguins
+    - gt
 ---
 
-Coming soon!
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+# Data {background-color="#8e61aa"}
+
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+options("readr.edition" = 1)
+library(tidyverse)
+library(palmerpenguins)
+theme_set(theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1))
+```
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(gt)
+library(ggiraph)
+
+theme_set(
+  theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1)
+)
+```
+
+## Data
+
+### Palmer penguins
+
+![](images/lter_penguins.png)
+
+## Data {.scrollable}
+
+### Palmer penguins (observations)
+
+```{r}
+obs_table <- function(data, font_size = 22) {
+  data |>
+    gt() |>
+    opt_row_striping() |>
+    tab_options(
+      table.font.size = font_size,
+      table.font.names = "Atkinson Hyperlegible"
+    ) |>
+    tab_style(
+      style = cell_text(weight = "bold"),
+      locations = cells_column_labels()
+    )
+}
+
+penguins |> obs_table()
+```
+
+## Data
+
+### Palmer penguins (variables)
+
+```{r}
+penguin_vars <-
+  tibble(
+    variable = names(penguins),
+    description = c(
+      "penguin species (Adelie, Chinstrap, Gentoo)",
+      "island where the penguin was found (Biscoe, Dream, Torgersen)",
+      "length of bill in mm",
+      "depth of bill in mm",
+      "length of flipper in mm",
+      "body mass in grams",
+      "penguin sex (female, male)",
+      "year of observation (2007, 2008, 2009)"
+    )
+  )
+
+vars_table <- function(data, font_size = 30) {
+  data |>
+    gt() |>
+    opt_row_striping() |>
+    cols_label(
+      variable = md("**Variable**"),
+      description = md("**Description**")
+    ) |>
+    tab_style(
+      style = cell_text(style = "italic"),
+      locations = cells_body(columns = variable)
+    ) |>
+    tab_options(
+      table.font.size = font_size,
+      table.font.names = "Atkinson Hyperlegible"
+    )
+}
+
+penguin_vars |> vars_table()
+```
+
+## Data
+
+### Dataframes
+
+- Spreadsheet like arrangement of rows and columns
+- When a single row is a unique case (piece of colleted data) = *tidy data*
+
+```{r}
+penguins |>
+  slice_sample(n = 6) |>
+  obs_table()
+```
+
+## Data
+
+### Tidy data
+
+![](images/tidydata.png)
+
+- Each variable gets its own column
+- Each observation gets its own row
+- Each value gets its own cell
+- Each new unit of observation gets its own data file
+
+## Data
+
+### Discussion questions
+
+How would you organise the following data:
+
+- You measure *enzyme activity* in different tissues (liver, kidney, muscle) from mice at *three* time points (0h, 24h, 48h). Each tissue sample from each mouse is measured *three* times (to check accuracy), with *absorbance values* recorded at 450nm and 600nm.
+
+{{< countdown minutes=3 font-size="5rem" >}}
+
+## Data
+
+### Discussion questions
+
+How would you organise the following data:
+
+- You conduct bird surveys across multiple sites over several months. For each survey, you record the *number of individuals of different species seen*, the *time spent surveying*, *weather conditions* (temperature, wind, cloud cover), and *habitat characteristics* (% tree cover, distance to water).
+
+{{< countdown minutes=3 font-size="5rem" >}}
+
+## Data
+
+### Discussion questions
+
+How would you organise the following data:
+
+- You collect health data from participants in an exercise intervention including their *age*, *height*, *weight* at baseline, *weight* after 6 months, *blood pressure* at baseline (systolic/diastolic), *blood pressure* after 6 months (systolic/diastolic), and whether they completed the *intervention* (yes/no).
+
+{{< countdown minutes=3 font-size="5rem" >}}
+
+# Variable types {background-color="#8e61aa"}
+
+## Variable types
+
+### What is a variable?
+
+- A variable is any property that is measured in an observation [@sokal1995]
+- Something that **varies** among things that we can measure [@dytham2011]
+- Usually not selected at random, i.e., we should have some interest in it
+- Can be related to both a treatment and response in an experiment
+
+## Variable types
+
+### What can we do with variables?
+
+- Summarise how our measurements vary using summary statistics
+- Visualise our measurements with figures
+- Predict one variable using a second variable
+  - The variable we want to predict: **response variable** or **dependant variable**
+  - The variable we use to predict our response variable: **explanatory variable** or **independant variable**
+
+## Variable types
+
+### Palmer penguins (variables)
+
+```{r}
+penguin_vars_extra <-
+  penguin_vars |>
+  add_row(
+    variable = "cuteness",
+    description = "subjective cuteness rating (very low, low, average, high, very high)"
+  ) |>
+  add_row(
+    variable = "parasites",
+    description = "number of parasites observed"
+  )
+
+penguin_vars_extra |>
+  vars_table(font_size = 24)
+```
+
+## Variable types
+
+### Palmer penguins (observations)
+
+How would you group these variables? Which are similar kinds of data, and which are different? How many groups would you make?
+
+```{r}
+
+penguins_extra <-
+  penguins |>
+  mutate(
+    size_score = scale(body_mass_g)[, 1],
+    cuteness = case_when(
+      size_score < -1.5 ~ "very high",
+      size_score < -0.5 ~ "high",
+      size_score < 0.5 ~ "average",
+      size_score < 1.5 ~ "low",
+      TRUE ~ "very low"
+    ),
+    cuteness = factor(
+      cuteness,
+      levels = c("very low", "low", "average", "high", "very high")
+    ),
+    cuteness = if_else(
+      row_number() %in% sample(n(), size = floor(n() * 0.05)),
+      NA,
+      cuteness
+    ),
+    parasites = rpois(n(), lambda = 3),
+    parasites = if_else(
+      row_number() %in% sample(n(), size = floor(n() * 0.05)),
+      NA_integer_,
+      parasites
+    )
+  ) |>
+  select(-size_score)
+
+penguins_extra |>
+  slice_sample(n = 8) |>
+  obs_table(font_size = 18)
+```
+
+{{< countdown minutes=3 font-size="5rem" >}}
+
+## Variable types
+
+### Categorical variables
+
+- Have a fixed number of discrete values
+- The measurement we take will assign our observation to a specific value
+- E.g., species (*Adelie*, *Chinstrap*, *Gentoo*)
+- Can be either **nominal** or **ordinal**
+  - **Nominal** variables *do not* have inherent order *(e.g., species)*
+  - **Ordinal** variables *do* have an inherent order *(e.g., cuteness)*
+
+## Variable types
+
+### Quantitative variables
+
+- Represented by numbers that reflect a magnitude
+- Unlike categorical variables, the numbers we collect mean something tangible
+- Can be either **discrete** or **continuous**:
+  - **Discrete** variables can only take certain values *(e.g., parasites (1, 2, 3, etc), not 1.55)*
+  - **Continuous** variales can take any real number (a number that can be represented by a decimal) within some range. *(e.g., bill length or mass)*
+
+# Exploratory data analysis{background-color="#8e61aa"}
+
+- Quantitative data
+- Categorical data
+
+## Exploratory data analysis
+
+### Visualising a single variable
+
+:::: columns
+::: {.column width="50%"}
+
+- Variable: body mass of Adelie penguins (grams)
+- X axis mapped to body mass
+- How best to visualise?
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| warning: false
+
+penguins_adelie <-
+  penguins |>
+  filter(species == "Adelie")
+
+bm_dot <-
+  ggplot(
+    data = penguins_adelie,
+    mapping = aes(x = body_mass_g)
+  ) +
+  labs(x = "Body mass (g)") +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.title.y = element_blank()
+  )
+
+bm_dot
+```
+
+:::
+::::
+
+## Exploratory data analysis
+
+### Visualising a single variable
+
+:::: columns
+::: {.column width="50%"}
+
+- Variable: body mass of Adelie penguins (grams)
+- X axis mapped to body mass
+- How best to visualise?
+
+:::
+::: {.column width="50%"}
+
+```{r}
+bm_dot + geom_point(aes(y = 0), fill = "grey25", size = 5) + ylim(0, 10)
+```
+
+:::
+::::
+
+## Exploratory data analysis
+
+### Visualising a single variable
+
+:::: columns
+::: {.column width="50%"}
+
+- Variable: body mass of Adelie penguins (grams)
+- X axis mapped to body mass
+- How best to visualise?
+
+:::
+::: {.column width="50%"}
+
+```{r}
+bm_dot +
+  geom_point(aes(y = 0), size = 5, fill = "grey25") +
+  ylim(0, 10) +
+  geom_vline(
+    xintercept = seq(
+      min(penguins_adelie$body_mass_g, na.rm = TRUE),
+      max(penguins_adelie$body_mass_g, na.rm = TRUE),
+      by = 100
+    ),
+    linewidth = 0.5,
+    colour = "red"
+  )
+
+```
+
+:::
+::::
+
+## Exploratory data analysis
+
+### Visualising a single variable: **dotplot**
+
+:::: columns
+::: {.column width="50%"}
+
+- A dotplot is a graphical representation of the distribution of a dataset
+- Each observation is represented by a single dot, stacked vertically within bins
+- The height of each stack shows the frequency of observations within that range
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| warning: false
+
+bm_dot +
+  geom_dotplot(
+    binwidth = 100,
+    colour = "white",
+    fill = "grey25",
+    method = "histodot"
+  )
+```
+
+:::
+::::
+
+## Exploratory data analysis
+
+### Visualising a single variable: **histogram**
+
+:::: columns
+::: {.column width="50%"}
+
+- A histogram is a graphical representation of the distribution of a dataset
+- It divides the data into bins (intervals) and displays the frequency of data points in each bin
+- The height of each bar represents the number of observations within each bin
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| warning: false
+
+bm_hist <-
+  ggplot(
+    data = penguins_adelie,
+    mapping = aes(x = body_mass_g)
+  ) +
+  geom_histogram(bins = 18, colour = "white", fill = "grey25") +
+  labs(x = "Body mass (g)")
+
+
+bm_hist
+```
+
+:::
+::::
+
+## Exploratory data analysis
+
+### Measures of central tendancy: **the (arithmetic) mean**
+
+:::: columns
+::: {.column width="50%"}
+
+$$
+\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
+$$
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+
+```{webr}
+(6 + 8 + 6 + 2 + 9 + 9 + 7 + 9) / 8
+```
+
+```{webr}
+mean(c(6, 8, 6, 2, 9, 9, 7, 9))
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| warning: false
+bm_hist +
+  geom_point(
+    aes(x = mean(body_mass_g, na.rm = TRUE), y = 0, fill = "Mean"),
+    shape = 25,
+    colour = "white",
+    size = 5
+  ) +
+  scale_fill_manual(name = "Statistics", values = c("Mean" = "#a53ce6")) +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+:::
+::::
+
+## Exploratory data analysis
+
+### Measures of central tendancy: **the median**
+
+:::: columns
+::: {.column width="50%"}
+
+- The middle piece of data
+
+```{webr}
+data <- c(6, 8, 6, 2, 9, 9, 7, 9)
+sort(data)
+```
+
+```{webr}
+median(data)
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| warning: false
+bm_hist +
+  geom_point(
+    aes(x = mean(body_mass_g, na.rm = TRUE), y = 0, fill = "Mean"),
+    shape = 25,
+    colour = "white",
+    size = 5
+  ) +
+  geom_point(
+    aes(x = median(body_mass_g, na.rm = TRUE), y = 0, fill = "Median"),
+    shape = 25,
+    colour = "white",
+    size = 5
+  ) +
+  scale_fill_manual(
+    name = "Statistics",
+    values = c("Mean" = "#a53ce6", "Median" = "#e63946")
+  ) +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+:::
+::::
+
+## Exploratory data analysis
+
+### Measures of central tendancy
+
+::: {.columns}
+::: {.column}
+
+```{webr}
+penguins |>
+  group_by(species) |>
+  summarise(
+    mean = mean(body_mass_g, na.rm = TRUE),
+    median = median(body_mass_g, na.rm = TRUE)
+  )
+```
+
+:::
+::: {.column}
+
+```{r}
+penguin_hist_all <-
+  penguins |>
+  ggplot(aes(x = body_mass_g)) +
+  geom_histogram(bins = 18, colour = "white", fill = "grey25") +
+  facet_wrap(
+    vars(species),
+    ncol = 1,
+    strip.position = "left",
+    scales = "free_y"
+  ) +
+  labs(x = "Body mass (g)", y = "Count") +
+  theme(
+    aspect.ratio = 0.33,
+    strip.text = element_text(size = 12),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.title.y = element_blank()
+  )
+
+penguin_hist_all +
+  geom_point(
+    data = penguins |>
+      summarise(
+        body_mass_g = mean(body_mass_g, na.rm = TRUE),
+        .by = species
+      ),
+    aes(x = body_mass_g, y = 0, fill = "Mean"),
+    shape = 25,
+    colour = "white",
+    size = 5
+  ) +
+  geom_point(
+    data = penguins |>
+      summarise(
+        body_mass_g = median(body_mass_g, na.rm = TRUE),
+        .by = species
+      ),
+    aes(x = body_mass_g, y = 0, fill = "Median"),
+    shape = 25,
+    colour = "white",
+    size = 5
+  ) +
+  scale_fill_manual(
+    name = "Statistics",
+    values = c("Mean" = "#a53ce6", "Median" = "#e63946")
+  ) +
+  theme(legend.position = c(0.9, 0.9))
+```
+
+:::
+:::
+
+## Exploratory data analysis
+
+### Measures of spread
+
+::: {.columns}
+::: {.column}
+
+```{webr}
+
+penguins |>
+  group_by(species) |>
+  summarise(
+    min = min(body_mass_g, na.rm = TRUE),
+    max = max(body_mass_g, na.rm = TRUE)
+  )
+```
+
+:::
+::: {.column}
+
+```{r}
+penguin_hist_all +
+  geom_vline(
+    data = penguins |>
+      summarise(
+        min = min(body_mass_g, na.rm = TRUE),
+        max = max(body_mass_g, na.rm = TRUE),
+        .by = species
+      ) |>
+      tidyr::pivot_longer(c(min, max), names_to = "stat", values_to = "x"),
+    mapping = aes(xintercept = x, colour = stat),
+    linewidth = 1
+  ) +
+  scale_colour_manual(
+    values = c(min = "#1f77b4", max = "#d62728"),
+    breaks = c("min", "max"),
+    labels = c("Min", "Max"),
+    name = NULL
+  ) +
+  theme(legend.position = "none")
+```
+
+:::
+:::
+
+## Descriptive statistics & plots
+
+### Measures of spread: **the range**
+
+::: {.columns}
+::: {.column}
+
+- Highly sensitive to outliers
+
+$$
+\text{Range} = \text{Max}(x) - \text{Min}(x)
+$$
+
+```{webr}
+penguins |>
+  group_by(species) |>
+  summarise(
+    min = min(body_mass_g, na.rm = TRUE),
+    max = max(body_mass_g, na.rm = TRUE)
+  ) |>
+  mutate(range = max - min)
+```
+
+:::
+::: {.column}
+
+```{r}
+penguin_hist_all +
+  geom_vline(
+    data = penguins |>
+      summarise(
+        min = min(body_mass_g, na.rm = TRUE),
+        max = max(body_mass_g, na.rm = TRUE),
+        .by = species
+      ) |>
+      tidyr::pivot_longer(c(min, max), names_to = "stat", values_to = "x"),
+    mapping = aes(xintercept = x, colour = stat),
+    linewidth = 1
+  ) +
+  geom_segment(
+    data = penguins |>
+      summarise(
+        min = min(body_mass_g, na.rm = TRUE),
+        max = max(body_mass_g, na.rm = TRUE),
+        .by = species
+      ),
+    mapping = aes(x = min, xend = max, y = 5, yend = 5),
+    arrow = arrow(ends = "both", length = unit(0.1, "inches")),
+    colour = "green",
+    linewidth = 1,
+    inherit.aes = FALSE
+  ) +
+  scale_colour_manual(
+    values = c(min = "#1f77b4", max = "#d62728"),
+    breaks = c("min", "max"),
+    labels = c("Min", "Max"),
+    name = NULL
+  ) +
+  theme(legend.position = "none")
+
+```
+
+:::
+:::
+
+## Descriptive statistics & plots
+
+### Measures of spread: **quartiles**
+
+::: {.columns}
+::: {.column}
+
+:::
+::: {.column}
+
+```{r}
+quartiles_df <- penguins |>
+  summarise(
+    q1 = quantile(body_mass_g, 0.25, na.rm = TRUE),
+    median = median(body_mass_g, na.rm = TRUE),
+    q3 = quantile(body_mass_g, 0.75, na.rm = TRUE),
+    .by = species
+  ) |>
+  pivot_longer(cols = c(q1, median, q3), names_to = "stat", values_to = "x")
+
+penguin_hist_all +
+  geom_vline(
+    data = quartiles_df,
+    mapping = aes(xintercept = x, colour = stat),
+    linewidth = 1
+  ) +
+  scale_colour_manual(
+    values = c(q1 = "#1f77b4", median = "#e63946", q3 = "#2ca02c"),
+    labels = c(q1 = "25th", median = "Median", q3 = "75th"),
+    name = "Quartiles"
+  ) +
+  theme(legend.position = c(0.9, 0.9))
+```
+
+:::
+:::
+
+# Extracting meaning from data {background-color="#8e61aa"}
+
+## Extracting meaning from data
+
+### Relationships between variables
+
+- Many research questions wish to answer if two variables are related:
+  - Does tree spacing affect timber yield?
+  - Does egg mass affect offspring survival?
+  - Do face masks reduce transmission of SARS-CoV-2?
+  - Do larger *Adelie* penguins also have longer bills?
+
+## Extracting meaning from data {.scrollable}
+
+### Relationships between variables
+
+::: {.columns}
+::: {.column}
+
+```{r}
+
+penguins_extra |>
+  filter(species == "Adelie") |>
+  select(species, body_mass_g, bill_length_mm) |>
+  obs_table(font_size = 18)
+
+```
+
+:::
+::: {.column}
+
+- Do larger *Adelie* penguins also have longer bills?
+
+:::
+:::
+
+## Extracting meaning from data
+
+### Relationships between variables
+
+::: {.columns}
+::: {.column}
+
+```{r}
+#| fig-align: center
+adelie_scatter <-
+  penguins_extra |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  labs(
+    x = "Body Mass (g)",
+    y = "Bill Length (mm)"
+  )
+
+adelie_scatter
+```
+
+:::
+::: {.column}
+
+- Do larger *Adelie* penguins also have longer bills?
+
+:::
+:::
+
+## Extracting meaning from data
+
+### Relationships between variables
+
+::: {.columns}
+::: {.column}
+
+```{r}
+adelie_scatter + geom_point(alpha = 0.7)
+```
+
+:::
+::: {.column}
+
+- Do larger *Adelie* penguins also have longer bills?
+- What is the shape of the relationship?
+- Is the relationship weak or strong?
+
+{{< countdown minutes=1.5 font-size="5rem" >}}
+
+:::
+:::
+
+## References

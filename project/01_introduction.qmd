@@ -36,7 +36,7 @@ If you have a preference for who you work with, self assign yourself to a group 
 |------------|---------------------------------------|
 | Mon 14     | Brainstorming and form groups         |
 | Tues 15    | Project proposals / collect data      |
-| Easter break |                                     |
+| Easter     |                                       |
 | Tues 22    | Collect data                          |
 | Wed 23     | Collect data / analyse                |
 | Thurs 24   | Analyse / write                       |
@@ -44,8 +44,6 @@ If you have a preference for who you work with, self assign yourself to a group 
 | Mon 26     | Presentations                         |
 
 ## Project proposal
-
-**DUE: 15/4**
 
 Your groups needs to make a project proposal to be reviewed. It should contain:
 
@@ -57,8 +55,6 @@ Your groups needs to make a project proposal to be reviewed. It should contain:
 
 ## Project report
 
-**DUE: 25/4**
-
 - 2-3 pages
 - Abstract: summary
 - Introduction: background, motivation and hypotheses
@@ -68,10 +64,6 @@ Your groups needs to make a project proposal to be reviewed. It should contain:
 
 ## Project presentations
 
-**DUE: 28/4**
-
 - 10 minute presentation + 5 minute questions
 - 3 groups at a time
 - 1 group primary opponent
-
-

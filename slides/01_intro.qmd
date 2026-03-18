@@ -7,6 +7,7 @@ date: 2026-03-23
 # Welcome to the course! {background-color="#015b58"}
 
 ## Försöksdesign och analys för biologer (BIOB11)
+
 ### Course rational
 
 - Biology is full of interesting research questions
@@ -16,7 +17,8 @@ date: 2026-03-23
   - ***understanding*** and ***evaluating*** research of other scientists
 
 ## Försöksdesign och analys för biologer (BIOB11)
-### After completion of the course you should be able to:
+
+### After completion of the course you should be able to
 
 - Explain fundamental concepts in experimental design and statistics
 - Design and evaluate studies in relation to a research question
@@ -25,7 +27,8 @@ date: 2026-03-23
 - Present statistical results graphically, in writing and orally
 
 ## Försöksdesign och analys för biologer (BIOB11)
-### How we are going to achieve those aims:
+
+### How we are going to achieve those aims
 
 - Series of lectures/discussions (not passive)
 - Series of computer exercises
@@ -34,6 +37,7 @@ date: 2026-03-23
 - Use modern techniques
 
 ## Försöksdesign och analys för biologer (BIOB11)
+
 ### What we expect from you
 
 - Attend as much as you can (note some parts are mandatory to attend)
@@ -42,75 +46,103 @@ date: 2026-03-23
   - Read and reflect on feedback (instructor and peer)
 - Tell us when something is unclear
 
+## Försöksdesign och analys för biologer (BIOB11)
+
+### Changes from previous years
+
+Changes from 2025:
+
+- Book was poorly rated in feedback, so we have a new one.
+- Course has been restructured for a "cake first" approach
+- Exam format will differ slightly
+
+Changes from pre-2025:
+
+- Course uses R, not SPSS
+- Focus on modern data analysis skills
+- Course leader was previously Anders Nilsson
+
 # Who are we? {background-color="#015b58"}
 
 ## Iain Moodie
+
 ### Lectures, exercises and project work
 
 :::: columns
 ::: {.column width="60%"}
--   Doctoral student in the _Biodiversity & Evolution_ division
--   Research integrates evolutionary biology into ecotoxicology
--   Course leader
-:::
 
+- Doctoral student in the *Biodiversity & Evolution* division
+- Research integrates evolutionary biology into ecotoxicology
+- Course leader
+
+:::
 ::: {.column width="40%"}
-![](images/iain.jpg){fig-alt="Headshot of Iain Moodie" fig-align="center" width="325"}
-:::
 
+![](images/iain.jpg){fig-alt="Headshot of Iain Moodie" fig-align="center" width="325"}
+
+:::
 ::::
 
 ## Kaj Hulthén
+
 ### Lecture: scientific integrity and ethics
 
 :::: columns
 ::: {.column width="60%"}
--   Researcher in the *Functional Ecology* division
--   Researches migration in aquatic ecosystems
-:::
 
+- Researcher in the *Functional Ecology* division
+- Researches migration in aquatic ecosystems
+
+:::
 ::: {.column width="40%"}
-![](images/kaj.webp){fig-alt="Headshot of Kaj Hulthén" fig-align="center" width="375"}
-:::
 
+![](images/kaj.webp){fig-alt="Headshot of Kaj Hulthén" fig-align="center" width="375"}
+
+:::
 ::::
 
 ## Anders Nilsson
+
 ### Ladok teacher
 
 :::: columns
 ::: {.column width="60%"}
--   Professor & Head of *Functional Ecology* division 
--   Aquatic ecologist
--   Handles grades in Ladok
-:::
 
+- Professor & Head of *Functional Ecology* division
+- Aquatic ecologist
+- Handles grades in Ladok
+
+:::
 ::: {.column width="40%"}
-![](images/anders.webp){fig-alt="Headshot of Anders Nilsson" fig-align="center" width="325"}
-:::
 
+![](images/anders.webp){fig-alt="Headshot of Anders Nilsson" fig-align="center" width="325"}
+
+:::
 ::::
 
 # Course structure {background-color="#015b58"}
 
-## Course structure
+## Försöksdesign och analys för biologer (BIOB11)
+
 ### Where to find information
 
 - [LU Canvas](https://canvas.education.lu.se/courses/39432)
   - Announcements
   - Schedule
   - Links to materials
-  - Discussion
+  - Assignments
 
 - [Course website](https://irmoodie.com/biob11/) (Iain's materials)
   - Will always be linked from Canvas
 
-## Course structure
+## Försöksdesign och analys för biologer (BIOB11)
+
 ### Schedule
 
 <iframe width="1000" height="570" src="https://irmoodie.com/biob11/"></iframe>
 
-## Course structure
+## Försöksdesign och analys för biologer (BIOB11)
+
 ### Literature
 
 - [**Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)**](https://openintro-ims.netlify.app/) (IMS2)
@@ -119,7 +151,49 @@ date: 2026-03-23
 - [Hands-On Programming with R, Grolemund (2018)](https://rstudio-education.github.io/hopr/) (HOPR)
 - [Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)](https://bradduthie.github.io/stats/) (StatBio)
 
-## Course structure
+## Försöksdesign och analys för biologer (BIOB11)
+
+### Grading
+
+To pass the course you must:
+
+- Show you've engaged with all mandatory components
+- Attempt all assignments and reflect on feedback
+- Pass the exam (16th April / 7th May / ?th August)
+- Complete final project and presentation
+
+Grade:
+
+- Combination of exam, final project and assignments
+
+## Försöksdesign och analys för biologer (BIOB11)
+
+### LLM / generative AI use
+
+Policy:
+
+- Generative AI tools may be used as a general learning aid and to support your work with assignments
+- You are always responsible for all submitted materials
+- Use must make an AI contribution statement on all submitted materials
+
+## Försöksdesign och analys för biologer (BIOB11)
+
+### LLM / generative AI use
+
+My advice:
+
+- Be mindful and considerate in your usage
+  - No pressure to use
+  - No pressure not to use
+- Let's discuss openly as we go through the course
+
+My opinion:
+
+...
+
+
+## Försöksdesign och analys för biologer (BIOB11)
+
 ### How to contact us
 
 - Ask during the exercise sessions or at the end of lectures.
