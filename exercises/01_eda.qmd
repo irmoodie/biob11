@@ -2,10 +2,119 @@
 title: "Exploratory data analysis"
 subtitle: "Exercise 1"
 date: 2026-03-23
-format: live-html
+format: 
+  live-html:
+    code-copy: true
+webr:
+  packages:
+    - sf
+    - rnaturalearth
+    - rnaturalearthdata
+    - tidyverse
+    - palmerpenguins
+  resources:
+   - https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/swedish_butterflies/swedish_butterflies.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 ---
 
-Coming soon!
+Use the code below to answer the questions in the exercise report file. You are encouraged to work together, but you must each submit an individual report. If you refer to a figure or table, copy it into your report.
+
+## The Swedish Butterfly Monitoring Scheme
+
+### Background
+
+The Swedish Butterfly Monitoring Scheme, a national programme coordinated by Lund University for the Swedish Environmental Protection Agency, was initiated in 2010. It’s a partnership between the Entomological Society of Sweden, the Swedish Environmental Protection Agency, Lund University, the Swedish University of Agricultural Sciences, and the Swedish County Administration Boards.
+
+The volunteer-based scheme runs annually from April 1st to September 30th. Sites are visited 3-7 times per season using a standardised methodology. These methods assess yearly changes in butterfly numbers and species composition.
+
+In 2010, 117 volunteers joined the scheme, counting nearly 30,000 butterflies of 83 species. Data came from 59 fixed-route walks and 108 point sites across the country, from Malmö in the South to Luleå in the North. 
+
+Volunteers have increased since then, with over 600 sites monitored by more than 300 in 2021. Data collected shows changes in population numbers and distribution, trends, and indicators, helping us understand the butterfly population’s changes in Sweden.
+
+For more info: [dagfjarilar.lu.se](https://www.dagfjarilar.lu.se/)
+
+### Task
+
+Choose a species 
+
+```{webr}
+#| edit: false
+#| output: false
+swedish_butterflies <- read_csv("swedish_butterflies.csv")
+```
+
+```{webr}
+#| edit: false
+#| output: false
+#| define:
+#|   - plot_species
+plot_species <- function(species_name, data = swedish_butterflies) {
+  all_sites_and_years <-
+    data |>
+    select(locality, longitude, latitude, year) |>
+    distinct()
+
+  sebms_species <-
+    data |>
+    filter(species == species_name) |>
+    select(species, locality, longitude, latitude, year) |>
+    full_join(all_sites_and_years)
+
+  sweden_map <- ne_countries(
+    country = "Sweden",
+    scale = "medium",
+    returnclass = "sf"
+  )
+
+  ggplot(data = sweden_map) +
+    facet_wrap(~year, ncol = 7) +
+    geom_sf(color = "black", linewidth = 0.3) +
+    geom_point(
+      data = sebms_species |> filter(is.na(species)),
+      aes(x = longitude, y = latitude),
+      alpha = 0.3,
+      shape = 21,
+      fill = NA,
+      colour = "grey50"
+    ) +
+    geom_point(
+      data = sebms_species |> filter(!is.na(species)),
+      aes(x = longitude, y = latitude, colour = species),
+      alpha = 0.8,
+      shape = 17,
+    ) +
+    coord_sf() +
+    theme_void() +
+    theme(legend.position = "bottom")
+}
+#|   - swedish_butterflies
+swedish_butterflies<- read_csv("swedish_butterflies.csv")
+
+```
+
+
+```{ojs}
+//| echo: false
+viewof butterfly_species = Inputs.select(
+  [ "Adscita statices","Aglais io","Aglais urticae","Albulina orbitulus","Anthocharis cardamines","Apatura iris","Aphantopus hyperantus","Aporia crataegi","Araschnia levana","Archiearis parthenias","Argynnis paphia","Aricia agestis","Aricia artaxerxes","Autographa gamma","Boloria aquilonaris","Boloria eunomia","Boloria freija","Boloria frigga","Boloria napaea","Boloria selene","Boloria thore","Brenthis ino","Cabera pusaria","Cacyreus marshalli","Callimorpha dominula","Callophrys rubi","Camptogramma bilineata","Carterocephalus palaemon","Carterocephalus silvicola","Celastrina argiolus","Chiasmia clathrata","Clossiana euphrosyne","Coenonympha arcania","Coenonympha hero","Coenonympha pamphilus","Coenonympha tullia","Colias hyale","Colias palaeno","Colias tyche","Colostygia aptata","Cupido minimus","Cyaniris semiargus","Diacrisia sannio","Drymonia dodonaea","Ematurga atomaria","Epirrhoe hastulata","Erebia disa","Erebia embla","Erebia ligea","Erebia pandrose","Erynnis tages","Euclidia glyphica","Euclidia mi","Eumedonia eumedon","Euphydryas aurinia","Euphydryas maturna","Eurois occulta","Fabriciana adippe","Fabriciana niobe","Fixsenia pruni","Glaucopsyche alexis","Gonepteryx rhamni","Hamearis lucina","Helleia helle","Hemaris fuciformis","Hemaris tityus","Hesperia comma","Hipparchia semele","Hyles gallii","Issoria lathonia","Jodis putata","Lasiommata maera","Lasiommata megera","Leptidea juvernica","Leptidea sinapis","Limenitis populi","Lopinga achine","Lycaeides idas","Lycaena phlaeas","Lycaena virgaureae","Lythria cruentaria","Macroglossum stellatarum","Maculinea alcon","Maculinea arion","Maniola jurtina","Melitaea cinxia","Melitaea diamina","Mellicta athalia","Nemophora metallica","Nordmannia ilicis","Nymphalis antiopa","Nymphalis polychloros","Nymphalis xanthomelas","Ochlodes venata","Odezia atrata","Oeneis jutta","Oeneis norna","Palaeochrysophanus hippothoe","Papilio machaon","Pararge aegeria","Pararge petropolitana","Parnassius apollo","Phytometra viridaria","Pieris brassicae","Pieris napi","Pieris rapae","Plebejus amanda","Plebejus argus","Plebicula dorylas","Polygonia c-album","Polyommatus icarus","Pontia edusa","Pseudoaricia nicias","Pyrgus alveus","Pyrgus andromedae","Pyrgus centaureae","Pyrgus malvae","Quercusia quercus","Satyrium w-album","Scotopteryx chenopodiata","Selidosema brunnearia","Siona lineata","Speyeria aglaja","Thecla betulae","Thymelicus lineola","Tyria jacobaeae","Vacciniina optilete","Vanessa atalanta","Vanessa cardui","Yponomeuta evonymella","Zygaena exulans","Zygaena filipendulae","Zygaena lonicerae","Zygaena minos","Zygaena osterodensis","Zygaena viciae" ],
+  { value: "Aglais urticae", label: "Species" }
+);
+
+plot_species(butterfly_species);
+```
+
+
+```{r}
+library(tidyverse)
+
+swedish_butterflies <- read_csv(
+  "https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/swedish_butterflies/swedish_butterflies.csv"
+)
+
+swedish_butterflies |>
+  filter(species == "Aglais urticae") |>
+  
+
+```
