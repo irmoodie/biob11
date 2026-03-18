@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Lint Quarto Files",
+            "type": "process",
+            "command": "markdownlint-cli2",
+            "args": [
+                "**/*.qmd",
+                "#_extensions/**",
+                "#_site/**"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": {
+                "owner": "markdownlint",
+                "source": "markdownlint",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "pattern": {
+                    "regexp": "^([^:]+):(\\d+)(?::(\\d+))?\\s+(?:error\\s+)?(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "message": 4
+                }
+            }
+        }
+    ]
+}
