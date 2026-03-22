@@ -11,7 +11,8 @@ date: 2026-03-23
 ### Course rational
 
 - Biology is full of interesting research questions
-- Nearly all research in biology relies on collecting and analysing data of some kind
+- Nearly all research in biology relies on collecting and analysing data of some
+  kind
 - Experimental design and statistical literacy is therefore important for:
   - ***doing*** your own research
   - ***understanding*** and ***evaluating*** research of other scientists
@@ -52,7 +53,7 @@ date: 2026-03-23
 
 Changes from 2025:
 
-- Book was poorly rated in feedback, so we have a new one.
+- Book was poorly rated in feedback, so we have a new one
 - Course has been restructured for a "cake first" approach
 - Exam format will differ slightly
 
@@ -68,57 +69,51 @@ Changes from pre-2025:
 
 ### Lectures, exercises and project work
 
-:::: columns
-::: {.column width="60%"}
-
+::: columns
+::::: {.column width="60%"}
 - Doctoral student in the *Biodiversity & Evolution* division
 - Research integrates evolutionary biology into ecotoxicology
 - Course leader
 
-:::
-::: {.column width="40%"}
-
+:::::
+::::: {.column width="40%"}
 ![](images/iain.jpg){fig-alt="Headshot of Iain Moodie" fig-align="center" width="325"}
 
+:::::
 :::
-::::
 
 ## Kaj Hulthén
 
 ### Lecture: scientific integrity and ethics
 
-:::: columns
-::: {.column width="60%"}
-
+::: columns
+::::: {.column width="60%"}
 - Researcher in the *Functional Ecology* division
 - Researches migration in aquatic ecosystems
 
-:::
-::: {.column width="40%"}
-
+:::::
+::::: {.column width="40%"}
 ![](images/kaj.webp){fig-alt="Headshot of Kaj Hulthén" fig-align="center" width="375"}
 
+:::::
 :::
-::::
 
 ## Anders Nilsson
 
 ### Ladok teacher
 
-:::: columns
-::: {.column width="60%"}
-
+::: columns
+::::: {.column width="60%"}
 - Professor & Head of *Functional Ecology* division
 - Aquatic ecologist
 - Handles grades in Ladok
 
-:::
-::: {.column width="40%"}
-
+:::::
+::::: {.column width="40%"}
 ![](images/anders.webp){fig-alt="Headshot of Anders Nilsson" fig-align="center" width="325"}
 
+:::::
 :::
-::::
 
 # Course structure {background-color="#015b58"}
 
@@ -131,7 +126,6 @@ Changes from pre-2025:
   - Schedule
   - Links to materials
   - Assignments
-
 - [Course website](https://irmoodie.com/biob11/) (Iain's materials)
   - Will always be linked from Canvas
 
@@ -145,11 +139,17 @@ Changes from pre-2025:
 
 ### Literature
 
-- [**Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)**](https://openintro-ims.netlify.app/) (IMS2)
-- [Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)](https://moderndive.com/v2/) (MD2)
-- [R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)](https://r4ds.hadley.nz/) (R4DS)
-- [Hands-On Programming with R, Grolemund (2018)](https://rstudio-education.github.io/hopr/) (HOPR)
-- [Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)](https://bradduthie.github.io/stats/) (StatBio)
+- [**Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin
+  (2024)**](https://openintro-ims.netlify.app/) (IMS2)
+- [Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia
+  (2025)](https://moderndive.com/v2/) (MD2)
+- [R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund
+  (2023)](https://r4ds.hadley.nz/) (R4DS)
+- [Hands-On Programming with R, Grolemund
+  (2018)](https://rstudio-education.github.io/hopr/) (HOPR)
+- [Fundamental statistical concepts and techniques in the biological and
+  environmental sciences, 1st ed. Duthie
+  (2025)](https://bradduthie.github.io/stats/) (StatBio)
 
 ## Försöksdesign och analys för biologer (BIOB11)
 
@@ -164,7 +164,7 @@ To pass the course you must:
 
 Grade:
 
-- Combination of exam, final project and assignments
+- Combination of exam, final project and assignments.
 
 ## Försöksdesign och analys för biologer (BIOB11)
 
@@ -172,7 +172,8 @@ Grade:
 
 Policy:
 
-- Generative AI tools may be used as a general learning aid and to support your work with assignments
+- Generative AI tools may be used as a general learning aid and to support your
+  work with assignments
 - You are always responsible for all submitted materials
 - Use must make an AI contribution statement on all submitted materials
 
@@ -191,14 +192,13 @@ My opinion:
 
 ...
 
-
 ## Försöksdesign och analys för biologer (BIOB11)
 
 ### How to contact us
 
 - Ask during the exercise sessions or at the end of lectures.
-- Email: [iain.moodie@biol.lu.se](mailto:iain.moodie@biol.lu.se)
-- Email: [kaj.hulthen@biol.lu.se](mailto:kaj.hulthen@biol.lu.se)
+- Email: iain.moodie\@biol.lu.se
+- Email: kaj.hulthen\@biol.lu.se
 - [LU Canvas](https://canvas.education.lu.se/courses/39432)
 
 # Questions? {background-color="#015b58"}

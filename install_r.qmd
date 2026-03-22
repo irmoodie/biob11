@@ -6,24 +6,37 @@ execute:
   eval: false
 ---
 
-Here we will walk through the steps of installing R and RStudio on your own device.
+Here we will walk through the steps of installing R and RStudio on your own
+device.
 
 ## Why do I need both?
 
-R is a programming language and software environment specifically designed for statistical computing and graphics.
+R is a programming language and software environment specifically designed for
+statistical computing and graphics.
 
-RStudio, on the other hand, is an integrated development environment (IDE) *for* R. It provides a user-friendly interface that makes it easier to write, debug, and visualize R code. RStudio includes features such as syntax highlighting, code completion, and tools for plotting, history, and workspace management. While R can be used on its own, RStudio enhances the user experience and productivity by providing a more organized and efficient workflow.
+RStudio, on the other hand, is an integrated development environment (IDE) *for*
+R. It provides a user-friendly interface that makes it easier to write, debug,
+and visualize R code. RStudio includes features such as syntax highlighting,
+code completion, and tools for plotting, history, and workspace management.
+While R can be used on its own, RStudio enhances the user experience and
+productivity by providing a more organized and efficient workflow.
 
-To use a car as a metaphor, R is the engine, and RStudio is the steering wheel, pedals, gear shifter, etc. It gives us a much easier way to interface and work with R.
+To use a car as a metaphor, R is the engine, and RStudio is the steering wheel,
+pedals, gear shifter, etc. It gives us a much easier way to interface and work
+with R.
 
-**So you need to install both.** RStudio does nothing without R (like a car without an engine).
+**So you need to install both.** RStudio does nothing without R (like a car
+without an engine).
 
 ## How to install *R* locally
 
-To install R on your local device, you need to know what operating system your computer uses. If you are unsure, ask the teacher. Follow the steps in the appropriate section. If you already have R installed, I suggest you check it is up to date. To do that, open R and type `R.version`. If your `major` version is 4, then that should be OK for this course.
+To install R on your local device, you need to know what operating system your
+computer uses. If you are unsure, ask the teacher. Follow the steps in the
+appropriate section. If you already have R installed, I suggest you check it is
+up to date. To do that, open R and type `R.version`. If your `major` version is
+4, then that should be OK for this course.
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## Windows
 
 ### Manual download
@@ -31,12 +44,15 @@ To install R on your local device, you need to know what operating system your c
 1. Go to the [CRAN R Project website](https://cran.r-project.org/).
 2. Click on the "Download R for Windows" link.
 3. Click on the "base" link to download the base system.
-4. Click on the "Download R-x.x.x for Windows" link (where x.x.x is the latest version).
-5. Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.
+4. Click on the "Download R-x.x.x for Windows" link (where x.x.x is the latest
+   version).
+5. Once the download is complete, open the installer and follow the on-screen
+   instructions to complete the installation.
 
 ### Winget
 
-If you use the package manager winget, you can run the following command to install R:
+If you use the package manager winget, you can run the following command to
+install R:
 
 ```bash
 winget install -e --id RProject.R
@@ -44,7 +60,8 @@ winget install -e --id RProject.R
 
 ### Chocolatey
 
-If you use the package manager chocolatey, you can run the following command to install R:
+If you use the package manager chocolatey, you can run the following command to
+install R:
 
 ```bash
 choco install r.project
@@ -53,17 +70,22 @@ choco install r.project
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## macOS
 
 ### Manual download
 
 1. Go to the [CRAN R Project website](https://cran.r-project.org/).
 2. Click on the "Download R for macOS" link.
-3. Click on the `.pkg` file link to download the installer for the latest version of R.
-    i) If you have a newer **Mac with an Apple silicon CPU (M1, M2, M3, M4, etc)**, you must download the version specifically for Apple silicon CPU Macs that has `arm64` in the package name (e.g. `R-4.4.3-arm64.pkg`).
-    ii) If you have an older **Mac with an Intel CPU (i3, i5, i7, etc)**, you must download the version specifically for Intel CPU Macs that has `x86_64` in the package name (e.g. `R-4.4.3-x86_64.pkg`).
-4. Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.
+3. Click on the `.pkg` file link to download the installer for the latest
+   version of R.
+    i) If you have a newer **Mac with an Apple silicon CPU (M1, M2, M3, M4,
+       etc)**, you must download the version specifically for Apple silicon CPU
+       Macs that has `arm64` in the package name (e.g. `R-4.4.3-arm64.pkg`).
+   ii) If you have an older **Mac with an Intel CPU (i3, i5, i7, etc)**, you
+       must download the version specifically for Intel CPU Macs that has
+       `x86_64` in the package name (e.g. `R-4.4.3-x86_64.pkg`).
+4. Once the download is complete, open the installer and follow the on-screen
+   instructions to complete the installation.
 
 ### Homebrew
 
@@ -73,12 +95,14 @@ If you use homebrew, you can install R and dependencies via:
 brew install r
 ```
 
-Note that the homebrew version of R is not supported by CRAN, and as such any package that used C/C++/Fortran code (which a lot of R packages do) will require you to have the appropriate compiler installed. For that reason, unless you know what you are doing, I do not recommend it.
+Note that the homebrew version of R is not supported by CRAN, and as such any
+package that used C/C++/Fortran code (which a lot of R packages do) will require
+you to have the appropriate compiler installed. For that reason, unless you know
+what you are doing, I do not recommend it.
 
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## Linux
 
 ### Debian based distros
@@ -90,7 +114,8 @@ sudo apt update
 sudo apt install r-base r-base-dev
 ```
 
-For issues, check the dedicated [Debian CRAN R Project website](https://cran.r-project.org/bin/linux/debian/).
+For issues, check the dedicated [Debian CRAN R Project
+website](https://cran.r-project.org/bin/linux/debian/).
 
 ### Fedora/Redhat
 
@@ -98,7 +123,8 @@ For issues, check the dedicated [Debian CRAN R Project website](https://cran.r-p
 sudo dnf install R
 ```
 
-For issues, check the dedicated [Fedora CRAN R Project website](https://cran.r-project.org/bin/linux/fedora/).
+For issues, check the dedicated [Fedora CRAN R Project
+website](https://cran.r-project.org/bin/linux/fedora/).
 
 ### Ubuntu
 
@@ -117,106 +143,190 @@ sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_
 sudo apt install --no-install-recommends r-base
 ```
 
-For issues, check the dedicated [Ubuntu CRAN R Project website](https://cran.r-project.org/bin/linux/ubuntu/).
+For issues, check the dedicated [Ubuntu CRAN R Project
+website](https://cran.r-project.org/bin/linux/ubuntu/).
 
 ### Other linux distros
 
-If you are using a Linux distro other than the ones above, I trust you probably know enough to figure out how to install R yourself. Just be cautious as to the version of R you are installing. For this course, it needs to be >= 4.0. If you have any issues, let the teacher know.
+If you are using a Linux distro other than the ones above, I trust you probably
+know enough to figure out how to install R yourself. Just be cautious as to the
+version of R you are installing. For this course, it needs to be >= 4.0. If you
+have any issues, let the teacher know.
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## ChromeOS
 
 This is a lot more complicated, sorry.
 
 You have three options:
 
-1. Borrow a windows laptop from the IT department. This would be my first recommendation. But if you want to be able to use your own computer, see the next two options.
-2. Try and install R locally, using a linux container. This can work, but only reliably for Chromebooks that use an Intel/AMD CPU (not an ARM CPU). Ask the teacher if you are unsure.
-3. You use R online instead. This has a few drawbacks depending on the method you use:
-    i) You use [**webR IDE**](https://webr.r-wasm.org/latest/). This should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost.
-    ii) You use [**Posit Cloud**](https://posit.cloud/). The free tier should be enough for everything we do here. The downside is you need an internet connection to use it.
-    iii) Using [**Google Colab**](https://colab.research.google.com/). The free tier should again be enough for everything in this class, however the interface is going to be very different.
+1. Borrow a windows laptop from the IT department. This would be my first
+   recommendation. But if you want to be able to use your own computer, see the
+   next two options.
+2. Try and install R locally, using a linux container. This can work, but only
+   reliably for Chromebooks that use an Intel/AMD CPU (not an ARM CPU). Ask the
+   teacher if you are unsure.
+3. You use R online instead. This has a few drawbacks depending on the method
+   you use:
+     i) You use [**webR IDE**](https://webr.r-wasm.org/latest/). This should
+        work for everything we do in the class, but if you accidentally refresh
+        your page or close your browser without saving your work locally, it
+        will be lost.
+    ii) You use [**Posit Cloud**](https://posit.cloud/). The free tier should be
+        enough for everything we do here. The downside is you need an internet
+        connection to use it.
+   iii) Using [**Google Colab**](https://colab.research.google.com/). The free
+        tier should again be enough for everything in this class, however the
+        interface is going to be very different.
 
 ### Installing R locally (via a linux container)
 
-I suggest you follow this [guide](https://levente.littvay.hu/chromebook/) carefully (it will take some time). Ask the teacher if you are stuck.
+I suggest you follow this [guide](https://levente.littvay.hu/chromebook/)
+carefully (it will take some time). Ask the teacher if you are stuck.
 
 ### Using webR IDE
 
-This is a "proof-of-concept" tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it at [https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/). However, I would really suggest just using a borrowed laptop over this option.
+This is a "proof-of-concept" tool, and is not actually intended to be used for
+real data analysis. However, it is very functional, and we can use it for almost
+everything in this class. The place where things will be different is when it
+comes to making Rmarkdown files. This is not supported, but you can still write
+R scripts with comments, which is fine. You can find it at
+[https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/). However, I
+would really suggest just using a borrowed laptop over this option.
 
 ### Using Posit Cloud
 
-Posit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it at [https://posit.cloud/](https://posit.cloud/).
+Posit are the company that make RStudio, and they offer a version of it online
+that works almost identically to the desktop version. All your computations are
+performed on Posit servers, and with the free plan, you are limited with how
+much compute time you can use per month. However, the default should be enough
+for this course. However, I would really suggest just using a borrowed laptop
+over this option. If you want to use it, you can find it at
+[https://posit.cloud/](https://posit.cloud/).
 
 ### Google Colab
 
-Colab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to "queue" for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), [here is a guide to setup R with Colab](https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/), and [here is a link to Colab itself](https://colab.research.google.com/). However, I would really suggest just using a borrowed laptop over this option.
+Colab uses Jupyter to run R code. It is a bit different to the RStudio
+interface. I personally find that Colab can be very frustrating if you are not a
+paying user, as you often have to "queue" for a CPU for your code to run on. If
+you really want to use this (if you are familiar with python/jupyter it might be
+very intuative), [here is a guide to setup R with
+Colab](https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/),
+and [here is a link to Colab itself](https://colab.research.google.com/).
+However, I would really suggest just using a borrowed laptop over this option.
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## iPadOS
 
-I suggest you borrow a laptop from the IT department. If you really want to try using your own device, there are a few options:
+I suggest you borrow a laptop from the IT department. If you really want to try
+using your own device, there are a few options:
 
 ### Using webRios
 
-WebRios is a native iPadOS app that runs a WebAssembly version of R. I have no way to test this out, sorry, but it looks promising! You can find it on the [App Store](https://apps.apple.com/se/app/webrios/id6758071087).
+WebRios is a native iPadOS app that runs a WebAssembly version of R. I have no
+way to test this out, sorry, but it looks promising! You can find it on the [App
+Store](https://apps.apple.com/se/app/webrios/id6758071087).
 
 ### Using webR IDE
 
-This should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost. It is a "proof-of-concept" tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it at [https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/). However, I would really suggest just using a borrowed laptop over this option.
+This should work for everything we do in the class, but if you accidentally
+refresh your page or close your browser without saving your work locally, it
+will be lost. It is a "proof-of-concept" tool, and is not actually intended to
+be used for real data analysis. However, it is very functional, and we can use
+it for almost everything in this class. The place where things will be different
+is when it comes to making Rmarkdown files. This is not supported, but you can
+still write R scripts with comments, which is fine. You can find it at
+[https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/). However, I
+would really suggest just using a borrowed laptop over this option.
 
 ### Using Posit Cloud
 
-Posit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it at [https://posit.cloud/](https://posit.cloud/).
+Posit are the company that make RStudio, and they offer a version of it online
+that works almost identically to the desktop version. All your computations are
+performed on Posit servers, and with the free plan, you are limited with how
+much compute time you can use per month. However, the default should be enough
+for this course. However, I would really suggest just using a borrowed laptop
+over this option. If you want to use it, you can find it at
+[https://posit.cloud/](https://posit.cloud/).
 
 ### Google Colab
 
-Colab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to "queue" for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), [here is a guide to setup R with Colab](https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/), and [here is a link to Colab itself](https://colab.research.google.com/). However, I would really suggest just using a borrowed laptop over this option.
+Colab uses Jupyter to run R code. It is a bit different to the RStudio
+interface. I personally find that Colab can be very frustrating if you are not a
+paying user, as you often have to "queue" for a CPU for your code to run on. If
+you really want to use this (if you are familiar with python/jupyter it might be
+very intuative), [here is a guide to setup R with
+Colab](https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/),
+and [here is a link to Colab itself](https://colab.research.google.com/).
+However, I would really suggest just using a borrowed laptop over this option.
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## Android
 
-I suggest you borrow a laptop from the IT department. If you really want to try using your own device, there are a few options:
+I suggest you borrow a laptop from the IT department. If you really want to try
+using your own device, there are a few options:
 
 ### Using webRoid
 
-WebRoid is a native Android app that runs a WebAssembly version of R. I have tested it, sorry, but it looks promising! You can find it on the [Play Store](https://play.google.com/store/apps/details?id=com.webroid.app).
+WebRoid is a native Android app that runs a WebAssembly version of R. I have
+tested it, sorry, but it looks promising! You can find it on the [Play
+Store](https://play.google.com/store/apps/details?id=com.webroid.app).
 
 ### Using webR IDE
 
-This should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost. It is a "proof-of-concept" tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it at [https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/). However, I would really suggest just using a borrowed laptop over this option.
+This should work for everything we do in the class, but if you accidentally
+refresh your page or close your browser without saving your work locally, it
+will be lost. It is a "proof-of-concept" tool, and is not actually intended to
+be used for real data analysis. However, it is very functional, and we can use
+it for almost everything in this class. The place where things will be different
+is when it comes to making Rmarkdown files. This is not supported, but you can
+still write R scripts with comments, which is fine. You can find it at
+[https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/). However, I
+would really suggest just using a borrowed laptop over this option.
 
 ### Using Posit Cloud
 
-Posit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it at [https://posit.cloud/](https://posit.cloud/).
+Posit are the company that make RStudio, and they offer a version of it online
+that works almost identically to the desktop version. All your computations are
+performed on Posit servers, and with the free plan, you are limited with how
+much compute time you can use per month. However, the default should be enough
+for this course. However, I would really suggest just using a borrowed laptop
+over this option. If you want to use it, you can find it at
+[https://posit.cloud/](https://posit.cloud/).
 
 ### Google Colab
 
-Colab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to "queue" for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), [here is a guide to setup R with Colab](https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/), and [here is a link to Colab itself](https://colab.research.google.com/). However, I would really suggest just using a borrowed laptop over this option.
+Colab uses Jupyter to run R code. It is a bit different to the RStudio
+interface. I personally find that Colab can be very frustrating if you are not a
+paying user, as you often have to "queue" for a CPU for your code to run on. If
+you really want to use this (if you are familiar with python/jupyter it might be
+very intuative), [here is a guide to setup R with
+Colab](https://www.geeksforgeeks.org/how-to-use-r-with-google-colaboratory/),
+and [here is a link to Colab itself](https://colab.research.google.com/).
+However, I would really suggest just using a borrowed laptop over this option.
 :::
 
 ## How to install *RStudio* locally
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## Windows
 
 ### Manual download
 
-1. Go to the [RStudio desktop website](https://posit.co/download/rstudio-desktop/).
-2. Scroll down and click on the "Download RStudio Desktop for Windows" link (we have already installed R so can skip step 1 in their guide).
-3. Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.
+1. Go to the [RStudio desktop
+   website](https://posit.co/download/rstudio-desktop/).
+2. Scroll down and click on the "Download RStudio Desktop for Windows" link (we
+   have already installed R so can skip step 1 in their guide).
+3. Once the download is complete, open the installer and follow the on-screen
+   instructions to complete the installation.
 
 ### Winget
 
-If you use the package manager winget, you can run the following command to install RStudio:
+If you use the package manager winget, you can run the following command to
+install RStudio:
 
 ```bash
 winget install --id=Posit.RStudio -e
@@ -224,7 +334,8 @@ winget install --id=Posit.RStudio -e
 
 ### Chocolatey
 
-If you use the package manager chocolatey, you can run the following command to install R:
+If you use the package manager chocolatey, you can run the following command to
+install R:
 
 ```bash
 choco install r.studio
@@ -233,14 +344,18 @@ choco install r.studio
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## macOS
 
 ### Manual download
 
-1. Go to the [RStudio desktop website](https://posit.co/download/rstudio-desktop/).
-2. Scroll down and click on the "Download RStudio Desktop for macOS 13+" link (we have already installed R so can skip step 1 in their guide). If you are using a version of macOS that is <13, follow the link on the page to "download a previous version".
-3. Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.
+1. Go to the [RStudio desktop
+   website](https://posit.co/download/rstudio-desktop/).
+2. Scroll down and click on the "Download RStudio Desktop for macOS 13+" link
+   (we have already installed R so can skip step 1 in their guide). If you are
+   using a version of macOS that is <13, follow the link on the page to
+   "download a previous version".
+3. Once the download is complete, open the installer and follow the on-screen
+   instructions to complete the installation.
 
 ### Homebrew
 
@@ -253,32 +368,37 @@ brew install --cask rstudio
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## Linux
 
 ### Manual download
 
-1. Go to the [RStudio desktop website](https://posit.co/download/rstudio-desktop/).
-2. If your distro is automatically detected, click on the "Download RStudio Desktop for XXX" link (we have already installed R so can skip step 1 in their guide). If your distro is not automatically detected, scroll down to the bottom to find a suitable installer.
-3. Once the download is complete, open the installer and follow the on-screen instructions to complete the installation.
+1. Go to the [RStudio desktop
+   website](https://posit.co/download/rstudio-desktop/).
+2. If your distro is automatically detected, click on the "Download RStudio
+   Desktop for XXX" link (we have already installed R so can skip step 1 in
+   their guide). If your distro is not automatically detected, scroll down to
+   the bottom to find a suitable installer.
+3. Once the download is complete, open the installer and follow the on-screen
+   instructions to complete the installation.
 
 ### Via various package managers
 
-The version of RStudio available via some sources is very out-of-date. For this reason, I suggest either being cautious and checking it is actually up-to-date, or just downloading it from the above link.
+The version of RStudio available via some sources is very out-of-date. For this
+reason, I suggest either being cautious and checking it is actually up-to-date,
+or just downloading it from the above link.
 
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## ChromeOS
 
-- If you have installed R locally using the guide in the previous section, it will also guide you how to install RStudio.
+- If you have installed R locally using the guide in the previous section, it
+  will also guide you how to install RStudio.
 - If you are using a web version of R, there is no need to do anything else.
 
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## iPadOS
 
 There is no way to install RStudio on your device.
@@ -286,7 +406,6 @@ There is no way to install RStudio on your device.
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-
 ## Android
 
 There is no (simple) way to install RStudio on your device.
@@ -294,7 +413,11 @@ There is no (simple) way to install RStudio on your device.
 
 ## How to use *R* on your own computer
 
-Quite simply, in this course you should never open *R*, you should always open *RStudio*. Check that everything has worked by launching *RStudio*. It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.
+Quite simply, in this course you should never open *R*, you should always open
+*RStudio*. Check that everything has worked by launching *RStudio*. It should
+detect your R installation automatically, but if not, a window will open asking
+you to select it. If R does not appear here, I suggest you restart your computer
+first.
 
 You should be met by a scene that looks like this:
 

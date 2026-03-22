@@ -1,0 +1,52 @@
+---
+title: "Exploratory data analysis report"
+date: 2026-03-23
+draft: true
+execute:
+  echo: true
+  eval: true
+format: docx
+---
+
+Name:
+
+I worked with:
+
+AI contribution statement:
+
+--------------------------------------------------------------------------------
+
+Use the exploratory data analysis exercise webpage to answer the questions.
+Submit your answers via Canvas at the end of the exercise. You are encouraged to
+work in groups, but you should each submit an individual report.
+
+--------------------------------------------------------------------------------
+
+(@) Make a map that shows the three islands. Annotate the map to show the what
+    species of penguins are found on each island, including what *percentage* of
+    the penguins on an island belong to each species, and the *sex ratio*
+    (male/female) of each species on each island.
+
+(@) Draw a *typical* male and female for each penguin species (without searching
+    for an image of them). From your drawings I should be able to tell things
+    like the relative sizes of each species, if females or males tend to be
+    bigger, what sort of shaped bills the penguins have, etc. In addition,
+    annotate your drawings with typical (average) measurements that you extract
+    from the dataset.
+
+(@) A group of bird watchers who have travelled to Antarctica want to see all
+    three penguin species, but have limited time on the boat they have hired.
+    They only have time to visit two islands. Which two should they visit? And
+    at each island, how can they best tell the species apart?
+
+(@) Describe the relationship between between the length and depth of penguin
+    bills? Do you find the same relationship across all penguins, as you do
+    within each penguin species? Include the graphs you are refering to in your
+    report.
+
+(@) Speculate on some reasons why there is missing data (NA) for some columns in
+    this dataset? Think how it might have been collected, recorded, and
+    digitised.
+
+(@) After your indepth research, please indicate which penguin species is
+    objectively *the best*. Why?

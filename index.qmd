@@ -1,12 +1,19 @@
 ---
 title: "Course overview"
 subtitle: "Spring 2026"
-
 ---
 
-On this website you will find all materials for sections taught by [Iain Moodie](https://portal.research.lu.se/en/persons/iain-moodie/) on the course [BIOB11](https://www.biologiutbildning.lu.se/utbildning/kurser/grundkurser/forsoksdesign-och-analys-biologer-biob11) at Lund University. All course communication should take place on [LU Canvas](https://canvas.education.lu.se/courses/39432). The full schedule for the spring 2026 version of the course is shown below. Previous versions of the course are archived as [releases on GitHub](https://github.com/irmoodie/biob11/releases).
+On this website you will find all materials for sections taught by [Iain
+Moodie](https://portal.research.lu.se/en/persons/iain-moodie/) on the course
+[BIOB11](https://www.biologiutbildning.lu.se/utbildning/kurser/grundkurser/forsoksdesign-och-analys-biologer-biob11)
+at Lund University. All course communication should take place on [LU
+Canvas](https://canvas.education.lu.se/courses/39432). The full schedule for the
+spring 2026 version of the course is shown below. Previous versions of the
+course are archived as [releases on
+GitHub](https://github.com/irmoodie/biob11/releases).
 
 ```{r}
+#| label: import
 #| echo: false
 #| message: false
 #| warning: false
@@ -128,7 +135,7 @@ schedule <-
 due_dates <-
   tribble(
     ~date        , ~due                                                                                             ,
-    "2026-03-23" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
+    "2026-03-23" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments/288104) <br> ⏰ 17:00"          ,
     "2026-03-27" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
     "2026-03-31" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
     "2026-04-01" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
@@ -210,6 +217,7 @@ material_dates <-
 ```
 
 ```{r}
+#| label: gt
 #| echo: false
 #| message: false
 

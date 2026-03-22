@@ -2,22 +2,378 @@
 title: "Exploratory data analysis"
 subtitle: "Exercise 1"
 date: 2026-03-23
-format: 
+format:
   live-html:
     code-copy: true
 webr:
+  render-df: gt-interactive
   packages:
     - tidyverse
-    - lterdatasampler
     - palmerpenguins
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
----
 
-Use the code below to answer the questions in the exercise report file. You are encouraged to work together, but you must each submit an individual report. If you refer to a figure or table, copy it into your report.
-
-
-```{r}
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+theme_set(theme_bw(base_size = 14))
 
 ```
+
+First, work your way through this webpage, compeleting all the tasks. Then, use
+the code below to answer the questions in the exercise report file. You are
+encouraged to work in groups, but you should each submit an individual report.
+If you refer to a figure or table, copy it into your report.
+
+*You are not expected to understand the code at this stage!*
+
+# Palmer penguins
+
+## Introduction
+
+The `palmerpenguins` dataset contains
+morphological^[Morphological refers to the physical form and structure of organisms.]
+measurement data from three penguin species from three islands in Antarctica.
+This is an example of an
+*observational*^[An observational study is a type of research design where researchers observe and collect data without manipulating or intervening.]
+dataset. From the data website:
+
+> Data were collected and made available by Dr. Kristen Gorman and the Palmer
+> Station, Antarctica LTER, a member of the Long Term Ecological Research
+> Network.
+
+::: {.callout-note collapse="true" icon="false"}
+## 🗺️ A map of the islands
+
+```{r}
+#| label: leaflet_map
+#| echo: false
+library(leaflet)
+
+leaflet() |>
+  addTiles() |>
+  setView(lng = -64.083333, lat = -64.766667, zoom = 10) |>
+  addMarkers(
+    lat = -64.766667,
+    lng = -64.083333,
+    popup = "Torgersen Island, Antarctica",
+    label = "Torgersen Island"
+  ) |>
+  addMarkers(
+    lat = -64.733333,
+    lng = -64.233333,
+    popup = "Dream Island, Antarctica",
+    label = "Dream Island"
+  ) |>
+  addMarkers(
+    lat = -64.818569,
+    lng = -63.775636,
+    popup = "Biscoe Point, Antarctica",
+    label = "Biscoe Point"
+  ) # |>
+# addMarkers(
+#   lat = -64.774272,
+#   lng = -64.052224,
+#   popup = "Palmer station, Antarctica",
+#   label = "Palmer station"
+# )
+
+```
+
+Note: exact locations may be slightly inaccurate.
+
+:::
+
+The data have already been loaded into the R
+environment^[R is a free software environment for statistical computing and graphics that you will use in this course.],
+which is running in this webpage. The data is stored in an object called
+`penguins`.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Run the following code to show the `penguins` dataframe.
+
+:::
+
+```{webr}
+#| label: whole_dataset
+penguins
+```
+
+- The data is in a tabular "dataframe" format (like a spreadsheet).
+  - The top row shows the names of each column (variable).
+  - `NA` means that data is missing for that particular value.
+  - You can arrange the data in different ways by clicking on the name of a
+    column.
+- The data is also in a "tidy" format, where each row represents one observation
+  (a single penguin).
+
+Have a look through and make sure you understand what each column is showing
+you.
+
+## Frequencies of categories
+
+### Contingency tables
+
+A contingency table shows frequency data (how often a given case occurs) for a
+dataset in a table format. A simple contingency table for this dataset might
+show the number of each penguin `species` in the dataset. The `count()` function
+will do that for us:
+
+```{webr}
+#| label: contingency_tables
+penguins |>
+  count(species)
+```
+
+The `n` column shows the number of rows that belong to each `species`.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Edit the code above to show the number of penguins on each island by
+**replacing** `species` with `island`.
+
+:::
+
+You can add more variables to a contingency table by writing the names of the
+variables you want to group by within the brackets `()` of the `count()`
+function, separated by a comma `,`.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Edit the code to show the number of penguins of each `species` on each `island`.
+To do that, line two should look like:
+
+```r
+count(island, species)
+```
+
+:::
+
+You can keep adding more categories in the same way.
+
+--------------------------------------------------------------------------------
+
+### Bar plots
+
+Bar plots are a way to visualise data from contingency tables. The height of
+each bar represents the number of cases in that category (equivilent to the `n`
+column). The code below is an example of a `ggplot` "recipe" to make such a
+plot.
+
+```{webr}
+#| label: barplots
+#| warning: false
+penguins |>
+  ggplot(aes(x = island)) +
+  geom_bar()
+```
+
+::: {.callout-note collapse="true" icon="false"}
+## 📊 Components of a `ggplot`
+
+A `ggplot2` plot has three essential components:
+
+- `data`: the dataset that contains the variables you want to plot (in this
+  case, it has been "piped" into the recipe using `|>`)
+- `geom`: the geometric object you want to use to display your data (e.g. a
+  point, a line, a bar).
+- `aes`: aesthetic attributes that you want to map to your geometric object. For
+  example, the x and y location of a point geometry could be mapped to two
+  variables in your dataset, and the colour of those points could be mapped to a
+  third.
+
+`ggplot2` uses a layered approach to the grammer of graphics. This makes it
+relatively simple to start contructing plots by putting together a "recipe"
+step-by-step.
+
+:::
+
+Just like contingency tables, you can show multiple categories on a bar plot.
+But since you've already used two dimensions of the plot (the `x` and `y` axes),
+you will have to use something like the colour of the bars to show more
+information.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Edit the code above to
+`fill`^[`fill` specifies how each bar should be `fill`ed with colour.] the
+barplot by species. To do that, you need to map `species` to the `fill`
+`aes`thetic.
+
+Like how you mapped `x = island`, map `fill = species`. The second line should
+now read:
+
+```r
+ggplot(aes(x = island, fill = species)) +
+```
+
+:::
+
+## Quantitative variables
+
+### Histograms
+
+A histogram groups numeric data into contiguous bins and displays the count in
+each bin as a bar. So very similar to a bar chart, but you make the categories
+by splitting up a continuous variables into equal sections (called
+`bins`^[In the plot below, the argument `bins = 20` affects how many groups you slice the variable
+into. There's no right or wrong way to decide how many bins to use, so you can
+try changing it to find a value that looks good for you.]).
+For example, let's look at a histogram of `body_mass_g` of all penguins.
+
+```{webr}
+#| label: histogram
+#| warning: false
+penguins |>
+  ggplot(aes(x = body_mass_g)) +
+  geom_histogram(bins = 20)
+```
+
+Just like how you used `fill` for the bar plot to show another category, you
+could do the same here. For example, you might want to `fill` by `species`.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Edit the code to `fill` each bar by `species`. The second line should now read:
+
+```r
+ggplot(aes(x = body_mass_g, fill = species)) +
+```
+
+:::
+
+Some people find this sort of plot hard to read (the instructor included). The
+next section has an alternative approach that is often easier to grasp.
+
+--------------------------------------------------------------------------------
+
+### Violin plots
+
+A violin plot shows the same information as multiple histograms. It applies a
+smoothing function to the histogram, and then mirrors it to produce something
+that often looks like the body of a violin. They can be a good way to show how a
+quantitative variable varies among groups. For example, let's look at a violin
+plot of `body_mass_g` for each `species`.
+
+```{webr}
+#| label: violin
+#| warning: false
+penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_violin()
+```
+
+Let's also show `sex` on this plot.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Edit the code to `fill` each violin by `sex`. The second line should now read:
+
+```r
+ggplot(aes(x = species, y = body_mass_g, fill = sex)) +
+```
+
+:::
+
+You probably notice an issue here. Since some of the penguins have missing data
+for `sex` (`sex == NA`) they are being plotted as their own category. We might
+want to first remove these before making the plot.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Use the `drop_na()` function to first remove any penguin where `sex == NA`.
+
+1. Insert a new line after line 1.
+2. On that line, add the following:
+
+```r
+  drop_na(sex) |>
+```
+
+:::
+
+Now the plot is much cleaner, and reading it is easier.
+
+--------------------------------------------------------------------------------
+
+### Scatter plots
+
+If you want to see how two continuous variables are related, then you can use a
+scatter plot. For example, let's plot the relationship between `body_mass_g` and
+`flipper_length_mm`.
+
+```{webr}
+#| label: scatter
+#| warning: false
+penguins |>
+  ggplot(aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point()
+```
+
+Each point represents one penguin. Each point's location on the `x` axis
+represents the penguin's `body_mass_g` and the point's location on the `y` axis
+represents the penguins `flipper_length_mm`.
+
+You can describe the relationship using words that imply strength, shape and
+direction. For example, `body_mass_g` and `flipper_length_mm` appear to have a
+relationship that is:
+
+- *strong* (the trend is clear)
+- *linear* (you could capture the relationship by drawing a straight line)
+- *positive* (`body_mass_g` increases, `flipper_length_mm` also increases)
+
+You could also describe this plot in simpler terms, for example:
+
+"Heavier penguins tend to have longer flippers."
+
+Currently you can't tell what point belongs to which `species` of penguin. You
+could use colour to show this information.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Edit the code above to colour each point by species. To do that, you need to map
+`species` to the `colour` `aes`thetic.
+
+The second line should now read:
+
+```r
+ggplot(aes(x = body_mass_g, y = flipper_length_mm, colour = species)) +
+```
+
+:::
+
+An additional `aes`thetic you could use on a scatter plot is `shape`. Let's also
+indicate which `sex` each penguin is by using `shape`.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Edit the code above to `shape` each point by `sex`. To do that, you need to map
+`sex` to the `shape` `aes`thetic.
+
+The second line should now read:
+
+```r
+ggplot(aes(x = body_mass_g, y = flipper_length_mm, colour = species, shape = sex)) +
+```
+
+:::
+
+--------------------------------------------------------------------------------
+
+## Your task
+
+Once you've worked through the webpage, download the assignment worksheet in
+[Canvas assignments](https://canvas.education.lu.se/courses/39432/assignments).
+You will need to edit the code above to answer the questions fully.

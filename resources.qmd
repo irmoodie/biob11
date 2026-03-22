@@ -8,11 +8,18 @@ Here you will find a list of resources which will be useful during this course.
 
 In short my recommendation is:
 
-Focus your efforts on [IMS2](https://openintro-ims.netlify.app/) as it covers experimental design, statistics and how to present results. To better understand a data analysis workflow, use [R4DS](https://r4ds.hadley.nz/) and [MD2](https://moderndive.com/v2/). For help with a basic programming concept, consult [HOPR](https://rstudio-education.github.io/hopr/). For alternative explanations of statistical approaches, use [MD2](https://moderndive.com/v2/) and [StatBio](https://bradduthie.github.io/stats/).
+Focus your efforts on [IMS2](https://openintro-ims.netlify.app/) as it covers
+experimental design, statistics and how to present results. To better understand
+a data analysis workflow, use [R4DS](https://r4ds.hadley.nz/) and
+[MD2](https://moderndive.com/v2/). For help with a basic programming concept,
+consult [HOPR](https://rstudio-education.github.io/hopr/). For alternative
+explanations of statistical approaches, use [MD2](https://moderndive.com/v2/)
+and [StatBio](https://bradduthie.github.io/stats/).
 
 ## IMS2 (course book)
 
-[**Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)**](https://openintro-ims.netlify.app/){target="_blank"}
+[**Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin
+(2024)**](https://openintro-ims.netlify.app/){target="_blank"}
 
 Good for:
 
@@ -29,7 +36,8 @@ Not so good for:
 
 ## MD2
 
-[**Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)**](https://moderndive.com/v2/){target="_blank"}
+[**Statistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia
+(2025)**](https://moderndive.com/v2/){target="_blank"}
 
 Good for:
 
@@ -45,7 +53,8 @@ Not so good for:
 
 ## R4DS
 
-[**R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)**](https://r4ds.hadley.nz/){target="_blank"}
+[**R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund
+(2023)**](https://r4ds.hadley.nz/){target="_blank"}
 
 Good for:
 
@@ -59,7 +68,8 @@ Not so good for:
 
 ## HOPR
 
-[**Hands-On Programming with R, Grolemund (2018)**](https://rstudio-education.github.io/hopr/){target="_blank"}
+[**Hands-On Programming with R, Grolemund
+(2018)**](https://rstudio-education.github.io/hopr/){target="_blank"}
 
 Good for:
 
@@ -73,30 +83,36 @@ Not so good for:
 
 ## StatBio
 
-[**Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)**](https://bradduthie.github.io/stats/){target="_blank"}
+[**Fundamental statistical concepts and techniques in the biological and
+environmental sciences, 1st ed. Duthie
+(2025)**](https://bradduthie.github.io/stats/){target="_blank"}
 
 Good for:
 
 - Theory based statistics
 - Biological examples
 - Basic introduction to classical frequentist statistical methods
-- Also available as an [audiobook](https://bradduthie.github.io/audiobook.html){target="_blank"}
+- Also available as an
+  [audiobook](https://bradduthie.github.io/audiobook.html){target="_blank"}
 
 Not so good for:
 
 - R code
 - Randomisation and simulation based inference
 
----
+--------------------------------------------------------------------------------
 
 # Software
 
-During the course we will use R and RStudio as tools to handle data, make plots and do statistics.
+During the course we will use R and RStudio as tools to handle data, make plots
+and do statistics.
 
-- [The R Project for Statistical Computing](https://www.r-project.org/){target="_blank"}
+- [The R Project for Statistical
+  Computing](https://www.r-project.org/){target="_blank"}
 - [RStudio Desktop](https://posit.co/download/rstudio-desktop/){target="_blank"}
 
-If you want to use another software package for these purposes, you are very welcome to, but you do so at your own undertaking.
+If you want to use another software package for these purposes, you are very
+welcome to, but you do so at your own undertaking.
 
 ## Install guide
 
@@ -104,7 +120,9 @@ If you want to use another software package for these purposes, you are very wel
 
 ## R Packages
 
-We will make use of a set of R packages that are part of the extended `tidyverse` set of packages. Below are the websites for the main ones we will use, which contain guides, "cheatsheets" and reference materials.
+We will make use of a set of R packages that are part of the extended
+`tidyverse` set of packages. Below are the websites for the main ones we will
+use, which contain guides, "cheatsheets" and reference materials.
 
 ### General
 
@@ -112,7 +130,8 @@ We will make use of a set of R packages that are part of the extended `tidyverse
   - [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} (Plotting data)
   - [`dplyr`](https://dplyr.tidyverse.org/){target="_blank"} (Manipulating data)
   - [`tidyr`](https://tidyr.tidyverse.org/){target="_blank"} (Tidying data)
-  - [`readr`](https://readr.tidyverse.org/){target="_blank"} (Importing/exporting data)
+  - [`readr`](https://readr.tidyverse.org/){target="_blank"}
+    (Importing/exporting data)
 
 ### Statistics
 

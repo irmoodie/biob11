@@ -11,6 +11,10 @@ webr:
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
+# WORK IN PROGRESS {background-color="#8e61aa"}
+
+Slides may change before actual lecture.
+
 # Data {background-color="#8e61aa"}
 
 ```{webr}
@@ -134,7 +138,10 @@ penguins |>
 
 How would you organise the following data:
 
-- You measure *enzyme activity* in different tissues (liver, kidney, muscle) from mice at *three* time points (0h, 24h, 48h). Each tissue sample from each mouse is measured *three* times (to check accuracy), with *absorbance values* recorded at 450nm and 600nm.
+- You measure *enzyme activity* in different tissues (liver, kidney, muscle)
+  from mice at *three* time points (0h, 24h, 48h). Each tissue sample from each
+  mouse is measured *three* times (to check accuracy), with *absorbance values*
+  recorded at 450nm and 600nm.
 
 {{< countdown minutes=3 font-size="5rem" >}}
 
@@ -144,7 +151,10 @@ How would you organise the following data:
 
 How would you organise the following data:
 
-- You conduct bird surveys across multiple sites over several months. For each survey, you record the *number of individuals of different species seen*, the *time spent surveying*, *weather conditions* (temperature, wind, cloud cover), and *habitat characteristics* (% tree cover, distance to water).
+- You conduct bird surveys across multiple sites over several months. For each
+  survey, you record the *number of individuals of different species seen*, the
+  *time spent surveying*, *weather conditions* (temperature, wind, cloud cover),
+  and *habitat characteristics* (% tree cover, distance to water).
 
 {{< countdown minutes=3 font-size="5rem" >}}
 
@@ -154,7 +164,11 @@ How would you organise the following data:
 
 How would you organise the following data:
 
-- You collect health data from participants in an exercise intervention including their *age*, *height*, *weight* at baseline, *weight* after 6 months, *blood pressure* at baseline (systolic/diastolic), *blood pressure* after 6 months (systolic/diastolic), and whether they completed the *intervention* (yes/no).
+- You collect health data from participants in an exercise intervention
+  including their *age*, *height*, *weight* at baseline, *weight* after 6
+  months, *blood pressure* at baseline (systolic/diastolic), *blood pressure*
+  after 6 months (systolic/diastolic), and whether they completed the
+  *intervention* (yes/no).
 
 {{< countdown minutes=3 font-size="5rem" >}}
 
@@ -176,8 +190,10 @@ How would you organise the following data:
 - Summarise how our measurements vary using summary statistics
 - Visualise our measurements with figures
 - Predict one variable using a second variable
-  - The variable we want to predict: **response variable** or **dependant variable**
-  - The variable we use to predict our response variable: **explanatory variable** or **independant variable**
+  - The variable we want to predict: **response variable** or **dependant
+    variable**
+  - The variable we use to predict our response variable: **explanatory
+    variable** or **independant variable**
 
 ## Variable types
 
@@ -203,7 +219,8 @@ penguin_vars_extra |>
 
 ### Palmer penguins (observations)
 
-How would you group these variables? Which are similar kinds of data, and which are different? How many groups would you make?
+How would you group these variables? Which are similar kinds of data, and which
+are different? How many groups would you make?
 
 ```{r}
 
@@ -261,10 +278,12 @@ penguins_extra |>
 - Represented by numbers that reflect a magnitude
 - Unlike categorical variables, the numbers we collect mean something tangible
 - Can be either **discrete** or **continuous**:
-  - **Discrete** variables can only take certain values *(e.g., parasites (1, 2, 3, etc), not 1.55)*
-  - **Continuous** variales can take any real number (a number that can be represented by a decimal) within some range. *(e.g., bill length or mass)*
+  - **Discrete** variables can only take certain values *(e.g., parasites (1, 2,
+    3, etc), not 1.55)*
+  - **Continuous** variales can take any real number (a number that can be
+    represented by a decimal) within some range. *(e.g., bill length or mass)*
 
-# Exploratory data analysis{background-color="#8e61aa"}
+# Exploratory data analysis {background-color="#8e61aa"}
 
 - Quantitative data
 - Categorical data
@@ -273,16 +292,14 @@ penguins_extra |>
 
 ### Visualising a single variable
 
-:::: columns
-::: {.column width="50%"}
-
+::: columns
+::::: {.column width="50%"}
 - Variable: body mass of Adelie penguins (grams)
 - X axis mapped to body mass
 - How best to visualise?
 
-:::
-::: {.column width="50%"}
-
+:::::
+::::: {.column width="50%"}
 ```{r}
 #| warning: false
 
@@ -305,44 +322,40 @@ bm_dot <-
 bm_dot
 ```
 
+:::::
 :::
-::::
 
 ## Exploratory data analysis
 
 ### Visualising a single variable
 
-:::: columns
-::: {.column width="50%"}
-
+::: columns
+::::: {.column width="50%"}
 - Variable: body mass of Adelie penguins (grams)
 - X axis mapped to body mass
 - How best to visualise?
 
-:::
-::: {.column width="50%"}
-
+:::::
+::::: {.column width="50%"}
 ```{r}
 bm_dot + geom_point(aes(y = 0), fill = "grey25", size = 5) + ylim(0, 10)
 ```
 
+:::::
 :::
-::::
 
 ## Exploratory data analysis
 
 ### Visualising a single variable
 
-:::: columns
-::: {.column width="50%"}
-
+::: columns
+::::: {.column width="50%"}
 - Variable: body mass of Adelie penguins (grams)
 - X axis mapped to body mass
 - How best to visualise?
 
-:::
-::: {.column width="50%"}
-
+:::::
+::::: {.column width="50%"}
 ```{r}
 bm_dot +
   geom_point(aes(y = 0), size = 5, fill = "grey25") +
@@ -359,23 +372,22 @@ bm_dot +
 
 ```
 
+:::::
 :::
-::::
 
 ## Exploratory data analysis
 
 ### Visualising a single variable: **dotplot**
 
-:::: columns
-::: {.column width="50%"}
-
+::: columns
+::::: {.column width="50%"}
 - A dotplot is a graphical representation of the distribution of a dataset
-- Each observation is represented by a single dot, stacked vertically within bins
+- Each observation is represented by a single dot, stacked vertically within
+  bins
 - The height of each stack shows the frequency of observations within that range
 
-:::
-::: {.column width="50%"}
-
+:::::
+::::: {.column width="50%"}
 ```{r}
 #| warning: false
 
@@ -388,23 +400,22 @@ bm_dot +
   )
 ```
 
+:::::
 :::
-::::
 
 ## Exploratory data analysis
 
 ### Visualising a single variable: **histogram**
 
-:::: columns
-::: {.column width="50%"}
-
+::: columns
+::::: {.column width="50%"}
 - A histogram is a graphical representation of the distribution of a dataset
-- It divides the data into bins (intervals) and displays the frequency of data points in each bin
+- It divides the data into bins (intervals) and displays the frequency of data
+  points in each bin
 - The height of each bar represents the number of observations within each bin
 
-:::
-::: {.column width="50%"}
-
+:::::
+::::: {.column width="50%"}
 ```{r}
 #| warning: false
 
@@ -420,19 +431,19 @@ bm_hist <-
 bm_hist
 ```
 
+:::::
 :::
-::::
 
 ## Exploratory data analysis
 
 ### Measures of central tendancy: **the (arithmetic) mean**
 
-:::: columns
-::: {.column width="50%"}
-
+::: columns
+::::: {.column width="50%"}
 $$
 \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
 $$
+
 $$
 \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
 $$
@@ -445,9 +456,8 @@ $$
 mean(c(6, 8, 6, 2, 9, 9, 7, 9))
 ```
 
-:::
-::: {.column width="50%"}
-
+:::::
+::::: {.column width="50%"}
 ```{r}
 #| warning: false
 bm_hist +
@@ -461,16 +471,15 @@ bm_hist +
   theme(legend.position = c(0.8, 0.8))
 ```
 
+:::::
 :::
-::::
 
 ## Exploratory data analysis
 
 ### Measures of central tendancy: **the median**
 
-:::: columns
-::: {.column width="50%"}
-
+::: columns
+::::: {.column width="50%"}
 - The middle piece of data
 
 ```{webr}
@@ -482,9 +491,8 @@ sort(data)
 median(data)
 ```
 
-:::
-::: {.column width="50%"}
-
+:::::
+::::: {.column width="50%"}
 ```{r}
 #| warning: false
 bm_hist +
@@ -507,16 +515,15 @@ bm_hist +
   theme(legend.position = c(0.8, 0.8))
 ```
 
+:::::
 :::
-::::
 
 ## Exploratory data analysis
 
 ### Measures of central tendancy
 
 ::: {.columns}
-::: {.column}
-
+::::: {.column}
 ```{webr}
 penguins |>
   group_by(species) |>
@@ -526,9 +533,8 @@ penguins |>
   )
 ```
 
-:::
-::: {.column}
-
+:::::
+::::: {.column}
 ```{r}
 penguin_hist_all <-
   penguins |>
@@ -579,7 +585,7 @@ penguin_hist_all +
   theme(legend.position = c(0.9, 0.9))
 ```
 
-:::
+:::::
 :::
 
 ## Exploratory data analysis
@@ -587,8 +593,7 @@ penguin_hist_all +
 ### Measures of spread
 
 ::: {.columns}
-::: {.column}
-
+::::: {.column}
 ```{webr}
 
 penguins |>
@@ -599,9 +604,8 @@ penguins |>
   )
 ```
 
-:::
-::: {.column}
-
+:::::
+::::: {.column}
 ```{r}
 penguin_hist_all +
   geom_vline(
@@ -624,7 +628,7 @@ penguin_hist_all +
   theme(legend.position = "none")
 ```
 
-:::
+:::::
 :::
 
 ## Descriptive statistics & plots
@@ -632,8 +636,7 @@ penguin_hist_all +
 ### Measures of spread: **the range**
 
 ::: {.columns}
-::: {.column}
-
+::::: {.column}
 - Highly sensitive to outliers
 
 $$
@@ -650,9 +653,8 @@ penguins |>
   mutate(range = max - min)
 ```
 
-:::
-::: {.column}
-
+:::::
+::::: {.column}
 ```{r}
 penguin_hist_all +
   geom_vline(
@@ -689,7 +691,7 @@ penguin_hist_all +
 
 ```
 
-:::
+:::::
 :::
 
 ## Descriptive statistics & plots
@@ -697,11 +699,9 @@ penguin_hist_all +
 ### Measures of spread: **quartiles**
 
 ::: {.columns}
-::: {.column}
-
-:::
-::: {.column}
-
+::::: {.column}
+:::::
+::::: {.column}
 ```{r}
 quartiles_df <- penguins |>
   summarise(
@@ -726,7 +726,7 @@ penguin_hist_all +
   theme(legend.position = c(0.9, 0.9))
 ```
 
-:::
+:::::
 :::
 
 # Extracting meaning from data {background-color="#8e61aa"}
@@ -746,8 +746,7 @@ penguin_hist_all +
 ### Relationships between variables
 
 ::: {.columns}
-::: {.column}
-
+::::: {.column}
 ```{r}
 
 penguins_extra |>
@@ -757,12 +756,11 @@ penguins_extra |>
 
 ```
 
-:::
-::: {.column}
-
+:::::
+::::: {.column}
 - Do larger *Adelie* penguins also have longer bills?
 
-:::
+:::::
 :::
 
 ## Extracting meaning from data
@@ -770,8 +768,7 @@ penguins_extra |>
 ### Relationships between variables
 
 ::: {.columns}
-::: {.column}
-
+::::: {.column}
 ```{r}
 #| fig-align: center
 adelie_scatter <-
@@ -786,12 +783,11 @@ adelie_scatter <-
 adelie_scatter
 ```
 
-:::
-::: {.column}
-
+:::::
+::::: {.column}
 - Do larger *Adelie* penguins also have longer bills?
 
-:::
+:::::
 :::
 
 ## Extracting meaning from data
@@ -799,22 +795,20 @@ adelie_scatter
 ### Relationships between variables
 
 ::: {.columns}
-::: {.column}
-
+::::: {.column}
 ```{r}
 adelie_scatter + geom_point(alpha = 0.7)
 ```
 
-:::
-::: {.column}
-
+:::::
+::::: {.column}
 - Do larger *Adelie* penguins also have longer bills?
 - What is the shape of the relationship?
 - Is the relationship weak or strong?
 
 {{< countdown minutes=1.5 font-size="5rem" >}}
 
-:::
+:::::
 :::
 
 ## References
