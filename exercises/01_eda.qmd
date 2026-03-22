@@ -8,13 +8,16 @@ format:
 webr:
   render-df: gt-interactive
   packages:
-    - tidyverse
+    - dplyr
+    - tidyr
+    - ggplot2
     - palmerpenguins
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{webr}
+#| label: setup
 #| edit: false
 #| echo: false
 #| output: false
@@ -33,12 +36,9 @@ If you refer to a figure or table, copy it into your report.
 
 ## Introduction
 
-The `palmerpenguins` dataset contains
-morphological^[Morphological refers to the physical form and structure of organisms.]
-measurement data from three penguin species from three islands in Antarctica.
-This is an example of an
-*observational*^[An observational study is a type of research design where researchers observe and collect data without manipulating or intervening.]
-dataset. From the data website:
+The `palmerpenguins` dataset contains morphological[^1] measurement data from
+three penguin species from three islands in Antarctica. This is an example of an
+*observational*[^2] dataset. From the data website:
 
 > Data were collected and made available by Dr. Kristen Gorman and the Palmer
 > Station, Antarctica LTER, a member of the Long Term Ecological Research
@@ -86,10 +86,8 @@ Note: exact locations may be slightly inaccurate.
 
 :::
 
-The data have already been loaded into the R
-environment^[R is a free software environment for statistical computing and graphics that you will use in this course.],
-which is running in this webpage. The data is stored in an object called
-`penguins`.
+The data have already been loaded into the R environment[^3], which is running
+in this webpage. The data is stored in an object called `penguins`.
 
 ::: {.callout-note icon="false"}
 ## ✅ Task
@@ -202,10 +200,8 @@ information.
 ::: {.callout-note icon="false"}
 ## ✅ Task
 
-Edit the code above to
-`fill`^[`fill` specifies how each bar should be `fill`ed with colour.] the
-barplot by species. To do that, you need to map `species` to the `fill`
-`aes`thetic.
+Edit the code above to `fill`[^4] the barplot by species. To do that, you need
+to map `species` to the `fill` `aes`thetic.
 
 Like how you mapped `x = island`, map `fill = species`. The second line should
 now read:
@@ -222,10 +218,7 @@ ggplot(aes(x = island, fill = species)) +
 
 A histogram groups numeric data into contiguous bins and displays the count in
 each bin as a bar. So very similar to a bar chart, but you make the categories
-by splitting up a continuous variables into equal sections (called
-`bins`^[In the plot below, the argument `bins = 20` affects how many groups you slice the variable
-into. There's no right or wrong way to decide how many bins to use, so you can
-try changing it to find a value that looks good for you.]).
+by splitting up a continuous variables into equal sections (called `bins`[^5]).
 For example, let's look at a histogram of `body_mass_g` of all penguins.
 
 ```{webr}
@@ -377,3 +370,18 @@ ggplot(aes(x = body_mass_g, y = flipper_length_mm, colour = species, shape = sex
 Once you've worked through the webpage, download the assignment worksheet in
 [Canvas assignments](https://canvas.education.lu.se/courses/39432/assignments).
 You will need to edit the code above to answer the questions fully.
+
+[^1]: Morphological refers to the physical form and structure of organisms.
+
+[^2]: An observational study is a type of research design where researchers
+    observe and collect data without manipulating or intervening.
+
+[^3]: R is a free software environment for statistical computing and graphics
+    that you will use in this course
+
+[^4]: `fill` specifies how each bar should be filled with colour.
+
+[^5]: In the plot below, the argument `bins = 20` affects how many groups you
+    slice the variable into. There's no right or wrong way to decide how many
+    bins to use, so you can try changing it to find a value that looks good for
+    you.
