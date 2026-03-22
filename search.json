@@ -129,7 +129,7 @@
     "href": "exercises/01_eda.html#footnotes",
     "title": "Exploratory data analysis",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nMorphological refers to the physical form and structure of organisms.↩︎\nAn observational study is a type of research design where researchers observe and collect data without manipulating or intervening.↩︎\nR is a free software environment for statistical computing and graphics that you will use in this course.↩︎\nfill specifies how each bar should be filled with colour.↩︎\nIn the plot below, the argument bins = 20 affects how many groups you slice the variable into. There’s no right or wrong way to decide how many bins to use, so you can try changing it to find a value that looks good for you.↩︎"
+    "text": "Footnotes\n\n\nMorphological refers to the physical form and structure of organisms.↩︎\nAn observational study is a type of research design where researchers observe and collect data without manipulating or intervening.↩︎\nR is a free software environment for statistical computing and graphics that you will use in this course↩︎\nfill specifies how each bar should be filled with colour.↩︎\nIn the plot below, the argument bins = 20 affects how many groups you slice the variable into. There’s no right or wrong way to decide how many bins to use, so you can try changing it to find a value that looks good for you.↩︎"
   },
   {
     "objectID": "exercises/03_reproducible.html",
