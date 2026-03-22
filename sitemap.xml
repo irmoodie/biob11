@@ -2,90 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/08_project.html</loc>
-    <lastmod>2026-03-11T13:47:21.928Z</lastmod>
+    <lastmod>2026-03-16T12:15:27.772Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/06_regression.html</loc>
-    <lastmod>2026-03-11T13:47:21.928Z</lastmod>
+    <lastmod>2026-03-16T12:15:30.536Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/04_inference.html</loc>
-    <lastmod>2026-03-11T13:47:21.927Z</lastmod>
+    <lastmod>2026-03-16T12:15:23.620Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/02_data.html</loc>
-    <lastmod>2026-03-11T13:47:21.927Z</lastmod>
+    <lastmod>2026-03-22T10:52:48.798Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides.html</loc>
-    <lastmod>2025-03-23T12:42:04.956Z</lastmod>
+    <lastmod>2026-03-22T10:53:18.588Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/biob11/index.html</loc>
-    <lastmod>2026-03-11T13:47:21.926Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/09_practise.html</loc>
-    <lastmod>2026-03-11T13:47:21.926Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/07_seminar.html</loc>
-    <lastmod>2026-03-11T13:47:21.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/05_randomisation.html</loc>
-    <lastmod>2026-03-11T13:47:21.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/03_reproducible.html</loc>
-    <lastmod>2026-03-11T13:47:21.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/01_eda.html</loc>
-    <lastmod>2026-03-11T13:47:21.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises.html</loc>
-    <lastmod>2025-03-21T10:35:54.645Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/02_r.html</loc>
-    <lastmod>2026-03-11T13:47:21.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/04_bootstrap.html</loc>
-    <lastmod>2026-03-11T13:47:21.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/06_regression.html</loc>
-    <lastmod>2026-03-11T13:47:21.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/biob11/exercises/08_report.html</loc>
-    <lastmod>2026-03-11T13:47:21.926Z</lastmod>
+    <loc>https://irmoodie.github.io/biob11/install_r.html</loc>
+    <lastmod>2026-03-22T10:53:02.544Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/exercises/10_project.html</loc>
-    <lastmod>2026-03-11T13:47:21.926Z</lastmod>
+    <lastmod>2026-03-16T12:19:35.185Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/08_report.html</loc>
+    <lastmod>2026-03-16T12:19:27.789Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/06_regression.html</loc>
+    <lastmod>2026-03-16T12:19:20.052Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/04_bootstrap.html</loc>
+    <lastmod>2026-03-16T12:19:14.699Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/02_r.html</loc>
+    <lastmod>2026-03-16T12:19:06.440Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises.html</loc>
+    <lastmod>2026-03-22T10:53:23.305Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/01_eda.html</loc>
+    <lastmod>2026-03-22T10:53:42.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/03_reproducible.html</loc>
+    <lastmod>2026-03-16T12:19:10.132Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/05_randomisation.html</loc>
+    <lastmod>2026-03-16T12:19:17.671Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/07_seminar.html</loc>
+    <lastmod>2026-03-16T12:19:24.496Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/exercises/09_practise.html</loc>
+    <lastmod>2026-03-16T12:19:31.389Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/biob11/index.html</loc>
+    <lastmod>2026-03-22T10:52:45.392Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/resources.html</loc>
-    <lastmod>2026-03-11T13:47:21.927Z</lastmod>
+    <lastmod>2026-03-22T10:53:09.842Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/01_intro.html</loc>
-    <lastmod>2026-03-11T13:47:21.927Z</lastmod>
+    <lastmod>2026-03-22T10:52:53.682Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/03_expdes.html</loc>
-    <lastmod>2026-03-11T13:47:21.927Z</lastmod>
+    <lastmod>2026-03-16T12:15:48.339Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/05_hypothesis.html</loc>
-    <lastmod>2026-03-11T13:47:21.928Z</lastmod>
+    <lastmod>2026-03-16T12:15:36.246Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/biob11/slides/07_math.html</loc>
-    <lastmod>2026-03-11T13:47:21.928Z</lastmod>
+    <lastmod>2026-03-16T12:17:19.375Z</lastmod>
   </url>
 </urlset>

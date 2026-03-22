@@ -10,47 +10,72 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Course overview",
+    "objectID": "install_r.html",
+    "href": "install_r.html",
+    "title": "How to install R on your local computer",
     "section": "",
-    "text": "On this website you will find all materials for sections taught by Iain Moodie on the course BIOB11 at Lund University. All course communication should take place on LU Canvas. The full schedule for the spring 2026 version of the course is shown below. Previous versions of the course are archived as releases on GitHub.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrep\nMorning\nAfternoon\nDue\nBook\n\n\n\n\nWeek 13\n\n\nMon, Mar 23\n💻 Access a laptop\n👋 Obligatoriskt upprop, Introduction to course  📍 Heden (G110)  🕒 11:00–12:00\n💻 Introduction to exploratory data analysis  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n\n\n\n\nTue, Mar 24\n\n\n👨🏻‍🏫 Data, plots and descriptive statistics  📍 Hörsal Blå hallen  🕒 09:00–12:00\n💻 Introduction to R  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n📖 IMS2 [1] [4] [5]  🛠️ HOPR [2]\n\n\nWed, Mar 25\n\n\n💻 Reproducible analyses in R  📍 Heden (G110), Ängen (G111)  🕒 09:00–12:00\n💻 Reproducible analyses in R  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n🛠️ R4DS [1] [3] [5] [7] [10] [28]\n\n\nThu, Mar 26\n\n\n👨🏻‍🏫 The scientific method & experimental design  📍 Hörsal Röda rummet  🕒 09:00–12:00\n\n\n\n📖 IMS2 [2]\n\n\nFri, Mar 27\n\n\n👨🏻‍🏫 The foundations of inference  📍 Hörsal Blå hallen  🕒 09:00–12:00\n💻 Statistical inference with bootstrap  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n📖 IMS2 [12] [16.1] [17.2] [19.1] [20.2] [21.2]\n\n\nWeek 14\n\n\nMon, Mar 30\n\n\n👨🏻‍🏫 Vetenskaplig integritet och etik  📍 Hörsal Röda rummet  🕒 09:00–12:00\n👨🏻‍🏫 Null hypothesis testing & test statistics  📍 Hörsal Röda rummet  🕒 13:00–15:30\n\n\n\n\n\n\nTue, Mar 31\n\n\n💻 Hypothesis testing with randomisation  📍 Heden (G110), Ängen (G111)  🕒 09:00–12:00\n💻 Hypothesis testing with randomisation  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n📖 IMS2 [11] [14] [17.1] [18.1] [20.1] [21.1] [22.2]\n\n\nWed, Apr 1\n\n\n👨🏻‍🏫 Regression modelling  📍 Hörsal Blå hallen  🕒 09:00–12:00\n💻 Regression modelling in R  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n📖 IMS2 [7] [8] [9] [24.1-3] [25] [26]\n\n\nWeek 15\n\n\nTue, Apr 7\n\n\n👨🏻‍🏫 Statistical inference with mathematical models  📍 Hörsal Blå hallen  🕒 09:00–12:00\n\n\n\n📖 IMS2 [13] [16.2] [17.3] [18.2] [19.2] [20.3] [21.3] [22.3] [24.4-5]\n\n\nWed, Apr 8\n📃 Read seminar papers\n💬 Group seminar  📍 Krypt - Masklaven (T105a), Krypt - Renlaven (T108), Ris - Hjortronet (T104), Ris - Kråkbäret (T107), Ris - Lingonet (T105), Ris - Ripbäret (T106)  🕒 09:00–12:00\n💻 Data analysis & report writing exercise  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nThu, Apr 9\n\n\n💻 Data analysis & report writing exercise  📍 Heden (G110), Ängen (G111)  🕒 09:00–12:00\n💻 Data analysis & report writing exercise  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Analysis and report  ⏰ 17:00\n\n\n\n\nFri, Apr 10\n\n\n\n💻 Exam practise  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nWeek 16\n\n\nTue, Apr 14\n❓ Prepare questions\n❓ Question & answer session for exam  📍 Hörsal Blå hallen  🕒 09:00–10:00\n\n\n\n\n\n\n\nThu, Apr 16\n📝 Read the exam guide\n📝 Exam  📍 Heden (G110), Maskrosen (E121)  🕒 09:00–13:00\n\n✅ Exam  ⏰ 13:00\n\n\n\n\nFri, Apr 17\n\n\n👨🏻‍🏫 👥 Introduction to project work & Project work  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n✅ Project proposal  ⏰ 14:00\n\n\n\n\nWeek 17\n\n\nMon, Apr 20\n\n\n👥 Project work  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nTue, Apr 21\n\n\n👥 👨🏻‍🏫 Project work & Exam feedback and review  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nWed, Apr 22\n\n\n👥 Project work  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nThu, Apr 23\n\n\n👥 Project work  📍 Ängen (G111)  🕒 09:00–12:00\n\n✅ Project report  ⏰ 13:00\n\n\n\n\nFri, Apr 24\n📝 Read assigned report  ⬆️ Upload slides\n🎤 Project presentations  📍 Hörsal Blå hallen  🕒 09:00–12:00\n🎤 Project presentations  📍 Hörsal Blå hallen  🕒 13:00–16:00\n✅ Peer-review  ⏰ 17:00\n\n\n\n\nWeek 19\n\n\nThu, May 7\n📝 Read the exam guide\n\n📝 Retake exam  📍 Maskrosen (E121)  🕒 13:00–17:00",
-    "crumbs": [
-      "Home"
-    ]
+    "text": "Here we will walk through the steps of installing R and RStudio on your own device."
   },
   {
-    "objectID": "exercises/09_practise.html",
-    "href": "exercises/09_practise.html",
-    "title": "Practise Exam",
+    "objectID": "install_r.html#why-do-i-need-both",
+    "href": "install_r.html#why-do-i-need-both",
+    "title": "How to install R on your local computer",
+    "section": "Why do I need both?",
+    "text": "Why do I need both?\nR is a programming language and software environment specifically designed for statistical computing and graphics.\nRStudio, on the other hand, is an integrated development environment (IDE) for R. It provides a user-friendly interface that makes it easier to write, debug, and visualize R code. RStudio includes features such as syntax highlighting, code completion, and tools for plotting, history, and workspace management. While R can be used on its own, RStudio enhances the user experience and productivity by providing a more organized and efficient workflow.\nTo use a car as a metaphor, R is the engine, and RStudio is the steering wheel, pedals, gear shifter, etc. It gives us a much easier way to interface and work with R.\nSo you need to install both. RStudio does nothing without R (like a car without an engine)."
+  },
+  {
+    "objectID": "install_r.html#how-to-install-r-locally",
+    "href": "install_r.html#how-to-install-r-locally",
+    "title": "How to install R on your local computer",
+    "section": "How to install R locally",
+    "text": "How to install R locally\nTo install R on your local device, you need to know what operating system your computer uses. If you are unsure, ask the teacher. Follow the steps in the appropriate section. If you already have R installed, I suggest you check it is up to date. To do that, open R and type R.version. If your major version is 4, then that should be OK for this course.\n\n\n\n\n\n\nNoteWindows\n\n\n\n\n\n\nManual download\n\nGo to the CRAN R Project website.\nClick on the “Download R for Windows” link.\nClick on the “base” link to download the base system.\nClick on the “Download R-x.x.x for Windows” link (where x.x.x is the latest version).\nOnce the download is complete, open the installer and follow the on-screen instructions to complete the installation.\n\n\n\nWinget\nIf you use the package manager winget, you can run the following command to install R:\nwinget install -e --id RProject.R\n\n\nChocolatey\nIf you use the package manager chocolatey, you can run the following command to install R:\nchoco install r.project\n\n\n\n\n\n\n\n\n\n\nNotemacOS\n\n\n\n\n\n\nManual download\n\nGo to the CRAN R Project website.\nClick on the “Download R for macOS” link.\nClick on the .pkg file link to download the installer for the latest version of R.\n\nIf you have a newer Mac with an Apple silicon CPU (M1, M2, M3, M4, etc), you must download the version specifically for Apple silicon CPU Macs that has arm64 in the package name (e.g. R-4.4.3-arm64.pkg).\nIf you have an older Mac with an Intel CPU (i3, i5, i7, etc), you must download the version specifically for Intel CPU Macs that has x86_64 in the package name (e.g. R-4.4.3-x86_64.pkg).\n\nOnce the download is complete, open the installer and follow the on-screen instructions to complete the installation.\n\n\n\nHomebrew\nIf you use homebrew, you can install R and dependencies via:\nbrew install r\nNote that the homebrew version of R is not supported by CRAN, and as such any package that used C/C++/Fortran code (which a lot of R packages do) will require you to have the appropriate compiler installed. For that reason, unless you know what you are doing, I do not recommend it.\n\n\n\n\n\n\n\n\n\n\nNoteLinux\n\n\n\n\n\n\nDebian based distros\nRun the following commands in your terminal:\nsudo apt update\nsudo apt install r-base r-base-dev\nFor issues, check the dedicated Debian CRAN R Project website.\n\n\nFedora/Redhat\nsudo dnf install R\nFor issues, check the dedicated Fedora CRAN R Project website.\n\n\nUbuntu\n# update indices\nsudo apt update -qq\n# install two helper packages we need\nsudo apt install --no-install-recommends software-properties-common dirmngr\n# add the signing key (by Michael Rutter) for these repos\n# To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc \n# Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9\nwget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc\n# add the repo from CRAN -- lsb_release adjusts to 'noble' or 'jammy' or ... as needed\nsudo add-apt-repository \"deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/\"\n# install R itself\nsudo apt install --no-install-recommends r-base\nFor issues, check the dedicated Ubuntu CRAN R Project website.\n\n\nOther linux distros\nIf you are using a Linux distro other than the ones above, I trust you probably know enough to figure out how to install R yourself. Just be cautious as to the version of R you are installing. For this course, it needs to be &gt;= 4.0. If you have any issues, let the teacher know.\n\n\n\n\n\n\n\n\n\n\nNoteChromeOS\n\n\n\n\n\nThis is a lot more complicated, sorry.\nYou have three options:\n\nBorrow a windows laptop from the IT department. This would be my first recommendation. But if you want to be able to use your own computer, see the next two options.\nTry and install R locally, using a linux container. This can work, but only reliably for Chromebooks that use an Intel/AMD CPU (not an ARM CPU). Ask the teacher if you are unsure.\nYou use R online instead. This has a few drawbacks depending on the method you use:\n\nYou use webR IDE. This should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost.\nYou use Posit Cloud. The free tier should be enough for everything we do here. The downside is you need an internet connection to use it.\nUsing Google Colab. The free tier should again be enough for everything in this class, however the interface is going to be very different.\n\n\n\nInstalling R locally (via a linux container)\nI suggest you follow this guide carefully (it will take some time). Ask the teacher if you are stuck.\n\n\nUsing webR IDE\nThis is a “proof-of-concept” tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it at https://webr.r-wasm.org/latest/. However, I would really suggest just using a borrowed laptop over this option.\n\n\nUsing Posit Cloud\nPosit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it at https://posit.cloud/.\n\n\nGoogle Colab\nColab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to “queue” for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), here is a guide to setup R with Colab, and here is a link to Colab itself. However, I would really suggest just using a borrowed laptop over this option.\n\n\n\n\n\n\n\n\n\n\nNoteiPadOS\n\n\n\n\n\nI suggest you borrow a laptop from the IT department. If you really want to try using your own device, there are a few options:\n\nUsing webRios\nWebRios is a native iPadOS app that runs a WebAssembly version of R. I have no way to test this out, sorry, but it looks promising! You can find it on the App Store.\n\n\nUsing webR IDE\nThis should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost. It is a “proof-of-concept” tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it at https://webr.r-wasm.org/latest/. However, I would really suggest just using a borrowed laptop over this option.\n\n\nUsing Posit Cloud\nPosit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it at https://posit.cloud/.\n\n\nGoogle Colab\nColab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to “queue” for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), here is a guide to setup R with Colab, and here is a link to Colab itself. However, I would really suggest just using a borrowed laptop over this option.\n\n\n\n\n\n\n\n\n\n\nNoteAndroid\n\n\n\n\n\nI suggest you borrow a laptop from the IT department. If you really want to try using your own device, there are a few options:\n\nUsing webRoid\nWebRoid is a native Android app that runs a WebAssembly version of R. I have tested it, sorry, but it looks promising! You can find it on the Play Store.\n\n\nUsing webR IDE\nThis should work for everything we do in the class, but if you accidentally refresh your page or close your browser without saving your work locally, it will be lost. It is a “proof-of-concept” tool, and is not actually intended to be used for real data analysis. However, it is very functional, and we can use it for almost everything in this class. The place where things will be different is when it comes to making Rmarkdown files. This is not supported, but you can still write R scripts with comments, which is fine. You can find it at https://webr.r-wasm.org/latest/. However, I would really suggest just using a borrowed laptop over this option.\n\n\nUsing Posit Cloud\nPosit are the company that make RStudio, and they offer a version of it online that works almost identically to the desktop version. All your computations are performed on Posit servers, and with the free plan, you are limited with how much compute time you can use per month. However, the default should be enough for this course. However, I would really suggest just using a borrowed laptop over this option. If you want to use it, you can find it at https://posit.cloud/.\n\n\nGoogle Colab\nColab uses Jupyter to run R code. It is a bit different to the RStudio interface. I personally find that Colab can be very frustrating if you are not a paying user, as you often have to “queue” for a CPU for your code to run on. If you really want to use this (if you are familiar with python/jupyter it might be very intuative), here is a guide to setup R with Colab, and here is a link to Colab itself. However, I would really suggest just using a borrowed laptop over this option."
+  },
+  {
+    "objectID": "install_r.html#how-to-install-rstudio-locally",
+    "href": "install_r.html#how-to-install-rstudio-locally",
+    "title": "How to install R on your local computer",
+    "section": "How to install RStudio locally",
+    "text": "How to install RStudio locally\n\n\n\n\n\n\nNoteWindows\n\n\n\n\n\n\nManual download\n\nGo to the RStudio desktop website.\nScroll down and click on the “Download RStudio Desktop for Windows” link (we have already installed R so can skip step 1 in their guide).\nOnce the download is complete, open the installer and follow the on-screen instructions to complete the installation.\n\n\n\nWinget\nIf you use the package manager winget, you can run the following command to install RStudio:\nwinget install --id=Posit.RStudio -e\n\n\nChocolatey\nIf you use the package manager chocolatey, you can run the following command to install R:\nchoco install r.studio\n\n\n\n\n\n\n\n\n\n\nNotemacOS\n\n\n\n\n\n\nManual download\n\nGo to the RStudio desktop website.\nScroll down and click on the “Download RStudio Desktop for macOS 13+” link (we have already installed R so can skip step 1 in their guide). If you are using a version of macOS that is &lt;13, follow the link on the page to “download a previous version”.\nOnce the download is complete, open the installer and follow the on-screen instructions to complete the installation.\n\n\n\nHomebrew\nIf you use homebrew, you can install RStudio and dependencies via:\nbrew install --cask rstudio\n\n\n\n\n\n\n\n\n\n\nNoteLinux\n\n\n\n\n\n\nManual download\n\nGo to the RStudio desktop website.\nIf your distro is automatically detected, click on the “Download RStudio Desktop for XXX” link (we have already installed R so can skip step 1 in their guide). If your distro is not automatically detected, scroll down to the bottom to find a suitable installer.\nOnce the download is complete, open the installer and follow the on-screen instructions to complete the installation.\n\n\n\nVia various package managers\nThe version of RStudio available via some sources is very out-of-date. For this reason, I suggest either being cautious and checking it is actually up-to-date, or just downloading it from the above link.\n\n\n\n\n\n\n\n\n\n\nNoteChromeOS\n\n\n\n\n\n\nIf you have installed R locally using the guide in the previous section, it will also guide you how to install RStudio.\nIf you are using a web version of R, there is no need to do anything else.\n\n\n\n\n\n\n\n\n\n\nNoteiPadOS\n\n\n\n\n\nThere is no way to install RStudio on your device.\n\n\n\n\n\n\n\n\n\nNoteAndroid\n\n\n\n\n\nThere is no (simple) way to install RStudio on your device."
+  },
+  {
+    "objectID": "install_r.html#how-to-use-r-on-your-own-computer",
+    "href": "install_r.html#how-to-use-r-on-your-own-computer",
+    "title": "How to install R on your local computer",
+    "section": "How to use R on your own computer",
+    "text": "How to use R on your own computer\nQuite simply, in this course you should never open R, you should always open RStudio. Check that everything has worked by launching RStudio. It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.\nYou should be met by a scene that looks like this:\n\n\n\nA screenshot of a new RStudio installation on macOS."
+  },
+  {
+    "objectID": "exercises/10_project.html",
+    "href": "exercises/10_project.html",
+    "title": "Project work",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/07_seminar.html",
-    "href": "exercises/07_seminar.html",
-    "title": "Group seminar activity",
+    "objectID": "exercises/08_report.html",
+    "href": "exercises/08_report.html",
+    "title": "Data analysis & report writing assignment",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/05_randomisation.html",
-    "href": "exercises/05_randomisation.html",
-    "title": "Hypothesis testing with randomisation",
+    "objectID": "exercises/06_regression.html",
+    "href": "exercises/06_regression.html",
+    "title": "Regression modelling in R",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/03_reproducible.html",
-    "href": "exercises/03_reproducible.html",
-    "title": "Reproducible analyses in R",
+    "objectID": "exercises/04_bootstrap.html",
+    "href": "exercises/04_bootstrap.html",
+    "title": "Statistical inference with bootstrap",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/01_eda.html",
-    "href": "exercises/01_eda.html",
-    "title": "Exploratory data analysis",
+    "objectID": "exercises/02_r.html",
+    "href": "exercises/02_r.html",
+    "title": "Introduction to R",
     "section": "",
     "text": "Coming soon!"
   },
@@ -65,46 +90,161 @@
     ]
   },
   {
-    "objectID": "exercises/02_r.html",
-    "href": "exercises/02_r.html",
-    "title": "Introduction to R",
+    "objectID": "exercises/01_eda.html",
+    "href": "exercises/01_eda.html",
+    "title": "Exploratory data analysis",
+    "section": "",
+    "text": "First, work your way through this webpage, compeleting all the tasks. Then, use the code below to answer the questions in the exercise report file. You are encouraged to work in groups, but you should each submit an individual report. If you refer to a figure or table, copy it into your report.\nYou are not expected to understand the code at this stage!"
+  },
+  {
+    "objectID": "exercises/01_eda.html#introduction",
+    "href": "exercises/01_eda.html#introduction",
+    "title": "Exploratory data analysis",
+    "section": "Introduction",
+    "text": "Introduction\nThe palmerpenguins dataset contains morphological1 measurement data from three penguin species from three islands in Antarctica. This is an example of an observational2 dataset. From the data website:\n\nData were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network.\n\n\n\n\n\n\n\nNote🗺️ A map of the islands\n\n\n\n\n\n\n\n\n\n\n\nNote: exact locations may be slightly inaccurate.\n\n\n\nThe data have already been loaded into the R environment3, which is running in this webpage. The data is stored in an object called penguins.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nRun the following code to show the penguins dataframe.\n\n\n\n\n\n\n\n\n\n\n\nThe data is in a tabular “dataframe” format (like a spreadsheet).\n\nThe top row shows the names of each column (variable).\nNA means that data is missing for that particular value.\nYou can arrange the data in different ways by clicking on the name of a column.\n\nThe data is also in a “tidy” format, where each row represents one observation (a single penguin).\n\nHave a look through and make sure you understand what each column is showing you."
+  },
+  {
+    "objectID": "exercises/01_eda.html#frequencies-of-categories",
+    "href": "exercises/01_eda.html#frequencies-of-categories",
+    "title": "Exploratory data analysis",
+    "section": "Frequencies of categories",
+    "text": "Frequencies of categories\n\nContingency tables\nA contingency table shows frequency data (how often a given case occurs) for a dataset in a table format. A simple contingency table for this dataset might show the number of each penguin species in the dataset. The count() function will do that for us:\n\n\n\n\n\n\n\n\nThe n column shows the number of rows that belong to each species.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nEdit the code above to show the number of penguins on each island by replacing species with island.\n\n\nYou can add more variables to a contingency table by writing the names of the variables you want to group by within the brackets () of the count() function, separated by a comma ,.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nEdit the code to show the number of penguins of each species on each island. To do that, line two should look like:\ncount(island, species)\n\n\nYou can keep adding more categories in the same way.\n\n\n\nBar plots\nBar plots are a way to visualise data from contingency tables. The height of each bar represents the number of cases in that category (equivilent to the n column). The code below is an example of a ggplot “recipe” to make such a plot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote📊 Components of a ggplot\n\n\n\n\n\nA ggplot2 plot has three essential components:\n\ndata: the dataset that contains the variables you want to plot (in this case, it has been “piped” into the recipe using |&gt;)\ngeom: the geometric object you want to use to display your data (e.g. a point, a line, a bar).\naes: aesthetic attributes that you want to map to your geometric object. For example, the x and y location of a point geometry could be mapped to two variables in your dataset, and the colour of those points could be mapped to a third.\n\nggplot2 uses a layered approach to the grammer of graphics. This makes it relatively simple to start contructing plots by putting together a “recipe” step-by-step.\n\n\n\nJust like contingency tables, you can show multiple categories on a bar plot. But since you’ve already used two dimensions of the plot (the x and y axes), you will have to use something like the colour of the bars to show more information.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nEdit the code above to fill4 the barplot by species. To do that, you need to map species to the fill aesthetic.\nLike how you mapped x = island, map fill = species. The second line should now read:\nggplot(aes(x = island, fill = species)) +"
+  },
+  {
+    "objectID": "exercises/01_eda.html#quantitative-variables",
+    "href": "exercises/01_eda.html#quantitative-variables",
+    "title": "Exploratory data analysis",
+    "section": "Quantitative variables",
+    "text": "Quantitative variables\n\nHistograms\nA histogram groups numeric data into contiguous bins and displays the count in each bin as a bar. So very similar to a bar chart, but you make the categories by splitting up a continuous variables into equal sections (called bins5). For example, let’s look at a histogram of body_mass_g of all penguins.\n\n\n\n\n\n\n\n\nJust like how you used fill for the bar plot to show another category, you could do the same here. For example, you might want to fill by species.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nEdit the code to fill each bar by species. The second line should now read:\nggplot(aes(x = body_mass_g, fill = species)) +\n\n\nSome people find this sort of plot hard to read (the instructor included). The next section has an alternative approach that is often easier to grasp.\n\n\n\nViolin plots\nA violin plot shows the same information as multiple histograms. It applies a smoothing function to the histogram, and then mirrors it to produce something that often looks like the body of a violin. They can be a good way to show how a quantitative variable varies among groups. For example, let’s look at a violin plot of body_mass_g for each species.\n\n\n\n\n\n\n\n\nLet’s also show sex on this plot.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nEdit the code to fill each violin by sex. The second line should now read:\nggplot(aes(x = species, y = body_mass_g, fill = sex)) +\n\n\nYou probably notice an issue here. Since some of the penguins have missing data for sex (sex == NA) they are being plotted as their own category. We might want to first remove these before making the plot.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nUse the drop_na() function to first remove any penguin where sex == NA.\n\nInsert a new line after line 1.\nOn that line, add the following:\n\n  drop_na(sex) |&gt;\n\n\nNow the plot is much cleaner, and reading it is easier.\n\n\n\nScatter plots\nIf you want to see how two continuous variables are related, then you can use a scatter plot. For example, let’s plot the relationship between body_mass_g and flipper_length_mm.\n\n\n\n\n\n\n\n\nEach point represents one penguin. Each point’s location on the x axis represents the penguin’s body_mass_g and the point’s location on the y axis represents the penguins flipper_length_mm.\nYou can describe the relationship using words that imply strength, shape and direction. For example, body_mass_g and flipper_length_mm appear to have a relationship that is:\n\nstrong (the trend is clear)\nlinear (you could capture the relationship by drawing a straight line)\npositive (body_mass_g increases, flipper_length_mm also increases)\n\nYou could also describe this plot in simpler terms, for example:\n“Heavier penguins tend to have longer flippers.”\nCurrently you can’t tell what point belongs to which species of penguin. You could use colour to show this information.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nEdit the code above to colour each point by species. To do that, you need to map species to the colour aesthetic.\nThe second line should now read:\nggplot(aes(x = body_mass_g, y = flipper_length_mm, colour = species)) +\n\n\nAn additional aesthetic you could use on a scatter plot is shape. Let’s also indicate which sex each penguin is by using shape.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nEdit the code above to shape each point by sex. To do that, you need to map sex to the shape aesthetic.\nThe second line should now read:\nggplot(aes(x = body_mass_g, y = flipper_length_mm, colour = species, shape = sex)) +"
+  },
+  {
+    "objectID": "exercises/01_eda.html#your-task",
+    "href": "exercises/01_eda.html#your-task",
+    "title": "Exploratory data analysis",
+    "section": "Your task",
+    "text": "Your task\nOnce you’ve worked through the webpage, download the assignment worksheet in Canvas assignments. You will need to edit the code above to answer the questions fully."
+  },
+  {
+    "objectID": "exercises/01_eda.html#footnotes",
+    "href": "exercises/01_eda.html#footnotes",
+    "title": "Exploratory data analysis",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nMorphological refers to the physical form and structure of organisms.↩︎\nAn observational study is a type of research design where researchers observe and collect data without manipulating or intervening.↩︎\nR is a free software environment for statistical computing and graphics that you will use in this course.↩︎\nfill specifies how each bar should be filled with colour.↩︎\nIn the plot below, the argument bins = 20 affects how many groups you slice the variable into. There’s no right or wrong way to decide how many bins to use, so you can try changing it to find a value that looks good for you.↩︎"
+  },
+  {
+    "objectID": "exercises/03_reproducible.html",
+    "href": "exercises/03_reproducible.html",
+    "title": "Reproducible analyses in R",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/04_bootstrap.html",
-    "href": "exercises/04_bootstrap.html",
-    "title": "Statistical inference with bootstrap",
+    "objectID": "exercises/05_randomisation.html",
+    "href": "exercises/05_randomisation.html",
+    "title": "Hypothesis testing with randomisation",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/06_regression.html",
-    "href": "exercises/06_regression.html",
-    "title": "Regression modelling in R",
+    "objectID": "exercises/07_seminar.html",
+    "href": "exercises/07_seminar.html",
+    "title": "Group seminar activity",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/08_report.html",
-    "href": "exercises/08_report.html",
-    "title": "Data analysis & report writing assignment",
+    "objectID": "exercises/09_practise.html",
+    "href": "exercises/09_practise.html",
+    "title": "Practise Exam",
     "section": "",
     "text": "Coming soon!"
   },
   {
-    "objectID": "exercises/10_project.html",
-    "href": "exercises/10_project.html",
-    "title": "Project work",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Course overview",
     "section": "",
-    "text": "Coming soon!"
+    "text": "On this website you will find all materials for sections taught by Iain Moodie on the course BIOB11 at Lund University. All course communication should take place on LU Canvas. The full schedule for the spring 2026 version of the course is shown below. Previous versions of the course are archived as releases on GitHub.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrep\nMorning\nAfternoon\nDue\nBook\n\n\n\n\nWeek 13\n\n\nMon, Mar 23\n💻 Access a laptop\n👋 Obligatoriskt upprop, Introduction to course  📍 Heden (G110)  🕒 11:00–12:00\n💻 Introduction to exploratory data analysis  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n\n\n\n\nTue, Mar 24\n💻 Install R + RStudio\n👨🏻‍🏫 Data, plots and descriptive statistics  📍 Hörsal Blå hallen  🕒 09:00–12:00\n💻 Introduction to R  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n📖 IMS2 [1] [4] [5]  🛠️ HOPR [2]\n\n\nWed, Mar 25\n\n\n💻 Reproducible analyses in R  📍 Heden (G110), Ängen (G111)  🕒 09:00–12:00\n💻 Reproducible analyses in R  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n🛠️ R4DS [1] [3] [5] [7] [10] [28]\n\n\nThu, Mar 26\n\n\n👨🏻‍🏫 The scientific method & experimental design  📍 Hörsal Röda rummet  🕒 09:00–12:00\n\n\n\n📖 IMS2 [2]\n\n\nFri, Mar 27\n\n\n👨🏻‍🏫 The foundations of inference  📍 Hörsal Blå hallen  🕒 09:00–12:00\n💻 Statistical inference with bootstrap  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n📖 IMS2 [12] [16.1] [17.2] [19.1] [20.2] [21.2]\n\n\nWeek 14\n\n\nMon, Mar 30\n\n\n👨🏻‍🏫 Vetenskaplig integritet och etik  📍 Hörsal Röda rummet  🕒 09:00–12:00\n👨🏻‍🏫 Null hypothesis testing & test statistics  📍 Hörsal Röda rummet  🕒 13:00–15:30\n\n\n\n\n\n\nTue, Mar 31\n\n\n💻 Hypothesis testing with randomisation  📍 Heden (G110), Ängen (G111)  🕒 09:00–12:00\n💻 Hypothesis testing with randomisation  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n📖 IMS2 [11] [14] [17.1] [18.1] [20.1] [21.1] [22.2]\n\n\nWed, Apr 1\n\n\n👨🏻‍🏫 Regression modelling  📍 Hörsal Blå hallen  🕒 09:00–12:00\n💻 Regression modelling in R  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Lab report  ⏰ 17:00\n📖 IMS2 [7] [8] [9] [24.1-3] [25] [26]\n\n\nThu, Apr 2\n\n\n\n\n\n\n\n\n\n\n\n\nFri, Apr 3\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 15\n\n\nMon, Apr 6\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Apr 7\n\n\n👨🏻‍🏫 Statistical inference with mathematical models  📍 Hörsal Blå hallen  🕒 09:00–12:00\n\n\n\n📖 IMS2 [13] [16.2] [17.3] [18.2] [19.2] [20.3] [21.3] [22.3] [24.4-5]\n\n\nWed, Apr 8\n📃 Read seminar papers\n💬 Group seminar  📍 Krypt - Masklaven (T105a), Krypt - Renlaven (T108), Ris - Hjortronet (T104), Ris - Kråkbäret (T107), Ris - Lingonet (T105), Ris - Ripbäret (T106)  🕒 09:00–12:00\n💻 Data analysis & report writing exercise  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nThu, Apr 9\n\n\n💻 Data analysis & report writing exercise  📍 Heden (G110), Ängen (G111)  🕒 09:00–12:00\n💻 Data analysis & report writing exercise  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n✅ Analysis and report  ⏰ 17:00\n\n\n\n\nFri, Apr 10\n\n\n\n💻 Exam practise  📍 Heden (G110), Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nWeek 16\n\n\nMon, Apr 13\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Apr 14\n❓ Prepare questions\n❓ Question & answer session for exam  📍 Hörsal Blå hallen  🕒 09:00–10:00\n\n\n\n\n\n\n\nWed, Apr 15\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Apr 16\n📝 Read the exam guide\n📝 Exam  📍 Heden (G110), Maskrosen (E121)  🕒 09:00–13:00\n\n✅ Exam  ⏰ 13:00\n\n\n\n\nFri, Apr 17\n\n\n👨🏻‍🏫 👥 Introduction to project work & Project work  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n✅ Project proposal  ⏰ 14:00\n\n\n\n\nWeek 17\n\n\nMon, Apr 20\n\n\n👥 Project work  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nTue, Apr 21\n\n\n👥 👨🏻‍🏫 Project work & Exam feedback and review  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nWed, Apr 22\n\n\n👥 Project work  📍 Ängen (G111)  🕒 09:00–12:00\n👥 Project work  📍 Ängen (G111)  🕒 13:00–16:00\n\n\n\n\n\n\nThu, Apr 23\n\n\n👥 Project work  📍 Ängen (G111)  🕒 09:00–12:00\n\n✅ Project report  ⏰ 13:00\n\n\n\n\nFri, Apr 24\n📝 Read assigned report  ⬆️ Upload slides\n🎤 Project presentations  📍 Hörsal Blå hallen  🕒 09:00–12:00\n🎤 Project presentations  📍 Hörsal Blå hallen  🕒 13:00–16:00\n✅ Peer-review  ⏰ 17:00\n\n\n\n\nWeek 19\n\n\nThu, May 7\n📝 Read the exam guide\n\n📝 Retake exam  📍 Maskrosen (E121)  🕒 13:00–17:00",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
     "objectID": "resources.html",
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "Here you will find a list of resources which will be useful during this course.\n\nBooks\nIn short my recommendation is:\nFocus your efforts on IMS2 as it covers experimental design, statistics and how to present results. To better understand a data analysis workflow, use R4DS and MD2. For help with a basic programming concept, consult HOPR. For alternative explanations of statistical approaches, use MD2 and StatBio.\n\nIntroduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)\nMain course book (IMS2)\nGood for:\n\nAll the statistical methods we cover in this course\nGeneral advice for making figures and presenting results\nIntroductory level explanations of theory\nSimple practical exercises (see Applications sections)\n\nNot so good for:\n\nHow to do something in R\nDeeper explanations of statistical methods\nBiological examples (most examples are from social sciences / business)\n\n\n\nStatistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)\n(MD2)\nGood for:\n\nAlternative explanation of some statistical methods we cover in this course\nR code examples simple data handling, plotting and analysis\nSimple coding exercises to help understand core concepts\n\nNot so good for:\n\nAnything multivariate\nBiological examples (most examples are from social sciences / business)\nMore advanced R problems\n\n\n\nR for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)\n(R4DS)\nGood for:\n\nR code for importing, handling, cleaning and plotting data with tidyverse\nHelp with Quarto documents\n\nNot so good for:\n\nStatistics\nCore R programming concepts\n\n\n\nHands-On Programming with R, Grolemund (2018)\n(HOPR)\nGood for:\n\nBasic introduction to R\nCore R programming concepts\n\nNot so good for:\n\nTidyverse packages\nStatistics\n\n\n\nFundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)\n(StatBio)\nGood for:\n\nTheory based statistics\nBiological examples\nBasic introduction to classical frequentist statistical methods\nAlso available as an audiobook\n\nNot so good for:\n\nR code\nRandomisation and simulation based inference\n\n\n\n\n\nSoftware\nDuring the course we will use R and RStudio as tools to handle data, make plots and do statistics.\n\nThe R Project for Statistical Computing\nRStudio Desktop\n\nIf you want to use another software package for these purposes, you are very welcome to, but you do so at your own undertaking.\nWe will make use of a set of R packages that are part of the extended tidyverse set of packages. Below are the websites for the main ones we will use, which contain guides, “cheatsheets” and reference materials.\n\nGeneral\n\ntidyverse\n\nggplot2 (Plotting data)\ndplyr (Manipulating data)\ntidyr (Tidying data)\nreadr (Importing/exporting data)\n\n\n\n\nStatistics\n\ninfer",
+    "text": "Here you will find a list of resources which will be useful during this course.",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#ims2-course-book",
+    "href": "resources.html#ims2-course-book",
+    "title": "Resources",
+    "section": "IMS2 (course book)",
+    "text": "IMS2 (course book)\nIntroduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin (2024)\nGood for:\n\nAll the statistical methods we cover in this course\nGeneral advice for making figures and presenting results\nIntroductory level explanations of theory\nSimple practical exercises (see Applications sections)\n\nNot so good for:\n\nHow to do something in R\nDeeper explanations of statistical methods\nBiological examples (most examples are from social sciences / business)",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#md2",
+    "href": "resources.html#md2",
+    "title": "Resources",
+    "section": "MD2",
+    "text": "MD2\nStatistical Inference via Data Science 2nd ed., Ismay, Kim & Valdivia (2025)\nGood for:\n\nAlternative explanation of some statistical methods we cover in this course\nR code examples simple data handling, plotting and analysis\nSimple coding exercises to help understand core concepts\n\nNot so good for:\n\nAnything multivariate\nBiological examples (most examples are from social sciences / business)\nMore advanced R problems",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#r4ds",
+    "href": "resources.html#r4ds",
+    "title": "Resources",
+    "section": "R4DS",
+    "text": "R4DS\nR for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel & Grolemund (2023)\nGood for:\n\nR code for importing, handling, cleaning and plotting data with tidyverse\nHelp with Quarto documents\n\nNot so good for:\n\nStatistics\nCore R programming concepts",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#hopr",
+    "href": "resources.html#hopr",
+    "title": "Resources",
+    "section": "HOPR",
+    "text": "HOPR\nHands-On Programming with R, Grolemund (2018)\nGood for:\n\nBasic introduction to R\nCore R programming concepts\n\nNot so good for:\n\nTidyverse packages\nStatistics",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#statbio",
+    "href": "resources.html#statbio",
+    "title": "Resources",
+    "section": "StatBio",
+    "text": "StatBio\nFundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed. Duthie (2025)\nGood for:\n\nTheory based statistics\nBiological examples\nBasic introduction to classical frequentist statistical methods\nAlso available as an audiobook\n\nNot so good for:\n\nR code\nRandomisation and simulation based inference",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#install-guide",
+    "href": "resources.html#install-guide",
+    "title": "Resources",
+    "section": "Install guide",
+    "text": "Install guide\nHere is a guide on how to install R and RStudio",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "resources.html#r-packages",
+    "href": "resources.html#r-packages",
+    "title": "Resources",
+    "section": "R Packages",
+    "text": "R Packages\nWe will make use of a set of R packages that are part of the extended tidyverse set of packages. Below are the websites for the main ones we will use, which contain guides, “cheatsheets” and reference materials.\n\nGeneral\n\ntidyverse\n\nggplot2 (Plotting data)\ndplyr (Manipulating data)\ntidyr (Tidying data)\nreadr (Importing/exporting data)\n\n\n\n\nStatistics\n\ninfer",
     "crumbs": [
       "Resources"
     ]

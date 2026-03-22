@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -31,14 +31,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-cd803c9b9c4adee80379c2c802c24e7b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ee00cb6987c12834369f06ed9f9d0319.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -97,7 +98,8 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -152,8 +154,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#books" id="toc-books" class="nav-link active" data-scroll-target="#books">Books</a></li>
-  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
+  <li><a href="#books" id="toc-books" class="nav-link active" data-scroll-target="#books">Books</a>
+  <ul class="collapse">
+  <li><a href="#ims2-course-book" id="toc-ims2-course-book" class="nav-link" data-scroll-target="#ims2-course-book">IMS2 (course book)</a></li>
+  <li><a href="#md2" id="toc-md2" class="nav-link" data-scroll-target="#md2">MD2</a></li>
+  <li><a href="#r4ds" id="toc-r4ds" class="nav-link" data-scroll-target="#r4ds">R4DS</a></li>
+  <li><a href="#hopr" id="toc-hopr" class="nav-link" data-scroll-target="#hopr">HOPR</a></li>
+  <li><a href="#statbio" id="toc-statbio" class="nav-link" data-scroll-target="#statbio">StatBio</a></li>
+  </ul></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a>
+  <ul class="collapse">
+  <li><a href="#install-guide" id="toc-install-guide" class="nav-link" data-scroll-target="#install-guide">Install guide</a></li>
+  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R Packages</a>
+  <ul class="collapse">
+  <li><a href="#general" id="toc-general" class="nav-link" data-scroll-target="#general">General</a></li>
+  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -184,9 +201,9 @@ ul.task-list li input[type="checkbox"] {
 <h1>Books</h1>
 <p>In short my recommendation is:</p>
 <p>Focus your efforts on <a href="https://openintro-ims.netlify.app/">IMS2</a> as it covers experimental design, statistics and how to present results. To better understand a data analysis workflow, use <a href="https://r4ds.hadley.nz/">R4DS</a> and <a href="https://moderndive.com/v2/">MD2</a>. For help with a basic programming concept, consult <a href="https://rstudio-education.github.io/hopr/">HOPR</a>. For alternative explanations of statistical approaches, use <a href="https://moderndive.com/v2/">MD2</a> and <a href="https://bradduthie.github.io/stats/">StatBio</a>.</p>
-<section id="introduction-to-modern-statistics-2nd-ed.-çetinkaya-rundel-hardin-2024" class="level4">
-<h4 class="anchored" data-anchor-id="introduction-to-modern-statistics-2nd-ed.-çetinkaya-rundel-hardin-2024"><a href="https://openintro-ims.netlify.app/" target="_blank">Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel &amp; Hardin (2024)</a></h4>
-<p><strong>Main course book (IMS2)</strong></p>
+<section id="ims2-course-book" class="level2">
+<h2 class="anchored" data-anchor-id="ims2-course-book">IMS2 (course book)</h2>
+<p><a href="https://openintro-ims.netlify.app/" target="_blank"><strong>Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel &amp; Hardin (2024)</strong></a></p>
 <p>Good for:</p>
 <ul>
 <li>All the statistical methods we cover in this course</li>
@@ -201,9 +218,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Biological examples (most examples are from social sciences / business)</li>
 </ul>
 </section>
-<section id="statistical-inference-via-data-science-2nd-ed.-ismay-kim-valdivia-2025" class="level4">
-<h4 class="anchored" data-anchor-id="statistical-inference-via-data-science-2nd-ed.-ismay-kim-valdivia-2025"><a href="https://moderndive.com/v2/" target="_blank">Statistical Inference via Data Science 2nd ed., Ismay, Kim &amp; Valdivia (2025)</a></h4>
-<p><strong>(MD2)</strong></p>
+<section id="md2" class="level2">
+<h2 class="anchored" data-anchor-id="md2">MD2</h2>
+<p><a href="https://moderndive.com/v2/" target="_blank"><strong>Statistical Inference via Data Science 2nd ed., Ismay, Kim &amp; Valdivia (2025)</strong></a></p>
 <p>Good for:</p>
 <ul>
 <li>Alternative explanation of some statistical methods we cover in this course</li>
@@ -217,9 +234,9 @@ ul.task-list li input[type="checkbox"] {
 <li>More advanced R problems</li>
 </ul>
 </section>
-<section id="r-for-data-science-2nd-ed.-wickham-çetinkaya-rundel-grolemund-2023" class="level4">
-<h4 class="anchored" data-anchor-id="r-for-data-science-2nd-ed.-wickham-çetinkaya-rundel-grolemund-2023"><a href="https://r4ds.hadley.nz/" target="_blank">R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel &amp; Grolemund (2023)</a></h4>
-<p><strong>(R4DS)</strong></p>
+<section id="r4ds" class="level2">
+<h2 class="anchored" data-anchor-id="r4ds">R4DS</h2>
+<p><a href="https://r4ds.hadley.nz/" target="_blank"><strong>R for Data Science, 2nd ed., Wickham, Çetinkaya-Rundel &amp; Grolemund (2023)</strong></a></p>
 <p>Good for:</p>
 <ul>
 <li>R code for importing, handling, cleaning and plotting data with <code>tidyverse</code></li>
@@ -231,9 +248,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Core R programming concepts</li>
 </ul>
 </section>
-<section id="hands-on-programming-with-r-grolemund-2018" class="level4">
-<h4 class="anchored" data-anchor-id="hands-on-programming-with-r-grolemund-2018"><a href="https://rstudio-education.github.io/hopr/" target="_blank">Hands-On Programming with R, Grolemund (2018)</a></h4>
-<p><strong>(HOPR)</strong></p>
+<section id="hopr" class="level2">
+<h2 class="anchored" data-anchor-id="hopr">HOPR</h2>
+<p><a href="https://rstudio-education.github.io/hopr/" target="_blank"><strong>Hands-On Programming with R, Grolemund (2018)</strong></a></p>
 <p>Good for:</p>
 <ul>
 <li>Basic introduction to R</li>
@@ -245,9 +262,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Statistics</li>
 </ul>
 </section>
-<section id="fundamental-statistical-concepts-and-techniques-in-the-biological-and-environmental-sciences-1st-ed.-duthie-2025" class="level4">
-<h4 class="anchored" data-anchor-id="fundamental-statistical-concepts-and-techniques-in-the-biological-and-environmental-sciences-1st-ed.-duthie-2025"><a href="https://bradduthie.github.io/stats/" target="_blank">Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed.&nbsp;Duthie (2025)</a></h4>
-<p><strong>(StatBio)</strong></p>
+<section id="statbio" class="level2">
+<h2 class="anchored" data-anchor-id="statbio">StatBio</h2>
+<p><a href="https://bradduthie.github.io/stats/" target="_blank"><strong>Fundamental statistical concepts and techniques in the biological and environmental sciences, 1st ed.&nbsp;Duthie (2025)</strong></a></p>
 <p>Good for:</p>
 <ul>
 <li>Theory based statistics</li>
@@ -271,9 +288,15 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://posit.co/download/rstudio-desktop/" target="_blank">RStudio Desktop</a></li>
 </ul>
 <p>If you want to use another software package for these purposes, you are very welcome to, but you do so at your own undertaking.</p>
+<section id="install-guide" class="level2">
+<h2 class="anchored" data-anchor-id="install-guide">Install guide</h2>
+<p><a href="./install_r.html">Here is a guide on how to install R and RStudio</a></p>
+</section>
+<section id="r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="r-packages">R Packages</h2>
 <p>We will make use of a set of R packages that are part of the extended <code>tidyverse</code> set of packages. Below are the websites for the main ones we will use, which contain guides, “cheatsheets” and reference materials.</p>
-<section id="general" class="level4">
-<h4 class="anchored" data-anchor-id="general">General</h4>
+<section id="general" class="level3">
+<h3 class="anchored" data-anchor-id="general">General</h3>
 <ul>
 <li><a href="https://www.tidyverse.org/" target="_blank"><code>tidyverse</code></a>
 <ul>
@@ -284,13 +307,14 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="statistics" class="level4">
-<h4 class="anchored" data-anchor-id="statistics">Statistics</h4>
+<section id="statistics" class="level3">
+<h3 class="anchored" data-anchor-id="statistics">Statistics</h3>
 <ul>
 <li><a href="https://infer.tidymodels.org/" target="_blank"><code>infer</code></a></li>
 </ul>
 
 
+</section>
 </section>
 </section>
 
@@ -346,13 +370,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
