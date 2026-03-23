@@ -12,10 +12,6 @@ webr:
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
-# WORK IN PROGRESS {background-color="#8e61aa"}
-
-Slides may change before actual lecture.
-
 # Data {background-color="#8e61aa"}
 
 ```{webr}
