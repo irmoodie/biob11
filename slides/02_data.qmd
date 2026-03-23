@@ -7,6 +7,7 @@ webr:
     - tidyverse
     - palmerpenguins
     - gt
+  render-df: gt-interactive
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -31,7 +32,7 @@ theme_set(theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") + them
 library(tidyverse)
 library(palmerpenguins)
 library(gt)
-library(ggiraph)
+library(patchwork)
 
 theme_set(
   theme_bw(base_size = 20, base_family = "Atkinson Hyperlegible") +
@@ -138,9 +139,8 @@ penguins |>
 
 How would you organise the following data:
 
-- You measure *enzyme activity* in different tissues (liver, kidney, muscle)
-  from mice at *three* time points (0h, 24h, 48h). Each tissue sample from each
-  mouse is measured *three* times (to check accuracy), with *absorbance values*
+- You measure *enzyme activity* in different tissues (liver, kidney, muscle) from mice at *three* time points (0h, 24h,
+  48h). Each tissue sample from each mouse is measured *three* times (to check accuracy), with *absorbance values*
   recorded at 450nm and 600nm.
 
 {{< countdown minutes=3 font-size="5rem" >}}
@@ -151,10 +151,9 @@ How would you organise the following data:
 
 How would you organise the following data:
 
-- You conduct bird surveys across multiple sites over several months. For each
-  survey, you record the *number of individuals of different species seen*, the
-  *time spent surveying*, *weather conditions* (temperature, wind, cloud cover),
-  and *habitat characteristics* (% tree cover, distance to water).
+- You conduct bird surveys across multiple sites over several months. For each survey, you record the *number of
+  individuals of different species seen*, the *time spent surveying*, *weather conditions* (temperature, wind, cloud
+  cover), and *habitat characteristics* (% tree cover, distance to water).
 
 {{< countdown minutes=3 font-size="5rem" >}}
 
@@ -164,11 +163,9 @@ How would you organise the following data:
 
 How would you organise the following data:
 
-- You collect health data from participants in an exercise intervention
-  including their *age*, *height*, *weight* at baseline, *weight* after 6
-  months, *blood pressure* at baseline (systolic/diastolic), *blood pressure*
-  after 6 months (systolic/diastolic), and whether they completed the
-  *intervention* (yes/no).
+- You collect health data from participants in an exercise intervention including their *age*, *height*, *weight* at
+  baseline, *weight* after 6 months, *blood pressure* at baseline (systolic/diastolic), *blood pressure* after 6 months
+  (systolic/diastolic), and whether they completed the *intervention* (yes/no).
 
 {{< countdown minutes=3 font-size="5rem" >}}
 
@@ -190,10 +187,8 @@ How would you organise the following data:
 - Summarise how our measurements vary using summary statistics
 - Visualise our measurements with figures
 - Predict one variable using a second variable
-  - The variable we want to predict: **response variable** or **dependant
-    variable**
-  - The variable we use to predict our response variable: **explanatory
-    variable** or **independant variable**
+  - The variable we want to predict: **response variable** or **dependant variable**
+  - The variable we use to predict our response variable: **explanatory variable** or **independant variable**
 
 ## Variable types
 
@@ -219,8 +214,8 @@ penguin_vars_extra |>
 
 ### Palmer penguins (observations)
 
-How would you group these variables? Which are similar kinds of data, and which
-are different? How many groups would you make?
+How would you group these variables? Which are similar kinds of data, and which are different? How many groups would you
+make?
 
 ```{r}
 
@@ -278,19 +273,158 @@ penguins_extra |>
 - Represented by numbers that reflect a magnitude
 - Unlike categorical variables, the numbers we collect mean something tangible
 - Can be either **discrete** or **continuous**:
-  - **Discrete** variables can only take certain values *(e.g., parasites (1, 2,
-    3, etc), not 1.55)*
-  - **Continuous** variales can take any real number (a number that can be
-    represented by a decimal) within some range. *(e.g., bill length or mass)*
+  - **Discrete** variables can only take certain values *(e.g., parasites (1, 2, 3, etc), not 1.55)*
+  - **Continuous** variales can take any real number (a number that can be represented by a decimal) within some range.
+    *(e.g., bill length or mass)*
 
-# Exploratory data analysis {background-color="#8e61aa"}
+# Exploring categorical variables {background-color="#8e61aa"}
 
-- Quantitative data
-- Categorical data
+## Exploring categorical variables
 
-## Exploratory data analysis
+### Freqencies: **contingency tables**
 
-### Visualising a single variable
+::: {.columns}
+::::: {.column}
+- Shows frequency data (how often a given case occurs) for a dataset in a table format.
+:::::
+::::: {.column}
+```{r}
+penguins_extra |>
+  count(island, species) |>
+  obs_table()
+```
+:::::
+:::
+
+## Exploring categorical variables
+
+### Freqencies: **contingency tables**
+
+::: {.columns}
+::::: {.column}
+- Shows frequency data (how often a given case occurs) for a dataset in a table format.
+- Often shown in "cross-tabs" form for two variables
+- Also often shown as either row or column proportion
+:::::
+::::: {.column}
+```{r}
+penguins_extra |>
+  count(island, species) |>
+  pivot_wider(names_from = species, values_from = n, values_fill = 0) |>
+  obs_table()
+
+```
+:::::
+:::
+
+## Exploring categorical variables
+
+### Freqencies: **bar plot**
+
+::: {.columns}
+::::: {.column}
+- Shows same informations as acontingency tables
+:::::
+::::: {.column}
+```{r}
+penguins_extra |>
+  drop_na(sex) |>
+  ggplot(aes(x = species)) +
+  geom_bar()
+
+```
+:::::
+:::
+
+## Exploring categorical variables
+
+### Freqencies: **bar plot**
+
+::: {.columns}
+::::: {.column}
+- Shows same informations as acontingency tables
+- Can show additional groups
+:::::
+::::: {.column}
+```{r}
+bar_plot <-
+penguins_extra |>
+  drop_na(sex) |>
+  ggplot(aes(x = species, fill = sex)) +
+  geom_bar() +
+  theme(legend.position = "bottom")
+bar_plot
+```
+:::::
+:::
+
+## Exploring categorical variables
+
+### Freqencies: **bar plot**
+
+::: {.columns}
+::::: {.column}
+- Shows same informations as acontingency tables
+- Can show additional groups
+- Can also be standardised to show proportion
+
+:::::
+::::: {.column}
+```{r}
+bar_plot_fill <-
+penguins_extra |>
+  drop_na(sex) |>
+  ggplot(aes(x = species, fill = sex)) +
+  geom_bar(position = "fill") +
+  theme(legend.position = "bottom")
+bar_plot_fill
+```
+:::::
+:::
+
+## Exploring categorical variables
+
+### Freqencies: **bar plot**
+
+::: {.columns}
+::::: {.column}
+- Shows same informations as acontingency tables
+- Can show additional groups
+- Can also be standardised to show proportion
+- Sometimes showed as "dodged"
+
+:::::
+::::: {.column}
+```{r}
+bar_plot_dodge <-
+penguins_extra |>
+  drop_na(sex) |>
+  ggplot(aes(x = species, fill = sex)) +
+  geom_bar(position = "dodge") +
+  theme(legend.position = "bottom")
+bar_plot_dodge
+```
+:::::
+:::
+
+## Exploring categorical variables
+
+### Freqencies: **bar plot**
+
+What information does each format highlight? Which is easiest to read?
+
+```{r}
+#| fig-width: 15
+#| fig-height: 8
+bar_plot + bar_plot_fill + bar_plot_dodge + 
+plot_layout(guides = "collect") & theme(legend.position = "bottom")
+```
+
+{{< countdown minutes=2 font-size="5rem" >}}
+
+# Exploring quantitative variables
+
+## Exploring quantitative variables
 
 ::: columns
 ::::: {.column width="50%"}
@@ -325,9 +459,7 @@ bm_dot
 :::::
 :::
 
-## Exploratory data analysis
-
-### Visualising a single variable
+## Exploring quantitative variables
 
 ::: columns
 ::::: {.column width="50%"}
@@ -344,9 +476,7 @@ bm_dot + geom_point(aes(y = 0), fill = "grey25", size = 5) + ylim(0, 10)
 :::::
 :::
 
-## Exploratory data analysis
-
-### Visualising a single variable
+## Exploring quantitative variables
 
 ::: columns
 ::::: {.column width="50%"}
@@ -375,15 +505,14 @@ bm_dot +
 :::::
 :::
 
-## Exploratory data analysis
+## Exploring quantitative variables
 
-### Visualising a single variable: **dotplot**
+### Distributions: **dotplot**
 
 ::: columns
 ::::: {.column width="50%"}
-- A dotplot is a graphical representation of the distribution of a dataset
-- Each observation is represented by a single dot, stacked vertically within
-  bins
+- Graphical representation of the distribution of a single variable
+- Each observation is represented by a single dot, stacked vertically within bins
 - The height of each stack shows the frequency of observations within that range
 
 :::::
@@ -391,27 +520,28 @@ bm_dot +
 ```{r}
 #| warning: false
 
-bm_dot +
+bm_dot <-
+  bm_dot +
   geom_dotplot(
     binwidth = 100,
     colour = "white",
     fill = "grey25",
     method = "histodot"
   )
+bm_dot
 ```
 
 :::::
 :::
 
-## Exploratory data analysis
+## Exploring quantitative variables
 
-### Visualising a single variable: **histogram**
+### Distributions: **histogram**
 
 ::: columns
 ::::: {.column width="50%"}
-- A histogram is a graphical representation of the distribution of a dataset
-- It divides the data into bins (intervals) and displays the frequency of data
-  points in each bin
+- Graphical representation of the distribution of a single variable
+- It divides the data into bins (intervals) and displays the frequency of data points in each bin
 - The height of each bar represents the number of observations within each bin
 
 :::::
@@ -424,7 +554,7 @@ bm_hist <-
     data = penguins_adelie,
     mapping = aes(x = body_mass_g)
   ) +
-  geom_histogram(bins = 18, colour = "white", fill = "grey25") +
+  geom_histogram(binwidth = 100, colour = "white", fill = "grey25") +
   labs(x = "Body mass (g)")
 
 
@@ -434,7 +564,97 @@ bm_hist
 :::::
 :::
 
-## Exploratory data analysis
+## Exploring quantitative variables
+
+### Distributions: **dotplots vs histograms**
+
+`binwidth = 100`
+
+```{r}
+#| fig-width: 10
+
+bm_dot + bm_hist
+```
+
+## Exploring quantitative variables
+
+### Distributions: **dotplots vs histograms**
+
+`binwidth = 50`
+
+```{r}
+#| fig-width: 10
+
+bm_hist <-
+  ggplot(
+    data = penguins_adelie,
+    mapping = aes(x = body_mass_g)
+  ) +
+  geom_histogram(binwidth = 50, colour = "white", fill = "grey25") +
+  labs(x = "Body mass (g)")
+
+bm_dot <- 
+  ggplot(
+    data = penguins_adelie,
+    mapping = aes(x = body_mass_g)
+  ) +
+  labs(x = "Body mass (g)") +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.title.y = element_blank()
+  ) +
+  geom_dotplot(
+    binwidth = 50,
+    colour = "white",
+    fill = "grey25",
+    method = "histodot"
+  )
+
+bm_dot + bm_hist
+```
+
+## Exploring quantitative variables
+
+### Distributions: **dotplots vs histograms**
+
+`binwidth = 500`
+
+```{r}
+#| fig-width: 10
+
+bm_hist <-
+  ggplot(
+    data = penguins_adelie,
+    mapping = aes(x = body_mass_g)
+  ) +
+  geom_histogram(binwidth = 500, colour = "white", fill = "grey25") +
+  labs(x = "Body mass (g)")
+
+bm_dot <- 
+  ggplot(
+    data = penguins_adelie,
+    mapping = aes(x = body_mass_g)
+  ) +
+  labs(x = "Body mass (g)") +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.title.y = element_blank()
+  ) +
+  geom_dotplot(
+    binwidth = 500,
+    colour = "white",
+    fill = "grey25",
+    method = "histodot"
+  )
+
+bm_dot + bm_hist
+```
+
+{{< countdown minutes=2 font-size="5rem" >}}
+
+## Exploring quantitative variables
 
 ### Measures of central tendancy: **the (arithmetic) mean**
 
@@ -460,6 +680,15 @@ mean(c(6, 8, 6, 2, 9, 9, 7, 9))
 ::::: {.column width="50%"}
 ```{r}
 #| warning: false
+
+bm_hist <-
+  ggplot(
+    data = penguins_adelie,
+    mapping = aes(x = body_mass_g)
+  ) +
+  geom_histogram(binwidth = 100, colour = "white", fill = "grey25") +
+  labs(x = "Body mass (g)")
+
 bm_hist +
   geom_point(
     aes(x = mean(body_mass_g, na.rm = TRUE), y = 0, fill = "Mean"),
@@ -474,7 +703,7 @@ bm_hist +
 :::::
 :::
 
-## Exploratory data analysis
+## Exploring quantitative variables
 
 ### Measures of central tendancy: **the median**
 
@@ -518,7 +747,7 @@ bm_hist +
 :::::
 :::
 
-## Exploratory data analysis
+## Exploring quantitative variables
 
 ### Measures of central tendancy
 
@@ -526,10 +755,11 @@ bm_hist +
 ::::: {.column}
 ```{webr}
 penguins |>
+  drop_na(body_mass_g) |>
   group_by(species) |>
   summarise(
-    mean = mean(body_mass_g, na.rm = TRUE),
-    median = median(body_mass_g, na.rm = TRUE)
+    mean = mean(body_mass_g),
+    median = median(body_mass_g)
   )
 ```
 
@@ -588,19 +818,19 @@ penguin_hist_all +
 :::::
 :::
 
-## Exploratory data analysis
+## Exploring quantitative variables
 
 ### Measures of spread
 
 ::: {.columns}
 ::::: {.column}
 ```{webr}
-
 penguins |>
+  drop_na(body_mass_g) |>
   group_by(species) |>
   summarise(
-    min = min(body_mass_g, na.rm = TRUE),
-    max = max(body_mass_g, na.rm = TRUE)
+    min = min(body_mass_g),
+    max = max(body_mass_g)
   )
 ```
 
@@ -631,7 +861,7 @@ penguin_hist_all +
 :::::
 :::
 
-## Descriptive statistics & plots
+## Exploring quantitative variables
 
 ### Measures of spread: **the range**
 
@@ -645,10 +875,11 @@ $$
 
 ```{webr}
 penguins |>
+  drop_na(body_mass_g) |>
   group_by(species) |>
   summarise(
-    min = min(body_mass_g, na.rm = TRUE),
-    max = max(body_mass_g, na.rm = TRUE)
+    min = min(body_mass_g),
+    max = max(body_mass_g)
   ) |>
   mutate(range = max - min)
 ```
@@ -694,12 +925,23 @@ penguin_hist_all +
 :::::
 :::
 
-## Descriptive statistics & plots
+## Exploring quantitative variables
 
 ### Measures of spread: **quartiles**
 
 ::: {.columns}
 ::::: {.column}
+```{webr}
+penguins |>
+  drop_na(body_mass_g) |>
+  group_by(species) |>
+  summarise(
+    q1 = quantile(body_mass_g, 0.25),
+    median = median(body_mass_g),
+    q3 = quantile(body_mass_g, 0.75)
+  )
+```
+
 :::::
 ::::: {.column}
 ```{r}
@@ -729,86 +971,495 @@ penguin_hist_all +
 :::::
 :::
 
-# Extracting meaning from data {background-color="#8e61aa"}
+## Exploring quantitative variables
 
-## Extracting meaning from data
+### Measures of spread: **inter-quartile range (IQR)**
 
-### Relationships between variables
+::: {.columns}
+::::: {.column}
+```{webr}
+penguins |>
+  drop_na(body_mass_g) |>
+  group_by(species) |>
+  summarise(
+    q1 = quantile(body_mass_g, 0.25),
+    median = median(body_mass_g),
+    q3 = quantile(body_mass_g, 0.75)
+  ) |>
+  mutate(iqr = q3 - q1)
+```
+
+:::::
+::::: {.column}
+```{r}
+penguin_hist_all +
+  geom_vline(
+    data = quartiles_df,
+    mapping = aes(xintercept = x, colour = stat),
+    linewidth = 1
+  ) +
+  geom_segment(
+    data = quartiles_df |> pivot_wider(names_from = stat, values_from = x),
+    mapping = aes(x = q1, xend = q3, y = 5, yend = 5),
+    arrow = arrow(ends = "both", length = unit(0.1, "inches")),
+    colour = "green",
+    linewidth = 1,
+    inherit.aes = FALSE
+  ) +
+  scale_colour_manual(
+    values = c(q1 = "#1f77b4", median = "#e63946", q3 = "#2ca02c"),
+    labels = c(q1 = "25th", median = "Median", q3 = "75th"),
+    name = "Quartiles"
+  ) +
+  theme(legend.position = c(0.9, 0.9))
+```
+
+:::::
+:::
+
+## Exploring quantitative variables
+
+### Measures of spread: **the variance**
+
+- The sample variance of a dataset is a measure of the **expected squared distance of data from the mean**
+
+- To calculate:
+  - sample size, $N$
+  - mean of the sample, $\bar{x}$
+
+$$
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+## Exploring quantitative variables
+
+### Measures of spread: **the variance**
+
+- Sample variance ($s^2$)
+
+$$
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+- Sum of squares ($SS$)
+
+$$
+SS = \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+## Exploring quantitative variables
+
+### Measures of spread: **the variance**
+
+```{webr}
+data <- c(5.5, 4.7, 8.3, 2.1, 9.6, 3.4, 7.7)
+```
+
+$$
+SS = \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+$$
+SS = (5.5 - 5.9)^2 + (4.7 - 5.9)^2 + (8.3 - 5.9)^2 +\\(2.1 - 5.9)^2 + (9.6 - 5.9)^2 + (3.4 - 5.9)^2 + (7.7 - 5.9)^2
+$$
+
+$$
+SS = (-0.4)^2 + (-1.2)^2 + (2.4)^2 +\\(-3.8)^2 + (3.7)^2 + (-2.5)^2 + (1.8)^2
+$$
+
+$$
+SS = 0.16 + 1.44 + 5.76 + 14.44 + 13.69 + 6.25 + 3.24
+$$
+
+## Exploring quantitative variables
+
+### Measures of spread: **the variance**
+
+$$
+SS = \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+$$
+SS = 44.98
+$$
+
+$$
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+$$
+s^2 = \frac{1}{7-1} \times 44.98
+$$
+
+$$
+s^2 = 7.497
+$$
+
+## Exploring quantitative variables
+
+### Measures of spread: **the variance**
+
+::: {.columns}
+::::: {.column}
+```{webr}
+penguins |>
+  drop_na(body_mass_g) |>
+  group_by(species) |>
+  summarise(
+    variance = var(body_mass_g)
+  )
+```
+
+:::::
+::::: {.column}
+```{r}
+penguin_hist_all
+```
+
+:::::
+:::
+
+## Exploring quantitative variables
+
+### Measures of spread: **the standard deviation**
+
+::: {.columns}
+::::: {.column}
+$$
+s = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2}
+$$
+
+```{webr}
+penguins |>
+  drop_na(body_mass_g) |>
+  group_by(species) |>
+  summarise(
+    variance = var(body_mass_g)
+  ) |>
+  mutate(sd = sqrt(variance))
+```
+
+:::::
+::::: {.column}
+```{r}
+sd_hist <-
+penguin_hist_all +
+  geom_vline(
+    data = penguins |>
+      summarise(
+        mean = mean(body_mass_g, na.rm = TRUE),
+        sd = sd(body_mass_g, na.rm = TRUE),
+        .by = species
+      ),
+    aes(xintercept = mean),
+    colour = "#a53ce6",
+    linewidth = 1
+  ) +
+  geom_rect(
+    data = penguins |>
+      summarise(
+        mean = mean(body_mass_g, na.rm = TRUE),
+        sd = sd(body_mass_g, na.rm = TRUE),
+        .by = species
+      ) |>
+      mutate(
+        lower = mean - sd,
+        upper = mean + sd
+      ),
+    aes(xmin = lower, xmax = upper, ymin = -Inf, ymax = Inf, fill = "±1 SD"),
+    alpha = 0.2,
+    inherit.aes = FALSE
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = c("±1 SD" = "#a53ce6")
+  ) +
+  theme(legend.position = c(0.9, 0.9))
+
+sd_hist
+```
+
+:::::
+:::
+
+## Exploring quantitative variables
+
+### Measures of spread: **the standard deviation**
+
+::: {.columns}
+::::: {.column}
+$$
+s = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2}
+$$
+
+```{webr}
+penguins |>
+  drop_na(body_mass_g) |>
+  group_by(species) |>
+  summarise(
+    sd = sd(body_mass_g)
+  )
+```
+
+:::::
+::::: {.column}
+```{r}
+sd_hist
+```
+
+:::::
+:::
+
+## Exploring quantitative variables
+
+### Measures of spread: **the coefficient of variation (CV)**
+
+$$
+CV = \frac{s}{\bar{x}}
+$$
+
+- The standard deviation ($s$) divided by the mean ($\bar{x}$)
+- Becomes unitless / dimensionless
+- Useful for comparing spread across datasets with very different means
+  - E.g. variability in lengths of tails in mice and dogs
+- Often presented as a percentage
+
+## Exploring quantitative variables
+
+### Descriptions of shape: **skew**
+
+- The asymmetry of the distribution
+
+```{r}
+#| fig-align: center
+#| fig-width: 12
+# Create two datasets with different skews
+set.seed(1234)
+# More intense left skew
+left_skewed <- rbeta(1000, 20, 0.5) * 100
+
+# More intense right skew
+right_skewed <- rbeta(1000, 0.5, 20) * 100
+left_skewed <- rbeta(1000, 15, 1) * 100
+no_skew <- rnorm(1000, 50, 3)
+
+# Combine into a single dataframe
+skewed_data <- tibble(
+  value = c(left_skewed, no_skew, right_skewed),
+  skew = rep(
+    c("Left / negative skew", "No skew (normal)", "Right / positive skew"),
+    each = 1000
+  )
+)
+
+means <- tibble(
+  value = c(mean(left_skewed), mean(no_skew), mean(right_skewed)),
+  skew = c("Left / negative skew", "No skew (normal)", "Right / positive skew")
+)
+
+medians <- tibble(
+  value = c(median(left_skewed), median(no_skew), median(right_skewed)),
+  skew = c("Left / negative skew", "No skew (normal)", "Right / positive skew")
+)
+
+# Plot using ggplot with facets
+ggplot(skewed_data, aes(x = value)) +
+  geom_histogram(bins = 20, fill = "grey60", color = "white") +
+  geom_vline(data = means, aes(xintercept = value, color = "Mean")) +
+  geom_vline(data = medians, aes(xintercept = value, color = "Median")) +
+  scale_color_manual(
+    name = "Statistic",
+    values = c("Mean" = "purple", "Median" = "red")
+  ) +
+  facet_wrap(~skew, scales = "free") +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    legend.position = "top"
+  )
+
+```
+
+## Exploring quantitative variables
+
+### Descriptions of shape: **modality**
+
+```{r}
+#| fig-align: center
+set.seed(42)
+bimodal_data <- tibble(
+  value = c(rnorm(500, mean = 30, sd = 8), rnorm(500, mean = 60, sd = 8)),
+  distribution = "Bimodal"
+)
+
+# Visualize
+ggplot(bimodal_data, aes(x = value)) +
+  geom_histogram(bins = 30, fill = "grey60", color = "white") +
+  labs() +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+# Relationships between variables {background-color="#8e61aa"}
+
+## Relationships between variables
 
 - Many research questions wish to answer if two variables are related:
   - Does tree spacing affect timber yield?
   - Does egg mass affect offspring survival?
   - Do face masks reduce transmission of SARS-CoV-2?
-  - Do larger *Adelie* penguins also have longer bills?
+  - Do heavier penguins also have longer bills?
 
-## Extracting meaning from data {.scrollable}
+## Relationships between variables
 
-### Relationships between variables
-
-::: {.columns}
-::::: {.column}
-```{r}
-
-penguins_extra |>
-  filter(species == "Adelie") |>
-  select(species, body_mass_g, bill_length_mm) |>
-  obs_table(font_size = 18)
-
-```
-
-:::::
-::::: {.column}
-- Do larger *Adelie* penguins also have longer bills?
-
-:::::
-:::
-
-## Extracting meaning from data
-
-### Relationships between variables
+### Two quantitative variables
 
 ::: {.columns}
 ::::: {.column}
 ```{r}
 #| fig-align: center
-adelie_scatter <-
+bill_scatter <-
   penguins_extra |>
-  filter(species == "Adelie") |>
   ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
   labs(
     x = "Body Mass (g)",
     y = "Bill Length (mm)"
   )
 
-adelie_scatter
+bill_scatter
 ```
 
 :::::
 ::::: {.column}
-- Do larger *Adelie* penguins also have longer bills?
+- Do heavier penguins also have longer bills?
 
 :::::
 :::
 
-## Extracting meaning from data
+## Relationships between variables
 
-### Relationships between variables
+### Two quantitative variables
 
 ::: {.columns}
 ::::: {.column}
 ```{r}
-adelie_scatter + geom_point(alpha = 0.7)
+#| fig-align: center
+
+bill_scatter + geom_point(y = 0, alpha = 0.7)
 ```
 
 :::::
 ::::: {.column}
-- Do larger *Adelie* penguins also have longer bills?
-- What is the shape of the relationship?
-- Is the relationship weak or strong?
-
-{{< countdown minutes=1.5 font-size="5rem" >}}
+- Do heavier penguins also have longer bills?
+- Map X axis to body mass
 
 :::::
 :::
+
+## Relationships between variables
+
+### Two quantitative variables: **scatterplot**
+
+::: {.columns}
+::::: {.column}
+```{r}
+#| fig-align: center
+
+bill_scatter + geom_point(alpha = 0.7)
+```
+
+:::::
+::::: {.column}
+- Do heavier penguins also have longer bills?
+- Map X axis to body mass
+- Map Y axis to bill length
+
+:::::
+:::
+
+## Relationships between variables
+
+### Two quantitative variables: **scatterplot**
+
+::: {.columns}
+::::: {.column}
+```{r}
+#| fig-align: center
+bill_scatter + geom_point(aes(colour =species), alpha = 0.7) +
+  theme(legend.position = "bottom")
+```
+
+:::::
+::::: {.column}
+- Do heavier penguins also have longer bills?
+- Map X axis to body mass
+- Map Y axis to bill length
+- Colour by category
+
+:::::
+:::
+
+## Relationships between variables
+
+### Quantitative variables by category
+
+::: {.columns}
+::::: {.column}
+:::::
+::::: {.column}
+```{r}
+penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_jitter(alpha = 0.1, width = 0.3)
+```
+:::::
+:::
+
+## Relationships between variables
+
+### Quantitative variables by category: **boxplots**
+
+::: {.columns}
+::::: {.column}
+- **Box** shows the interquartile range (IQR):
+  - Bottom of box = 25th percentile (Q1)
+  - Line inside box = median (50th percentile)
+  - Top of box = 75th percentile (Q3)
+- **Whiskers** typically to 1.5 × IQR beyond the quartiles
+- Points beyond the whiskers are potential **outliers**
+:::::
+::::: {.column}
+```{r}
+penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_boxplot(fill = NA)
+```
+:::::
+:::
+
+## Relationships between variables
+
+### Quantitative variables by category: **violin plots**
+
+::: {.columns}
+::::: {.column}
+- **Width** of the violin shows the density of observations at that value
+- Wider sections indicate more observations at that body mass
+- The shape reveals the distribution of the data
+:::::
+::::: {.column}
+```{r}
+penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_violin(fill = NA)
+```
+:::::
+:::
+
+## Reading
+
+📖 [IMS2](https://openintro-ims.netlify.app/) [[1]](https://openintro-ims.netlify.app/data-hello)
+[[4]](https://openintro-ims.netlify.app/explore-categorical) [[5]](https://openintro-ims.netlify.app/explore-numerical)
 
 ## References
