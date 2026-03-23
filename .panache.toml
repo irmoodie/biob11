@@ -1,19 +1,22 @@
 flavor = "quarto"
-line-width = 80
+line-width = 120
 
 [format]
 wrap = "reflow"
 blank-lines = "collapse"
-math-delimiter-style = "preserve"
+math-delimiter-style = "dollars"
 math-indent = 0
+tab-stops = "normalize"
+tab-width = 2
 
 [extensions]
-hard-line-breaks = false
 citations = true
-task-lists = true
 
 emoji = false
 
 [formatters]
 r = "air"
 python = "ruff"
+
+[linters]
+r = "jarl"
