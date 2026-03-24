@@ -33,7 +33,26 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-028f94768012f1f262888d06395c1986.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -151,9 +170,131 @@ Iain R. Moodie
 
   <p class="date">Thursday 26th March, 2026</p>
 </section>
-<section class="slide level2">
+<section>
+<section id="populations-and-samples" class="title-slide slide level1 center" data-background-color="#8e61aa">
+<h1>Populations and samples</h1>
 
-<p>Coming soon!</p>
+</section>
+<section id="populations-and-samples-1" class="slide level2">
+<h2>Populations and samples</h2>
+<h3 id="why-we-collect-data">Why we collect data</h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Recording some kind of observation or measurement</li>
+<li>Example:
+<ul>
+<li>Measuring the heights of different trees in a forest</li>
+<li>Measuring the carbon in the forest soil at different locations</li>
+</ul></li>
+<li>We want to say something about the forest in general</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/01/olena-bohovyk-3BlVILvh9hM-unsplash.jpg" class="quarto-figure quarto-figure-center" alt="A drone shot of a forest" width="300"></p>
+</figure>
+</div>
+</div></div>
+<div class="attribution">
+<p>Photo by <a href="https://unsplash.com/@olenkasergienko">Olena Bohovyk</a></p>
+</div>
+</section>
+<section id="populations-and-samples-2" class="slide level2">
+<h2>Populations and samples</h2>
+<h3 id="why-we-collect-data-1">Why we collect data</h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Cannot measure every tree or soil at every location</li>
+<li>Instead, we collect a <span style="color: #8e61aa;"><strong>sample</strong></span> of data</li>
+<li>Use the sample to draw conclusions about the <span style="color: #8e61aa;"><strong>population</strong></span></li>
+<li>Statistics allows us to approximate properties of entire populations from a limited number of samples<sup>1</sup></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/01/olena-bohovyk-3BlVILvh9hM-unsplash.jpg" class="quarto-figure quarto-figure-center" alt="A drone shot of a forest" width="300"></p>
+</figure>
+</div>
+</div></div>
+<div class="attribution">
+<p>Photo by <a href="https://unsplash.com/@olenkasergienko">Olena Bohovyk</a></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>If conducted correctly, and still even then, with caution</p></li></ol></aside></section>
+<section id="populations-and-samples-3" class="slide level2">
+<h2>Populations and samples</h2>
+<h3 id="definitions">Definitions</h3>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Population</strong></p>
+</div>
+<div class="callout-content">
+<p>The totality of individual observations about which inferences are to be made, existing anywhere in the world or at least within a definitely specified sampling area limited in space and time <span class="citation" data-cites="sokal1995">(<a href="#/the-scientific-method" role="doc-biblioref" onclick="">Sokal and Rohlf 1995</a>)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Sample</strong></p>
+</div>
+<div class="callout-content">
+<p>A collection of individual observations selected by a specified procedure <span class="citation" data-cites="sokal1995">(<a href="#/the-scientific-method" role="doc-biblioref" onclick="">Sokal and Rohlf 1995</a>)</span>.</p>
+</div>
+</div>
+</div>
+<p><em>Note: You don’t need to be able to recite this exactly!</em></p>
+</section>
+<section id="populations-and-samples-4" class="slide level2">
+<h2>Populations and samples</h2>
+<h3 id="examples">Examples</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Populations</strong></p>
+<ul>
+<li>All the spruce (gran) trees in Skåne</li>
+<li>All the blue tits (blåmes) in Sweden</li>
+<li>All the genes in the common fruit fly (<em>Drosophila melanogaster</em>)</li>
+<li>All the herring (sill) in the Baltic sea</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Samples</strong></p>
+<ul>
+<li>50 spruce trees in a forest in Skåne</li>
+<li>100 caught blue tits from nest boxes in Sweden</li>
+<li>20 genes from the <em>Drosophila melanogaster</em> genome</li>
+<li>1000 herring caught by a fishing boat off the coast of Karlskrona</li>
+</ul>
+</div></div>
+</section>
+<section id="populations-and-samples-5" class="slide level2">
+<h2>Populations and samples</h2>
+<h3 id="parameters-and-statistics">Parameters and statistics</h3>
+</section>
+<section id="populations-and-samples-6" class="slide level2">
+<h2>Populations and samples</h2>
+<h3 id="how-to-sample-from-a-population">How to sample from a population</h3>
+</section></section>
+<section id="experimental-design" class="title-slide slide level1 center" data-background-color="#8e61aa">
+<h1>Experimental design</h1>
+
+</section>
+
+<section id="causation" class="title-slide slide level1 center" data-background-color="#8e61aa">
+<h1>Causation</h1>
+
+</section>
+
+<section id="the-scientific-method" class="title-slide slide level1 smaller scrollable" data-background-color="#8e61aa">
+<h1>The scientific method</h1>
 
 
 <script type="ojs-module-contents">
@@ -170,7 +311,14 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-sokal1995" class="csl-entry" role="listitem">
+Sokal, R. R., and F. J. Rohlf. 1995. <em>Biometry</em>. <a href="https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=2483009">https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=2483009</a>.
+</div>
+</div>
 </section>
+
+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
