@@ -902,10 +902,12 @@ This message tells us which packages were loaded by the `tidyverse` package, and
 functions that come with R by default) have been overwritten by the `tidyverse` packages. Not all packages produce a
 message when they are loaded (for example, `infer` and `palmerpenguins` did not).
 
-::: {.callout-note icon="false"}
-## ✅ Final Task
+### Final task
 
-Can you figure out how to recreate one of the plots from the [first exercise](01_eda.qmd)? Once you have, you should
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Can you recreate one of the plots from the [first exercise](01_eda.qmd)? Once you have, you should
 upload a screenshot of your RStudio as the [assignment](https://canvas.education.lu.se/courses/39432/assignments) for
 this exercise session.
 :::
