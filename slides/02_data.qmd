@@ -1453,6 +1453,85 @@ penguins |>
 :::::
 :::
 
+## Relationships between variables
+
+### How to quantify relationships?
+
+```{r}
+penguins |>
+  filter(species != "Adelie") |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_violin(fill = NA)
+```
+
+{{< countdown minutes=2 font-size="5rem" >}}
+
+## Relationships between variables
+
+### How to quantify relationships?
+
+```{r}
+penguins |>
+  filter(species != "Adelie") |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_violin(fill = NA) +
+  geom_point(
+    data = penguins |>
+      filter(species != "Adelie") |>
+      summarise(
+        body_mass_g = mean(body_mass_g, na.rm = TRUE),
+        .by = species
+      ),
+    size = 5,
+    colour = "red"
+  ) +
+  geom_line(
+    data = penguins |>
+      filter(species != "Adelie") |>
+      summarise(
+        body_mass_g = mean(body_mass_g, na.rm = TRUE),
+        .by = species
+      ),
+    aes(group = 1),
+    colour = "red",
+    linewidth = 1
+  )
+```
+
+## Relationships between variables
+
+### How to quantify relationships?
+
+- Compare statistics between groups
+  - difference in means
+  - difference in medians
+  - difference in variances
+
+## Relationships between variables
+
+### How to quantify relationships?
+
+```{r}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point()
+```
+
+## Relationships between variables
+
+### How to quantify relationships?
+
+```{r}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point() +
+  stat_ellipse(level = 0.95)
+```
+
 ## Reading
 
 📖 [IMS2](https://openintro-ims.netlify.app/) [[1]](https://openintro-ims.netlify.app/data-hello)
