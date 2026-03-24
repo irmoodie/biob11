@@ -25,7 +25,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -79,7 +134,10 @@ ul.task-list li input[type="checkbox"] {
 
 <meta property="og:title" content="Reproducible analyses in R – BIOB11">
 <meta property="og:description" content="Exercise 3">
+<meta property="og:image" content="https://irmoodie.github.io/biob11/exercises/images/04/nilsson2024.png">
 <meta property="og:site_name" content="BIOB11">
+<meta property="og:image:height" content="834">
+<meta property="og:image:width" content="1501">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -157,8 +215,38 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#get-rstudio-setup" id="toc-get-rstudio-setup" class="nav-link active" data-scroll-target="#get-rstudio-setup">Get RStudio setup</a></li>
+  <li><a href="#tephritis-phenotype" id="toc-tephritis-phenotype" class="nav-link" data-scroll-target="#tephritis-phenotype">Tephritis phenotype</a>
+  <ul class="collapse">
+  <li><a href="#study-background" id="toc-study-background" class="nav-link" data-scroll-target="#study-background">Study background</a></li>
+  <li><a href="#load-r-packages" id="toc-load-r-packages" class="nav-link" data-scroll-target="#load-r-packages">Load R packages</a></li>
+  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing data</a></li>
+  <li><a href="#exploring-data" id="toc-exploring-data" class="nav-link" data-scroll-target="#exploring-data">Exploring data</a>
+  <ul class="collapse">
+  <li><a href="#getting-a-general-overview" id="toc-getting-a-general-overview" class="nav-link" data-scroll-target="#getting-a-general-overview">Getting a general overview</a></li>
+  <li><a href="#finding-mistakes" id="toc-finding-mistakes" class="nav-link" data-scroll-target="#finding-mistakes">Finding mistakes</a></li>
+  <li><a href="#filtering-out-mistakes" id="toc-filtering-out-mistakes" class="nav-link" data-scroll-target="#filtering-out-mistakes">Filtering out mistakes</a></li>
+  </ul></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive statistics</a>
+  <ul class="collapse">
+  <li><a href="#contingency-tables" id="toc-contingency-tables" class="nav-link" data-scroll-target="#contingency-tables">Contingency tables</a></li>
+  <li><a href="#pivot-tables" id="toc-pivot-tables" class="nav-link" data-scroll-target="#pivot-tables">Pivot tables</a></li>
+  </ul></li>
+  <li><a href="#making-plots" id="toc-making-plots" class="nav-link" data-scroll-target="#making-plots">Making plots</a>
+  <ul class="collapse">
+  <li><a href="#the-grammer-of-graphics" id="toc-the-grammer-of-graphics" class="nav-link" data-scroll-target="#the-grammer-of-graphics">The grammer of graphics</a></li>
+  </ul></li>
+  <li><a href="#save-your-rmarkdown-file" id="toc-save-your-rmarkdown-file" class="nav-link" data-scroll-target="#save-your-rmarkdown-file">Save your RMarkdown file!</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  </ul></li>
+  <li><a href="#knit-your-document" id="toc-knit-your-document" class="nav-link" data-scroll-target="#knit-your-document">Knit your document</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -195,7 +283,629 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Coming soon!</p>
+<section id="get-rstudio-setup" class="level1">
+<h1>Get RStudio setup</h1>
+<p>Each time we start a new exercise, you should:</p>
+<ol type="1">
+<li>Make a new folder in your course folder for the exercise (e.g.&nbsp;<code>biob11/exercise_3</code>)</li>
+<li>Open RStudio
+<ul>
+<li>If you haven’t closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.</li>
+</ul></li>
+<li>Set your working directory by going to <em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em>, then navigate to the folder you just made for this exercise.</li>
+<li>Create a new Rmarkdown document (<em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>). Give it a clear title.</li>
+</ol>
+<p>We are now ready to start.</p>
+</section>
+<section id="tephritis-phenotype" class="level1">
+<h1>Tephritis phenotype</h1>
+<section id="study-background" class="level2">
+<h2 class="anchored" data-anchor-id="study-background">Study background</h2>
+<p>Today we will work with a dataset called <code>tephritis_phenotype.csv</code>. The dataset comes from a study conducted at Lund University by <span class="citation" data-cites="nilsson2022">Nilsson et al. (<a href="#ref-nilsson2022" role="doc-biblioref">2022</a>)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/04/nilsson2024.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 from <span class="citation" data-cites="nilsson2024">Nilsson et al. (<a href="#ref-nilsson2024" role="doc-biblioref">2024</a>)</span>: Sampling design, host plants, and traits investigated. a Parallel sampling of allopatric and sympatric populations of the two host races of T. conura flies east and west of the Baltic. CH denotes the C. heterophyllum host race and CO denotes the C. oleraceum host race. b Size measurements of T. conura. c The ancestral host plant, C. heterophyllum. d The derived host plant, C. oleraceum</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>The dataset describes morphological measurements of the dipteran <em>Tephritis conura</em>. This species has specialised to utilise two different host plants (<code>host_plant</code>), <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em>, and thereby formed stable host races. Individuals of both host races were collected in both sympatry (where both <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em> host plants co-occur) and allopatry (where only one <em>Cirsium</em> species occurs) (<code>patry</code>) from eight different populations in northern Europe (<code>region</code>) from both sides of the Baltic sea (<code>baltic</code>). Individuals were measured after having been hatched in a common lab environment. One female and one male (<code>sex</code>) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Measured traits included wing length (<code>wing_length_mm</code>), wing width (<code>wing_width_mm</code>), melanised percentage cover (<code>melanized_percent</code>), body length (<code>body_length_mm</code>) and ovipositor length (<code>ovipositor_length_mm</code>). Body length and wing measurements were collected by measuring images digitally. Wing melanisation was measured using an automated script, which quantified how many pixels of the wing was melanised.</p>
+</blockquote>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Download the dataset from <a href="https://github.com/irmoodie/teaching_datasets/blob/main/tephritis_phenotype/tephritis_phenotype.csv">Github</a>.</li>
+</ol>
+<p><img src="images/04/download_github.png" class="img-fluid" style="width:50.0%"></p>
+<ol start="2" type="1">
+<li>Move the downloaded <code>tephritis_phenotype.csv</code> file to your <em>working directory</em> folder.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="load-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-r-packages">Load R packages</h2>
+<p>In this exercise, we will use the <code>tidyverse</code> package.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Make a new level 1 heading at the start of the document titled “Packages”.</li>
+<li>Make a new code cell.</li>
+<li>Use <code>library()</code> to load the R packages required. Your first code cell should always load the packages required duirng your analysis.</li>
+</ol>
+<p>Make sure you run the code cell.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>❓ Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="importing-data" class="level2">
+<h2 class="anchored" data-anchor-id="importing-data">Importing data</h2>
+<p>We will now load the <code>tephritis_phenotype.csv</code> data file that you downloaded earlier. A <code>.csv</code> file is a file that stores information in a table-like format with <strong>C</strong>omma <strong>S</strong>eparated <strong>V</strong>alues. A typical <code>.csv</code> file will look something like this:</p>
+<pre><code>species,height,n_flowers
+persica,1.2,12
+persica,1.5,18
+banksiae,2.4,3
+banksiae,1.7,8</code></pre>
+<p><code>.csv</code> files are especially suited to storing data that can be used across a wide variety of programmes, as everything is stored as plain text.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Make a new level 1 heading with the title “Load data”</li>
+<li>Make a new code cell.</li>
+<li>Load the <code>tephritis_phenotype.csv</code> data file using the <code>read_csv()</code> function and assign it to an object named <code>tephritis_data</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>❓ Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>tephritis_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tephritis_phenotype.csv"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">Be sure to use quote marks around the file name, and that you are using <code>read_csv()</code>, instead of <code>read.csv()</code></span>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This has loaded a copy of the data from <code>tephritis_phenotype.csv</code> into R. Notice that the object <code>tephritis_data</code> has also appeared in the <em>Environment</em> panel.</p>
+<p><img src="images/04/rstudio_load_data.png" class="img-fluid"></p>
+</section>
+<section id="exploring-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-data">Exploring data</h2>
+<section id="getting-a-general-overview" class="level3">
+<h3 class="anchored" data-anchor-id="getting-a-general-overview">Getting a general overview</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Click on the object <code>tephritis_data</code> in the <em>Environment</em> panel with your mouse.</p>
+</div>
+</div>
+<p>This will open the dataset using the RStudio function <code>View()</code> (which if you look in your console, you will see it has just run). This allows you to view the dataset as a table, like you would in a spreadsheet software like Microsoft Excel. Note however, there is no way to edit the data in this view. This is by design. Any editing of the data needs to be done in the RMarkdown document with code. That way, you can keep a record of any edits you make, without touching the original data file.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make a new level 1 heading with the title: “Data description”. Then underneath, in your RMarkdown document, answer the following questions:</p>
+<ol type="1">
+<li>How many rows of data are in the dataset?</li>
+<li>What is the unit of observation in this data set? In other words, what does each row represent?</li>
+<li>What type of variable is:
+<ul>
+<li><code>region</code></li>
+<li><code>host_plant</code></li>
+<li><code>patry</code></li>
+<li><code>sex</code></li>
+<li><code>body_length_mm</code></li>
+<li><code>ovipositor_length_mm</code></li>
+<li><code>wing_length_mm</code></li>
+<li><code>wing_width_mm</code></li>
+<li><code>melanized_percent</code></li>
+<li><code>baltic</code><br>
+</li>
+</ul></li>
+<li>Are there any <code>NA</code> values in the dataset? In which variable(s) and why might this be?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="finding-mistakes" class="level3">
+<h3 class="anchored" data-anchor-id="finding-mistakes">Finding mistakes</h3>
+<p>Datasets can often be messy. People make mistakes entering data all the time. You should check this dataset for potential errors. For a reference, these flies are very small, less than 1 cm in size.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Make a new level 1 heading with the title: “Data cleaning”.</li>
+<li>In a new code cell(s), use the following methods to find potential mistakes in your dataset:
+<ol type="a">
+<li>The <code>summary()</code> function, when applied to a dataframe, will calculate basic summary statistics.</li>
+<li>Adapt code from the first exercise to make histograms of variables. Extreme values that are not plausible are probably mistakes, and should be removed.</li>
+<li>You can also, as you did before, click on the object <code>tephritis_data</code> in your <em>Environment</em> panel, and click on each variable header to sort it in different ways.</li>
+</ol></li>
+<li>In your document, underneath the code cell where you find the mistake, make a note of which variables you need to clean, and what sort of mistake you’ve found.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="filtering-out-mistakes" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-out-mistakes">Filtering out mistakes</h3>
+<p>We will use the <code>filter()</code> function to remove rows that contain improbably values. <code>filter()</code> let’s us write conditional statements that only allow rows that meet those conditions to “filter” through. For example, we could use filter to remove all rows where <code>wing_length_mm</code> is greater than our guess at what the maximum should be.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>tephritis_data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wing_length_mm <span class="sc">&lt;</span> _____) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(______ ______ ______)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Assign the cleaned data to a new object, called <code>clean_data</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">We pipe <code>|&gt;</code> the data into the <code>filter()</code> function</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">This will only let though rows that have a <code>wing_length_mm</code> less than <code>&lt;</code> _____</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="4">You can add more <code>filter()</code> functions as you wish.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>This is an example of a <strong>data processing “pipeline”</strong>. It is a list of step-by-step instructions that clearly document what we did to get, in this case, a clean dataset.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Use the <code>filter()</code> function to create a dataset free of mistakes.</li>
+<li>Check that your filtering has worked by remaking your histograms using <code>clean_data</code>.</li>
+<li>If there are still mistakes, then add more <code>filter()</code> lines to the pipeline.</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive statistics</h2>
+<p>We will now calculate some of the descriptive statistics we covered in the lecture (beyond what is calculated by the <code>summary()</code> function). Remember, we want to work with the cleaned dataset from now on (<code>clean_data</code>).</p>
+<section id="contingency-tables" class="level3">
+<h3 class="anchored" data-anchor-id="contingency-tables">Contingency tables</h3>
+<p>Recall that contingency tables show how often certain cases (combinations of categories) are found in a dataset. Here, we will use the <code>count()</code> function to produce a contingency table. For example, to create a table showing the number of rows from each <code>region</code>, we can write:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(region)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">We pipe <code>|&gt;</code> the data into the <code>count()</code> function.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="2">Within the count function, we provide the names of the variables we want to group the data by when counting the rows.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Make a new level 1 heading with the title: “Descriptive statistics”.</li>
+<li>In a new code cell below that, make a contingency table that shows the frequencies of flies in each region <code>region</code> that use each<code>host_plant</code>, separated by <code>sex</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>❓ Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(region, ______, ______)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="1">You can keep adding variable names to group by as arguments to the <code>count()</code> function.</span>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pivot-tables" class="level3">
+<h3 class="anchored" data-anchor-id="pivot-tables">Pivot tables</h3>
+<p>Pivot tables are summary tables that work with anything other than frequency of cases. We will now build sets of data summarising pipelines to produce tables of summary statistics.</p>
+<p>For example, if we want to create a table that shows the mean and standard deviation of <code>wing_length_mm</code> for flies from each <code>region</code>, we can write:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(host_plant) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_wing_length =</span> <span class="fu">mean</span>(wing_length_mm),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-4-5" class="code-annotation-target"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_wing_length =</span> <span class="fu">sd</span>(wing_length_mm)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-4-6" class="code-annotation-target"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>  )</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">We pipe <code>|&gt;</code> the data into the <code>group_by()</code> function.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="2">All functions that come after <code>group_by()</code> will provide an output for each category of the grouping variables.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="3"><code>summarise()</code> allows us to calculate summary statistics on the dataset, respecting the groups defined by <code>group_by()</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="4">Inside <code>summarise()</code> we define what summary statistics we want to calculate, and what we want to call them in the output.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="5" data-code-annotation="5">Note we are still inside the brackets of <code>summarise()</code>, so we separate each arguement with a comma <code>,</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="6">We close the brackets of <code>summarise()</code>.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each in a new code cell, make tables that answer the following questions.</p>
+<p>What are the <code>sex</code> and <code>host_plant</code> specific means, medians and standard deviations of:</p>
+<ol type="1">
+<li><code>body_length_mm</code></li>
+<li><code>wing_length_mm</code></li>
+<li><code>wing_width_mm</code></li>
+</ol>
+<p>For females of different <code>host_plants</code>, calculate means, medians and standard deviations of:</p>
+<ol type="1">
+<li><code>ovipositor_length_mm</code></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>❓ Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Some helpful functions might include:</p>
+<ul>
+<li><code>mean()</code>: Computes the <em>arithmetic mean</em> of a numeric vector.</li>
+<li><code>median()</code>: Computes the <em>median</em> of a numeric vector.</li>
+<li><code>min()</code>: Returns the <em>minimum</em> value in a numeric vector.</li>
+<li><code>max()</code>: Returns the <em>maximum</em> value in a numeric vector.</li>
+<li><code>quantile()</code>: Computes the <em>quantiles</em> of a numeric vector.
+<ul>
+<li>1st quartile: <code>quantile(x, prob = 0.25)</code>, where <code>x</code> is a numeric vector.</li>
+<li>3rd quartile: <code>quantile(x, prob = 0.75)</code>, where <code>x</code> is a numeric vector.</li>
+</ul></li>
+<li><code>var()</code>: Computes the <em>variance</em> of a numeric vector.</li>
+<li><code>sd()</code>: Computes the <em>standard deviation</em> of a numeric vector.</li>
+<li><code>length()</code>: Count the number of bits of data in a vector.</li>
+</ul>
+<p>If your output shows as <code>NA</code>, this is likely because your variable contains missing values. If that’s expected and you think removing them is justified, use insert <code>drop_na(_______)</code> into your pipeline, after the first line. For example, to drop all rows where <code>wing_length_mm</code> == NA, we could write:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(wing_length_mm) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can also filter out whole categories before making your tables using <code>filter()</code>. For example, to only include flies from Estonia, we could write:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"estonia"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="making-plots" class="level2">
+<h2 class="anchored" data-anchor-id="making-plots">Making plots</h2>
+<p>R has a built in method to make plots, but we will avoid it in this course. Instead we use <code>ggplot2</code>, a plotting package that is installed with <code>tidyverse</code>. <code>ggplot2</code> is based in a data visualisation theory known as <em>the grammer of graphics</em> (gg) <span class="citation" data-cites="wilkinsonGrammarGraphics2013">(<a href="#ref-wilkinsonGrammarGraphics2013" role="doc-biblioref">Wilkinson 2013</a>)</span>.</p>
+<section id="the-grammer-of-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="the-grammer-of-graphics">The grammer of graphics</h3>
+<p>The grammer of graphics gives us a way to describe any plot. <code>ggplot2</code> then allows us to make that plot, using a layered approach to the grammer of graphics.</p>
+<p>Using this approach, we can say a statistical graphic is a <code>mapping</code> of <code>data</code> variables to <code>aes</code>thetic attributes of <code>geom</code>etric objects.</p>
+<p>Wow. What does that mean? Let’s break it down.</p>
+<p>A <code>ggplot2</code> plot has three essential components:</p>
+<ul>
+<li><code>data</code>: the dataset that contains the variables you want to plot</li>
+<li><code>geom</code>: the geometric object you want to use to display your data (e.g.&nbsp;a point, a line, a bar).</li>
+<li><code>aes</code>: aesthetic attributes that you want to map to your geometric object. For example, the x and y location of a point geometry could be mapped to two variables in your dataset, and the colour of those points could be mapped to a third.</li>
+</ul>
+<p>For example, to look at the relationship between <code>body_length_mm</code> and <code>wing_length_mm</code> we can construct a <code>ggplot</code> recipe as follows:</p>
+<p>We start by specifiying the <code>data</code> we want to plot.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">We could have also written <code>ggplot(data = clean_data)</code> or <code>ggplot(clean_data)</code>, but let’s use pipes <code>|&gt;</code> to keep things consistent.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Next we can specify our <code>aes</code>thetics. We do that by writing the <code>aes()</code> function inside the <code>ggplot()</code> function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_length_mm, <span class="at">y =</span> wing_length_mm))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="1">Anything we write inside the <code>aes()</code> function will map data to our plot.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>And finally we add our <code>geom</code>etry, in this case a <code>geom_point()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_length_mm, <span class="at">y =</span> wing_length_mm)) <span class="sc">+</span></span>
+<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="1">Note that <code>ggplot2</code> uses <code>+</code> to add layers to a plot, not the <code>|&gt;</code> operator.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make a new level 1 heading titled: “Figures”. Underneath, make a new code cell for each of the following plots that display the relationship between:</p>
+<ol type="1">
+<li><code>body_length_mm</code> and <code>sex</code></li>
+<li><code>ovipositor_length_mm</code> and <code>host_plant</code></li>
+<li><code>wing_length_mm</code> and <code>wing_width_mm</code> and <code>sex</code></li>
+<li>The number of flies measured from each <code>region</code> and <code>host_plant</code></li>
+</ol>
+<p>For each plot, write a small figure caption below the code cell that describes the trend you see (if any) in the plot.</p>
+<p>You should use the following <code>geom_</code>s at least once, but one plot can use multiple <code>geom_</code>s.</p>
+<p><code>geom_point()</code> <code>geom_jitter()</code> <code>geom_boxplot()</code> <code>geom_violin()</code> <code>geom_bar()</code></p>
+<p>To find out what they do, try using them, or search the helpfiles in the <em>Outputs</em> panel. You can also, for any function, search for the helpfile by writing <code>?function_name</code>. E.g., if you wanted to know what <code>geom_jitter()</code> does, you could run the command <code>?geom_jitter</code>, and the helpfile will open.</p>
+<p>You can also consult the <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf"><code>ggplot2</code> “cheatsheet”</a>. The course books <a href="https://r4ds.hadley.nz/data-visualize.html">R4DS</a> and <a href="https://moderndive.com/v2/viz.html">MD2</a> have good guides also.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="save-your-rmarkdown-file" class="level2">
+<h2 class="anchored" data-anchor-id="save-your-rmarkdown-file">Save your RMarkdown file!</h2>
+<p>Make sure you save your RMarkdown file regularly.</p>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>To finish today’s exercise, you will use what you have learned to try and answer a research question. Any method or approach you think is valid is fine here. We will cover on Friday how to formally approach these questions.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Create a new level 1 heading titled: “Analysis”. Below, you should answer one of the following research questions:</p>
+<ol type="1">
+<li>Do males have more dark patches on their wings than females?</li>
+<li>Do females have different length ovipositors in the two host races?</li>
+<li>Is the mean proportion of the female wing that is melanized greater than two-thirds?</li>
+<li>Do male flies from the east of the Baltic sea differ in size to flies from the west of the Baltic sea?</li>
+<li>Are female flies who live in sympatric populations bigger than female flies who live in allopatric populations?</li>
+<li>Is the median wing width greater than 2.1 mm in male flies?</li>
+</ol>
+<p>Use <code>filter()</code>, <code>group_by()</code>, <code>count()</code>, <code>summarise()</code>, <code>drop_na()</code> and <code>ggplot()</code> to create tables and figures that address your research question. You should copy and adapt code that you wrote during this exercise. Make sure you keep your document tidy and readable.</p>
+<p>To decide which one you will work on, you are going to roll a virtual six sided die! Use this code to do it yourself:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-13-1" class="code-annotation-target"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"You will work on question:"</span>, <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dv">1</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="1" data-code-annotation="1">If you really dislike your chosen question, maybe you should roll again?</span>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="knit-your-document" class="level1">
+<h1>Knit your document</h1>
+<p>For your final task, you should “knit” your document into a HTML file. When you knit your document, RStudio:</p>
+<ol type="1">
+<li>Executes code chunks: all R code embedded in your document runs in sequence</li>
+<li>Embeds results: output (tables, plots, numbers) is inserted into the document at the location of each code chunk 3, Processes markdown: markdown formatting (headers, bold, links, etc.) is converted to the output format (so it looks like the visual mode)</li>
+<li>Generates output file: a single document is created with all code, results, and formatted text combined</li>
+</ol>
+<p>This document is ideal for presenting to other people, as it contains all your notes, code and output, without the other person needing to run your code.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Final task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Knit your document to a HTML file.</p>
+<p><img src="images/knit.png" class="img-fluid"></p>
+<p>It will have been saved next to wherever your <code>.Rmd</code> file is saved.</p>
+<p>Upload your <code>.html</code> file as your assignment for this exercise.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>❓ Help it didn’t work
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If this fails, it most likely means your code is not in the correct order. Make sure any time you define an object, it happens before you use it in some way. For example, this would fail:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Because <code>y</code> was not defined before it was used. I would need to rearrange the code to be:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>RMarkdown documents are executed top to bottom, strictly. All the code required to make all the output must be present in the document.</p>
+<p>Otherwise, it could be you have a mistake in your code. The fail message should reference which line it was in. Try and find it yourself before asking for help, but if you’re really stuck then please just ask!</p>
+</div>
+</div>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -213,7 +923,19 @@ eyJjb250ZW50cyI6W119
 W10=
 </script>
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-nilsson2024" class="csl-entry" role="listitem">
+Nilsson, K. J., M. Tsuboi, Ø. H. Opedal, and A. Runemark. 2024. <a href="https://doi.org/10.1007/s11692-024-09634-7">Colonization of a <span>Novel Host Plant Reduces Phenotypic Variation</span></a>. Evolutionary Biology 51:269–282.
+</div>
+<div id="ref-nilsson2022" class="csl-entry" role="listitem">
+Nilsson, K., J. Ortega, M. Friberg, and A. Runemark. 2022. <a href="https://doi.org/10.5061/DRYAD.S4MW6M98J">Morphological measurements of two host specialists of the dipteran <span>Tephritis</span> conura, both in sympatry and allopatry</a>. Dryad.
+</div>
+<div id="ref-wilkinsonGrammarGraphics2013" class="csl-entry" role="listitem">
+Wilkinson, L. 2013. <a href="https://books.google.com?id=ZiwLCAAAQBAJ">The <span>Grammar</span> of <span>Graphics</span></a>. Springer Science &amp; Business Media.
+</div>
+</div></section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
