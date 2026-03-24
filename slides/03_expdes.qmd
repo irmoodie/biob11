@@ -3,6 +3,108 @@ title: "The scientific method & experimental design"
 subtitle: "Lecture 3"
 date: 2026-03-26
 author: "Iain R. Moodie"
+draft: true
 ---
 
-Coming soon!
+# Populations and samples {background-color="#8e61aa"}
+
+## Populations and samples
+### Why we collect data
+
+::: columns
+::::: {.column width="60%"}
+- Recording some kind of observation or measurement
+- Example:
+  - Measuring the heights of different trees in a forest
+  - Measuring the carbon in the forest soil at different locations
+- We want to say something about the forest in general
+:::::
+
+::::: {.column width="40%"}
+![](images/01/olena-bohovyk-3BlVILvh9hM-unsplash.jpg){fig-alt="A drone shot of a forest" fig-align="center" width="300"}
+:::::
+
+:::
+
+::: {.attribution}
+Photo by [Olena Bohovyk](https://unsplash.com/@olenkasergienko)
+:::
+
+## Populations and samples
+### Why we collect data
+
+::: columns
+::::: {.column width="60%"}
+- Cannot measure every tree or soil at every location
+- Instead, we collect a [**sample**]{style="color: #8e61aa;"} of data
+- Use the sample to draw conclusions about the [**population**]{style="color: #8e61aa;"}
+- Statistics allows us to approximate properties of entire populations from a limited number of
+  samples^[If conducted correctly, and still even then, with caution]
+
+:::::
+
+::::: {.column width="40%"}
+![](images/01/olena-bohovyk-3BlVILvh9hM-unsplash.jpg){fig-alt="A drone shot of a forest" fig-align="center" width="300"}
+:::::
+
+:::
+
+::: {.attribution}
+Photo by [Olena Bohovyk](https://unsplash.com/@olenkasergienko)
+:::
+
+## Populations and samples
+### Definitions
+
+::: {.callout-important}
+## Population
+
+The totality of individual observations about which inferences are to be made, existing anywhere in the world or at
+least within a definitely specified sampling area limited in space and time [@sokal1995].
+:::
+
+::: {.callout-important}
+## Sample
+
+A collection of individual observations selected by a specified procedure [@sokal1995].
+:::
+
+*Note: You don't need to be able to recite this exactly!*
+
+## Populations and samples
+### Examples
+
+::: columns
+::::: {.column width="50%"}
+**Populations**
+
+- All the spruce (gran) trees in Skåne
+- All the blue tits (blåmes) in Sweden
+- All the genes in the common fruit fly (*Drosophila melanogaster*)
+- All the herring (sill) in the Baltic sea
+
+:::::
+
+::::: {.column width="50%"}
+**Samples**
+
+- 50 spruce trees in a forest in Skåne
+- 100 caught blue tits from nest boxes in Sweden
+- 20 genes from the *Drosophila melanogaster* genome
+- 1000 herring caught by a fishing boat off the coast of Karlskrona
+
+:::::
+
+:::
+
+## Populations and samples
+### Parameters and statistics
+
+## Populations and samples
+### How to sample from a population
+
+# Experimental design {background-color="#8e61aa"}
+
+# Causation {background-color="#8e61aa"}
+
+# The scientific method {background-color="#8e61aa"}
