@@ -263,7 +263,7 @@ clean_data |> #<1>
   group_by(host_plant) |> #<2>
   summarise( #<3>
     mean_wing_length = mean(wing_length_mm), #<4>
-    sd_wing_length = sd(wing_length_mm) 
+    sd_wing_length = sd(wing_length_mm) #<5>
   ) #<6>
 ```
 
