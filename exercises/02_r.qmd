@@ -664,8 +664,8 @@ That was a lot of concepts in a very short amount of time! Take a break before t
 
 # Running R locally
 
-Follow the [guide](install_r.qmd) on how to install R and RStudio on your computer. Once they're both installed, return
-to this section.
+Follow the [guide](../install_r.qmd) on how to install R and RStudio on your computer. Once they're both installed,
+return to this section.
 
 ## Welcome to *RStudio*
 
@@ -740,7 +740,7 @@ Before we go any further, we need to change some default settings in RStudio.
 Go to *Tools* -> *Global Settings*, then:
 
 1. Go to the *General* tab.
-   i) **Un-tick** "*Restore .RData into workspace at startup*"
+    i) **Un-tick** "*Restore .RData into workspace at startup*"
    ii) Set "*Save workspace to RData on exit:*" to *Never*.
 2. Go to the *Code* tab
    i) **Tick** "*Use native pipe operator, l> (requires R 4.1+)*"
@@ -905,7 +905,7 @@ message when they are loaded (for example, `infer` and `palmerpenguins` did not)
 ::: {.callout-note icon="false"}
 ## ✅ Final Task
 
-Can you figure out how to recreate one of the plots from the [first exercise](exercises/01_eda.qmd)? Once you have, you
-should upload a screenshot of your RStudio as the [assignment](https://canvas.education.lu.se/courses/39432/assignments)
-for this exercise session.
+Can you figure out how to recreate one of the plots from the [first exercise](01_eda.qmd)? Once you have, you should
+upload a screenshot of your RStudio as the [assignment](https://canvas.education.lu.se/courses/39432/assignments) for
+this exercise session.
 :::
