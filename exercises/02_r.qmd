@@ -864,6 +864,31 @@ brackets `{r}`.
 
 In both views, you can also use the shortcut *Shift-Alt-I* or *Shift-Command-I*.
 
+### Adding headings and text
+
+Anywhere outside a code cell you can write normal text. In this course, you might find it helpful to write yourself notes alongside your code, so that you can come back to your notes during other exercises, the exam (open book), the group project, or later in your studies.
+
+Along side normal text, you can structure an RMarkdown document using headings.
+
+::: {.callout-note collapse="true" icon="false"}
+### Visual view
+Change the type of text you are typing in the menu at the top:
+
+![](images/04/rstudio_visual_heading.png)
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+### Source view
+
+Use `#`s to indicate the level of the heading:
+
+```` markdown
+# Heading level 1
+## Heading level 2
+### Heading level 3
+````
+:::
+
 ### Loading R packages
 
 After installing an R package, we need to load it into our current R environment. We use the `library()` function to do
