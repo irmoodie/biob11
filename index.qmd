@@ -136,6 +136,7 @@ due_dates <-
   tribble(
     ~date        , ~due                                                                                             ,
     "2026-03-23" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments/288104) <br> ⏰ 17:00"          ,
+    "2026-03-24" , "✅ [Screenshot](https://canvas.education.lu.se/courses/39432/assignments/290432) <br> ⏰ 17:00"          ,
     "2026-03-27" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
     "2026-03-31" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
     "2026-04-01" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
