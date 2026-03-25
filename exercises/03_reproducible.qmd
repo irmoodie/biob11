@@ -423,14 +423,14 @@ approach you think is valid is fine here. We will cover on Friday how to formall
 ::: {.callout-note icon="false"}
 ## ✅ Task
 
-Create a new level 1 heading titled: "Analysis". Below, you should answer one of the following research questions:
+Create a new level 1 heading titled: "Analysis". Below, you should answer one of the following research questions. Make tables and figures to investigate your question. Provide a few sentences as your conclusion.
 
-1. Do males have more dark patches on their wings than females?
-2. Do females have different length ovipositors in the two host races?
-3. Is the mean proportion of the female wing that is melanized greater than two-thirds?
-4. Do male flies from the east of the Baltic sea differ in size to flies from the west of the Baltic sea?
-5. Are female flies who live in sympatric populations bigger than female flies who live in allopatric populations?
-6. Is the median wing width greater than 2.1 mm in male flies?
+1. Do male *Tephritis conura* have more dark patches on their wings than females?
+2. Do female *Tephritis conura* have different length ovipositors in the two host races?
+3. Is the mean proportion of the female *Tephritis conura* wing that is melanized greater than two-thirds?
+4. Do male *Tephritis conura* from the east of the Baltic sea differ in size to flies from the west of the Baltic sea?
+5. Are female *Tephritis conura* who live in sympatric populations bigger than females who live in allopatric populations?
+6. Is the median wing width of *Tephritis conura* greater than 2.1 mm in males?
 
 Use `filter()`, `group_by()`, `count()`, `summarise()`, `drop_na()` and `ggplot()` to create tables and figures that
 address your research question. You should copy and adapt code that you wrote during this exercise. Make sure you keep
