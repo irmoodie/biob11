@@ -468,7 +468,8 @@ Knit your document to a HTML file.
 
 It will have been saved next to wherever your `.Rmd` file is saved.
 
-Upload your `.html` file as your assignment for this exercise.
+Upload your `.html` file as your [assignment for this exercise in
+Canvas](https://canvas.education.lu.se/courses/39432/assignments/290516).
 
 :::
 
