@@ -612,13 +612,26 @@ ggplot(df, aes(x = X, y = Y, color = Z)) +
 - Why do you do science?
 - Why should we (as a society) do science?
 - Who do we do science for (if anyone)?
-- Discuss!
 
 ::: {.content-visible when-format="revealjs"}
-{{< countdown minutes=5 font-size="5rem" >}}
+{{< countdown minutes=8 font-size="5rem" >}}
 :::
 
 ## The scientific method
+### How do we do science?
+
+- Why do we study what we study?
+  - Who decides?
+- How do we find agreement?
+  - How do we handle disagreement?
+- How do we go from unknowns to knowns?
+- How does a scientific field progress?
+
+::: {.content-visible when-format="revealjs"}
+{{< countdown minutes=12 font-size="5rem" >}}
+:::
+
+<!-- ## The scientific method
 ### The process of inquiry
 
 ::: {.incremental}
@@ -629,4 +642,4 @@ ggplot(df, aes(x = X, y = Y, color = Z)) +
 5. Analyze the data
 6. Formulate conclusion
 7. Synthesize results with other studies, and determine next steps
-:::
+::: -->
