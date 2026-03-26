@@ -6,6 +6,8 @@ author: "Iain R. Moodie"
 mermaid-format: svg
 ---
 
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
 # Populations and samples {background-color="#8e61aa"}
 
 ```{r}

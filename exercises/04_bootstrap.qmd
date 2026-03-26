@@ -7,4 +7,276 @@ execute:
   eval: false
 ---
 
-Coming soon!
+# Get RStudio setup
+
+Each time we start a new exercise, you should:
+
+1. ~~Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_4`).~~ Since we will continue
+   working in the file from Exercise 3, you should keep working in the document initially.
+2. Open RStudio
+   - If you haven't closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you
+     want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to
+   the folder for this exercise.
+4. ~~Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.~~ Open the
+   Rmarkdown document you made in exercise 3 (the `.Rmd` file, not the `.html` file)
+
+You are now ready to start.
+
+------------------------------------------------------------------------------------------------------------------------
+
+# Peer review
+
+To help you remember what you did in the last exercise, and to help you learn from each other, we will start today by
+reviewing our code from Exercise 3.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Sit in pairs or small groups (you need to be able to see each others screens). It might be a good idea to sit with
+people who you didn't work with during the original exercise, but I won't police this.
+
+Work your way through your documents together. Compare approaches and reasoning for data cleaning, which plots you made
+and why, and how you answered the question at the end of the analysis.
+
+If you find mistakes along the way, or you think one approach is better than another, help each other update their code
+so it runs as desired.
+
+:::
+
+------------------------------------------------------------------------------------------------------------------------
+
+# Tephritis phenotype II
+
+## Getting setup
+
+In the last exericse, we will used only the `tidyverse` package. In this exercise, we are going to use one additional
+packaged called [`infer`](https://infer.tidymodels.org/){target="_blank"}.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+1. At the top of your document (but below the YAML frontmatter), make sure you load both the `tidyverse` and the `infer`
+   package.
+2. Run all the code cells in your document so that the data and its cleaned version have been loaded into R.
+
+:::
+
+## Average ovipositor
+
+In this exercise, we are going to calculate a **95% confidence interval** around a sample statistic using a
+**bootstrap** approach:
+
+![The highlighted words in this diagram match with the functions you need to use to make your `infer` inference pipelines.](../slides/images/CI.svg)
+
+Let's start with a simple question:
+
+> What is the average ovipositor length of *Tephritis conura*?
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Make a new heading, called "Bootstrap analysis". Write answers to the following questions underneath:
+
+1. What populations (statistical use of the word) are you trying to make inferences about? How broad do you think we can
+   be?
+2. How many samples^[Not observations] do we have?
+3. What sample statistic should we use? Why is it approriate?
+4. What information will a confidence interval provide us with?
+
+:::
+
+### Data
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+In a new code cell, create a new dataset called `ovi_data` from your `clean_data` that only contains females, and has
+all rows where `ovipositor_length_mm` was missing removed.
+
+:::
+
+### Plot
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+1. In a new code cell, create a plot that shows the distribution of `ovipositor_length_mm` in the new `ovi_data`
+   dataset. What sort of plot is more appropriate here?
+2. Is this distribution a *sample* distribution or a *sampling*^[We should ban statisticians from naming things.]
+   distribution? Write a short definition of each in your document.
+
+:::
+
+### Observed sample statistic
+
+To calcualte our observed statistic, we are going to use the `infer` package. While you already have a way to calculate
+statistics using `summarise()`, we will avoid this when performing statistical inferences. Use `summarise()` for making
+pivot tables.
+
+To use `infer` to calculate an observed statistic, we write:
+
+```{r}
+observed_ovi <- #<4>
+  ovi_data |> #<1>
+  specify(response = ______) |> #<2>
+  calculate(stat = "______") #<3>
+
+observed_ovi #<5>
+```
+
+1. Using the dataset we just made, we pipe `|>` it into the next line.
+2. We `specify()` which columns we are interested in. In this case, since there's no explanatory variables, we just have
+   a response.
+3. We `calculate()` our chosen sample statistic. Try to use the [`infer`
+   website](https://infer.tidymodels.org/){target="_blank"} or the helpfile for the `calculate()` function (write
+   `?calculate` in your console) to figure out for yourself what you should write here.
+4. We assign this to a new object called `observed_ovi`.
+5. We write the name of the object so that its contents (a 1x1 dataframe) get printed into our document.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+In a new code cell, use the code above to calculate your desired sample statistic.
+
+:::
+
+### Bootstrap sampling distribution
+
+Now we need a sampling distribution. To get that, we will use **bootstrap resampling**.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Answer the following questions in your document before continuing:
+
+1. Describe how we generate a single bootstrap sample?
+2. What process are we mimicking by bootstrap resampling?
+3. What strong, but often valid, assumption are we making when we use a bootstrap resampling process?
+
+:::
+
+To use `infer` to generate a bootstrap sampling distribution, we write:
+
+```{r}
+bootstrap_ovi <- #<2>
+  ovi_data |> 
+  specify(response = ______) |> 
+  generate(reps = 10000, type = "bootstrap") |> #<1>
+  calculate(stat = "______")
+```
+
+1. Notice how this is almost identical to the code we used to get the observed statistic, but we have one extra step,
+   where we `generate()` 10000 bootstrap samples, then calculate the statistic for all of them.
+2. We assign this to a new object, called `bootstrap_ovi`
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+In a new code cell, use the code above to generate a bootstrap sampling distribution.
+
+:::
+
+### Confidence intervals
+
+We can use the percentile method to calculate a 95% confidence interval.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+In your own words:
+
+1. Describe how the percentile method derives a confidence interval.
+2. What does the 95% refer to?
+:::
+
+`infer` has a helpful function to do this calculation for us:
+
+```{r}
+ovi_ci <-
+  bootstrap_ovi |>
+  get_confidence_interval(level = ______, type = ______) #<1>
+
+ovi_ci 
+```
+
+1. Try to use helpfiles and the [`infer` website]((https://infer.tidymodels.org/){target="_blank"}) to figure out what
+   you should write here.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+In a new code cell, use the code above to calculate a 95% confidence interval from your bootstrap sampling distribution
+using the percentile method.
+
+:::
+
+### Visualising
+
+`infer` has a helpful function to quickly plot a distribution of statistics. If you want more control on how it looks,
+you can also use `ggplot()`
+
+```{r}
+bootstrap_ovi |>
+  visualize()
+```
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+In a new code cell, use the code above to visualise your bootstrap simulated sampling distribution. Then answer the
+following question:
+
+1. What is on the X axis is this plot? What information does this plot show? Clarify why this plot shows different
+   information to the one you made at the start of the exercise.
+
+:::
+
+We can shade the confidence interval we just made on this plot as well:
+
+```{r}
+bootstrap_ovi |>
+  visualize() +
+  shade_confidence_interval(ovi_ci) #<1>
+```
+
+1. Since the output of `visualize()` is a `ggplot`, we need to add layers using `+`.
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+Visualise the confidence interval on top of the plot of the bootstrap simulated sampling distribution.
+:::
+
+### Answering the question
+
+> What is the average ovipositor length of *Tephritis conura*?
+
+::: {.callout-note icon="false"}
+## ✅ Task
+
+1. Write an answer to the question, referencing the results of your bootstrap analysis.
+:::
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Back to your own research question
+
+Return to the question you answered at the end of Exercise 3 (where you had to choose 1 out of 6 to answer).
+
+::: {.callout-note icon="false"}
+## ✅ Final task
+
+Calculate a **confidence interval** around a sample statistic using a **bootstrap** approach that helps to answer your
+research question. Make notes explaining your thinking as you go.
+
+Does your new analysis support or refute your previous conclusion?
+
+Once you're done, again knit your document to a HTML file.
+
+It will have been saved next to wherever your `.Rmd` file is saved.
+
+Upload your `.html` file as your [assignment for this exercise in
+Canvas](https://canvas.education.lu.se/courses/39432/assignments/290661).
+
+:::
