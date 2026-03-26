@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -79,6 +114,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta property="og:title" content="Statistical inference with bootstrap – BIOB11">
 <meta property="og:description" content="Exercise 4">
+<meta property="og:image" content="https://irmoodie.github.io/biob11/slides/images/CI.svg">
 <meta property="og:site_name" content="BIOB11">
 </head>
 
@@ -157,8 +193,30 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#get-rstudio-setup" id="toc-get-rstudio-setup" class="nav-link active" data-scroll-target="#get-rstudio-setup">Get RStudio setup</a></li>
+  <li><a href="#peer-review" id="toc-peer-review" class="nav-link" data-scroll-target="#peer-review">Peer review</a></li>
+  <li><a href="#tephritis-phenotype-ii" id="toc-tephritis-phenotype-ii" class="nav-link" data-scroll-target="#tephritis-phenotype-ii">Tephritis phenotype II</a>
+  <ul class="collapse">
+  <li><a href="#getting-setup" id="toc-getting-setup" class="nav-link" data-scroll-target="#getting-setup">Getting setup</a></li>
+  <li><a href="#average-ovipositor" id="toc-average-ovipositor" class="nav-link" data-scroll-target="#average-ovipositor">Average ovipositor</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
+  <li><a href="#observed-sample-statistic" id="toc-observed-sample-statistic" class="nav-link" data-scroll-target="#observed-sample-statistic">Observed sample statistic</a></li>
+  <li><a href="#bootstrap-sampling-distribution" id="toc-bootstrap-sampling-distribution" class="nav-link" data-scroll-target="#bootstrap-sampling-distribution">Bootstrap sampling distribution</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence intervals</a></li>
+  <li><a href="#visualising" id="toc-visualising" class="nav-link" data-scroll-target="#visualising">Visualising</a></li>
+  <li><a href="#answering-the-question" id="toc-answering-the-question" class="nav-link" data-scroll-target="#answering-the-question">Answering the question</a></li>
+  </ul></li>
+  <li><a href="#back-to-your-own-research-question" id="toc-back-to-your-own-research-question" class="nav-link" data-scroll-target="#back-to-your-own-research-question">Back to your own research question</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -195,7 +253,379 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Coming soon!</p>
+<section id="get-rstudio-setup" class="level1">
+<h1>Get RStudio setup</h1>
+<p>Each time we start a new exercise, you should:</p>
+<ol type="1">
+<li><del>Make a new folder in your course folder for the exercise (e.g.&nbsp;<code>biob11/exercise_4</code>).</del> Since we will continue working in the file from Exercise 3, you should keep working in the document initially.</li>
+<li>Open RStudio
+<ul>
+<li>If you haven’t closed RStudio since the last exercise, I recommend you do so and then re-open it. If it asks if you want to save your R Session data, choose no.</li>
+</ul></li>
+<li>Set your working directory by going to <em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em>, then navigate to the folder for this exercise.</li>
+<li><del>Create a new Rmarkdown document (<em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>). Give it a clear title.</del> Open the Rmarkdown document you made in exercise 3 (the <code>.Rmd</code> file, not the <code>.html</code> file)</li>
+</ol>
+<p>You are now ready to start.</p>
+<hr>
+</section>
+<section id="peer-review" class="level1">
+<h1>Peer review</h1>
+<p>To help you remember what you did in the last exercise, and to help you learn from each other, we will start today by reviewing our code from Exercise 3.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sit in pairs or small groups (you need to be able to see each others screens). It might be a good idea to sit with people who you didn’t work with during the original exercise, but I won’t police this.</p>
+<p>Work your way through your documents together. Compare approaches and reasoning for data cleaning, which plots you made and why, and how you answered the question at the end of the analysis.</p>
+<p>If you find mistakes along the way, or you think one approach is better than another, help each other update their code so it runs as desired.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="tephritis-phenotype-ii" class="level1">
+<h1>Tephritis phenotype II</h1>
+<section id="getting-setup" class="level2">
+<h2 class="anchored" data-anchor-id="getting-setup">Getting setup</h2>
+<p>In the last exericse, we will used only the <code>tidyverse</code> package. In this exercise, we are going to use one additional packaged called <a href="https://infer.tidymodels.org/" target="_blank"><code>infer</code></a>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>At the top of your document (but below the YAML frontmatter), make sure you load both the <code>tidyverse</code> and the <code>infer</code> package.</li>
+<li>Run all the code cells in your document so that the data and its cleaned version have been loaded into R.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="average-ovipositor" class="level2">
+<h2 class="anchored" data-anchor-id="average-ovipositor">Average ovipositor</h2>
+<p>In this exercise, we are going to calculate a <strong>95% confidence interval</strong> around a sample statistic using a <strong>bootstrap</strong> approach:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../slides/images/CI.svg" class="img-fluid figure-img"></p>
+<figcaption>The highlighted words in this diagram match with the functions you need to use to make your <code>infer</code> inference pipelines.</figcaption>
+</figure>
+</div>
+<p>Let’s start with a simple question:</p>
+<blockquote class="blockquote">
+<p>What is the average ovipositor length of <em>Tephritis conura</em>?</p>
+</blockquote>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make a new heading, called “Bootstrap analysis”. Write answers to the following questions underneath:</p>
+<ol type="1">
+<li>What populations (statistical use of the word) are you trying to make inferences about? How broad do you think we can be?</li>
+<li>How many samples<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> do we have?</li>
+<li>What sample statistic should we use? Why is it approriate?</li>
+<li>What information will a confidence interval provide us with?</li>
+</ol>
+</div>
+</div>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a new code cell, create a new dataset called <code>ovi_data</code> from your <code>clean_data</code> that only contains females, and has all rows where <code>ovipositor_length_mm</code> was missing removed.</p>
+</div>
+</div>
+</section>
+<section id="plot" class="level3">
+<h3 class="anchored" data-anchor-id="plot">Plot</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>In a new code cell, create a plot that shows the distribution of <code>ovipositor_length_mm</code> in the new <code>ovi_data</code> dataset. What sort of plot is more appropriate here?</li>
+<li>Is this distribution a <em>sample</em> distribution or a <em>sampling</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> distribution? Write a short definition of each in your document.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="observed-sample-statistic" class="level3">
+<h3 class="anchored" data-anchor-id="observed-sample-statistic">Observed sample statistic</h3>
+<p>To calcualte our observed statistic, we are going to use the <code>infer</code> package. While you already have a way to calculate statistics using <code>summarise()</code>, we will avoid this when performing statistical inferences. Use <code>summarise()</code> for making pivot tables.</p>
+<p>To use <code>infer</code> to calculate an observed statistic, we write:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>observed_ovi <span class="ot">&lt;-</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>  ovi_data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ______) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"______"</span>)</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>observed_ovi</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">Using the dataset we just made, we pipe <code>|&gt;</code> it into the next line.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">We <code>specify()</code> which columns we are interested in. In this case, since there’s no explanatory variables, we just have a response.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="3">We <code>calculate()</code> our chosen sample statistic. Try to use the <a href="https://infer.tidymodels.org/" target="_blank"><code>infer</code> website</a> or the helpfile for the <code>calculate()</code> function (write <code>?calculate</code> in your console) to figure out for yourself what you should write here.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="4">We assign this to a new object called <code>observed_ovi</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="5">We write the name of the object so that its contents (a 1x1 dataframe) get printed into our document.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a new code cell, use the code above to calculate your desired sample statistic.</p>
+</div>
+</div>
+</section>
+<section id="bootstrap-sampling-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="bootstrap-sampling-distribution">Bootstrap sampling distribution</h3>
+<p>Now we need a sampling distribution. To get that, we will use <strong>bootstrap resampling</strong>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Answer the following questions in your document before continuing:</p>
+<ol type="1">
+<li>Describe how we generate a single bootstrap sample?</li>
+<li>What process are we mimicking by bootstrap resampling?</li>
+<li>What strong, but often valid, assumption are we making when we use a bootstrap resampling process?</li>
+</ol>
+</div>
+</div>
+<p>To use <code>infer</code> to generate a bootstrap sampling distribution, we write:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>bootstrap_ovi <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>  ovi_data <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ______) <span class="sc">|&gt;</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"______"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="1">Notice how this is almost identical to the code we used to get the observed statistic, but we have one extra step, where we <code>generate()</code> 10000 bootstrap samples, then calculate the statistic for all of them.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="2">We assign this to a new object, called <code>bootstrap_ovi</code></span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a new code cell, use the code above to generate a bootstrap sampling distribution.</p>
+</div>
+</div>
+</section>
+<section id="confidence-intervals" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-intervals">Confidence intervals</h3>
+<p>We can use the percentile method to calculate a 95% confidence interval.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In your own words:</p>
+<ol type="1">
+<li>Describe how the percentile method derives a confidence interval.</li>
+<li>What does the 95% refer to?</li>
+</ol>
+</div>
+</div>
+<p><code>infer</code> has a helpful function to do this calculation for us:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>ovi_ci <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  bootstrap_ovi <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level =</span> ______, <span class="at">type =</span> ______)</span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>ovi_ci </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">Try to use helpfiles and the <a href="(https://infer.tidymodels.org/){target=&quot;_blank&quot;}"><code>infer</code> website</a> to figure out what you should write here.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a new code cell, use the code above to calculate a 95% confidence interval from your bootstrap sampling distribution using the percentile method.</p>
+</div>
+</div>
+</section>
+<section id="visualising" class="level3">
+<h3 class="anchored" data-anchor-id="visualising">Visualising</h3>
+<p><code>infer</code> has a helpful function to quickly plot a distribution of statistics. If you want more control on how it looks, you can also use <code>ggplot()</code></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bootstrap_ovi <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a new code cell, use the code above to visualise your bootstrap simulated sampling distribution. Then answer the following question:</p>
+<ol type="1">
+<li>What is on the X axis is this plot? What information does this plot show? Clarify why this plot shows different information to the one you made at the start of the exercise.</li>
+</ol>
+</div>
+</div>
+<p>We can shade the confidence interval we just made on this plot as well:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>bootstrap_ovi <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_confidence_interval</span>(ovi_ci)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="1">Since the output of <code>visualize()</code> is a <code>ggplot</code>, we need to add layers using <code>+</code>.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Visualise the confidence interval on top of the plot of the bootstrap simulated sampling distribution.</p>
+</div>
+</div>
+</section>
+<section id="answering-the-question" class="level3">
+<h3 class="anchored" data-anchor-id="answering-the-question">Answering the question</h3>
+<blockquote class="blockquote">
+<p>What is the average ovipositor length of <em>Tephritis conura</em>?</p>
+</blockquote>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Write an answer to the question, referencing the results of your bootstrap analysis.</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="back-to-your-own-research-question" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-your-own-research-question">Back to your own research question</h2>
+<p>Return to the question you answered at the end of Exercise 3 (where you had to choose 1 out of 6 to answer).</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Final task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Calculate a <strong>confidence interval</strong> around a sample statistic using a <strong>bootstrap</strong> approach that helps to answer your research question. Make notes explaining your thinking as you go.</p>
+<p>Does your new analysis support or refute your previous conclusion?</p>
+<p>Once you’re done, again knit your document to a HTML file.</p>
+<p>It will have been saved next to wherever your <code>.Rmd</code> file is saved.</p>
+<p>Upload your <code>.html</code> file as your <a href="https://canvas.education.lu.se/courses/39432/assignments/290661">assignment for this exercise in Canvas</a>.</p>
+</div>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -212,8 +642,17 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Not observations<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We should ban statisticians from naming things.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
