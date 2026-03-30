@@ -110,9 +110,9 @@ all rows where `ovipositor_length_mm` was missing removed.
 
 ### Observed sample statistic
 
-To calcualte our observed statistic, we are going to use the `infer` package. While you already have a way to calculate
-statistics using `summarise()`, we will avoid this when performing statistical inferences. Use `summarise()` for making
-pivot tables.
+While you already have a way to calculate statistics using `summarise()`, we will avoid this when performing statistical
+inferences. Save `summarise()` for making pivot tables. To calcualte our observed statistic, we are going to use the
+`infer` package.
 
 To use `infer` to calculate an observed statistic, we write:
 
@@ -128,9 +128,9 @@ observed_ovi #<5>
 1. Using the dataset we just made, we pipe `|>` it into the next line.
 2. We `specify()` which columns we are interested in. In this case, since there's no explanatory variables, we just have
    a response.
-3. We `calculate()` our chosen sample statistic. Try to use the [`infer`
-   website](https://infer.tidymodels.org/){target="_blank"} or the helpfile for the `calculate()` function (write
-   `?calculate` in your console) to figure out for yourself what you should write here.
+3. We `calculate()` our chosen sample statistic. Try to use the [`infer` website](https://infer.tidymodels.org/) or the
+   helpfile for the `calculate()` function (write `?calculate` in your console) to figure out for yourself what you
+   should write here.
 4. We assign this to a new object called `observed_ovi`.
 5. We write the name of the object so that its contents (a 1x1 dataframe) get printed into our document.
 
