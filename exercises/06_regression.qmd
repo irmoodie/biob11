@@ -2,9 +2,12 @@
 title: "Regression modelling in R"
 subtitle: "Exercise 6"
 date: 2026-04-01
+draft: true
 execute:
   echo: true
   eval: false
 ---
 
 Coming soon!
+
+Use orchid data from Oland

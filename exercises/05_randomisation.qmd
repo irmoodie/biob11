@@ -1,5 +1,5 @@
 ---
-title: "Hypothesis testing with randomisation"
+title: "Hypothesis testing with randomisation (and other approaches)"
 subtitle: "Exercise 5"
 date: 2026-03-31
 execute:
@@ -7,4 +7,424 @@ execute:
   eval: false
 ---
 
-Coming soon!
+# Get RStudio setup
+
+Each time you start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_5`)
+2. Open RStudio
+   - If you haven't closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if
+     you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to
+   the folder you just made for this exercise.
+
+# Instructions
+
+**For each dataset below:**
+
+1. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title. Delete any of the
+   demo text not in the YAML frontmatter.
+2. Download the dataset and move it into your working directory folder.
+3. Load the `tidyverse` and `infer` packages.
+4. Import the dataset using `read_csv()`.
+5. Use Headings so that your document is clear and easy to follow.
+6. Write your answers to the questions as text in the document.
+
+Between datasets, you should clear your R environment. The easiest way to do that is to restart R by going to *Session*
+-> *Restart R*. You can also use the broom icon above your environment tab, or use the command `rm(list = ls())`.
+
+You will need to use past [exercies](../exercises.qmd), [slides](../slides.qmd), the [course
+book](https://openintro-ims.netlify.app/) and the [`infer` webpage](https://infer.tidymodels.org/) for help with
+implementing your ideas. Try to use them first before asking for help. But if you're stuck, then please ask!
+
+# Species co-occurences in benthic communities
+
+![An illustration of the visual contrast between seagrass meadows (left hand side) and bare sediment sandflats (right hand side). Picture taken by Roman Zajac at Kaipara harbour, New Zealand. The white rectangle encompasses 0.5 × 0.5 m](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs12898-020-00308-4/MediaObjects/12898_2020_308_Fig1_HTML.png?as=webp)
+
+Co-occurrence patterns of species across a landscape may arise due to shared habitat preferences, dispersal patterns,
+community interactions (e.g. facilitation, competition) or the interaction of these processes. To understand if
+communities differ in species composition and/or abundance between open sand and sea grass habitats in a shallow bay,
+researchers conducted snorkling transects and recorded the number of 6 important benthic species.
+
+The dataset the researchers collected can be found as a `.csv` file on
+[GitHub](https://github.com/irmoodie/teaching_datasets/blob/main/benthic_species/benthic_species.csv).
+
+## Community composition
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+The researchers want to know if the community compositions of the habitats are the same or different. In other words,
+are some species more likely to be found in one habitat than the another, or are they randomly spread across the bay.
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. Use a null hypothesis test to address each research question.
+   a) State a null and alternative hypotheses.
+   b) State the sample statistic you will calculate, and why this addresses the research question.
+   c) Explain how you will derive a null distribution, and why this is valid for the research question.
+   d) Calculate the test statistic, and compare it with the null distribution to calculate a p-value.
+   e) Write a conclusion statement that directly addresses the research questions, and references key results from your
+      analysis.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## 🆘 Hint
+
+#### Questions
+
+Plotting the data first can help with identifying the sort of sample statistic to use. Think what it actually is you
+want to compare here. If you're still stuck, have a look at the lecture [slides](../slides/05_hypothesis.qmd) from
+yesterday, towards the end.
+
+#### Code
+
+See the example in [this `infer` article](https://infer.tidymodels.org/articles/chi_squared.html), or in the
+[slides](../slides/05_hypothesis.qmd) from yesterday.
+
+:::
+
+## Ecosystem health
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+The relative composition of certain species can be a good indicator of ecosystem health. A healthy sea grass habitat
+should have the following species composition:
+
+| species                     | prop |
+| --------------------------- | ---- |
+| Aglaophamus_macroura        | 0.12 |
+| Cominella_glandiformis      | 0.30 |
+| Magelona_dakini             | 0.18 |
+| Notoacmea_scapha            | 0.11 |
+| Nucula_hartvigiana          | 0.20 |
+| Paracalliope_novizealandiae | 0.09 |
+
+Does the species composition of the sea grass habitat in the dataset suggest the ecosystem is healthy?
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. Use a null hypothesis test to address each research question.
+   a) State a null and alternative hypotheses.
+   b) State the sample statistic you will calculate, and why this addresses the research question.
+   c) Explain how you will derive a null distribution, and why this is valid for the research question.
+   d) Calculate the test statistic, and compare it with the null distribution to calculate a p-value.
+   e) Write a conclusion statement that directly addresses the research questions, and references key results from your
+      analysis.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## 🆘 Hint
+
+#### Questions
+
+Think about Gregor Mendel's peas.
+
+#### Code
+
+You'll need to do some filtering of the dataset first.
+
+See the example in [this `infer` article](https://infer.tidymodels.org/articles/chi_squared.html#goodness-of-fit), or in
+the [slides](../slides/05_hypothesis.qmd) from yesterday.
+
+:::
+
+## Cultural worms
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+Let's suppose that the species *Magelona dakini* holds special cultural value. The researchers see that in the data it
+looks like it is associated with the sea grass habitat, and think that this could be helpful to convince decision makers
+about the importance of conserving the sea grass habitat. Is *Magelona dakini* significantly associated with sea grass
+habitats?
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. Use a null hypothesis test to address each research question.
+   a) State a null and alternative hypotheses.
+   b) State the sample statistic you will calculate, and why this addresses the research question.
+   c) Explain how you will derive a null distribution, and why this is valid for the research question.
+   d) Calculate the test statistic, and compare it with the null distribution to calculate a p-value.
+   e) Write a conclusion statement that directly addresses the research questions, and references key results from your
+      analysis.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## 🆘 Hint
+
+#### Questions
+
+If *Magelona dakini* really didn't have a preference between the habitats, what proportion of the time would we expect
+to find it in each?
+
+#### Code
+
+You'll need to do some filtering of the dataset first.
+
+See the code in [this `infer`
+example](https://infer.tidymodels.org/articles/observed_stat_examples.html#one-categorical-one-proportion).
+
+:::
+
+```{r}
+#| include: false
+library(tidyverse)
+library(infer)
+
+benthic_data <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/benthic_species/benthic_species.csv")
+
+benthic_data |>
+ggplot(aes(x = species, fill = habitat)) +
+  geom_bar(position = "dodge") +
+  theme(axis.text.x = element_text(angle = 90))
+
+obs_benthic <-
+  benthic_data |>
+  specify(response = species, explanatory = habitat) |>
+  hypothesise(null = "independence") |>
+  calculate(stat = "Chisq")
+
+null_benthic <-
+  benthic_data |>
+  specify(response = species, explanatory = habitat) |>
+  hypothesise(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "Chisq")
+
+visualise(null_benthic) +
+  shade_p_value(obs_benthic, direction = "greater")
+
+get_p_value(null_benthic, obs_benthic, direction = "greater")
+
+obs_magelona <-
+  benthic_data |>
+  filter(species == "Magelona_dakini") |>
+  specify(response = habitat, success = "sea_grass") |>
+  calculate(stat = "prop")
+
+null_magelona <-
+  benthic_data |>
+  filter(species == "Magelona_dakini") |>
+  specify(response = habitat, success = "sea_grass") |>
+  hypothesize(null = "point", p = .5) |>
+  generate(reps = 1000, type = "draw") |>
+  calculate(stat = "prop")
+
+null_magelona |>
+  visualise() +
+  shade_p_value(obs_magelona, direction = "both")
+
+null_magelona |>
+  get_p_value(obs_magelona, direction = "both")
+
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+# Effect of fertilizer application on crop growth
+
+![An image of a greenhouse.](images/crops.jpg)
+
+Researchers at Lund University want to understand the effectiveness of three fertilizers on promoting crop growth. To do
+that, they construct experimental arrays of plant pots. The control pots were filled with a standardised soil mixture.
+The treatment plots were filled with the same standardised soil mixture plus the addition of the fertilizer. Already
+germinated seedlings were randomly assigned to pots and planted. Plants were kept in the greenhouses, and watered
+regularly.
+
+After 30 days, the researchers used a knife to cut all of the plant's biomass that was above ground. Using an oven, they
+dried each plant for 24 hours before recording the mass in grams using a balance.
+
+The results of the experiment are stored in a `.csv` file on
+[GitHub](https://github.com/irmoodie/teaching_datasets/blob/main/crop_growth/crop_growth.csv).
+
+## Did anything happen?
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+Did the fertilizers have any effect on the growth of the crops?
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. Use a null hypothesis test to address each research question.
+   a) State a null and alternative hypotheses.
+   b) State the sample statistic you will calculate, and why this addresses the research question.
+   c) Explain how you will derive a null distribution, and why this is valid for the research question.
+   d) Calculate the test statistic, and compare it with the null distribution to calculate a p-value.
+   e) Write a conclusion statement that directly addresses the research questions, and references key results from your
+      analysis.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## 🆘 Hint
+
+#### Questions
+
+While the fertilizer could have affected the crops in a number of ways, we usually want bigger crops *on average*, so we
+need some way to see if the *average* mass has increased in *any* of the treatments.
+
+If you're still stuck, have a look at the lecture [slides](../slides/05_hypothesis.qmd) from yesterday, in the section
+titled "Other helpful sample statistics".
+
+#### Code
+
+See the example in [this `infer` article](https://infer.tidymodels.org/articles/anova.html).
+
+:::
+
+## A clear winner?
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+You might suspect that one particular treatment group is causing your ANOVA result. As the ANOVA does not let you say
+*which* group(s) are different from the global mean, there is often the need for a *post-hoc* (Latin for "after this")
+analysis. Post-hoc analyses are tests you do after you have seen your data (and often some results). It is important to
+differentiate this analysis from your original one, as you did not plan to do it and the more tests you do, the more
+likely you are to find a low p-value by chance alone.
+
+If you suspect that one treatment is in fact different, perform a test to see if there is a difference in crop growth
+using just the control and that treatment.
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. Use a null hypothesis test to address each research question.
+   a) State a null and alternative hypotheses.
+   b) State the sample statistic you will calculate, and why this addresses the research question.
+   c) Explain how you will derive a null distribution, and why this is valid for the research question.
+   d) Calculate the test statistic, and compare it with the null distribution to calculate a p-value.
+   e) Write a conclusion statement that directly addresses the research questions, and references key results from your
+      analysis.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## 🆘 Hint
+
+#### Questions
+
+The graph you made at the start will give you a clue as to which treatment to look at, but you could also test all
+treatments against the control, one by one.
+
+The statistic to use is one we've used before, so not a new one from yesterday's lecture.
+
+#### Code
+
+You'll need to do some filtering of the dataset first.
+
+See the code in [this `infer`
+example](https://infer.tidymodels.org/articles/observed_stat_examples.html#one-numerical-variable-one-categorical-2-levels-diff-in-means).
+
+:::
+
+## Or a resounding failure?
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+One of the researchers who carried out the experiment notices that the thermostat used to set the greenhouse temperature
+is faulty. They hypothesis that this might have affected the experiments results. To check, they propose a test:
+
+In previous years the researchers have carried out similar experiment. They know that the control group usually has a
+median above ground dry mass after 30 days of 13.2 grams. If this year's experiment (the dataset) differs significantly
+from this, then they will have to discard the results and repeat it.
+
+What should they do?
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. Use a null hypothesis test to address each research question.
+   a) State a null and alternative hypotheses.
+   b) State the sample statistic you will calculate, and why this addresses the research question.
+   c) Explain how you will derive a null distribution, and why this is valid for the research question.
+   d) Calculate the test statistic, and compare it with the null distribution to calculate a p-value.
+   e) Write a conclusion statement that directly addresses the research questions, and references key results from your
+      analysis.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## 🆘 Hint
+
+#### Questions
+
+The statistic to use is one we've used before, but the full method of deriving a null distribution is a new one. It uses
+bootstrap, but in a weird way:
+
+1. Recenter sample so that its median is equal to the hypothesised med (which in this case is 13.2 g).
+2. Generate replicate bootstrap samples from this recentered sample.
+
+#### Code
+
+You'll need to do some filtering of the dataset first.
+
+See the code in [this `infer`
+example](https://infer.tidymodels.org/articles/observed_stat_examples.html#one-numerical-variable-median).
+
+See also this [GitHub issue](https://github.com/tidymodels/infer/issues/407), which might help explain it more.
+
+:::
+
+```{r}
+#| include: false
+crop <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/crop_growth/crop_growth.csv")
+
+crop |>
+  ggplot(aes(x = treatment, y = dry_mass_g)) +
+  geom_boxplot()
+
+obs_crop <-
+  crop |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  calculate(stat = "F")
+
+null_crop <-
+  crop |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "F")
+
+visualise(null_crop) +
+  shade_p_value(obs_crop, direction = "greater")
+
+get_p_value(null_crop, obs_crop, direction = "greater")
+
+obs_crop_c <-
+  crop |>
+  filter(treatment %in% c("control", "fertilizer_c")) |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  calculate(stat = "diff in means", order = c("control", "fertilizer_c"))
+
+null_crop_c <-
+  crop |>
+  filter(treatment %in% c("control", "fertilizer_c")) |>
+  specify(response = dry_mass_g, explanatory = treatment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("control", "fertilizer_c"))
+
+visualise(null_crop_c) +
+  shade_p_value(obs_crop_c, direction = "both")
+
+get_p_value(null_crop_c, obs_crop_c, direction = "both")
+
+crop |> filter(treatment == "control") |> observe(response = dry_mass_g, stat = "mean")
+
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+# Submit your work
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Final task
+
+Once you're done, knit **both** your documents to HTML files.
+
+They will have been saved next to wherever your `.Rmd` file is saved.
+
+Upload **both** your `.html` files as your [assignment for this exercise in
+Canvas](https://canvas.education.lu.se/courses/39432/assignments/290941).
+
+:::
