@@ -5,4 +5,575 @@ date: 2026-03-30
 author: "Iain R. Moodie"
 ---
 
-Coming soon!
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+# Review {background-color="#61599d"}
+
+```{r}
+#| eval: true
+#| echo: false
+#| warning: false
+#| output: false
+library(tidyverse, quietly = TRUE)
+library(infer)
+library(palmerpenguins)
+theme_set(theme_bw(base_size = 16) + theme(aspect.ratio = 1))
+```
+
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+library(tidyverse)
+library(infer)
+library(palmerpenguins)
+
+theme_set(theme_bw(base_size = 16) + theme(aspect.ratio = 1))
+
+# Generate expected data under Mendelian laws for a dihybrid cross
+set.seed(123) # For reproducibility
+
+# Define expected proportions for a dihybrid cross (9:3:3:1 ratio)
+expected_proportions <- c(8.7, 2.5, 3.5, 1.3) / 16
+
+# Generate a dataset with 160 observations (to match proportions)
+mendelian_data <- tibble(
+  phenotype = rep(c("A-B-", "A-bb", "aaB-", "aabb"), times = round(expected_proportions * 120))
+)
+
+germ_data <- tibble(
+  treatment = rep(c("coating_a", "coating_b", "coating_c", "control"), each = 30),
+  germination_success = c(
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.70, 0.30)),
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.72, 0.28)),
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.65, 0.35)),
+    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.68, 0.30))
+  )
+)
+
+```
+
+## Review
+### Confidence intervals
+
+![](images/CI.svg){fig-align="center" fig-align="middle"}
+
+## Review
+### Sample statistics we've encountered
+
+- Central tendancy
+  - mean, median
+- Spread
+  - range, IQR, variance, standard deviation
+- Difference in central tendancies
+  - difference in means, difference in medians, ratios
+- Counts
+  - counts, proportions
+- Difference in counts
+  - difference in proportions, ratios
+
+## Review
+### Sampling distribution
+
+![](images/pop_samplingdist.svg){fig-align="center" fig-align="middle"}
+
+## Review
+### Bootstrap resampling
+
+- **Re-sample** the sample *with replacement* to create bootstrap replicates
+  - Each replicate is the same size as the original dataset
+- From each replicate, calculate the sample statistic to derive a sampling distribution
+
+## Review
+### Confidence intervals interpretation
+
+The proportion of Adelie penguins on Biscoe was estimated to be: 0.262
+
+```{webr}
+penguins |>
+  filter(island == "Biscoe") |>
+  specify(response = species, success = "Adelie") |>
+  calculate(stat = "prop")
+
+```
+
+## Review
+### Confidence intervals interpretation
+
+The proportion of Adelie penguins on Biscoe was estimated to be: 0.262 (95% CI: 0.196 - 0.327)
+
+```{webr}
+adelie_boot <-
+  penguins |>
+  filter(island == "Biscoe") |>
+  specify(response = species, success = "Adelie") |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "prop")
+
+adelie_ci <-
+  adelie_boot |>
+  get_confidence_interval(level = 0.95, type = "percentile")
+```
+
+## Review
+### Confidence intervals interpretation
+
+The proportion of Adelie penguins on Biscoe was estimated to be: 0.262 (95% CI: 0.196 - 0.327)
+
+```{webr}
+adelie_ci
+```
+
+```{webr}
+adelie_boot |>
+  visualise() +
+  shade_confidence_interval(adelie_ci)
+```
+
+{{< countdown minutes=1.5 top=0 right=0 font-size="5rem" >}}
+
+## Review
+### Confidence intervals interpretation
+
+Adelie penguins are 1366 grams lighter than Gentoo penguins on Biscoe.
+
+```{webr}
+penguins |>
+  filter(island == "Biscoe") |>
+  specify(response = body_mass_g, explanatory = species) |>
+  calculate(stat = "diff in means", order = c("Gentoo", "Adelie"))
+
+```
+
+## Review
+### Confidence intervals interpretation
+
+Adelie penguins are 1366 grams lighter than Gentoo penguins on Biscoe.
+
+```{webr}
+biscoe_boot <-
+  penguins |>
+  filter(island == "Biscoe") |>
+  specify(response = body_mass_g, explanatory = species) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "diff in means", order = c("Gentoo", "Adelie"))
+
+biscoe_ci <-
+  biscoe_boot |>
+  get_confidence_interval(level = 0.95, type = "percentile")
+```
+
+## Review
+### Confidence intervals interpretation
+
+Adelie penguins are 1366 grams (95% 1199 - 1540 grams) lighter than Gentoo penguins on Biscoe.
+
+```{webr}
+biscoe_ci
+```
+
+```{webr}
+biscoe_boot |>
+  visualise() +
+  shade_confidence_interval(biscoe_ci)
+```
+
+{{< countdown minutes=1.5 top=0 right=0 font-size="5rem" >}}
+
+# Hypothesis testing {background-color="#61599d"}
+
+- Is our sample compatible with a certain hypothesis?
+- If we collected another sample, could the conclusion have been different?
+
+## Hypothesis testing
+### Is our sample compatible with a certain hypothesis?
+
+- More stricly: a method of statistical inference used to decide whether our sample provides sufficient evidence to
+  *reject* a particular hypothesis
+- Used to answer the questions:
+  - Could our results be just due to chance?
+  - If we collected another sample, could the conclusion have been different?
+
+## Hypothesis testing
+### One part of one way of conducting science
+
+1. Make observations
+2. Formulate a hypothesis (causal)
+3. Design experiment (using causal model)
+4. Conduct the experiment (obtain data)
+5. Analyze the data (is your data compatible with your hypothesis?)
+6. Formulate conclusion
+7. Synthesize results with other studies, and determine next steps
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+```{webr}
+set.seed(13)
+
+adelie_data <-
+  penguins |>
+  filter(species == "Adelie") |>
+  drop_na(sex) |>
+  group_by(sex) |>
+  slice_sample(n = 15) |> # I am subsampling for educational reasons!
+  ungroup()
+```
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+```{webr}
+adelie_data |>
+  ggplot(aes(x = sex, y = bill_length_mm)) +
+  geom_jitter(alpha = 0.3) +
+  geom_violin(fill = NA)
+```
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+Null hypothesis
+
+- Male and female Adelie penguins have the same length bills.
+
+Alternative hypothesis:
+
+- Male and female Adelie penguins have different length bills.
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+```{webr}
+observed_diff <-
+  adelie_data |>
+  specify(response = bill_length_mm, explanatory = sex) |>
+  calculate(stat = "diff in means", order = c("female", "male"))
+
+observed_diff
+```
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+CI approach
+
+- What range of differences seem plausible?
+- Do the size differences seem biologically important?
+- Does the CI include zero?
+
+Null hypothesis testing approach:
+
+- If there was truly no difference, how likely is it we would observe a difference as large as we see in our sample?
+- If very likely, then difference is probably not real
+- If very unlikely, then difference is probably real
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+CI approach
+
+- Get sampling distribution for sample statistic
+  - "From a world" compatible with our data
+
+Null hypothesis testing approach:
+
+- Get sampling distribution for sample statistic
+  - "From a world" compatible with our null hypothesis
+  - Called a **null distribution**
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+Null hypothesis
+
+- Male and female Adelie penguins have the same length bills.
+
+Alternative hypothesis:
+
+- Male and female Adelie penguins have different length bills.
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+![](images/hyptest.svg){fig-align="center" fig-align="middle"}
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+```{webr}
+null_dist <-
+  adelie_data |>
+  specify(response = bill_length_mm, explanatory = sex) |>
+  hypothesise(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("female", "male"))
+```
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+```{webr}
+null_dist |>
+  visualise()
+```
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+```{webr}
+null_dist |>
+  visualise() +
+  geom_vline(data = observed_diff, aes(xintercept = stat), colour = "red")
+```
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+- By comparing null distribution and observed statistic, can calcualte a **p value**
+- Probability of observing our original statistic, or one more extreme, assuming the null hypothesis is true
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+p = 0.01
+
+```{webr}
+null_dist |>
+  get_p_value(obs_stat = observed_diff, direction = "two-sided")
+```
+
+## Hypothesis testing
+### Do female Adelie penguins have longer bills than males?
+
+p = 0.01
+
+What should I conclude? Why?
+
+```{webr}
+null_dist |>
+  visualise() +
+  shade_p_value(obs_stat = observed_diff, direction = "two-sided")
+```
+
+{{< countdown minutes=1.5 top=0 right=0 font-size="5rem" >}}
+
+## Hypothesis testing
+### Overview
+
+![](images/hyptest.svg){fig-align="center" fig-align="middle"}
+
+# Other helpful sample statistics {background-color="#61599d"}
+
+- F-statistic
+- $\chi^2$ (chi-squared)
+
+## Difference between >2 groups in a continuous variable
+
+```{r}
+#| warning: false
+penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_jitter(alpha = 0.5) +
+  geom_violin(fill = NA)
+```
+
+## Difference between >2 groups in a continuous variable
+### F-statistic
+
+$$
+F = \frac{\text{Variance 1}}{\text{Variance 2}}
+$$
+
+- Can (in general) be used to test if the variances are equal between sources of variance
+  - $F=1$ if variances are equal
+  - $F$ is very low if variance 1 < variance 2
+  - $F$ is very high if variance 1 > variance 2
+
+## Difference between >2 groups in a continuous variable
+### Analysis of Variance (ANOVA)
+
+$$
+F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
+$$
+
+- If $F$ is very big, more likely that means are different
+
+## Difference between >2 groups in a continuous variable
+### Analysis of Variance (ANOVA)
+
+- If you want to know if >2 groups differ in their means, use F-statistic
+- Null hypothesis
+  - The means of all groups are the same
+  - Mean A == Mean B == Mean C
+- Alternative hypothesis
+  - The means of at least one group differ from the global mean
+
+## Difference between >2 groups in a continuous variable
+### Analysis of Variance (ANOVA)
+
+![](images/hyptest.svg){fig-align="center"}
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+- Does the observed data differ from an expected distribution?
+- Similar to how F-statistic allows for difference in means for many groups
+- $\chi^2$ allows for difference in proportions for many categories
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+![](images/mendel.jpg){fig-align="center"}
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+```{webr}
+mendelian_data
+```
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+```{webr}
+ggplot(mendelian_data, aes(x = phenotype)) +
+  geom_bar() +
+  geom_hline(yintercept = c(9, 3, 1)/16*nrow(mendelian_data), linetype = "dashed", color = "red")
+```
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+$$
+\chi^2 = \sum \frac{(Observed_i - Expected_i)^2}{Expected_i}
+$$
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+![](images/hyptest.svg){fig-align="center"}
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+```{webr}
+obs_stat <- 
+  mendelian_data |>
+  specify(response = phenotype) |>
+  hypothesize(
+    null = "point",
+    p = c(
+      "A-B-" = 9/16,
+      "A-bb" = 3/16,
+      "aaB-" = 3/16,
+      "aabb" = 1/16
+    )
+   ) |>
+  calculate(stat = "Chisq")
+```
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+- Null hypothesis:
+  - The sample came from the hypothesised distribution
+  - The sample distribution is not different from the hypothesised distribution
+- Alternative hypotheis:
+  - The sample came from a different distribution to the one hypothesised
+  - The sample distribution is different from the hypothesised distribution
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+```{webr}
+null_dist <- 
+  mendelian_data |>
+  specify(response = phenotype) |>
+  hypothesize(
+    null = "point",
+    p = c(
+      "A-B-" = 9/16,
+      "A-bb" = 3/16,
+      "aaB-" = 3/16,
+      "aabb" = 1/16
+    )
+   ) |>
+  generate(reps = 1000, type = "draw") |>
+  calculate(stat = "Chisq")
+```
+
+## Are 2 or more distributions different?
+### $\chi^2$ Goodness of fit
+
+```{webr}
+null_dist |>
+  visualize() + 
+  shade_p_value(obs_stat, direction = "greater")
+```
+
+## Are two categorical variables associated with each other?
+### $\chi^2$ Test of independence
+
+```{webr}
+germ_data |>
+  ggplot(aes(x = treatment, fill = germination_success)) +
+  geom_bar(position = "fill") +
+  ylab("Proportion") +
+  theme(legend.position = "right")
+```
+
+## Are two categorical variables associated with each other?
+### $\chi^2$ Test of independence
+
+```{webr}
+germ_data
+```
+
+## Are two categorical variables associated with each other?
+### $\chi^2$ Test of independence
+
+- Null hypothesis:
+  - The two categorical variables are not associated with each other
+  - The two categorical variables are independent
+- Alternative hypothesis:
+  - The two categorical variables are associated with each other
+  - The two categorical variables are not independent
+
+## Are two categorical variables associated with each other?
+### $\chi^2$ Test of independence
+
+![](images/hyptest.svg){fig-align="center"}
+
+## Are two categorical variables associated with each other?
+### $\chi^2$ Test of independence
+
+```{webr}
+obs_stat <- 
+  germ_data |>
+  specify(response = germination_success, explanatory = treatment) |>
+  calculate(stat = "Chisq")
+
+obs_stat
+```
+
+## Are two categorical variables associated with each other?
+### $\chi^2$ Test of independence
+
+```{webr}
+null_dist <- 
+  germ_data |>
+  specify(response = germination_success, explanatory = treatment) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 10000, type = "permute") |>
+  calculate(stat = "Chisq")
+```
+
+## Are two categorical variables associated with each other?
+### $\chi^2$ Test of independence
+
+```{webr}
+null_dist |>
+  visualize() +
+  shade_p_value(obs_stat, direction = "greater")
+```
