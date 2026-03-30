@@ -9,7 +9,7 @@
 <meta name="author" content="Iain R. Moodie">
 <meta name="dcterms.date" content="2026-03-31">
 
-<title>Hypothesis testing with randomisation – BIOB11</title>
+<title>Hypothesis testing with randomisation (and other approaches) – BIOB11</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,8 +77,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
-<meta property="og:title" content="Hypothesis testing with randomisation – BIOB11">
+<meta property="og:title" content="Hypothesis testing with randomisation (and other approaches) – BIOB11">
 <meta property="og:description" content="Exercise 5">
+<meta property="og:image" content="https://irmoodie.github.io/biob11/exercises/images/crops.jpg">
 <meta property="og:site_name" content="BIOB11">
 </head>
 
@@ -91,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Hypothesis testing with randomisation</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Hypothesis testing with randomisation (and other approaches)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -157,15 +158,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#get-rstudio-setup" id="toc-get-rstudio-setup" class="nav-link active" data-scroll-target="#get-rstudio-setup">Get RStudio setup</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#species-co-occurences-in-benthic-communities" id="toc-species-co-occurences-in-benthic-communities" class="nav-link" data-scroll-target="#species-co-occurences-in-benthic-communities">Species co-occurences in benthic communities</a>
+  <ul class="collapse">
+  <li><a href="#community-composition" id="toc-community-composition" class="nav-link" data-scroll-target="#community-composition">Community composition</a></li>
+  <li><a href="#ecosystem-health" id="toc-ecosystem-health" class="nav-link" data-scroll-target="#ecosystem-health">Ecosystem health</a></li>
+  <li><a href="#cultural-worms" id="toc-cultural-worms" class="nav-link" data-scroll-target="#cultural-worms">Cultural worms</a></li>
+  </ul></li>
+  <li><a href="#effect-of-fertilizer-application-on-crop-growth" id="toc-effect-of-fertilizer-application-on-crop-growth" class="nav-link" data-scroll-target="#effect-of-fertilizer-application-on-crop-growth">Effect of fertilizer application on crop growth</a>
+  <ul class="collapse">
+  <li><a href="#did-anything-happen" id="toc-did-anything-happen" class="nav-link" data-scroll-target="#did-anything-happen">Did anything happen?</a></li>
+  <li><a href="#a-clear-winner" id="toc-a-clear-winner" class="nav-link" data-scroll-target="#a-clear-winner">A clear winner?</a></li>
+  <li><a href="#or-a-resounding-failure" id="toc-or-a-resounding-failure" class="nav-link" data-scroll-target="#or-a-resounding-failure">Or a resounding failure?</a></li>
+  </ul></li>
+  <li><a href="#submit-your-work" id="toc-submit-your-work" class="nav-link" data-scroll-target="#submit-your-work">Submit your work</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hypothesis testing with randomisation</h1>
+<h1 class="title">Hypothesis testing with randomisation (and other approaches)</h1>
 <p class="subtitle lead">Exercise 5</p>
 </div>
 
@@ -195,7 +216,444 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Coming soon!</p>
+<section id="get-rstudio-setup" class="level1">
+<h1>Get RStudio setup</h1>
+<p>Each time you start a new exercise, you should:</p>
+<ol type="1">
+<li>Make a new folder in your course folder for the exercise (e.g.&nbsp;<code>biob11/exercise_5</code>)</li>
+<li>Open RStudio
+<ul>
+<li>If you haven’t closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.</li>
+</ul></li>
+<li>Set your working directory by going to <em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em>, then navigate to the folder you just made for this exercise.</li>
+</ol>
+</section>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p><strong>For each dataset below:</strong></p>
+<ol type="1">
+<li>Create a new Rmarkdown document (<em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>). Give it a clear title. Delete any of the demo text not in the YAML frontmatter.</li>
+<li>Download the dataset and move it into your working directory folder.</li>
+<li>Load the <code>tidyverse</code> and <code>infer</code> packages.</li>
+<li>Import the dataset using <code>read_csv()</code>.</li>
+<li>Use Headings so that your document is clear and easy to follow.</li>
+<li>Write your answers to the questions as text in the document.</li>
+</ol>
+<p>Between datasets, you should clear your R environment. The easiest way to do that is to restart R by going to <em>Session</em> -&gt; <em>Restart R</em>. You can also use the broom icon above your environment tab, or use the command <code>rm(list = ls())</code>.</p>
+<p>You will need to use past <a href="../exercises.html">exercies</a>, <a href="../slides.html">slides</a>, the <a href="https://openintro-ims.netlify.app/">course book</a> and the <a href="https://infer.tidymodels.org/"><code>infer</code> webpage</a> for help with implementing your ideas. Try to use them first before asking for help. But if you’re stuck, then please ask!</p>
+</section>
+<section id="species-co-occurences-in-benthic-communities" class="level1">
+<h1>Species co-occurences in benthic communities</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs12898-020-00308-4/MediaObjects/12898_2020_308_Fig1_HTML.png?as=webp" class="img-fluid figure-img"></p>
+<figcaption>An illustration of the visual contrast between seagrass meadows (left hand side) and bare sediment sandflats (right hand side). Picture taken by Roman Zajac at Kaipara harbour, New Zealand. The white rectangle encompasses 0.5 × 0.5 m</figcaption>
+</figure>
+</div>
+<p>Co-occurrence patterns of species across a landscape may arise due to shared habitat preferences, dispersal patterns, community interactions (e.g.&nbsp;facilitation, competition) or the interaction of these processes. To understand if communities differ in species composition and/or abundance between open sand and sea grass habitats in a shallow bay, researchers conducted snorkling transects and recorded the number of 6 important benthic species.</p>
+<p>The dataset the researchers collected can be found as a <code>.csv</code> file on <a href="https://github.com/irmoodie/teaching_datasets/blob/main/benthic_species/benthic_species.csv">GitHub</a>.</p>
+<section id="community-composition" class="level2">
+<h2 class="anchored" data-anchor-id="community-composition">Community composition</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The researchers want to know if the community compositions of the habitats are the same or different. In other words, are some species more likely to be found in one habitat than the another, or are they randomly spread across the bay.</p>
+<ol type="1">
+<li>Produce a figure using <code>ggplot()</code> using the data that reflects the research question.</li>
+<li>Use a null hypothesis test to address each research question.
+<ol type="a">
+<li>State a null and alternative hypotheses.</li>
+<li>State the sample statistic you will calculate, and why this addresses the research question.</li>
+<li>Explain how you will derive a null distribution, and why this is valid for the research question.</li>
+<li>Calculate the test statistic, and compare it with the null distribution to calculate a p-value.</li>
+<li>Write a conclusion statement that directly addresses the research questions, and references key results from your analysis.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>🆘 Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="questions" class="level4">
+<h4 class="anchored" data-anchor-id="questions">Questions</h4>
+<p>Plotting the data first can help with identifying the sort of sample statistic to use. Think what it actually is you want to compare here. If you’re still stuck, have a look at the lecture <a href="../slides/05_hypothesis.html">slides</a> from yesterday, towards the end.</p>
+</section>
+<section id="code" class="level4">
+<h4 class="anchored" data-anchor-id="code">Code</h4>
+<p>See the example in <a href="https://infer.tidymodels.org/articles/chi_squared.html">this <code>infer</code> article</a>, or in the <a href="../slides/05_hypothesis.html">slides</a> from yesterday.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="ecosystem-health" class="level2">
+<h2 class="anchored" data-anchor-id="ecosystem-health">Ecosystem health</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The relative composition of certain species can be a good indicator of ecosystem health. A healthy sea grass habitat should have the following species composition:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>species</th>
+<th>prop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Aglaophamus_macroura</td>
+<td>0.12</td>
+</tr>
+<tr class="even">
+<td>Cominella_glandiformis</td>
+<td>0.30</td>
+</tr>
+<tr class="odd">
+<td>Magelona_dakini</td>
+<td>0.18</td>
+</tr>
+<tr class="even">
+<td>Notoacmea_scapha</td>
+<td>0.11</td>
+</tr>
+<tr class="odd">
+<td>Nucula_hartvigiana</td>
+<td>0.20</td>
+</tr>
+<tr class="even">
+<td>Paracalliope_novizealandiae</td>
+<td>0.09</td>
+</tr>
+</tbody>
+</table>
+<p>Does the species composition of the sea grass habitat in the dataset suggest the ecosystem is healthy?</p>
+<ol type="1">
+<li>Produce a figure using <code>ggplot()</code> using the data that reflects the research question.</li>
+<li>Use a null hypothesis test to address each research question.
+<ol type="a">
+<li>State a null and alternative hypotheses.</li>
+<li>State the sample statistic you will calculate, and why this addresses the research question.</li>
+<li>Explain how you will derive a null distribution, and why this is valid for the research question.</li>
+<li>Calculate the test statistic, and compare it with the null distribution to calculate a p-value.</li>
+<li>Write a conclusion statement that directly addresses the research questions, and references key results from your analysis.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>🆘 Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="questions-1" class="level4">
+<h4 class="anchored" data-anchor-id="questions-1">Questions</h4>
+<p>Think about Gregor Mendel’s peas.</p>
+</section>
+<section id="code-1" class="level4">
+<h4 class="anchored" data-anchor-id="code-1">Code</h4>
+<p>You’ll need to do some filtering of the dataset first.</p>
+<p>See the example in <a href="https://infer.tidymodels.org/articles/chi_squared.html#goodness-of-fit">this <code>infer</code> article</a>, or in the <a href="../slides/05_hypothesis.html">slides</a> from yesterday.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="cultural-worms" class="level2">
+<h2 class="anchored" data-anchor-id="cultural-worms">Cultural worms</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let’s suppose that the species <em>Magelona dakini</em> holds special cultural value. The researchers see that in the data it looks like it is associated with the sea grass habitat, and think that this could be helpful to convince decision makers about the importance of conserving the sea grass habitat. Is <em>Magelona dakini</em> significantly associated with sea grass habitats?</p>
+<ol type="1">
+<li>Produce a figure using <code>ggplot()</code> using the data that reflects the research question.</li>
+<li>Use a null hypothesis test to address each research question.
+<ol type="a">
+<li>State a null and alternative hypotheses.</li>
+<li>State the sample statistic you will calculate, and why this addresses the research question.</li>
+<li>Explain how you will derive a null distribution, and why this is valid for the research question.</li>
+<li>Calculate the test statistic, and compare it with the null distribution to calculate a p-value.</li>
+<li>Write a conclusion statement that directly addresses the research questions, and references key results from your analysis.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>🆘 Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="questions-2" class="level4">
+<h4 class="anchored" data-anchor-id="questions-2">Questions</h4>
+<p>If <em>Magelona dakini</em> really didn’t have a preference between the habitats, what proportion of the time would we expect to find it in each?</p>
+</section>
+<section id="code-2" class="level4">
+<h4 class="anchored" data-anchor-id="code-2">Code</h4>
+<p>You’ll need to do some filtering of the dataset first.</p>
+<p>See the code in <a href="https://infer.tidymodels.org/articles/observed_stat_examples.html#one-categorical-one-proportion">this <code>infer</code> example</a>.</p>
+</section>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="effect-of-fertilizer-application-on-crop-growth" class="level1">
+<h1>Effect of fertilizer application on crop growth</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/crops.jpg" class="img-fluid figure-img"></p>
+<figcaption>An image of a greenhouse.</figcaption>
+</figure>
+</div>
+<p>Researchers at Lund University want to understand the effectiveness of three fertilizers on promoting crop growth. To do that, they construct experimental arrays of plant pots. The control pots were filled with a standardised soil mixture. The treatment plots were filled with the same standardised soil mixture plus the addition of the fertilizer. Already germinated seedlings were randomly assigned to pots and planted. Plants were kept in the greenhouses, and watered regularly.</p>
+<p>After 30 days, the researchers used a knife to cut all of the plant’s biomass that was above ground. Using an oven, they dried each plant for 24 hours before recording the mass in grams using a balance.</p>
+<p>The results of the experiment are stored in a <code>.csv</code> file on <a href="https://github.com/irmoodie/teaching_datasets/blob/main/crop_growth/crop_growth.csv">GitHub</a>.</p>
+<section id="did-anything-happen" class="level2">
+<h2 class="anchored" data-anchor-id="did-anything-happen">Did anything happen?</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Did the fertilizers have any effect on the growth of the crops?</p>
+<ol type="1">
+<li>Produce a figure using <code>ggplot()</code> using the data that reflects the research question.</li>
+<li>Use a null hypothesis test to address each research question.
+<ol type="a">
+<li>State a null and alternative hypotheses.</li>
+<li>State the sample statistic you will calculate, and why this addresses the research question.</li>
+<li>Explain how you will derive a null distribution, and why this is valid for the research question.</li>
+<li>Calculate the test statistic, and compare it with the null distribution to calculate a p-value.</li>
+<li>Write a conclusion statement that directly addresses the research questions, and references key results from your analysis.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>🆘 Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="questions-3" class="level4">
+<h4 class="anchored" data-anchor-id="questions-3">Questions</h4>
+<p>While the fertilizer could have affected the crops in a number of ways, we usually want bigger crops <em>on average</em>, so we need some way to see if the <em>average</em> mass has increased in <em>any</em> of the treatments.</p>
+<p>If you’re still stuck, have a look at the lecture <a href="../slides/05_hypothesis.html">slides</a> from yesterday, in the section titled “Other helpful sample statistics”.</p>
+</section>
+<section id="code-3" class="level4">
+<h4 class="anchored" data-anchor-id="code-3">Code</h4>
+<p>See the example in <a href="https://infer.tidymodels.org/articles/anova.html">this <code>infer</code> article</a>.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="a-clear-winner" class="level2">
+<h2 class="anchored" data-anchor-id="a-clear-winner">A clear winner?</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You might suspect that one particular treatment group is causing your ANOVA result. As the ANOVA does not let you say <em>which</em> group(s) are different from the global mean, there is often the need for a <em>post-hoc</em> (Latin for “after this”) analysis. Post-hoc analyses are tests you do after you have seen your data (and often some results). It is important to differentiate this analysis from your original one, as you did not plan to do it and the more tests you do, the more likely you are to find a low p-value by chance alone.</p>
+<p>If you suspect that one treatment is in fact different, perform a test to see if there is a difference in crop growth using just the control and that treatment.</p>
+<ol type="1">
+<li>Produce a figure using <code>ggplot()</code> using the data that reflects the research question.</li>
+<li>Use a null hypothesis test to address each research question.
+<ol type="a">
+<li>State a null and alternative hypotheses.</li>
+<li>State the sample statistic you will calculate, and why this addresses the research question.</li>
+<li>Explain how you will derive a null distribution, and why this is valid for the research question.</li>
+<li>Calculate the test statistic, and compare it with the null distribution to calculate a p-value.</li>
+<li>Write a conclusion statement that directly addresses the research questions, and references key results from your analysis.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>🆘 Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="questions-4" class="level4">
+<h4 class="anchored" data-anchor-id="questions-4">Questions</h4>
+<p>The graph you made at the start will give you a clue as to which treatment to look at, but you could also test all treatments against the control, one by one.</p>
+<p>The statistic to use is one we’ve used before, so not a new one from yesterday’s lecture.</p>
+</section>
+<section id="code-4" class="level4">
+<h4 class="anchored" data-anchor-id="code-4">Code</h4>
+<p>You’ll need to do some filtering of the dataset first.</p>
+<p>See the code in <a href="https://infer.tidymodels.org/articles/observed_stat_examples.html#one-numerical-variable-one-categorical-2-levels-diff-in-means">this <code>infer</code> example</a>.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="or-a-resounding-failure" class="level2">
+<h2 class="anchored" data-anchor-id="or-a-resounding-failure">Or a resounding failure?</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One of the researchers who carried out the experiment notices that the thermostat used to set the greenhouse temperature is faulty. They hypothesis that this might have affected the experiments results. To check, they propose a test:</p>
+<p>In previous years the researchers have carried out similar experiment. They know that the control group usually has a median above ground dry mass after 30 days of 13.2 grams. If this year’s experiment (the dataset) differs significantly from this, then they will have to discard the results and repeat it.</p>
+<p>What should they do?</p>
+<ol type="1">
+<li>Produce a figure using <code>ggplot()</code> using the data that reflects the research question.</li>
+<li>Use a null hypothesis test to address each research question.
+<ol type="a">
+<li>State a null and alternative hypotheses.</li>
+<li>State the sample statistic you will calculate, and why this addresses the research question.</li>
+<li>Explain how you will derive a null distribution, and why this is valid for the research question.</li>
+<li>Calculate the test statistic, and compare it with the null distribution to calculate a p-value.</li>
+<li>Write a conclusion statement that directly addresses the research questions, and references key results from your analysis.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>🆘 Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="questions-5" class="level4">
+<h4 class="anchored" data-anchor-id="questions-5">Questions</h4>
+<p>The statistic to use is one we’ve used before, but the full method of deriving a null distribution is a new one. It uses bootstrap, but in a weird way:</p>
+<ol type="1">
+<li>Recenter sample so that its median is equal to the hypothesised med (which in this case is 13.2 g).</li>
+<li>Generate replicate bootstrap samples from this recentered sample.</li>
+</ol>
+</section>
+<section id="code-5" class="level4">
+<h4 class="anchored" data-anchor-id="code-5">Code</h4>
+<p>You’ll need to do some filtering of the dataset first.</p>
+<p>See the code in <a href="https://infer.tidymodels.org/articles/observed_stat_examples.html#one-numerical-variable-median">this <code>infer</code> example</a>.</p>
+<p>See also this <a href="https://github.com/tidymodels/infer/issues/407">GitHub issue</a>, which might help explain it more.</p>
+</section>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="submit-your-work" class="level1">
+<h1>Submit your work</h1>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Final task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Once you’re done, knit <strong>both</strong> your documents to HTML files.</p>
+<p>They will have been saved next to wherever your <code>.Rmd</code> file is saved.</p>
+<p>Upload <strong>both</strong> your <code>.html</code> files as your <a href="https://canvas.education.lu.se/courses/39432/assignments/290941">assignment for this exercise in Canvas</a>.</p>
+</div>
+</div>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -212,6 +670,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
