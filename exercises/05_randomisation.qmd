@@ -37,6 +37,8 @@ You will need to use past [exercies](../exercises.qmd), [slides](../slides.qmd),
 book](https://openintro-ims.netlify.app/) and the [`infer` webpage](https://infer.tidymodels.org/) for help with
 implementing your ideas. Try to use them first before asking for help. But if you're stuck, then please ask!
 
+![](../slides/images/hyptest.webp)
+
 # Species co-occurences in benthic communities
 
 ![An illustration of the visual contrast between seagrass meadows (left hand side) and bare sediment sandflats (right hand side). Picture taken by Roman Zajac at Kaipara harbour, New Zealand. The white rectangle encompasses 0.5 × 0.5 m](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs12898-020-00308-4/MediaObjects/12898_2020_308_Fig1_HTML.png?as=webp)
