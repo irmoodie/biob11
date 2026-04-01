@@ -1,13 +1,164 @@
 ---
-title: "Regression modelling in R"
+title: "Regression modelling in R (and other things)"
 subtitle: "Exercise 6"
 date: 2026-04-01
-draft: true
+draft: false
 execute:
   echo: true
   eval: false
 ---
 
-Coming soon!
+# Get RStudio setup
 
-Use orchid data from Oland
+Each time you start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `biob11/exercise_6`)
+2. Open RStudio
+   - If you haven't closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if
+     you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to
+   the folder you just made for this exercise.
+
+# Instructions
+
+**For each dataset below:**
+
+1. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title. Delete any of the
+   demo text not in the YAML frontmatter.
+2. Download the dataset and move it into your working directory folder.
+3. Load the `tidyverse` and `infer` packages.
+4. Import the dataset using `read_csv()`.
+5. Use Headings so that your document is clear and easy to follow.
+6. Write your answers to the questions as text in the document.
+
+Between datasets (not questions!), you should clear your R environment. The easiest way to do that is to restart R by
+going to *Session* -> *Restart R*. You can also use the broom icon above your environment tab, or use the command
+`rm(list = ls())`.
+
+## What approach to use?
+
+You need to decide whether to use a hypothesis test or a confidence interval. During the exercise, you should use both
+approaches at some point.
+
+::: {.callout-note icon="false" collapse="true"}
+## 🤔 If you use a hypothesis test
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. State a null and alternative hypotheses.
+3. State the sample statistic you will calculate, and why this addresses the research question.
+4. Explain how you will derive a null distribution, and why this is valid for the research question.
+5. Calculate the test statistic, and compare it with the null distribution to calculate a p-value.
+6. Write a conclusion statement that directly addresses the research questions, and references key results from your
+   analysis.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## 🎯 If you use a confidence interval
+
+1. Produce a figure using `ggplot()` using the data that reflects the research question.
+2. State the sample statistic you will calculate, and why this addresses the research question.
+4. Explain how you will derive a sampling distribution and how you will calculate a confidence interval from it, and why
+   this is a valid approach.
+5. Calculate the test statistic.
+6. Derive a sampling distribution, and use it to calculate a confidence interval.
+6. Write a conclusion statement that directly addresses the research questions, and references key results from your
+   analysis.
+
+:::
+
+You will need to use past [exercies](../exercises.qmd), [slides](../slides.qmd), the [course
+book](https://openintro-ims.netlify.app/) and the [`infer` webpage](https://infer.tidymodels.org/) for help with
+implementing your ideas. Try to use them first before asking for help. But if you're stuck, then please ask!
+
+# Öland Orchids
+
+![Illustration of the two study species, the  orchids *Gymnadenia conopsea* (a) and *Gymnadenia densiflora* (b) that differ in plant height and floral display and particularly in flowering time (c), as shown at a site where they co-occur: *G. conopsea* (left) has initiated fruit development while *G. densiflora* (right) is still in bud [@chapurlatDivergentSelectionFlowering2020].](images/o%CC%88land.jpg)
+
+*Gymnadenia conopsea* and *Gymnadenia densiflora* are two closely related perennial orchids that differ in key floral
+traits affecting pollination and in their primary pollinator species. This dataset was collected from 10 populations on
+Ölandby @chapurlatDivergentSelectionFlowering2020. For more information, have a look at the paper.
+
+The dataset can be downloaded as a `csv` file from
+[GitHub](https://github.com/irmoodie/teaching_datasets/blob/main/%C3%B6land_orchids/%C3%B6land_orchids.csv).
+
+The variables are as follows:
+
+The variables are as follows:
+
+- `species`: species name (*Gymnadenia conopsea* or *Gymnadenia densiflora*)
+- `population`: population identifier where the plant was sampled
+- `plant_height_cm`: plant height in centimetres
+- `corolla_area_mm2`: corolla (flower) area in square millimetres
+- `spur_length_mm`: spur length in millimetres
+- `first_flower_day`: day of year (Julian day) when the first flower was observed (1 = 1st Jan)
+- `flowers`: number of flowers on the plant
+- `fruits`: number of fruits produced on the plant
+- `mean_fruit_mass_mg`: mass per fruit (mean of three fruits) in milligrams
+
+## Floral correlations
+
+The researcher's want to know if there are correlations between key phenotypic traits. Correlations between traits can
+generate indirect selection: selection on one trait may cause a correlated response in another, even if that other trait
+is not under direct selection.
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+*Within each species*, do taller plants tend to have more flowers? Is the relationship strong or weak? Does it differ
+between species?
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+*Within each species*, do plants with longer spurs tend to have larger corolla areas? Is the relationship strong or
+weak? Does it differ between species?
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+Describe the differences in number of fruits and fruit mass between the species? Which species produces fewer, but
+heavier fruits, and which one produces many, but lighter fruits? Are the differences "real", or could they be due to
+chance?
+
+:::
+
+```{r}
+#| include: false
+library(tidyverse)
+library(infer)
+
+orchid_data <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/%C3%B6land_orchids/%C3%B6land_orchids.csv") |>
+  mutate(fitness = mean_fruit_mass_mg*fruits)
+
+
+orchid_data |>
+  ggplot(aes(x = corolla_area_mm2, y = spur_length_mm)) +
+  geom_point(alpha = 0.7) +
+  facet_wrap(~species)
+
+orchid_data |>
+  filter(species == "conopsea") |>
+  specify(first_flower_day~corolla_area_mm2) |>
+  calculate(stat = "correlation")
+  
+orchid_data |>
+  filter(species == "densiflora") |>
+  specify(plant_height_cm~flowers) |>
+  calculate(stat = "correlation")
+  
+orchid_data |>
+  filter(species == "conopsea") |>
+  filter(population == "kvinneby") |>
+  ggplot(aes(y = mean_fruit_mass_mg*fruits, x = first_flower_day)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+orchid_data |> count(population)
+```
+
+Part 2 coming soon!
