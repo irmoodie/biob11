@@ -2,7 +2,6 @@
 title: "Regression modelling in R (and other things)"
 subtitle: "Exercise 6"
 date: 2026-04-01
-draft: false
 execute:
   echo: true
   eval: false
@@ -21,8 +20,6 @@ Each time you start a new exercise, you should:
 
 # Instructions
 
-**For each dataset below:**
-
 1. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title. Delete any of the
    demo text not in the YAML frontmatter.
 2. Download the dataset and move it into your working directory folder.
@@ -30,10 +27,6 @@ Each time you start a new exercise, you should:
 4. Import the dataset using `read_csv()`.
 5. Use Headings so that your document is clear and easy to follow.
 6. Write your answers to the questions as text in the document.
-
-Between datasets (not questions!), you should clear your R environment. The easiest way to do that is to restart R by
-going to *Session* -> *Restart R*. You can also use the broom icon above your environment tab, or use the command
-`rm(list = ls())`.
 
 ## What approach to use?
 
@@ -73,16 +66,14 @@ implementing your ideas. Try to use them first before asking for help. But if yo
 
 # Öland Orchids
 
-![Illustration of the two study species, the  orchids *Gymnadenia conopsea* (a) and *Gymnadenia densiflora* (b) that differ in plant height and floral display and particularly in flowering time (c), as shown at a site where they co-occur: *G. conopsea* (left) has initiated fruit development while *G. densiflora* (right) is still in bud [@chapurlatDivergentSelectionFlowering2020].](images/o%CC%88land.jpg)
+![Illustration of the two study species, the  orchids *Gymnadenia conopsea* (a) and *Gymnadenia densiflora* (b) that differ in plant height and floral display and particularly in flowering time (c), as shown at a site where they co-occur: *G. conopsea* (left) has initiated fruit development while *G. densiflora* (right) is still in bud [@chapurlatDivergentSelectionFlowering2020].](images/oland.jpg)
 
 *Gymnadenia conopsea* and *Gymnadenia densiflora* are two closely related perennial orchids that differ in key floral
 traits affecting pollination and in their primary pollinator species. This dataset was collected from 10 populations on
-Ölandby @chapurlatDivergentSelectionFlowering2020. For more information, have a look at the paper.
+Öland by @chapurlatDivergentSelectionFlowering2020. For more information, have a look at the paper.
 
 The dataset can be downloaded as a `csv` file from
 [GitHub](https://github.com/irmoodie/teaching_datasets/blob/main/%C3%B6land_orchids/%C3%B6land_orchids.csv).
-
-The variables are as follows:
 
 The variables are as follows:
 
@@ -105,25 +96,27 @@ is not under direct selection.
 ::: {.callout-note icon="false" collapse="true"}
 ## ✅ Task
 
-*Within each species*, do taller plants tend to have more flowers? Is the relationship strong or weak? Does it differ
-between species?
+1. *Within each species*, do taller plants tend to have more flowers?
+2. Is the relationship strong or weak?
+3. Does it differ between species?
 
 :::
 
 ::: {.callout-note icon="false" collapse="true"}
 ## ✅ Task
 
-*Within each species*, do plants with longer spurs tend to have larger corolla areas? Is the relationship strong or
-weak? Does it differ between species?
+1. *Within each species*, do plants with longer spurs tend to have larger corolla areas?
+2. Is the relationship strong or weak?
+3. Does it differ between species?
 
 :::
 
 ::: {.callout-note icon="false" collapse="true"}
 ## ✅ Task
 
-Describe the differences in number of fruits and fruit mass between the species? Which species produces fewer, but
-heavier fruits, and which one produces many, but lighter fruits? Are the differences "real", or could they be due to
-chance?
+1. Describe the differences in number of fruits and fruit mass between the species? Which species produces fewer, but
+   heavier fruits, and which one produces many, but lighter fruits?
+2. Are the differences "real", or could they be due to chance?
 
 :::
 
@@ -135,6 +128,9 @@ library(infer)
 orchid_data <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/%C3%B6land_orchids/%C3%B6land_orchids.csv") |>
   mutate(fitness = mean_fruit_mass_mg*fruits)
 
+orchid_data |>
+  ggplot(aes(x = population, fill = species)) +
+  geom_bar(position = "dodge")
 
 orchid_data |>
   ggplot(aes(x = corolla_area_mm2, y = spur_length_mm)) +
@@ -152,13 +148,142 @@ orchid_data |>
   calculate(stat = "correlation")
   
 orchid_data |>
-  filter(species == "conopsea") |>
-  filter(population == "kvinneby") |>
-  ggplot(aes(y = mean_fruit_mass_mg*fruits, x = first_flower_day)) +
+  filter(population == "graborg_c" | population == "graborg_d") |>
+  ggplot(aes(y = mean_fruit_mass_mg*fruits, x = first_flower_day, colour = species)) +
+  facet_wrap(~species, scales = "free") +
   geom_point() +
   geom_smooth(method = "lm")
 
 orchid_data |> count(population)
+
+data <-
+  orchid_data |>
+  drop_na(first_flower_day) |>
+  group_by(species, population) |>
+  mutate(
+    std_first_flower_day = first_flower_day/mean(first_flower_day),
+    std_relative_fitness = mean_fruit_mass_mg*fruits/mean(mean_fruit_mass_mg*fruits)
+  ) |>
+  ungroup()
+
+data |>
+  ggplot(aes(x = std_first_flower_day, y = std_relative_fitness, colour = species)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+
 ```
 
-Part 2 coming soon!
+## Selection gradients
+
+A selection gradient quantifies the relationship between a trait and fitness, measuring the strength and direction of
+natural selection acting on that trait. Fitness is an individual’s contribution to the next generation, typically
+measured as reproductive success. Directional (linear) selection can be captured well using the slope of a linear
+regression.
+
+While the authors did not quantify fitness directly, they did measure two traits that once combined provide a good
+estimate of a plant's reproductive success. Fruit mass is likely a product of the number of seeds within a fruit, so
+`mean_fruit_mass_mg` $\times$ `fruits` will give us a variable that is a proxy for number of seeds, which is a good
+estimate of an individual's fitness.
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+Make a new variable in the dataset called `fitness` using `mutate()`
+
+```{r}
+#| eval: false
+#| echo: true
+data <- #<1>
+  data |>
+  mutate(fitness = ______ * ______)
+```
+
+1. Replace `data` with the name of your dataset
+
+1. Within the *G. conopsea* `"kvinneby"` `population`, describe the direction and strength of selection on
+   `spur_length_mm`. Describe the results of your regression verbally, for example:
+
+> "For every mm increase in spur length, an individual is expected to have \_\_\_\_\_\_ mass of fruits."
+
+2. Given this relationship, how might you expect the population to change in the future?
+
+3. What `fitness` does your model predict for a `spur_length_mm` of 15 mm?
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+1. Within the *G. densiflora* `"osterskog"` `population`, describe the direction and strength of selection on
+   `plant_height_cm`.
+2. Given this relationship, how might you expect the population to change in the future?
+3. In addition, refer back to your previous result on the correlation between plant height and number of flowers
+   (`flowers`). What else might change in the population due to any selection on `plant_height_cm`.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+To compare selection gradients between populations or species, we need to standardise them first.
+
+First, we need to transform fitness to relative fitness. To do that, we could divide an individual's fitness by the mean
+fitness of the population. Since we also have two species that are both present at some populations, we should make sure
+to group by species as well.
+
+```{r}
+data <-
+  data |>
+  drop_na(fitness) |>
+  group_by(species, population) |>
+  mutate(relative_fitness = fitness / mean(fitness)) |>
+  ungroup()
+```
+
+Next, we need to standardise any traits we wish to study. One way to do that is to mean standardise them, like we did
+for fitness.
+
+```{r}
+data <-
+  data |>
+  drop_na(______) |> #<1>
+  group_by(species, population) |>
+  mutate(relatve______ = ______ / mean(______)) |>
+  ungroup()
+```
+
+1. Replace \_\_\_\_\_\_ with you variable name you are interested in.
+
+Now, using standardised data, fit a linear regression model that allows you to compare the relative strength of
+selection on `first_flower_day` between the two `species` in the Graborg
+population^[note that this has been coded as two different populations in the dataset, one for each species. Look at the data to see what they're called].
+
+1. Describe the relative strengths and directions of selection. Highlight differences between the species.
+
+:::
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+Again, using standardised data, fit a linear regression model that allows you to compare the relative strength of
+selection on `corolla_area_mm2` between the "`kvinneby"` and `"langlot"` populations of *G. conopsea*.
+
+1. Describe the relative strengths and directions of selection. Highlight differences between the species.
+
+:::
+
+## Logistic predictions
+
+Suppose we want to build a model to help amateur naturalists identify which of the two species they are looking at.
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Task
+
+1. By plotting your data, identify two variables you think help differentiate these species the best (you cannot use
+   `population`).
+2. Use your chosen variables as explanatory variables in a logistic regression model, with `species` as the response
+   variable.
+3. Which of your variables is helping to predict the species the most? Why?
+
+:::
