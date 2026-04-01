@@ -59,6 +59,27 @@
     "text": "Coming soon!"
   },
   {
+    "objectID": "exercises/06_regression.html",
+    "href": "exercises/06_regression.html",
+    "title": "Regression modelling in R (and other things)",
+    "section": "",
+    "text": "Each time you start a new exercise, you should:\n\nMake a new folder in your course folder for the exercise (e.g. biob11/exercise_6)\nOpen RStudio\n\nIf you haven’t closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.\n\nSet your working directory by going to Session -&gt; Set working directory -&gt; Choose directory, then navigate to the folder you just made for this exercise."
+  },
+  {
+    "objectID": "exercises/06_regression.html#what-approach-to-use",
+    "href": "exercises/06_regression.html#what-approach-to-use",
+    "title": "Regression modelling in R (and other things)",
+    "section": "What approach to use?",
+    "text": "What approach to use?\nYou need to decide whether to use a hypothesis test or a confidence interval. During the exercise, you should use both approaches at some point.\n\n\n\n\n\n\nNote🤔 If you use a hypothesis test\n\n\n\n\n\n\nProduce a figure using ggplot() using the data that reflects the research question.\nState a null and alternative hypotheses.\nState the sample statistic you will calculate, and why this addresses the research question.\nExplain how you will derive a null distribution, and why this is valid for the research question.\nCalculate the test statistic, and compare it with the null distribution to calculate a p-value.\nWrite a conclusion statement that directly addresses the research questions, and references key results from your analysis.\n\n\n\n\n\n\n\n\n\n\nNote🎯 If you use a confidence interval\n\n\n\n\n\n\nProduce a figure using ggplot() using the data that reflects the research question.\nState the sample statistic you will calculate, and why this addresses the research question.\nExplain how you will derive a sampling distribution and how you will calculate a confidence interval from it, and why this is a valid approach.\nCalculate the test statistic.\nDerive a sampling distribution, and use it to calculate a confidence interval.\nWrite a conclusion statement that directly addresses the research questions, and references key results from your analysis.\n\n\n\n\nYou will need to use past exercies, slides, the course book and the infer webpage for help with implementing your ideas. Try to use them first before asking for help. But if you’re stuck, then please ask!"
+  },
+  {
+    "objectID": "exercises/06_regression.html#floral-correlations",
+    "href": "exercises/06_regression.html#floral-correlations",
+    "title": "Regression modelling in R (and other things)",
+    "section": "Floral correlations",
+    "text": "Floral correlations\nThe researcher’s want to know if there are correlations between key phenotypic traits. Correlations between traits can generate indirect selection: selection on one trait may cause a correlated response in another, even if that other trait is not under direct selection.\n\n\n\n\n\n\nNote✅ Task\n\n\n\n\n\nWithin each species, do taller plants tend to have more flowers? Is the relationship strong or weak? Does it differ between species?\n\n\n\n\n\n\n\n\n\nNote✅ Task\n\n\n\n\n\nWithin each species, do plants with longer spurs tend to have larger corolla areas? Is the relationship strong or weak? Does it differ between species?\n\n\n\n\n\n\n\n\n\nNote✅ Task\n\n\n\n\n\nDescribe the differences in number of fruits and fruit mass between the species? Which species produces fewer, but heavier fruits, and which one produces many, but lighter fruits? Are the differences “real”, or could they be due to chance?\n\n\n\nPart 2 coming soon!"
+  },
+  {
     "objectID": "exercises/04_bootstrap.html",
     "href": "exercises/04_bootstrap.html",
     "title": "Statistical inference with bootstrap",
@@ -133,7 +154,7 @@
     "href": "exercises.html",
     "title": "Exercises",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nExercise\n\n\n\nDate\n\n\n\nTopic\n\n\n\n\n\n\n\n\nExercise 1\n\n\n2026-03-23\n\n\nExploratory data analysis\n\n\n\n\n\n\nExercise 2\n\n\n2026-03-24\n\n\nIntroduction to R\n\n\n\n\n\n\nExercise 3\n\n\n2026-03-25\n\n\nReproducible analyses in R\n\n\n\n\n\n\nExercise 4\n\n\n2026-03-27\n\n\nStatistical inference with bootstrap\n\n\n\n\n\n\nExercise 5\n\n\n2026-03-31\n\n\nHypothesis testing with randomisation (and other approaches)\n\n\n\n\n\n\nExercise 7\n\n\n2026-04-08\n\n\nGroup seminar activity\n\n\n\n\n\n\nExercise 8\n\n\n2026-04-08\n\n\nData analysis & report writing assignment\n\n\n\n\n\n\nExercise 9\n\n\n2026-04-10\n\n\nPractise Exam\n\n\n\n\n\n\nExercise 10\n\n\n2026-04-17\n\n\nProject work\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nExercise\n\n\n\nDate\n\n\n\nTopic\n\n\n\n\n\n\n\n\nExercise 1\n\n\n2026-03-23\n\n\nExploratory data analysis\n\n\n\n\n\n\nExercise 2\n\n\n2026-03-24\n\n\nIntroduction to R\n\n\n\n\n\n\nExercise 3\n\n\n2026-03-25\n\n\nReproducible analyses in R\n\n\n\n\n\n\nExercise 4\n\n\n2026-03-27\n\n\nStatistical inference with bootstrap\n\n\n\n\n\n\nExercise 5\n\n\n2026-03-31\n\n\nHypothesis testing with randomisation (and other approaches)\n\n\n\n\n\n\nExercise 6\n\n\n2026-04-01\n\n\nRegression modelling in R (and other things)\n\n\n\n\n\n\nExercise 7\n\n\n2026-04-08\n\n\nGroup seminar activity\n\n\n\n\n\n\nExercise 8\n\n\n2026-04-08\n\n\nData analysis & report writing assignment\n\n\n\n\n\n\nExercise 9\n\n\n2026-04-10\n\n\nPractise Exam\n\n\n\n\n\n\nExercise 10\n\n\n2026-04-17\n\n\nProject work\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Exercises"
     ]
