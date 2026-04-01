@@ -194,12 +194,10 @@ Make a new variable in the dataset called `fitness` using `mutate()`
 ```{r}
 #| eval: false
 #| echo: true
-data <- #<1>
+data <-
   data |>
   mutate(fitness = ______ * ______)
 ```
-
-1. Replace `data` with the name of your dataset
 
 1. Within the *G. conopsea* `"kvinneby"` `population`, describe the direction and strength of selection on
    `spur_length_mm`. Describe the results of your regression verbally, for example:
