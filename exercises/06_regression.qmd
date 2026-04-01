@@ -287,3 +287,17 @@ Suppose we want to build a model to help amateur naturalists identify which of t
 3. Which of your variables is helping to predict the species the most? Why?
 
 :::
+
+# Submit your work
+
+::: {.callout-note icon="false" collapse="true"}
+## ✅ Final task
+
+Once you're done, knit your document to a HTML file.
+
+it will have been saved next to wherever your `.Rmd` file is saved.
+
+Upload your `.html` file as your [assignment for this exercise in
+Canvas](https://canvas.education.lu.se/courses/39432/assignments/290977).
+
+:::

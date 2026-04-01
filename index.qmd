@@ -139,7 +139,7 @@ due_dates <-
     "2026-03-25" , "✅ [Analysis (HTML)](https://canvas.education.lu.se/courses/39432/assignments/290516) <br> ⏰ 17:00"          ,
     "2026-03-27" , "✅ [Updated analysis (HTML)](https://canvas.education.lu.se/courses/39432/assignments/290661) <br> ⏰ 17:00"          ,
     "2026-03-31" , "✅ [Analyses (HTML) x2](https://canvas.education.lu.se/courses/39432/assignments/290941) <br> ⏰ 17:00"          ,
-    "2026-04-01" , "✅ [Lab report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"          ,
+    "2026-04-01" , "✅ [Analysis (HTML)](https://canvas.education.lu.se/courses/39432/assignments/290977) <br> ⏰ 17:00"          ,
     "2026-04-09" , "✅ [Analysis and report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00" ,
     "2026-04-16" , "✅ [Exam](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 13:00"                ,
     "2026-04-17" , "✅ [Project proposal](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 14:00"    ,
