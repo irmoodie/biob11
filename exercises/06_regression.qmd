@@ -215,17 +215,6 @@ data <- #<1>
 ::: {.callout-note icon="false" collapse="true"}
 ## ✅ Task
 
-1. Within the *G. densiflora* `"osterskog"` `population`, describe the direction and strength of selection on
-   `plant_height_cm`.
-2. Given this relationship, how might you expect the population to change in the future?
-3. In addition, refer back to your previous result on the correlation between plant height and number of flowers
-   (`flowers`). What else might change in the population due to any selection on `plant_height_cm`.
-
-:::
-
-::: {.callout-note icon="false" collapse="true"}
-## ✅ Task
-
 To compare selection gradients between populations or species, we need to standardise them first.
 
 First, we need to transform fitness to relative fitness. To do that, we could divide an individual's fitness by the mean
@@ -258,16 +247,6 @@ data <-
 Now, using standardised data, fit a linear regression model that allows you to compare the relative strength of
 selection on `first_flower_day` between the two `species` in the Graborg
 population^[note that this has been coded as two different populations in the dataset, one for each species. Look at the data to see what they're called].
-
-1. Describe the relative strengths and directions of selection. Highlight differences between the species.
-
-:::
-
-::: {.callout-note icon="false" collapse="true"}
-## ✅ Task
-
-Again, using standardised data, fit a linear regression model that allows you to compare the relative strength of
-selection on `corolla_area_mm2` between the "`kvinneby"` and `"langlot"` populations of *G. conopsea*.
 
 1. Describe the relative strengths and directions of selection. Highlight differences between the species.
 
