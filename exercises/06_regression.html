@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -96,10 +131,39 @@ div.csl-indent {
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="Regression modelling in R (and other things) – BIOB11">
 <meta property="og:description" content="Exercise 6">
-<meta property="og:image" content="https://irmoodie.github.io/biob11/exercises/images/öland.jpg">
+<meta property="og:image" content="https://irmoodie.github.io/biob11/exercises/images/oland.jpg">
 <meta property="og:site_name" content="BIOB11">
 </head>
 
@@ -191,6 +255,8 @@ div.csl-indent {
   <li><a href="#öland-orchids" id="toc-öland-orchids" class="nav-link" data-scroll-target="#öland-orchids">Öland Orchids</a>
   <ul class="collapse">
   <li><a href="#floral-correlations" id="toc-floral-correlations" class="nav-link" data-scroll-target="#floral-correlations">Floral correlations</a></li>
+  <li><a href="#selection-gradients" id="toc-selection-gradients" class="nav-link" data-scroll-target="#selection-gradients">Selection gradients</a></li>
+  <li><a href="#logistic-predictions" id="toc-logistic-predictions" class="nav-link" data-scroll-target="#logistic-predictions">Logistic predictions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -244,7 +310,6 @@ div.csl-indent {
 </section>
 <section id="instructions" class="level1">
 <h1>Instructions</h1>
-<p><strong>For each dataset below:</strong></p>
 <ol type="1">
 <li>Create a new Rmarkdown document (<em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>). Give it a clear title. Delete any of the demo text not in the YAML frontmatter.</li>
 <li>Download the dataset and move it into your working directory folder.</li>
@@ -253,7 +318,6 @@ div.csl-indent {
 <li>Use Headings so that your document is clear and easy to follow.</li>
 <li>Write your answers to the questions as text in the document.</li>
 </ol>
-<p>Between datasets (not questions!), you should clear your R environment. The easiest way to do that is to restart R by going to <em>Session</em> -&gt; <em>Restart R</em>. You can also use the broom icon above your environment tab, or use the command <code>rm(list = ls())</code>.</p>
 <section id="what-approach-to-use" class="level2">
 <h2 class="anchored" data-anchor-id="what-approach-to-use">What approach to use?</h2>
 <p>You need to decide whether to use a hypothesis test or a confidence interval. During the exercise, you should use both approaches at some point.</p>
@@ -310,13 +374,12 @@ div.csl-indent {
 <h1>Öland Orchids</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/öland.jpg" class="img-fluid figure-img"></p>
+<p><img src="images/oland.jpg" class="img-fluid figure-img"></p>
 <figcaption>Illustration of the two study species, the orchids <em>Gymnadenia conopsea</em> (a) and <em>Gymnadenia densiflora</em> (b) that differ in plant height and floral display and particularly in flowering time (c), as shown at a site where they co-occur: <em>G. conopsea</em> (left) has initiated fruit development while <em>G. densiflora</em> (right) is still in bud <span class="citation" data-cites="chapurlatDivergentSelectionFlowering2020">(<a href="#ref-chapurlatDivergentSelectionFlowering2020" role="doc-biblioref">Chapurlat et al. 2020</a>)</span>.</figcaption>
 </figure>
 </div>
-<p><em>Gymnadenia conopsea</em> and <em>Gymnadenia densiflora</em> are two closely related perennial orchids that differ in key floral traits affecting pollination and in their primary pollinator species. This dataset was collected from 10 populations on Ölandby <span class="citation" data-cites="chapurlatDivergentSelectionFlowering2020">Chapurlat et al. (<a href="#ref-chapurlatDivergentSelectionFlowering2020" role="doc-biblioref">2020</a>)</span>. For more information, have a look at the paper.</p>
+<p><em>Gymnadenia conopsea</em> and <em>Gymnadenia densiflora</em> are two closely related perennial orchids that differ in key floral traits affecting pollination and in their primary pollinator species. This dataset was collected from 10 populations on Öland by <span class="citation" data-cites="chapurlatDivergentSelectionFlowering2020">Chapurlat et al. (<a href="#ref-chapurlatDivergentSelectionFlowering2020" role="doc-biblioref">2020</a>)</span>. For more information, have a look at the paper.</p>
 <p>The dataset can be downloaded as a <code>csv</code> file from <a href="https://github.com/irmoodie/teaching_datasets/blob/main/%C3%B6land_orchids/%C3%B6land_orchids.csv">GitHub</a>.</p>
-<p>The variables are as follows:</p>
 <p>The variables are as follows:</p>
 <ul>
 <li><code>species</code>: species name (<em>Gymnadenia conopsea</em> or <em>Gymnadenia densiflora</em>)</li>
@@ -344,7 +407,11 @@ div.csl-indent {
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Within each species</em>, do taller plants tend to have more flowers? Is the relationship strong or weak? Does it differ between species?</p>
+<ol type="1">
+<li><em>Within each species</em>, do taller plants tend to have more flowers?</li>
+<li>Is the relationship strong or weak?</li>
+<li>Does it differ between species?</li>
+</ol>
 </div>
 </div>
 </div>
@@ -360,7 +427,11 @@ div.csl-indent {
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Within each species</em>, do plants with longer spurs tend to have larger corolla areas? Is the relationship strong or weak? Does it differ between species?</p>
+<ol type="1">
+<li><em>Within each species</em>, do plants with longer spurs tend to have larger corolla areas?</li>
+<li>Is the relationship strong or weak?</li>
+<li>Does it differ between species?</li>
+</ol>
 </div>
 </div>
 </div>
@@ -376,11 +447,163 @@ div.csl-indent {
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Describe the differences in number of fruits and fruit mass between the species? Which species produces fewer, but heavier fruits, and which one produces many, but lighter fruits? Are the differences “real”, or could they be due to chance?</p>
+<ol type="1">
+<li>Describe the differences in number of fruits and fruit mass between the species? Which species produces fewer, but heavier fruits, and which one produces many, but lighter fruits?</li>
+<li>Are the differences “real”, or could they be due to chance?</li>
+</ol>
 </div>
 </div>
 </div>
-<p>Part 2 coming soon!</p>
+</section>
+<section id="selection-gradients" class="level2">
+<h2 class="anchored" data-anchor-id="selection-gradients">Selection gradients</h2>
+<p>A selection gradient quantifies the relationship between a trait and fitness, measuring the strength and direction of natural selection acting on that trait. Fitness is an individual’s contribution to the next generation, typically measured as reproductive success. Directional (linear) selection can be captured well using the slope of a linear regression.</p>
+<p>While the authors did not quantify fitness directly, they did measure two traits that once combined provide a good estimate of a plant’s reproductive success. Fruit mass is likely a product of the number of seeds within a fruit, so <code>mean_fruit_mass_mg</code> <span class="math inline">\(\times\)</span> <code>fruits</code> will give us a variable that is a proxy for number of seeds, which is a good estimate of an individual’s fitness.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Make a new variable in the dataset called <code>fitness</code> using <code>mutate()</code></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fitness =</span> ______ <span class="sc">*</span> ______)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Replace <code>data</code> with the name of your dataset</span>
+</dd>
+</dl>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>“For every mm increase in spur length, an individual is expected to have ______ mass of fruits.”</p>
+</blockquote>
+<ol start="2" type="1">
+<li><p>Given this relationship, how might you expect the population to change in the future?</p></li>
+<li><p>What <code>fitness</code> does your model predict for a <code>spur_length_mm</code> of 15 mm?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Within the <em>G. densiflora</em> <code>"osterskog"</code> <code>population</code>, describe the direction and strength of selection on <code>plant_height_cm</code>.</li>
+<li>Given this relationship, how might you expect the population to change in the future?</li>
+<li>In addition, refer back to your previous result on the correlation between plant height and number of flowers (<code>flowers</code>). What else might change in the population due to any selection on <code>plant_height_cm</code>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To compare selection gradients between populations or species, we need to standardise them first.</p>
+<p>First, we need to transform fitness to relative fitness. To do that, we could divide an individual’s fitness by the mean fitness of the population. Since we also have two species that are both present at some populations, we should make sure to group by species as well.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(fitness) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, population) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative_fitness =</span> fitness <span class="sc">/</span> <span class="fu">mean</span>(fitness)) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we need to standardise any traits we wish to study. One way to do that is to mean standardise them, like we did for fitness.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(______) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, population) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relatve______ =</span> ______ <span class="sc">/</span> <span class="fu">mean</span>(______)) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">Replace ______ with you variable name you are interested in.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Now, using standardised data, fit a linear regression model that allows you to compare the relative strength of selection on <code>first_flower_day</code> between the two <code>species</code> in the Graborg population<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<ol type="1">
+<li>Describe the relative strengths and directions of selection. Highlight differences between the species.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Again, using standardised data, fit a linear regression model that allows you to compare the relative strength of selection on <code>corolla_area_mm2</code> between the “<code>kvinneby"</code> and <code>"langlot"</code> populations of <em>G. conopsea</em>.</p>
+<ol type="1">
+<li>Describe the relative strengths and directions of selection. Highlight differences between the species.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="logistic-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-predictions">Logistic predictions</h2>
+<p>Suppose we want to build a model to help amateur naturalists identify which of the two species they are looking at.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>✅ Task
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>By plotting your data, identify two variables you think help differentiate these species the best (you cannot use <code>population</code>).</li>
+<li>Use your chosen variables as explanatory variables in a logistic regression model, with <code>species</code> as the response variable.</li>
+<li>Which of your variables is helping to predict the species the most? Why?</li>
+</ol>
+</div>
+</div>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -401,11 +624,17 @@ W10=
 </section>
 </section>
 
+
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
 <div id="ref-chapurlatDivergentSelectionFlowering2020" class="csl-entry" role="listitem">
 Chapurlat, E., I. Le Roncé, J. Ågren, and N. Sletvold. 2020. <a href="https://doi.org/10.1002/ece3.6312">Divergent selection on flowering phenology but not on floral morphology between two closely related orchids</a>. Ecology and Evolution 10:5737–5747.
 </div>
-</div></section></div></main> <!-- /main -->
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>note that this has been coded as two different populations in the dataset, one for each species. Look at the data to see what they’re called<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
