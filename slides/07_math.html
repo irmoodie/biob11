@@ -33,7 +33,26 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-028f94768012f1f262888d06395c1986.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -151,13 +170,744 @@ Iain R. Moodie
 
   <p class="date">Tuesday 7th April, 2026</p>
 </section>
-<section class="slide level2">
+<section>
+<section id="probability-models" class="title-slide slide level1 center" data-background-color="#61599d">
+<h1>Probability models</h1>
+<div class="cell" data-edit="false">
+<div>
+<div id="webr-1" class="exercise-cell">
 
-<p>Coming soon!</p>
+</div>
+<script type="webr-1-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlY2hvIjpmYWxzZSwiZWRpdCI6ZmFsc2UsImV2YWwiOnRydWUsIm91dHB1dCI6ZmFsc2V9LCJjb2RlIjoibGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGluZmVyKVxubGlicmFyeShwYWxtZXJwZW5ndWlucylcblxudGhlbWVfc2V0KHRoZW1lX2J3KGJhc2Vfc2l6ZSA9IDE2KSArIHRoZW1lKGFzcGVjdC5yYXRpbyA9IDEpKVxuXG4jIEdlbmVyYXRlIGV4cGVjdGVkIGRhdGEgdW5kZXIgTWVuZGVsaWFuIGxhd3MgZm9yIGEgZGloeWJyaWQgY3Jvc3NcbnNldC5zZWVkKDEyMykgIyBGb3IgcmVwcm9kdWNpYmlsaXR5XG5cbiMgRGVmaW5lIGV4cGVjdGVkIHByb3BvcnRpb25zIGZvciBhIGRpaHlicmlkIGNyb3NzICg5OjM6MzoxIHJhdGlvKVxuZXhwZWN0ZWRfcHJvcG9ydGlvbnMgPC0gYyg4LjcsIDIuNSwgMy41LCAxLjMpIC8gMTZcblxuIyBHZW5lcmF0ZSBhIGRhdGFzZXQgd2l0aCAxNjAgb2JzZXJ2YXRpb25zICh0byBtYXRjaCBwcm9wb3J0aW9ucylcbm1lbmRlbGlhbl9kYXRhIDwtIHRpYmJsZShcbiAgcGhlbm90eXBlID0gcmVwKGMoXCJBLUItXCIsIFwiQS1iYlwiLCBcImFhQi1cIiwgXCJhYWJiXCIpLCB0aW1lcyA9IHJvdW5kKGV4cGVjdGVkX3Byb3BvcnRpb25zICogMTIwKSlcbikifQ==
+</script>
+</div>
+</div>
+</section>
+<section id="probability-models-1" class="slide level2">
+<h2>Probability models</h2>
+<h3 id="flipping-a-coin">Flipping a coin</h3>
+<ul>
+<li>I flip a fair coin over a flat surface</li>
+<li>Two possible outcomes:
+<ul>
+<li>Heads</li>
+<li>Tails</li>
+</ul></li>
+<li>Chance of heads?</li>
+</ul>
+</section>
+<section id="probability-models-2" class="slide level2">
+<h2>Probability models</h2>
+<h3 id="flipping-a-coin-1">Flipping a coin</h3>
+<ul>
+<li>50% chance heads, why?
+<ul>
+<li>Ignorance?</li>
+<li>Uncertainty?</li>
+<li>Expected outcome of a lot of flips?</li>
+<li>Causal process, property of the universe?</li>
+</ul></li>
+</ul>
+</section>
+<section id="probability-models-3" class="slide level2">
+<h2>Probability models</h2>
+<h3 id="flipping-a-coin-2">Flipping a coin</h3>
+<ul>
+<li>50% chance heads, why?
+<ul>
+<li>Ignorance?</li>
+<li>Uncertainty?</li>
+<li><strong>Expected outcome of a lot of flips?</strong></li>
+<li>Causal process, property of the universe?</li>
+</ul></li>
+</ul>
+</section>
+<section id="probability-models-4" class="slide level2">
+<h2>Probability models</h2>
+<h3 id="flipping-a-coin-3">Flipping a coin</h3>
+<p><span class="math display">\[
+P(\text{heads}) = \frac{\text{number of heads}}{\text{total number of flips}}
+\]</span></p>
+<p><span class="math display">\[
+P(\text{success}) = \frac{\text{number of successes}}{\text{total number of trials}}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(P\ge0\)</span></li>
+<li><span class="math inline">\(P\le1\)</span></li>
+</ul>
+</section>
+<section id="probability-models-5" class="slide level2">
+<h2>Probability models</h2>
+<h3 id="flipping-two-coins">Flipping two coins</h3>
+<ul>
+<li>Coin 1: heads</li>
+<li>Coin 2: heads</li>
+<li><span class="math inline">\(P(\text{coin 1}=\text{heads} \cap \text{coin 2}=\text{heads}) = ?\)</span></li>
+</ul>
+</section>
+<section id="probability-models-6" class="slide level2">
+<h2>Probability models</h2>
+<h3 id="flipping-two-coins-1">Flipping two coins</h3>
+<ul>
+<li>Coin 1: heads</li>
+<li>Coin 2: heads</li>
+<li><span class="math inline">\(P(\text{coin 1}=\text{heads} \cap \text{coin 2}=\text{heads}) = 0.5 \times 0.5 = 0.25\)</span></li>
+<li>Assumes both coins are independent</li>
+</ul>
+</section>
+<section id="probability-models-7" class="slide level2">
+<h2>Probability models</h2>
+<h3 id="influenza">Influenza</h3>
+<ul>
+<li>2024/25 season in Sweden, 115/100,000 had influenza</li>
+<li>Probability in a class of 30 that someone has it?</li>
+<li><span class="math inline">\(P(\text{a given person has the flu})=115/100000=0.00115\)</span></li>
+<li><span class="math inline">\(P(\text{a given person doesn't have the flu})=1-0.00115=0.99885\)</span></li>
+<li><span class="math inline">\(P(\text{no one has the flu}) = 0.99885^{30} = 0.9660692\)</span></li>
+<li><span class="math inline">\(P(\text{at least one has the flu}) = 1-0.9660692=0.0339308 \approx 3.4 \%\)</span></li>
+</ul>
+</section></section>
+<section>
+<section id="probability-distributions" class="title-slide slide level1 center" data-background-color="#61599d">
+<h1>Probability distributions</h1>
+
+</section>
+<section id="probability-distributions-1" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution-flipping-a-coin">Bimodal distribution: <em>flipping a coin</em></h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-2" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution-flipping-a-coin-1">Bimodal distribution: <em>flipping a coin</em></h3>
+<ul>
+<li>50% chance heads, why?
+<ul>
+<li>Ignorance?</li>
+<li>Uncertainty?</li>
+<li><strong>Expected outcome of a lot of flips?</strong></li>
+<li>Causal process, property of the universe?</li>
+</ul></li>
+</ul>
+</section>
+<section id="probability-distributions-3" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution-flipping-a-coin-2">Bimodal distribution: <em>flipping a coin</em></h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-4" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution-flipping-a-coin-3">Bimodal distribution: <em>flipping a coin</em></h3>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07_math_files/figure-revealjs/unnamed-chunk-6-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li><span class="math inline">\(P(X=5)=0.25\)</span></li>
+<li><span class="math inline">\(P(4\le X\le6)=0.25+0.2+0.2\)</span></li>
+<li><span class="math inline">\(P(X \ge 9) \approx 0.011\)</span></li>
+</ul>
+</div></div>
+</section>
+<section id="probability-distributions-5" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution-influenza">Bimodal distribution: <em>Influenza</em></h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-6" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution-influenza-1">Bimodal distribution: <em>Influenza</em></h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-7" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution-no-need-to-learn-this">Bimodal distribution (no need to learn this)</h3>
+<p><span class="math display">\[
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(n\)</span> = number of trials</li>
+<li><span class="math inline">\(k\)</span> = number of successes</li>
+<li><span class="math inline">\(p\)</span> = probability of success on each trial</li>
+<li><span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span> = binomial coefficient</li>
+</ul>
+</section>
+<section id="probability-distributions-8" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="bimodal-distribution">Bimodal distribution</h3>
+<ul>
+<li>A distribution is shaped by its <strong>parameters</strong></li>
+<li>Bimodal:
+<ul>
+<li><span class="math inline">\(n\)</span> = number of trials</li>
+<li><span class="math inline">\(p\)</span> = probability of success on each trial</li>
+</ul></li>
+<li>Discrete observations</li>
+</ul>
+</section>
+<section id="probability-distributions-9" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="poisson-distribution">Poisson distribution</h3>
+<ul>
+<li>Describes events happening over some interval (time/space)
+<ul>
+<li>Number of animals recorded by a camera trap in a day</li>
+<li>Number of mutations in a DNA sequence</li>
+<li>Number of typos in a presentation</li>
+</ul></li>
+</ul>
+</section>
+<section id="probability-distributions-10" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="poisson-distribution-no-need-to-learn-this">Poisson distribution (no need to learn this)</h3>
+<p><span class="math display">\[
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(k\)</span> = number of events</li>
+<li><span class="math inline">\(\lambda\)</span> = expected number of events in the interval</li>
+<li><span class="math inline">\(e\)</span> = Euler’s number (≈ 2.718)</li>
+</ul>
+</section>
+<section id="probability-distributions-11" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="poisson-distribution-1">Poisson distribution</h3>
+<ul>
+<li>1 parameter:
+<ul>
+<li><span class="math inline">\(\lambda\)</span> = expected number of events in the interval</li>
+<li>Both mean and variance of distribution</li>
+</ul></li>
+<li>Discrete observations</li>
+</ul>
+</section>
+<section id="probability-distributions-12" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="poisson-distribution-2">Poisson distribution</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-13" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="probability-mass-functions-binomial-poisson">Probability mass functions (binomial &amp; poisson)</h3>
+<ul>
+<li>Discrete events</li>
+<li><span class="math inline">\(P(1.5)=0\)</span>
+<ul>
+<li><span class="math inline">\(P(between bars)=0\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="probability-distributions-14" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="uniform-distribution">Uniform distribution</h3>
+<ul>
+<li>Continuous distribution</li>
+<li>Two parameters: <span class="math inline">\(a\)</span> (minimum) and <span class="math inline">\(b\)</span> (maximum)</li>
+</ul>
+</section>
+<section id="probability-distributions-15" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="uniform-distribution-1">Uniform distribution</h3>
+<ul>
+<li>Not meaningful to ask probability of specific number
+<ul>
+<li>Instead look at probability of intervals</li>
+</ul></li>
+</ul>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-16" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution">Normal distribution</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-17" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-1">Normal distribution</h3>
+<ul>
+<li>Continuous distribution</li>
+<li>Can take any real value</li>
+<li>Two parameters: <span class="math inline">\(\mu\)</span> (mean) and <span class="math inline">\(\sigma\)</span> (standard deviation)</li>
+</ul>
+</section>
+<section id="probability-distributions-18" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-no-need-to-learn-this">Normal distribution (no need to learn this)</h3>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span> = mean</li>
+<li><span class="math inline">\(\sigma\)</span> = standard deviation</li>
+<li><span class="math inline">\(e\)</span> = Euler’s number (≈ 2.718)</li>
+<li><span class="math inline">\(\pi\)</span> = pi (≈ 3.14159)</li>
+</ul>
+</section>
+<section id="probability-distributions-19" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-2">Normal distribution</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-20" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-z-scores">Normal distribution: Z-scores</h3>
+<ul>
+<li>Standardize values from a normal distribution</li>
+<li>Tells us how many standard deviations away from the mean</li>
+<li>Formula: <span class="math inline">\(z = \frac{x - \mu}{\sigma}\)</span></li>
+</ul>
+<p>where: - <span class="math inline">\(x\)</span> = observed value - <span class="math inline">\(\mu\)</span> = mean - <span class="math inline">\(\sigma\)</span> = standard deviation</p>
+<ul>
+<li>Converts values from different scales to a common scale (mean = 0, SD = 1)</li>
+<li>Enables use of standard normal tables to find probabilities and percentiles</li>
+</ul>
+</section>
+<section id="probability-distributions-21" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-z-scores-1">Normal distribution: Z-scores</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-22" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-as-a-model">Normal distribution as a model</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="probability-distributions-23" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-as-a-model-t-distribution">Normal distribution as a model (t-distribution)</h3>
+<ul>
+<li>t distribution when estimating a population mean and the population standard deviation <span class="math inline">\(\sigma\)</span> is unknown.</li>
+<li>Accounts for extra uncertainty by using the sample standard deviation <span class="math inline">\(s\)</span> instead of <span class="math inline">\(\sigma\)</span>.</li>
+<li>Especially important for small sample sizes <span class="math inline">\(n\)</span>, where normal-based methods can be too optimistic.</li>
+</ul>
+</section>
+<section id="probability-distributions-24" class="slide level2">
+<h2>Probability distributions</h2>
+<h3 id="normal-distribution-as-a-model-t-distribution-1">Normal distribution as a model (t-distribution)</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section></section>
+<section>
+<section id="central-limit-theorem" class="title-slide slide level1 center" data-background-color="#61599d">
+<h1>Central limit theorem</h1>
+
+</section>
+<section id="central-limit-theorem-1" class="slide level2">
+<h2>Central limit theorem</h2>
+<h3 id="the-distribution-of-means-is-normal">The distribution of means is normal</h3>
+<blockquote>
+<p>If we sample values from any distribution and calculate the mean, as we increase our sample size, the distribution of the mean gets closer and closer to a normal distribution <span class="citation" data-cites="duthie2025">(<a href="#/references" role="doc-biblioref" onclick="">Duthie 2025</a>)</span></p>
+</blockquote>
+</section>
+<section id="central-limit-theorem-2" class="slide level2">
+<h2>Central limit theorem</h2>
+<h3 id="the-distribution-of-means-is-normal-1">The distribution of means is normal</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1440"></section>
+<section id="central-limit-theorem-3" class="slide level2">
+<h2>Central limit theorem</h2>
+<h3 id="the-distribution-of-proportions-is-normal">The distribution of proportions is normal</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1440"></section>
+<section id="central-limit-theorem-4" class="slide level2">
+<h2>Central limit theorem</h2>
+<h3 id="the-distribution-of-slopes-is-normal">The distribution of slopes is normal</h3>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1440"></section></section>
+<section>
+<section id="statistical-inference-with-maths" class="title-slide slide level1 center" data-background-color="#61599d">
+<h1>Statistical inference with maths</h1>
+
+</section>
+<section id="statistical-inference-with-maths-1" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths">Resampling vs maths</h3>
+
+<img data-src="images/bootstrap.drawio.png" class="r-stretch"></section>
+<section id="statistical-inference-with-maths-2" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-1">Resampling vs maths</h3>
+
+<img data-src="images/assume.drawio.png" class="r-stretch"></section>
+<section id="statistical-inference-with-maths-3" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-2">Resampling vs maths</h3>
+<ul>
+<li><strong>Re-sampling based inference</strong>:
+<ul>
+<li>Relies on computational methods such as bootstrapping</li>
+<li><strong>Uses the observed data to generate a sampling distribution</strong></li>
+<li>Often computationally intensive</li>
+<li>Assumptions must be met for valid results*</li>
+</ul></li>
+</ul>
+</section>
+<section id="statistical-inference-with-maths-4" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-3">Resampling vs maths</h3>
+<ul>
+<li><strong>Math-based inference</strong>:
+<ul>
+<li>Relies on mathematical models</li>
+<li><strong>Uses theoretical distributions to approximate the sampling distribution</strong></li>
+<li>Requires smaller computational effort compared to re-sampling</li>
+<li>Assumptions must be met for valid results*</li>
+</ul></li>
+</ul>
+</section>
+<section id="statistical-inference-with-maths-5" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-4">Resampling vs maths</h3>
+<ul>
+<li>Is a mean different from a point value?
+<ul>
+<li>1 sample t-test (1 sample sign test)</li>
+</ul></li>
+<li>Are the means of two independant groups different from each other?
+<ul>
+<li>2 sample t-test (Mann-Whitney U test)</li>
+</ul></li>
+<li>Are the means of two paired groups different from each other?
+<ul>
+<li>paired sample t-test (Wilcoxon matched pairs test)</li>
+</ul></li>
+<li>Are the means of three or more groups different from each other?
+<ul>
+<li>one-way ANOVA (Kruskal-Wallis test)</li>
+</ul></li>
+<li>Is there a relationship between two categorical variables?
+<ul>
+<li>Chi-square test</li>
+</ul></li>
+<li>Does a proportion differ from a point value?
+<ul>
+<li>1 prop sample test</li>
+</ul></li>
+</ul>
+</section>
+<section id="statistical-inference-with-maths-6" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-5">Resampling vs maths</h3>
+
+<img data-src="images/05/100.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="statistical-inference-with-maths-7" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci"><strong>Resampling</strong> vs maths (diff in means CI)</h3>
+<ul>
+<li>What is the difference in average size of males and females?</li>
+</ul>
+
+<img data-src="07_math_files/figure-revealjs/unnamed-chunk-19-1.png" width="480" class="r-stretch"></section>
+<section id="statistical-inference-with-maths-8" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-1">Resampling vs maths (diff in means CI)</h3>
+<div class="cell">
+<div>
+<div id="webr-2" class="exercise-cell">
+
+</div>
+<script type="webr-2-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF9kYXRhIDwtIFxuICBwZW5ndWlucyB8PlxuICBmaWx0ZXIoc3BlY2llcyA9PSBcIkNoaW5zdHJhcFwiKSB8PlxuICBkcm9wX25hKHNleCkifQ==
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-9" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-2">Resampling vs maths (diff in means CI)</h3>
+<div class="cell">
+<div>
+<div id="webr-3" class="exercise-cell">
+
+</div>
+<script type="webr-3-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF9vYnMgPC1cbiAgY2hpbnN0cmFwX2RhdGEgfD5cbiAgc3BlY2lmeShyZXNwb25zZSA9IGJvZHlfbWFzc19nLCBleHBsYW5hdG9yeSA9IHNleCkgfD5cbiAgY2FsY3VsYXRlKHN0YXQgPSBcImRpZmYgaW4gbWVhbnNcIiwgb3JkZXIgPSBjKFwibWFsZVwiLCBcImZlbWFsZVwiKSlcblxuY2hpbnN0cmFwX29icyJ9
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-10" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-3"><strong>Resampling</strong> vs maths (diff in means CI)</h3>
+
+<img data-src="images/bootstrap.drawio.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="statistical-inference-with-maths-11" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-4"><strong>Resampling</strong> vs maths (diff in means CI)</h3>
+<div class="cell">
+<div>
+<div id="webr-4" class="exercise-cell">
+
+</div>
+<script type="webr-4-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF9ib290c3RyYXBfZGlzdCA8LVxuICBjaGluc3RyYXBfZGF0YSB8PlxuICBzcGVjaWZ5KHJlc3BvbnNlID0gYm9keV9tYXNzX2csIGV4cGxhbmF0b3J5ID0gc2V4KSB8PlxuICBnZW5lcmF0ZShyZXBzID0gMTAwMDAsIHR5cGUgPSBcImJvb3RzdHJhcFwiKSB8PlxuICBjYWxjdWxhdGUoc3RhdCA9IFwiZGlmZiBpbiBtZWFuc1wiLCBvcmRlciA9IGMoXCJtYWxlXCIsIFwiZmVtYWxlXCIpKVxuXG5jaGluc3RyYXBfYm9vdHN0cmFwX2Rpc3QgfD5cbiAgdmlzdWFsaXNlKCkifQ==
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-12" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-5"><strong>Resampling</strong> vs maths (diff in means CI)</h3>
+
+<img data-src="images/CI.drawio.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="statistical-inference-with-maths-13" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-6"><strong>Resampling</strong> vs maths (diff in means CI)</h3>
+<div class="cell">
+<div>
+<div id="webr-5" class="exercise-cell">
+
+</div>
+<script type="webr-5-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF9jb25mX2ludCA8LVxuICBjaGluc3RyYXBfYm9vdHN0cmFwX2Rpc3QgfD5cbiAgZ2V0X2NvbmZpZGVuY2VfaW50ZXJ2YWwobGV2ZWwgPSAwLjk1LCB0eXBlID0gXCJwZXJjZW50aWxlXCIpXG5cbmNoaW5zdHJhcF9ib290c3RyYXBfZGlzdCB8PlxuICB2aXN1YWxpc2UoKSArXG4gIHNoYWRlX2NvbmZpZGVuY2VfaW50ZXJ2YWwoY2hpbnN0cmFwX2NvbmZfaW50KSJ9
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-14" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-7">Resampling vs <strong>maths</strong> (diff in means CI)</h3>
+
+<img data-src="images/assume.drawio.png" class="r-stretch"></section>
+<section id="statistical-inference-with-maths-15" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-8">Resampling vs <strong>maths</strong> (diff in means CI)</h3>
+<div class="cell">
+<div>
+<div id="webr-6" class="exercise-cell">
+
+</div>
+<script type="webr-6-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF90X2Rpc3QgPC1cbiAgY2hpbnN0cmFwX2RhdGEgfD5cbiAgc3BlY2lmeShyZXNwb25zZSA9IGJvZHlfbWFzc19nLCBleHBsYW5hdG9yeSA9IHNleCkgfD5cbiAgYXNzdW1lKGRpc3RyaWJ1dGlvbiA9IFwidFwiKVxuXG5jaGluc3RyYXBfdF9kaXN0IHw+XG4gIHZpc3VhbGlzZSgpIn0=
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-16" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-9">Resampling vs <strong>maths</strong> (diff in means CI)</h3>
+
+<img data-src="images/assumeCI.drawio.png" class="r-stretch"></section>
+<section id="statistical-inference-with-maths-17" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-10">Resampling vs <strong>maths</strong> (diff in means CI)</h3>
+<div class="cell">
+<div>
+<div id="webr-7" class="exercise-cell">
+
+</div>
+<script type="webr-7-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF9jb25mX2ludF90IDwtXG4gIGNoaW5zdHJhcF90X2Rpc3QgfD5cbiAgZ2V0X2NvbmZpZGVuY2VfaW50ZXJ2YWwobGV2ZWwgPSAwLjk1LCBwb2ludF9lc3RpbWF0ZSA9IGRfaGF0KVxuXG5jaGluc3RyYXBfdF9kaXN0IHw+XG4gIHZpc3VhbGlzZSgpICtcbiAgc2hhZGVfY29uZmlkZW5jZV9pbnRlcnZhbChjaGluc3RyYXBfY29uZl9pbnRfdCkifQ==
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-18" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-diff-in-means-ci-11">Resampling vs maths (diff in means CI)</h3>
+<div class="cell">
+<div>
+<div id="webr-8" class="exercise-cell">
+
+</div>
+<script type="webr-8-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF9jb25mX2ludCJ9
+</script>
+</div>
+</div>
+<div class="cell">
+<div>
+<div id="webr-9" class="exercise-cell">
+
+</div>
+<script type="webr-9-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImNoaW5zdHJhcF9jb25mX2ludF90In0=
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-19" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit">Resampling vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+
+<img data-src="images/mendel.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="statistical-inference-with-maths-20" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-1">Resampling vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<div class="cell">
+<div>
+<div id="webr-10" class="exercise-cell">
+
+</div>
+<script type="webr-10-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im1lbmRlbGlhbl9kYXRhIn0=
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-21" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-2">Resampling vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<div class="cell">
+<div>
+<div id="webr-11" class="exercise-cell">
+
+</div>
+<script type="webr-11-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImdncGxvdChtZW5kZWxpYW5fZGF0YSwgYWVzKHggPSBwaGVub3R5cGUpKSArXG4gIGdlb21fYmFyKCkgK1xuICBnZW9tX2hsaW5lKHlpbnRlcmNlcHQgPSBjKDksIDMsIDEpLzE2Km5yb3cobWVuZGVsaWFuX2RhdGEpLCBsaW5ldHlwZSA9IFwiZGFzaGVkXCIsIGNvbG9yID0gXCJyZWRcIikifQ==
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-22" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-3">Resampling vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<p><span class="math display">\[
+\chi^2 = \sum \frac{(Observed_i - Expected_i)^2}{Expected_i}
+\]</span></p>
+</section>
+<section id="statistical-inference-with-maths-23" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-4">Resampling vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<div class="cell">
+<div>
+<div id="webr-12" class="exercise-cell">
+
+</div>
+<script type="webr-12-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im9ic19jaGlzcSA8LSBcbiAgbWVuZGVsaWFuX2RhdGEgfD5cbiAgc3BlY2lmeShyZXNwb25zZSA9IHBoZW5vdHlwZSkgfD5cbiAgaHlwb3RoZXNpemUoXG4gICAgbnVsbCA9IFwicG9pbnRcIixcbiAgICBwID0gYyhcbiAgICAgIFwiQS1CLVwiID0gOS8xNixcbiAgICAgIFwiQS1iYlwiID0gMy8xNixcbiAgICAgIFwiYWFCLVwiID0gMy8xNixcbiAgICAgIFwiYWFiYlwiID0gMS8xNlxuICAgIClcbiAgICkgfD5cbiAgY2FsY3VsYXRlKHN0YXQgPSBcIkNoaXNxXCIpXG5cbm9ic19jaGlzcSJ9
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-24" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-5">Resampling vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<ul>
+<li>Null hypothesis:
+<ul>
+<li>The sample came from the hypothesised distribution</li>
+<li>The sample distribution is not different from the hypothesised distribution</li>
+</ul></li>
+<li>Alternative hypotheis:
+<ul>
+<li>The sample came from a different distribution to the one hypothesised</li>
+<li>The sample distribution is different from the hypothesised distribution</li>
+</ul></li>
+</ul>
+</section>
+<section id="statistical-inference-with-maths-25" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-6"><strong>Resampling</strong> vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+
+<img data-src="images/hyptest.drawio.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="statistical-inference-with-maths-26" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-7"><strong>Resampling</strong> vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<div class="cell">
+<div>
+<div id="webr-13" class="exercise-cell">
+
+</div>
+<script type="webr-13-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im51bGxfZGlzdF9yZXNhbXAgPC0gXG4gIG1lbmRlbGlhbl9kYXRhIHw+XG4gIHNwZWNpZnkocmVzcG9uc2UgPSBwaGVub3R5cGUpIHw+XG4gIGh5cG90aGVzaXplKFxuICAgIG51bGwgPSBcInBvaW50XCIsXG4gICAgcCA9IGMoXG4gICAgICBcIkEtQi1cIiA9IDkvMTYsXG4gICAgICBcIkEtYmJcIiA9IDMvMTYsXG4gICAgICBcImFhQi1cIiA9IDMvMTYsXG4gICAgICBcImFhYmJcIiA9IDEvMTZcbiAgICApXG4gICApIHw+XG4gIGdlbmVyYXRlKHJlcHMgPSAxMDAwLCB0eXBlID0gXCJkcmF3XCIpIHw+XG4gIGNhbGN1bGF0ZShzdGF0ID0gXCJDaGlzcVwiKVxuXG5udWxsX2Rpc3RfcmVzYW1wIHw+XG4gIHZpc3VhbGl6ZSgpICsgXG4gIHNoYWRlX3BfdmFsdWUob2JzX2NoaXNxLCBkaXJlY3Rpb24gPSBcImdyZWF0ZXJcIikifQ==
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-27" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-8">Resampling vs <strong>maths</strong> (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+
+<img data-src="images/assumehyptest.drawio.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="statistical-inference-with-maths-28" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-9">Resampling vs <strong>maths</strong> (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<div class="cell">
+<div>
+<div id="webr-14" class="exercise-cell">
+
+</div>
+<script type="webr-14-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im51bGxfZGlzdF9tYXRoIDwtIFxuICBtZW5kZWxpYW5fZGF0YSB8PlxuICBzcGVjaWZ5KHJlc3BvbnNlID0gcGhlbm90eXBlKSB8PlxuICBoeXBvdGhlc2l6ZShcbiAgICBudWxsID0gXCJwb2ludFwiLFxuICAgIHAgPSBjKFxuICAgICAgXCJBLUItXCIgPSA5LzE2LFxuICAgICAgXCJBLWJiXCIgPSAzLzE2LFxuICAgICAgXCJhYUItXCIgPSAzLzE2LFxuICAgICAgXCJhYWJiXCIgPSAxLzE2XG4gICAgKVxuICAgKSB8PlxuICBhc3N1bWUoZGlzdHJpYnV0aW9uID0gXCJDaGlzcVwiKVxuXG5udWxsX2Rpc3RfbWF0aCB8PlxuICB2aXN1YWxpc2UoKSArXG4gIHNoYWRlX3BfdmFsdWUob2JzX2NoaXNxLCBkaXJlY3Rpb24gPSBcImdyZWF0ZXJcIikifQ==
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-29" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-chi2-goodness-of-fit-10">Resampling vs maths (<span class="math inline">\(\chi^2\)</span> Goodness of fit)</h3>
+<div class="cell">
+<div>
+<div id="webr-15" class="exercise-cell">
+
+</div>
+<script type="webr-15-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im51bGxfZGlzdF9yZXNhbXAgfD5cbiAgICBnZXRfcF92YWx1ZShvYnNfc3RhdCA9IG9ic19jaGlzcSwgZGlyZWN0aW9uID0gXCJncmVhdGVyXCIpIn0=
+</script>
+</div>
+</div>
+<div class="cell">
+<div>
+<div id="webr-16" class="exercise-cell">
+
+</div>
+<script type="webr-16-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im51bGxfZGlzdF9tYXRoIHw+XG4gICAgZ2V0X3BfdmFsdWUob2JzX3N0YXQgPSBvYnNfY2hpc3EsIGRpcmVjdGlvbiA9IFwiZ3JlYXRlclwiKSJ9
+</script>
+</div>
+</div>
+</section>
+<section id="statistical-inference-with-maths-30" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-which-to-use">Resampling vs maths: which to use?</h3>
+<ul>
+<li>Which ever you understand best</li>
+<li>See maths approach as adding extra information
+<ul>
+<li>If right, very powerful</li>
+<li>If wrong, very wrong</li>
+<li>Sometimes neccesary</li>
+</ul></li>
+<li>Computational times are no longer an issue
+<ul>
+<li>Theory based statistics developed to get around this</li>
+</ul></li>
+</ul>
+</section>
+<section id="statistical-inference-with-maths-31" class="slide level2">
+<h2>Statistical inference with maths</h2>
+<h3 id="resampling-vs-maths-which-to-use-1">Resampling vs maths: which to use?</h3>
+<ul>
+<li>Your sample is representative of the population you want to make inferences about</li>
+<li>Collecting more data is always going to lead to more accurate inferences</li>
+<li>Neither are magic
+<ul>
+<li>Garbage in, garbage out</li>
+<li>Vunerable to “p-hacking” and other unethical uses</li>
+</ul></li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 
+<script type="webr-data">
+eyJvcHRpb25zIjp7ImJhc2VVcmwiOiJodHRwczovL3dlYnIuci13YXNtLm9yZy92MC41LjgvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsiZXZhbHVhdGUiLCJrbml0ciIsImh0bWx0b29scyJdLCJyZXBvcyI6W119LCJyZW5kZXJfZGYiOiJkZWZhdWx0In0=
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTY7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzE2ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTYtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xNiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xNSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTU7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xNSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzE1ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTUtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xNSA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTQ7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzE0ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xNCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTM7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzEzID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xMyA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTI7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzEyID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xMiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTE7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzExID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xMSA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xMCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTA7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xMCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzEwID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTAtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xMC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xMCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC05IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV85O1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzkgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHdlYnItOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV85ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl85LCB7fSk7XG4ifSx7ImNlbGxOYW1lIjoid2Vici13aWRnZXQtOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfODtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF93ZWJyX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItOC1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgV2ViUkV4ZXJjaXNlRWRpdG9yKHdlYlJPanMud2ViUlByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3dlYnJfdmFsdWVfOCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfOCwge30pO1xuIn0seyJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzc7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici03IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfNyA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTctY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici03LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzcgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC02IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV82O1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzYgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHdlYnItNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV82ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl82LCB7fSk7XG4ifSx7ImNlbGxOYW1lIjoid2Vici13aWRnZXQtNSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNTtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF93ZWJyX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgV2ViUkV4ZXJjaXNlRWRpdG9yKHdlYlJPanMud2ViUlByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3dlYnJfdmFsdWVfNSA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfNSwge30pO1xuIn0seyJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzQ7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici00IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfNCA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici00LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzQgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8zO1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzMgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHdlYnItMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8zID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8zLCB7fSk7XG4ifSx7ImNlbGxOYW1lIjoid2Vici13aWRnZXQtMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF93ZWJyX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMi1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgV2ViUkV4ZXJjaXNlRWRpdG9yKHdlYlJPanMud2ViUlByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3dlYnJfdmFsdWVfMiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMiwge30pO1xuIn0seyJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzE7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il93ZWJyX3ZhbHVlXzEgPSB7XG4gIGNvbnN0IHsgaGlnaGxpZ2h0UiwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIC8vIERlZmF1bHQgZXZhbHVhdGlvbiBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHtcbiAgICBpZDogXCJ3ZWJyLTEtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUiBjb2RlXG4gIGNvbnN0IHJlc3VsdCA9IHdlYlJPanMucHJvY2Vzcyh7Y29kZTogYmxvY2suY29kZSwgb3B0aW9uc30sIHt9KTtcblxuICAvLyBFYXJseSB5aWVsZCB3aGlsZSB3ZSB3YWl0IGZvciB0aGUgZmlyc3QgZXZhbHVhdGlvbiBhbmQgcmVuZGVyXG4gIGlmIChvcHRpb25zLm91dHB1dCAmJiAhKFwiMVwiIGluIHdlYlJPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSByXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFIoYmxvY2suY29kZSkpO1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItZ3JvdyBzcGlubmVyLWdyb3ctc20gbS0yIHBvc2l0aW9uLWFic29sdXRlIHRvcC0wIGVuZC0wXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHByZUVsZW0pO1xuICAgIH0gZWxzZSB7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ib3JkZXIgc3Bpbm5lci1ib3JkZXItc21cIjtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICB9XG5cbiAgICB5aWVsZCBjb250YWluZXI7XG4gIH1cblxuICB3ZWJST2pzLnJlbmRlcmVkT2pzW1wiMVwiXSA9IHRydWU7XG4gIHlpZWxkIGF3YWl0IHJlc3VsdDtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ3ZWJST2pzID0ge1xuICBjb25zdCB7IFdlYlIsIENoYW5uZWxUeXBlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lLldlYlI7XG4gIGNvbnN0IHtcbiAgICBXZWJSRXZhbHVhdG9yLFxuICAgIFdlYlJFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBSLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGhcbiAgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc3RhdHVzQ29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJleGVyY2lzZS1sb2FkaW5nLXN0YXR1c1wiKTtcbiAgY29uc3QgaW5kaWNhdG9yQ29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJleGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaW5kaWNhdG9yQ29udGFpbmVyLmNsYXNzTGlzdC5yZW1vdmUoXCJkLW5vbmVcIik7XG5cbiAgbGV0IHN0YXR1c1RleHQgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpXG4gIHN0YXR1c1RleHQuY2xhc3NMaXN0ID0gXCJleGVyY2lzZS1sb2FkaW5nLWRldGFpbHNcIjtcbiAgc3RhdHVzVGV4dCA9IHN0YXR1c0NvbnRhaW5lci5hcHBlbmRDaGlsZChzdGF0dXNUZXh0KTtcbiAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBJbml0aWFsaXNlYDtcblxuICAvLyBIb2lzdCBpbmRpY2F0b3Igb3V0IGZyb20gZmluYWwgc2xpZGUgd2hlbiBydW5uaW5nIHVuZGVyIHJldmVhbFxuICBjb25zdCByZXZlYWxTdGF0dXMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCAuZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGlmIChyZXZlYWxTdGF0dXMpIHtcbiAgICByZXZlYWxTdGF0dXMucmVtb3ZlKCk7XG4gICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgPiAuc2xpZGVzXCIpLmFwcGVuZENoaWxkKHJldmVhbFN0YXR1cyk7XG4gIH1cblxuICAvLyBNYWtlIGFueSByZXZlYWwgc2xpZGVzIHdpdGggbGl2ZSBjZWxscyBzY3JvbGxhYmxlXG4gIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoXCIucmV2ZWFsIC5leGVyY2lzZS1jZWxsXCIpLmZvckVhY2goKGVsKSA9PiB7XG4gICAgZWwuY2xvc2VzdCgnc2VjdGlvbi5zbGlkZScpLmNsYXNzTGlzdC5hZGQoXCJzY3JvbGxhYmxlXCIpO1xuICB9KVxuXG4gIC8vIHdlYlIgc3VwcGxlbWVudGFsIGRhdGEgYW5kIG9wdGlvbnNcbiAgY29uc3QgZGF0YUNvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici1kYXRhXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZGF0YSA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGRhdGFDb250ZW50KSk7XG5cbiAgLy8gR3JhYiBsaXN0IG9mIHJlc291cmNlcyB0byBiZSBkb3dubG9hZGVkXG4gIGNvbnN0IGZpbGVzQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ2ZnMtZmlsZVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGZpbGVzID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZmlsZXNDb250ZW50KSk7XG5cbiAgLy8gSW5pdGlhbGlzZSB3ZWJSIGFuZCBzZXR1cCBmb3IgUiBjb2RlIGV2YWx1YXRpb25cbiAgbGV0IHdlYlJQcm9taXNlID0gKGFzeW5jICh3ZWJSKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyB3ZWJSYDtcbiAgICBhd2FpdCB3ZWJSLmluaXQoKTtcblxuICAgIC8vIEluc3RhbGwgcHJvdmlkZWQgbGlzdCBvZiBwYWNrYWdlc1xuICAgIC8vIEVuc3VyZSB3ZWJSIGRlZmF1bHQgcmVwbyBpcyBpbmNsdWRlZFxuICAgIGRhdGEucGFja2FnZXMucmVwb3MucHVzaChcImh0dHBzOi8vcmVwby5yLXdhc20ub3JnXCIpXG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gd2ViUi5ldmFsUlZvaWQoYFxuICAgICAgICB3ZWJyOjppbnN0YWxsKHBrZywgcmVwb3MgPSByZXBvcylcbiAgICAgICAgbGlicmFyeShwa2csIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSlcbiAgICAgIGAsIHsgZW52OiB7XG4gICAgICAgIHBrZzogcGtnLFxuICAgICAgICByZXBvczogZGF0YS5wYWNrYWdlcy5yZXBvcyxcbiAgICAgIH19KTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICBjb25zdCBhbmFseXNpcyA9IGF3YWl0IHdlYlIuRlMuYW5hbHl6ZVBhdGgocGF0aCk7XG4gICAgICAgIGlmICghYW5hbHlzaXMuZXhpc3RzKSB7XG4gICAgICAgICAgdHJ5IHtcbiAgICAgICAgICAgIGF3YWl0IHdlYlIuRlMubWtkaXIocGF0aCk7XG4gICAgICAgICAgfSBjYXRjaCAoZSkge1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yOiBcIiR7ZS5tZXNzYWdlfVwiLmApO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgcmV0dXJuIGF3YWl0IHdlYlIuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5zdGFsbGluZyB3ZWJSIHNoaW1zYDtcbiAgICBhd2FpdCB3ZWJSLmV2YWxSVm9pZChgd2Vicjo6c2hpbV9pbnN0YWxsKClgKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgV2ViUiBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBSKHdlYlIsIGRhdGEpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHdlYlI7XG4gIH0pKG5ldyBXZWJSKGRhdGEub3B0aW9ucykpO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCB3ZWJSID0gYXdhaXQgd2ViUlByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFdlYlJFdmFsdWF0b3Iod2ViUiwgY29udGV4dClcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBwcm9jZXNzLFxuICAgIHdlYlJQcm9taXNlLFxuICAgIHJlbmRlcmVkT2pzLFxuICB9O1xufVxuIn1dfQ==
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -170,7 +920,12 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-duthie2025" class="csl-entry" role="listitem">
+Duthie, A. B. 2025. <em>Fundamental Statistical Concepts and Techniques in the Biological and Environmental Sciences: <span>With</span> Jamovi</em>. <a href="https://bradduthie.github.io/stats/">https://bradduthie.github.io/stats/</a>.
+</div>
+</div>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -398,6 +1153,44 @@ W10=
     window._ojs.selfContained = false;
     window._ojs.runtime.interpretFromScriptTags();
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
