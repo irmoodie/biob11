@@ -7,4 +7,5 @@ execute:
   eval: false
 ---
 
-Coming soon!
+Instructions can be found on
+[Canvas](https://canvas.education.lu.se/courses/39432/pages/literature-seminar?module_item_id=1802879).
