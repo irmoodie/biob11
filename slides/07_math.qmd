@@ -7,7 +7,7 @@ author: "Iain R. Moodie"
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
-# Probability models {background-color="#61599d"}
+# Making an error {background-color="#61599d"}
 
 ```{r}
 library(tidyverse, quietly = TRUE)
@@ -39,6 +39,140 @@ mendelian_data <- tibble(
   phenotype = rep(c("A-B-", "A-bb", "aaB-", "aabb"), times = round(expected_proportions * 120))
 )
 ```
+
+## Making an error
+### Logic of hypothesis testing (review)
+
+- What are the chances we would collect the data we did if the null hypothesis was true?
+- What are the chances we would have observed our test statistic or a more extreme one, if the null hypothesis was
+  correct?
+- This probability is called a **p-value**
+  - If the chance (p-value) is sufficiently low ($p < \alpha$), then we **reject the null hypothesis**
+  - If the chance (p-value) is high ($p \ge \alpha$), then we **fail to reject the null hypothesis**
+
+## Making an error
+### Types of error (hypothesis testing)
+
+We want to find a balance between two types of errors we could make:
+
+- $\alpha$: **type I error** (false positive)
+  - Null hypothesis is TRUE, but we reject it
+- $\beta$: **type II error** (false negative)
+  - Null hypothesis is FALSE, but we fail to reject it
+
+## Making an error
+### Types of error (hypothesis testing)
+
+- To decrease our chance of making a **type I error** (false positive):
+  - Decrease our $\alpha$
+  - p = 0.05, p = 0.01, p = 0.001?
+- However, this increases our chance of making a **type II error** (false negative):
+- To decrease our chance of making a **type II error**:
+  - Increase our sample size
+  - Increase $\alpha$
+- Can also view p-values as a continuum
+
+## Making an error
+### Types of error (hypothesis testing)
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 8
+set.seed(123)
+
+# Simulate data under the null hypothesis (no true effect)
+# Test at different sample sizes to show Type I error rate stays constant
+
+sample_sizes <- c(10, 50, 100, 500)
+n_simulations <- 10000
+alpha <- 0.05
+
+results <- map_df(sample_sizes, \(n) {
+    p_values <- replicate(n_simulations, {
+        # Generate data from normal distribution (null is true)
+        data <- rnorm(n, mean = 0, sd = 1)
+        # Test if mean differs from 0
+        t_test <- t.test(data, mu = 0)
+        t_test$p.value
+    })
+    
+    # Count rejections (Type I errors)
+    type_1_errors <- sum(p_values < alpha) / n_simulations
+    
+    tibble(
+        sample_size = n,
+        type_1_error_rate = type_1_errors,
+        n_rejections = sum(p_values < alpha)
+    )
+})
+
+ggplot(results, aes(x = factor(sample_size), y = type_1_error_rate)) +
+    geom_col(fill = "steelblue", alpha = 0.7) +
+    geom_hline(yintercept = alpha, linetype = "dashed", color = "coral", linewidth = 1) +
+    labs(
+        title = "Type I Error Rate Remains Constant Across Sample Sizes",
+        subtitle = paste("10,000 simulations per sample size (alpha =", alpha, ")"),
+        x = "Sample Size",
+        y = "Type I Error Rate",
+        caption = "When null hypothesis is true, rejection rate ≈ alpha regardless of n"
+    ) +
+    ylim(0, 0.1)
+```
+
+## Making an error
+### Types of error (hypothesis testing)
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 8
+set.seed(123)
+
+# Simulate data under an alternative hypothesis (true effect exists)
+# Test at different sample sizes to show Type II error rate decreases with larger n
+
+sample_sizes <- c(10, 50, 100, 500)
+n_simulations <- 10000
+alpha <- 0.05
+true_mean <- 0.5  # True effect size
+
+results_type2 <- map_df(sample_sizes, \(n) {
+    p_values <- replicate(n_simulations, {
+        # Generate data from normal distribution with true effect
+        data <- rnorm(n, mean = true_mean, sd = 1)
+        # Test if mean differs from 0
+        t_test <- t.test(data, mu = 0)
+        t_test$p.value
+    })
+    
+    # Count failures to reject (Type II errors)
+    type_2_errors <- sum(p_values >= alpha) / n_simulations
+    
+    tibble(
+        sample_size = n,
+        type_2_error_rate = type_2_errors,
+        power = 1 - type_2_errors
+    )
+})
+
+ggplot(results_type2, aes(x = factor(sample_size), y = type_2_error_rate)) +
+    geom_col(fill = "coral", alpha = 0.7) +
+    labs(
+        title = "Type II Error Rate Decreases with Sample Size",
+        subtitle = paste("10,000 simulations per sample size (alpha =", alpha, ", true mean =", true_mean, ")"),
+        x = "Sample Size",
+        y = "Type II Error Rate (beta)",
+        caption = "When null hypothesis is false, rejection rate increases with n"
+    ) +
+    ylim(0, 1)
+```
+
+# Probability models {background-color="#61599d"}
 
 ## Probability models
 ### Flipping a coin
