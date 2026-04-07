@@ -468,6 +468,7 @@ Photo by Michael Becker
 ::::: {.column}
 ```{r}
 #| fig-align: center
+#| echo: false
 
 set.seed(11)
 N <- 300
@@ -517,6 +518,7 @@ ggplot(df, aes(x = X, y = Y, color = Z)) +
 ::::: {.column}
 ```{r}
 #| fig-align: center
+#| echo: false
 
 set.seed(11)
 N <- 300
@@ -566,7 +568,8 @@ ggplot(df, aes(x = X, y = Y, color = Z)) +
 ::::: {.column}
 ```{r}
 #| fig-align: center
-
+#| echo: false
+#| 
 set.seed(11)
 
 N <- 300
