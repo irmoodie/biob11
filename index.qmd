@@ -192,7 +192,7 @@ material_dates <-
     "2026-04-07" , "slides/07_math"                               , NA                           ,
     "2026-04-08" , "exercises/07_seminar"                         , "exercises/08_report"        ,
     "2026-04-09" , "exercises/08_report"                          , "exercises/08_report"        ,
-    "2026-04-10" , "exercises/09_practise"                        , NA                           ,
+    "2026-04-10" , "exercises/09_practise"                                             , NA      ,
     "2026-04-14" , "exam_info"                                    , NA                           ,
     "2026-04-16" , "exam_info"                                    , NA                           ,
     "2026-04-17" , "slides/08_project"                            , "exercises/10_project"       ,

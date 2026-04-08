@@ -20,8 +20,8 @@ Startdatum,Starttid,Slutdatum,Sluttid,Kurs,Delkurs,Grupp,Aktivitet,"Lokal,Platsk
 2026-04-08,09:00,2026-04-08,12:00,BIOB11,,,"Obligatoriskt,Seminarium","Krypt - Masklaven (T105a),Krypt - Renlaven (T108),Ris - Hjortronet (T104),Ris - Kråkbäret (T107),Ris - Lingonet (T105),Ris - Ripbäret (T106)",Iain Moodie,Group seminar
 2026-04-08,13:00,2026-04-08,16:00,BIOB11,,,"Laboration,Obligatoriskt","Heden (G110),Ängen (G111)",Iain Moodie,Data analysis & report writing exercise
 2026-04-09,09:00,2026-04-09,16:00,BIOB11,,,"Laboration,Obligatoriskt","Heden (G110),Ängen (G111)",Iain Moodie,Data analysis & report writing exercise
-2026-04-10,09:00,2026-04-10,12:00,BIOB11,,,Självstudier,,,Self study
-2026-04-10,13:00,2026-04-10,16:00,BIOB11,,,Laboration,"Heden (G110),Ängen (G111)",Iain Moodie,Exam practise
+2026-04-10,12:00,2026-04-10,16:00,BIOB11,,,Självstudier,,,Self study
+2026-04-10,09:00,2026-04-10,12:00,BIOB11,,,Laboration,"Heden (G110),Ängen (G111)",Iain Moodie,Exam practise
 2026-04-13,09:00,2026-04-13,16:00,BIOB11,,,Självstudier,,,Self study
 2026-04-14,09:00,2026-04-14,10:00,BIOB11,,,Frågestund,Hörsal Blå hallen,"Iain Moodie,Kaj Hulthén",Question & answer session for exam
 2026-04-15,09:00,2026-04-15,16:00,BIOB11,,,Självstudier,,,Self study
@@ -35,4 +35,4 @@ Startdatum,Starttid,Slutdatum,Sluttid,Kurs,Delkurs,Grupp,Aktivitet,"Lokal,Platsk
 2026-04-22,09:00,2026-04-22,16:00,BIOB11,,,"Obligatoriskt,Projekt",Ängen (G111),Iain Moodie,Project work
 2026-04-23,09:00,2026-04-23,12:00,BIOB11,,,"Obligatoriskt,Projekt",Ängen (G111),Iain Moodie,Project work
 2026-04-24,09:00,2026-04-24,16:00,BIOB11,,,"Obligatoriskt,Projekt,Redovisning",Hörsal Blå hallen,Iain Moodie,Project presentations
-2026-05-07,13:00,2026-05-07,17:00,BIOB11,,,Omtentamen,Maskrosen (E121),,Exam feedback and review
+2026-05-04,13:00,2026-05-07,17:00,BIOB11,,,Omtentamen,Maskrosen (E121),,Exam feedback and review

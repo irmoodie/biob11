@@ -2,9 +2,35 @@
 title: "Project work"
 subtitle: "Exercise 10"
 date: 2026-04-17
+draft: true
 execute:
   echo: true
   eval: false
 ---
 
-Coming soon!
+# Overview
+
+The goal of the project is to work in small groups (or independently if you prefer) to analyse a dataset that is of
+interest to you, and to present the results in a report and presentation.
+
+You can either collect your own dataset or (re)analyse an existing dataset. Regardless of where you data comes from,
+your idea should be able to be completed (including data collection, analysis, report writing and presentation
+preperation) within the the alloted time.
+
+# Data sources
+
+## Collecting your own data
+
+In groups of 3-4, you will design and carry out a small research project. Your project should:
+
+- be motivated by a clear hypothesis
+- take 1-3 days to collect data
+- be possible to analyse using methods we have covered during the course
+- not require ethical approval
+
+Your project can be:
+
+- experimental (involving manipulations)
+- observation based
+- survey based
+- literature based (gathering data from other works)

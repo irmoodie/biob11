@@ -7,4 +7,4 @@ execute:
   eval: false
 ---
 
-Coming soon!
+The practise exam and last year's exam can be found on [Canvas](https://canvas.education.lu.se/courses/39432).
