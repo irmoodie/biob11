@@ -1,16 +1,7 @@
 [
   {
-    "listing": "/slides.html",
-    "items": [
-      "/slides/01_intro.html",
-      "/slides/02_data.html",
-      "/slides/03_expdes.html",
-      "/slides/04_inference.html",
-      "/slides/05_hypothesis.html",
-      "/slides/06_regression.html",
-      "/slides/07_math.html",
-      "/slides/08_project.html"
-    ]
+    "listing": "/project.html",
+    "items": []
   },
   {
     "listing": "/exercises.html",
@@ -23,11 +14,20 @@
       "/exercises/06_regression.html",
       "/exercises/07_seminar.html",
       "/exercises/08_report.html",
-      "/exercises/09_practise.html"
+      "/exercises/09_practise.html",
+      "/exercises/10_project.html"
     ]
   },
   {
-    "listing": "/project.html",
-    "items": []
+    "listing": "/slides.html",
+    "items": [
+      "/slides/01_intro.html",
+      "/slides/02_data.html",
+      "/slides/03_expdes.html",
+      "/slides/04_inference.html",
+      "/slides/05_hypothesis.html",
+      "/slides/06_regression.html",
+      "/slides/07_math.html"
+    ]
   }
 ]
