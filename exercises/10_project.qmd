@@ -2,7 +2,6 @@
 title: "Project work"
 subtitle: "Exercise 10"
 date: 2026-04-17
-draft: true
 execute:
   echo: true
   eval: false
@@ -10,27 +9,114 @@ execute:
 
 # Overview
 
-The goal of the project is to work in small groups (or independently if you prefer) to analyse a dataset that is of
-interest to you, and to present the results in a report and presentation.
+The goal of the project is to work in small groups (maximum 4 people, or independently if you prefer) to:
+
+1. collect/find and analyse a dataset that is of interest to you
+2. learn something new in the process
+3. to present your work in a report and presentation
 
 You can either collect your own dataset or (re)analyse an existing dataset. Regardless of where you data comes from,
-your idea should be able to be completed (including data collection, analysis, report writing and presentation
+your idea should be able to be completed (including data collection, analysis, full report writing and presentation
 preperation) within the the alloted time.
+
+We have Angen booked for the whole week, but you can work wherever you want.
 
 # Data sources
 
+Below is a non-exhaustive list of options to get some data to work with.
+
+::: {.callout-note icon="false" collapse="true"}
 ## Collecting your own data
 
-In groups of 3-4, you will design and carry out a small research project. Your project should:
+- We have access to a large range of ecological equipment, including measuring tapes, quadrats, scales, microscopes,
+  drying ovens, hand lenses, etc. Anything within reason that would be in a biology department that does not require
+  specialised training to use we can probably get access to.
+- In previous years student's have performed quite impressive studies just around the ecology building, but you are
+  welcome to go further afield if you like.
+- There is also a small budget available to reimburse you for simple expenses (e.g. petrol, bus ticket, simple
+  materials), but check with the teacher first.
+- Please do not design a study that involves people, unless it is a very simple survey that collects no identifying
+  information, and involves no manipulation.
 
-- be motivated by a clear hypothesis
-- take 1-3 days to collect data
-- be possible to analyse using methods we have covered during the course
-- not require ethical approval
+:::
 
-Your project can be:
+::: {.callout-note icon="false" collapse="true"}
+## Analysing existing data
 
-- experimental (involving manipulations)
-- observation based
-- survey based
-- literature based (gathering data from other works)
+- Sources of existing data might include:
+  - Data associated with an academic publication, often listed in the publication and stored in [data
+    repositories](https://www.re3data.org/).
+  - Biodiversity data (species occurence records) from [GBIF](https://www.gbif.org/)
+  - From friends or family who may have data from a hobby or business you can analyse
+  - From researchers at the university
+  - From other courses
+- We don't need to publish your work anywhere, so as long as the data is licensed in a way that lets you download it
+  that should be enough.
+- If the data comes from a publication, it likely has already been analysed. Trying to replicate an analysis is a
+  perfectly good project!
+- Ethics still apply!
+
+:::
+
+# Project proposal
+
+Once you have a project, write a short summary that includes:
+
+- Data collection method (both for collecting your own and using existing data)
+- Required equipment
+- Rough idea on how you would analyse the data
+
+Submit your plan by 14:00 on Friday 17th April via the assignment in Canvas. You should discuss your ideas with the
+teacher before submitting.
+
+# Analysing the data
+
+No matter how you collect your data, you need to analyse it using methods we have covered in the course, such as:
+
+- Exploratory data analysis (when working with a large dataset)
+- Inference with confidence intervals
+- Null hypothesis testing
+- Regression modelling
+- Or another method that you want to learn!
+
+As always, your analysis should be done in an RMarkdown document that you will submit along side your report.
+
+# Learn something new!
+
+Once you've proposed your project, the teacher will give you an additional element to include. This might be a new
+method, a new style of plot, a new way to work, etc. If you have something in mind that you want to focus on, you can
+also suggest that. When you come to present your work, 1 additional slide should be included to explain this new
+concept, so we can all learn about it.
+
+# Writing the report
+
+Your final report must include:
+
+- Abstract (summary of the entire paper, including results, 150 words max)
+- Introduction (background information, hypotheses)
+- Methods (including statistical methods)
+- Results (report results, tables, figures, and save discussion for later)
+- Discussion (discuss your results in light of the introduction, suggest future research avenues) - Citations of any
+  references made in the main text (any style as long as it is consistent).
+
+As long as it contains these elements, you can format the report however you wish. A rough guide length should be 2-3
+pages of size 12 text, but the focus should be on the quality, not quantity. If you judge that your group needs more or
+less pages, I trust your judgement.
+
+Please write your reports in English.
+
+You should submit your reports by 13:00 on Thursday 23rd of April, so that the teacher and other groups can read your
+work before the presentation seminar.
+
+# Peer review
+
+Each group will be assigned the report of 1-2 other groups that they should read in preperation for the presentation
+seminar. They will be in charge of leading the questions after the presention.
+
+# Presentation
+
+Your final presentation should be no longer than 10 minutes. It should be engaging, and focus on communicating your
+results in an accessible way.
+
+Not all group members have to speak, but you need to all contribute to the presentation. I would prefer that you present
+in English, but if you prefer Swedish then you are welcome to do so.

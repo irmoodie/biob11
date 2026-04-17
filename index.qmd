@@ -143,9 +143,8 @@ due_dates <-
     "2026-04-09" , "✅ [Analysis and report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00" ,
     "2026-04-08" , "✅ [Seminar notes](https://canvas.education.lu.se/courses/39432/assignments/291068) <br> ⏰ 17:00" ,
     "2026-04-16" , "✅ [Exam](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 13:00"                ,
-    "2026-04-17" , "✅ [Project proposal](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 14:00"    ,
-    "2026-04-23" , "✅ [Project report](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 13:00"      ,
-    "2026-04-24" , "✅ [Peer-review](https://canvas.education.lu.se/courses/39432/assignments) <br> ⏰ 17:00"
+    "2026-04-17" , "✅ [Project proposal](https://canvas.education.lu.se/courses/39432/assignments/292325) <br> ⏰ 14:00"    ,
+    "2026-04-23" , "✅ [Project report](https://canvas.education.lu.se/courses/39432/assignments/292326) <br> ⏰ 13:00"
   ) |>
   mutate(date = lubridate::as_date(date))
 
@@ -195,7 +194,7 @@ material_dates <-
     "2026-04-10" , "exercises/09_practise"                                             , NA      ,
     "2026-04-14" , "exam_info"                                    , NA                           ,
     "2026-04-16" , "exam_info"                                    , NA                           ,
-    "2026-04-17" , "slides/08_project"                            , "exercises/10_project"       ,
+    "2026-04-17" , "exercises/10_project"                          , "exercises/10_project"       ,
     "2026-04-20" , "exercises/10_project"                         , "exercises/10_project"       ,
     "2026-04-21" , "exercises/10_project"                         , "exercises/10_project"       ,
     "2026-04-22" , "exercises/10_project"                         , "exercises/10_project"       ,
