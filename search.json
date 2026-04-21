@@ -74,7 +74,7 @@
     "href": "resources.html#r-packages",
     "title": "Resources",
     "section": "R Packages",
-    "text": "R Packages\nWe will make use of a set of R packages that are part of the extended tidyverse set of packages. Below are the websites for the main ones we will use, which contain guides, “cheatsheets” and reference materials.\n\nGeneral\n\ntidyverse\n\nggplot2 (Plotting data)\ndplyr (Manipulating data)\ntidyr (Tidying data)\nreadr (Importing/exporting data)\n\n\n\n\nStatistics\n\ninfer",
+    "text": "R Packages\nWe will make use of a set of R packages that are part of the extended tidyverse set of packages. Below are the websites for the main ones we will use, which contain guides, “cheatsheets” and reference materials.\n\nGeneral\n\ntidyverse\n\nggplot2 (Plotting data)\ndplyr (Manipulating data)\ntidyr (Tidying data)\nreadr (Importing/exporting data)\n\n\n\n\nStatistics\n\ninfer\n\n\n\nExtra infer functions\n\nDiversity indices",
     "crumbs": [
       "Resources"
     ]
@@ -256,6 +256,41 @@
     "title": "Exploratory data analysis",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nMorphological refers to the physical form and structure of organisms.↩︎\nAn observational study is a type of research design where researchers observe and collect data without manipulating or intervening.↩︎\nR is a free software environment for statistical computing and graphics that you will use in this course↩︎\nfill specifies how each bar should be filled with colour.↩︎\nIn the plot below, the argument bins = 20 affects how many groups you slice the variable into. There’s no right or wrong way to decide how many bins to use, so you can try changing it to find a value that looks good for you.↩︎"
+  },
+  {
+    "objectID": "diversity.html",
+    "href": "diversity.html",
+    "title": "Bootstrapping Diversity Indicies with Infer",
+    "section": "",
+    "text": "library(infer)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.2.0     ✔ readr     2.2.0\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.2     ✔ tibble    3.3.1\n✔ lubridate 1.9.5     ✔ tidyr     1.3.2\n✔ purrr     1.2.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntheme_set(theme_bw(base_size = 16) + theme(aspect.ratio = 1)) # sets a global ggplot2 theme"
+  },
+  {
+    "objectID": "diversity.html#calculate-observed",
+    "href": "diversity.html#calculate-observed",
+    "title": "Bootstrapping Diversity Indicies with Infer",
+    "section": "Calculate observed",
+    "text": "Calculate observed\n\nobs_a &lt;-\n    fake_data |&gt;\n    filter(environment == \"env_a\") |&gt;\n    specify(response = species) |&gt;\n    calculate(stat = stat_shannon)\n\nobs_b &lt;-\n    fake_data |&gt;\n    filter(environment == \"env_b\") |&gt;\n    specify(response = species) |&gt;\n    calculate(stat = stat_shannon)"
+  },
+  {
+    "objectID": "diversity.html#boostrap-sampling-distribution",
+    "href": "diversity.html#boostrap-sampling-distribution",
+    "title": "Bootstrapping Diversity Indicies with Infer",
+    "section": "Boostrap sampling distribution",
+    "text": "Boostrap sampling distribution\n\nboot_a &lt;-\n    fake_data |&gt;\n    filter(environment == \"env_a\") |&gt;\n    specify(response = species) |&gt;\n    generate(reps = 10000, type = \"bootstrap\") |&gt;\n    calculate(stat = stat_shannon)\n\nboot_b &lt;-\n    fake_data |&gt;\n    filter(environment == \"env_b\") |&gt;\n    specify(response = species) |&gt;\n    generate(reps = 10000, type = \"bootstrap\") |&gt;\n    calculate(stat = stat_shannon)\n\nboot_a |&gt;\n    visualise()\n\n\n\n\n\n\n\nboot_b |&gt;\n    visualise()"
+  },
+  {
+    "objectID": "diversity.html#confidence-interval",
+    "href": "diversity.html#confidence-interval",
+    "title": "Bootstrapping Diversity Indicies with Infer",
+    "section": "Confidence interval",
+    "text": "Confidence interval\n\nci_a &lt;- \n    boot_a |&gt;\n    get_ci(level = 0.95, type = \"percentile\")\n\nci_b &lt;- \n    boot_b |&gt;\n    get_ci(level = 0.95, type = \"percentile\")\n\nci_a\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     1.62     1.78\n\nci_b\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     1.66     1.86\n\nboot_a |&gt;\n    visualise() +\n    shade_ci(endpoints = ci_a)\n\n\n\n\n\n\n\nboot_b |&gt;\n    visualise() +\n    shade_ci(endpoints = ci_b)"
+  },
+  {
+    "objectID": "diversity.html#plots",
+    "href": "diversity.html#plots",
+    "title": "Bootstrapping Diversity Indicies with Infer",
+    "section": "Plots",
+    "text": "Plots\n\nobs_shannon &lt;-\n    bind_rows(\n        env_a = obs_a,\n        env_b = obs_b,\n        .id = \"environment\"\n    )\n\nci_shannon &lt;- \n    bind_rows(\n        env_a = ci_a,\n        env_b = ci_b,\n        .id = \"environment\"\n    )\n\nobs_shannon |&gt;\n    full_join(ci_shannon, by = join_by(environment)) |&gt;\n    ggplot(aes(x = environment, y = stat)) +\n    geom_point(size = 4) +\n    geom_errorbar(aes(ymin = lower_ci, ymax = upper_ci), width = 0.2)"
   },
   {
     "objectID": "exercises.html",
